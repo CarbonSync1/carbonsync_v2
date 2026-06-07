@@ -1,26 +1,29 @@
 'use client';
-const team1 = "/about-assets/team-1.webp";
 
 const team = [
   {
-    name: 'Adrian Vane',
-    role: 'CHIEF EXECUTIVE OFFICER',
-    image: team1,
+    name: 'Pushkar Singh',
+    role: 'Founder & CEO',
+    image: '/about-assets/team-1-new.jpg',
+    linkedin: 'https://www.linkedin.com/in/pushkar-singh-87563433b?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   },
   {
-    name: 'Sarah Chen',
-    role: 'CHIEF TECHNOLOGY OFFICER',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop&grayscale=true',
+    name: 'Ayush Chaudhary',
+    role: 'Chief Operation Officer (COO)',
+    image: '/about-assets/team-2.jpg',
+    linkedin: 'https://www.linkedin.com/in/ayush-chaudhary-a01182329?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   },
   {
-    name: 'Marcus Thorne',
-    role: 'CHIEF SCIENCE OFFICER',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop&grayscale=true',
+    name: 'Sarwang Agarwal',
+    role: 'Full-Stack Engineer',
+    image: '/about-assets/team-3.jpg',
+    linkedin: 'https://www.linkedin.com/in/sarwang-agarwal-220aa62a3?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   },
   {
-    name: 'Elena Rossi',
-    role: 'CHIEF PRODUCT OFFICER',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop&grayscale=true',
+    name: 'Priyanshu Gcet',
+    role: 'Backend Engineer',
+    image: '/about-assets/team-4.jpg',
+    linkedin: 'https://www.linkedin.com/in/priyanshubarai?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   },
 ]
 
@@ -42,18 +45,25 @@ const Team = () => {
 
         <div className="team-grid">
           {team.map((member, index) => (
-            <div
+            <a
               key={index}
-              className="team-card"
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'none', color: 'inherit' }}
             >
-              <div className="member-image">
-                <img src={member.image} alt={member.name} />
+              <div
+                className="team-card"
+              >
+                <div className="member-image">
+                  <img src={member.image} alt={member.name} />
+                </div>
+                <div className="member-info">
+                  <h3>{member.name}</h3>
+                  <p>{member.role}</p>
+                </div>
               </div>
-              <div className="member-info">
-                <h3>{member.name}</h3>
-                <p>{member.role}</p>
-              </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

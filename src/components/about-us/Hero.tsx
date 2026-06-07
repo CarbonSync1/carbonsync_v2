@@ -24,7 +24,7 @@ const Hero = () => {
           className="hero-badge"
         >
           <span className="diamond">✦</span>
-          ESTABLISHED 2015
+          ESTABLISHED 2024
         </div>
 
         {/* Title */}
@@ -70,7 +70,7 @@ const Hero = () => {
                   <div className="story-tag">OUR JOURNEY</div>
                   <h2 className="story-title">A Vision for <span>Certainty.</span></h2>
                   <p className="story-body">
-                    Founded in 2015, CarbonSync began with a simple yet profound realization: 
+                    Founded in 2024, CarbonSync began with a simple yet profound realization: 
                     the transition to net-zero is the greatest challenge of our generation, 
                     but the tools to manage it were fragmented and manual.
                   </p>
@@ -81,7 +81,7 @@ const Hero = () => {
                   </p>
                   <div className="story-stats">
                     <div className="stat">
-                      <span className="val">2015</span>
+                      <span className="val">2024</span>
                       <span className="lbl">FOUNDED</span>
                     </div>
                     <div className="stat">
