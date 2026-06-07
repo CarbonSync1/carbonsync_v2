@@ -10,7 +10,7 @@ export function Analytics() {
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
 
   return (
-    <section id="analytics" className="bg-white py-[60px] px-[5%]">
+    <section id="analytics" className="bg-white py-24 px-[5%]">
       <div className="mx-auto max-w-[1200px]">
         <div
           className="mx-auto mb-8 max-w-[700px] text-center"
