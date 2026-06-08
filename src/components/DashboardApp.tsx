@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 
 import {
@@ -26,16 +26,8 @@ const TABS = [
 ];
 
 export default function DashboardApp() {
-  const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [activeTab, setActiveTab] = useState('Overview');
-
-  const springX = 0;
-  const springY = 0;
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const renderView = () => {
     const Fallback = () => (
@@ -76,15 +68,8 @@ export default function DashboardApp() {
         </div>
       </div>
 
-      {!mounted ? (
-        <div className="fixed inset-0 z-[1000] bg-slate-950 flex items-center justify-center">
-          <p className="text-xs font-black text-emerald-500 uppercase tracking-[1.5em] animate-pulse">
-            Establishing God-Tier Link...
-          </p>
-        </div>
-      ) : (
-        <>
-          <aside className="fixed left-12 top-1/2 -translate-y-1/2 z-[100] flex flex-col gap-10 p-8 glass-god rounded-[5rem] shadow-[0_100px_150px_rgba(0,0,0,1)] hidden 2xl:flex">
+      <>
+        <aside className="fixed left-12 top-1/2 -translate-y-1/2 z-[100] flex flex-col gap-10 p-8 glass-god rounded-[5rem] shadow-[0_100px_150px_rgba(0,0,0,1)] hidden 2xl:flex">
             <div className="w-16 h-16 bg-emerald-500 rounded-3xl flex items-center justify-center text-[#020617] shadow-[0_0_60px_rgba(16,185,129,0.3)] mb-12">
               <Leaf size={32} />
             </div>
@@ -177,8 +162,7 @@ export default function DashboardApp() {
               God-Tier Immersion Active &#10003;
             </div>
           </div>
-        </>
-      )}
+      </>
     </div>
   );
 }

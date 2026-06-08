@@ -1,6 +1,6 @@
 'use client';
 
-
+import { useState, useEffect } from 'react';
 import { FileText } from 'lucide-react';
 
 const LEDGER_ROWS = [
@@ -12,11 +12,12 @@ const LEDGER_ROWS = [
   { t: 'Atmospheric Capture v8', s: 'Global Resonance', v: '+310.2 tCO2', c: 'text-emerald-500' },
 ];
 
-function randomTxId() {
+function makeId() {
   return Math.random().toString(36).substring(2, 12).toUpperCase();
 }
 
 export default function LedgerView() {
+  const [txIds] = useState(() => LEDGER_ROWS.map(() => makeId()));
   return (
     <div
       className="glass-god rounded-[5rem] p-20 flex flex-col overflow-hidden min-h-[80vh]"
@@ -47,7 +48,7 @@ export default function LedgerView() {
                 <td className="py-12 pl-8">
                   <p className="text-lg font-black tracking-tight">{row.t}</p>
                   <p className="text-[10px] font-bold text-white/20 uppercase mt-2">
-                    TX_ID: {randomTxId()}
+                    TX_ID: {txIds[i]}
                   </p>
                 </td>
                 <td className="py-12 text-sm font-black text-white/40 uppercase tracking-widest">{row.s}</td>

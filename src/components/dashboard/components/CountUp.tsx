@@ -3,9 +3,10 @@
 import { useState, useEffect } from 'react';
 
 export default function CountUp({ end }: { end: number }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(end);
 
   useEffect(() => {
+    setCount(0);
     let start = 0;
     const duration = 2000;
     const step = (timestamp: number) => {

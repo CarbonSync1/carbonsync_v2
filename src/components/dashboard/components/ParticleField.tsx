@@ -2,34 +2,30 @@
 
 import { useEffect, useState } from 'react';
 
-interface Particle {
-  left: string;
-  top: string;
-  delay: string;
-  duration: string;
-}
-
-const PLACEHOLDER: Particle = { left: '0%', top: '0%', delay: '0s', duration: '10s' };
-
-function createParticles(): Particle[] {
-  return Array.from({ length: 80 }, () => ({
-    left: `${Math.random() * 100}%`,
-    top: `${Math.random() * 100}%`,
-    delay: `${Math.random() * 10}s`,
-    duration: `${10 + Math.random() * 20}s`,
+function createParticles() {
+  return Array.from({ length: 80 }, (_, i) => ({
+    left: `${(i * 37 + 13) % 100}%`,
+    top: `${(i * 53 + 7) % 100}%`,
+    delay: `${(i * 0.12) % 10}s`,
+    duration: `${10 + (i * 0.25) % 20}s`,
   }));
 }
 
 export default function ParticleField() {
-  const [particles, setParticles] = useState<Particle[] | null>(null);
+  const [particles, setParticles] = useState(createParticles);
 
   useEffect(() => {
-    setParticles(createParticles());
+    setParticles(Array.from({ length: 80 }, () => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      delay: `${Math.random() * 10}s`,
+      duration: `${10 + Math.random() * 20}s`,
+    })));
   }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[2] overflow-hidden">
-      {(particles ?? Array(80).fill(PLACEHOLDER)).map((p, i) => (
+      {particles.map((p, i) => (
         <div
           key={i}
           className="particle"

@@ -41,6 +41,7 @@ const Section = ({ id, title, children, index }: { id: string, title: string, ch
 
 export default function DataProcessingAgreement() {
   const [activeSection, setActiveSection] = useState('definitions');
+  const [dateStr, setDateStr] = useState('');
 
   const sections = [
     { id: 'definitions', title: 'Definitions' },
@@ -62,6 +63,10 @@ export default function DataProcessingAgreement() {
     { id: 'signatories', title: 'Signatories' },
     { id: 'contact', title: 'Contact Us' },
   ];
+
+  useEffect(() => {
+    setDateStr(new Date().toLocaleDateString());
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -537,7 +542,7 @@ export default function DataProcessingAgreement() {
                       </div>
                       <div className="group">
                         <label className="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">System Timestamp</label>
-                        <div className="w-full bg-gray-100 border border-gray-200 p-5 rounded-2xl font-black text-gray-500">{new Date().toLocaleDateString()}</div>
+                        <div className="w-full bg-gray-100 border border-gray-200 p-5 rounded-2xl font-black text-gray-500">{dateStr}</div>
                         <input type="hidden" name="Agreement Type" value="Data Processing Agreement (CarbonSync)" />
                       </div>
                     </div>
