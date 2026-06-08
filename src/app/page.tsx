@@ -1,77 +1,15 @@
 'use client';
 
-import { useState, useEffect, useRef, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import {
   ArrowRight, Upload, LineChart, FileCheck, Zap, ShieldCheck, Award, Activity,
-  TrendingDown, Leaf, BarChart3, Globe2, HelpCircle, ChevronDown, Send,
-  CheckCircle, Users, Layers, Database, Star, Sparkles, ChevronLeft,
+  TrendingDown, Leaf, BarChart3, Globe2, HelpCircle, ChevronDown,
+  CheckCircle, Users, Layers, Database, Sparkles,
 } from 'lucide-react';
 import { faqs } from '@/data/faqs';
-import { testimonials } from '@/data/testimonials';
 
 const Analytics = dynamic(() => import('@/components/AnalyticsSection').then(m => ({ default: m.Analytics })), { ssr: false });
-
-function useReveal(threshold = 0.1) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.unobserve(el); } },
-      { threshold }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-
-  return { ref, visible };
-}
-
-function Reveal({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const { ref, visible } = useReveal();
-  return (
-    <div
-      ref={ref}
-      className={`reveal ${visible ? 'reveal-visible' : ''} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-}
-
-function AnimatedCounter({ end, suffix = '', duration = 2000 }: { end: number; suffix?: string; duration?: number }) {
-  const [val, setVal] = useState(0);
-  const { ref, visible } = useReveal();
-
-  useEffect(() => {
-    if (!visible) return;
-    let start = 0;
-    const increment = end / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= end) { setVal(end); clearInterval(timer); }
-      else setVal(Math.floor(start));
-    }, 16);
-    return () => clearInterval(timer);
-  }, [visible, end, duration]);
-
-  return (
-    <span ref={ref} className="tabular-nums font-heading text-4xl font-extrabold text-eco-green">
-      {val}{suffix}
-    </span>
-  );
-}
-
-const heroParticles = [...Array(20)].map((_, i) => ({
-  left: `${((i * 73 + 47) % 100)}%`,
-  animationDelay: `${((i * 31) % 10)}s`,
-  animationDuration: `${8 + ((i * 17) % 12)}s`,
-  size: `${1 + ((i * 7) % 3)}px`,
-}));
 
 function HeroSection() {
   return (
@@ -82,70 +20,34 @@ function HeroSection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(22,163,74,0.15),transparent_70%)]" />
       </div>
 
-      <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
-        <div className="absolute -top-1/2 -left-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle,rgba(22,163,74,0.08)_0%,transparent_60%)] animate-aurora" />
-        <div className="absolute -bottom-1/2 -right-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle,rgba(52,211,153,0.06)_0%,transparent_60%)] animate-aurora" style={{ animationDelay: '-4s' }} />
-        {heroParticles.map((p, i) => (
-          <div
-            key={i}
-            className="particle"
-            style={{
-              left: p.left,
-              bottom: '-5%',
-              animationDelay: p.animationDelay,
-              animationDuration: p.animationDuration,
-              width: p.size,
-              height: p.size,
-            }}
-          />
-        ))}
-      </div>
-
       <div className="relative z-10 text-center max-w-[960px] px-[5%]">
-        <Reveal delay={0}>
-          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/8 backdrop-blur-md border border-white/15 text-white/80 text-xs font-bold tracking-widest uppercase mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-eco-green animate-pulse-soft" />
-            Intelligence for a Greener Future
-          </div>
-        </Reveal>
+        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/8 backdrop-blur-md border border-white/15 text-white/80 text-xs font-bold tracking-widest uppercase mb-8">
+          <span className="w-1.5 h-1.5 rounded-full bg-eco-green animate-pulse-soft" />
+          Intelligence for a Greener Future
+        </div>
 
-        <Reveal delay={150}>
-          <h1 className="font-heading text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold text-white leading-[1.08] tracking-tight mb-6">
-            Powering a{' '}
-            <span className="text-gradient-emerald">Greener Future</span>
-            {' '}with Intelligent Insights
-          </h1>
-        </Reveal>
+        <h1 className="font-heading text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold text-white leading-[1.08] tracking-tight mb-6">
+          Powering a{' '}
+          <span className="text-gradient-emerald">Greener Future</span>
+          {' '}with Intelligent Insights
+        </h1>
 
-        <Reveal delay={300}>
-          <div className="inline-block bg-gradient-to-r from-eco-green/90 to-emerald-light/90 text-white px-6 py-2.5 rounded-xl font-heading font-extrabold tracking-wide mb-6 shadow-lg shadow-eco-green/25 backdrop-blur-sm border border-white/10">
-            FROM CARBON ACCOUNTING TO OFFSETTING — ALL AT ONE PLATFORM
-          </div>
-        </Reveal>
+        <div className="inline-block bg-gradient-to-r from-eco-green/90 to-emerald-light/90 text-white px-6 py-2.5 rounded-xl font-heading font-extrabold tracking-wide mb-6 shadow-lg shadow-eco-green/25 backdrop-blur-sm border border-white/10">
+          FROM CARBON ACCOUNTING TO OFFSETTING — ALL AT ONE PLATFORM
+        </div>
 
-        <Reveal delay={450}>
-          <p className="text-[clamp(1rem,2vw,1.25rem)] text-white/70 leading-relaxed max-w-[680px] mx-auto mb-10">
-            AI-driven sustainability analytics and carbon accounting platform for the modern enterprise.
-          </p>
-        </Reveal>
+        <p className="text-[clamp(1rem,2vw,1.25rem)] text-white/70 leading-relaxed max-w-[680px] mx-auto mb-10">
+          AI-driven sustainability analytics and carbon accounting platform for the modern enterprise.
+        </p>
 
-        <Reveal delay={600}>
-          <div className="flex flex-wrap justify-center items-center gap-4 max-sm:flex-col max-sm:items-stretch">
-            <button className="btn-primary text-base px-10 py-4 text-[15px] shadow-lg shadow-eco-green/30 hover:shadow-xl hover:shadow-eco-green/40">
-              Get Started <ArrowRight size={18} />
-            </button>
-            <button className="btn-secondary text-base px-10 py-4 text-[15px]">
-              <Sparkles size={18} />
-              Explore Dashboard
-            </button>
-          </div>
-        </Reveal>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/40 animate-float">
-        <span className="text-[10px] font-bold tracking-widest uppercase">Scroll</span>
-        <div className="w-5 h-8 border-2 border-white/30 rounded-full flex justify-center pt-1.5">
-          <div className="w-[2.5px] h-1.5 bg-white/60 rounded-full" />
+        <div className="flex flex-wrap justify-center items-center gap-4 max-sm:flex-col max-sm:items-stretch">
+          <button className="btn-primary text-base px-10 py-4 text-[15px] shadow-lg shadow-eco-green/30 hover:shadow-xl hover:shadow-eco-green/40">
+            Get Started <ArrowRight size={18} />
+          </button>
+          <button className="btn-secondary text-base px-10 py-4 text-[15px]">
+            <Sparkles size={18} />
+            Explore Dashboard
+          </button>
         </div>
       </div>
     </section>
@@ -157,48 +59,44 @@ function AboutSection() {
     <section id="about" className="relative bg-white py-24 px-[5%] overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-eco-green/20 to-transparent" />
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-        <Reveal>
-          <div>
-            <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
-              Our Mission
-            </span>
-            <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark leading-tight tracking-tight mb-5">
-              Transforming Sustainability into a{' '}
-              <span className="text-gradient-emerald">Competitive Advantage</span>
-            </h2>
-            <p className="text-base text-text-muted leading-relaxed mb-5">
-              At CarbonSync, sustainability isn&apos;t a burden — it&apos;s an opportunity. Our platform simplifies the complex landscape of carbon accounting, enabling organizations to measure, report, and reduce their environmental footprint with unparalleled precision.
-            </p>
-            <p className="text-base text-text-muted leading-relaxed mb-8">
-              Founded on principles of transparency and innovation, we empower businesses to turn ESG compliance into strategic value creation.
-            </p>
-            <div className="grid grid-cols-2 gap-8">
-              <div className="p-5 rounded-xl bg-gradient-to-br from-eco-green/5 to-transparent border border-eco-green/10">
-                <div className="font-heading text-[2rem] font-extrabold text-text-dark mb-1">100%</div>
-                <div className="text-[11px] font-bold uppercase tracking-widest text-text-muted">Audit Ready</div>
-              </div>
-              <div className="p-5 rounded-xl bg-gradient-to-br from-eco-green/5 to-transparent border border-eco-green/10">
-                <div className="font-heading text-[2rem] font-extrabold text-text-dark mb-1">AI-Powered</div>
-                <div className="text-[11px] font-bold uppercase tracking-widest text-text-muted">Reduction Insights</div>
-              </div>
+        <div>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
+            Our Mission
+          </span>
+          <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark leading-tight tracking-tight mb-5">
+            Transforming Sustainability into a{' '}
+            <span className="text-gradient-emerald">Competitive Advantage</span>
+          </h2>
+          <p className="text-base text-text-muted leading-relaxed mb-5">
+            At CarbonSync, sustainability isn&apos;t a burden — it&apos;s an opportunity. Our platform simplifies the complex landscape of carbon accounting, enabling organizations to measure, report, and reduce their environmental footprint with unparalleled precision.
+          </p>
+          <p className="text-base text-text-muted leading-relaxed mb-8">
+            Founded on principles of transparency and innovation, we empower businesses to turn ESG compliance into strategic value creation.
+          </p>
+          <div className="grid grid-cols-2 gap-8">
+            <div className="p-5 rounded-xl bg-gradient-to-br from-eco-green/5 to-transparent border border-eco-green/10">
+              <div className="font-heading text-[2rem] font-extrabold text-text-dark mb-1">100%</div>
+              <div className="text-[11px] font-bold uppercase tracking-widest text-text-muted">Audit Ready</div>
+            </div>
+            <div className="p-5 rounded-xl bg-gradient-to-br from-eco-green/5 to-transparent border border-eco-green/10">
+              <div className="font-heading text-[2rem] font-extrabold text-text-dark mb-1">AI-Powered</div>
+              <div className="text-[11px] font-bold uppercase tracking-widest text-text-muted">Reduction Insights</div>
             </div>
           </div>
-        </Reveal>
+        </div>
 
-        <Reveal delay={200}>
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-br from-eco-green/15 to-emerald-light/10 rounded-[24px] -rotate-2" />
-            <div className="relative w-full rounded-[20px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.12)]">
-              <img
-                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800"
-                alt="Sustainable Technology"
-                className="w-full"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-forest-deep/20 to-transparent" />
-            </div>
-            <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-eco-green/10 rounded-full blur-2xl" />
+        <div className="relative">
+          <div className="absolute -inset-4 bg-gradient-to-br from-eco-green/15 to-emerald-light/10 rounded-[24px] -rotate-2" />
+          <div className="relative w-full rounded-[20px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.12)]">
+            <img
+              src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800"
+              alt="Sustainable Technology"
+              className="w-full"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-forest-deep/20 to-transparent" />
           </div>
-        </Reveal>
+          <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-eco-green/10 rounded-full blur-2xl" />
+        </div>
       </div>
     </section>
   );
@@ -214,16 +112,14 @@ function ImpactStrip() {
           { end: 1000, suffix: '+', lbl: 'Curated ESG KPIs' },
           { end: 0, suffix: '', lbl: 'Unlimited', isUnlimited: true },
         ].map((item, i) => (
-          <Reveal key={item.lbl} delay={i * 150}>
-            <div className="flex flex-col gap-2">
-              {item.isUnlimited ? (
-                <span className="font-heading text-4xl font-extrabold text-eco-green">Unlimited</span>
-              ) : (
-                <AnimatedCounter end={item.end} suffix={item.suffix} />
-              )}
-              <span className="text-sm font-semibold text-white/60 uppercase tracking-wide">{item.lbl}</span>
-            </div>
-          </Reveal>
+          <div className="flex flex-col gap-2" key={item.lbl}>
+            {item.isUnlimited ? (
+              <span className="font-heading text-4xl font-extrabold text-eco-green">Unlimited</span>
+            ) : (
+              <span className="tabular-nums font-heading text-4xl font-extrabold text-eco-green">{item.end}{item.suffix}</span>
+            )}
+            <span className="text-sm font-semibold text-white/60 uppercase tracking-wide">{item.lbl}</span>
+          </div>
         ))}
       </div>
     </section>
@@ -247,32 +143,22 @@ function TrustedMarquee() {
   return (
     <section className="relative overflow-hidden bg-white py-20">
       <div className="mx-auto mb-6 max-w-[1200px] px-[5%] text-center">
-        <Reveal>
-          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-4">
-            Trusted & Certified
-          </span>
-          <h2 className="font-heading text-[1.5rem] font-extrabold text-text-dark">CarbonSync is trusted by leading enterprises worldwide</h2>
-        </Reveal>
+        <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-4">
+          Trusted & Certified
+        </span>
+        <h2 className="font-heading text-[1.5rem] font-extrabold text-text-dark">CarbonSync is trusted by leading enterprises worldwide</h2>
       </div>
-      <Reveal>
-        <div className="marquee-container">
-          <div className="marquee-track flex gap-4 pr-4">
-            {[...Array(3)].map((_, setIdx) => (
-              <div className="flex gap-4 flex-shrink-0" key={setIdx} aria-hidden={setIdx > 0}>
-                {badges.map((b, i) => (
-                  <div
-                    key={`${setIdx}-${i}`}
-                    className="flex cursor-default items-center gap-2.5 rounded-full border border-eco-green/15 bg-gradient-to-r from-beige-soft/50 to-white px-6 py-3 whitespace-nowrap transition-all hover:-translate-y-0.5 hover:border-eco-green/30 hover:shadow-lg hover:shadow-eco-green/10 hover:bg-eco-green/5"
-                  >
-                    <span className="flex text-eco-green">{b.icon}</span>
-                    <span className="text-sm font-semibold text-text-muted">{b.label}</span>
-                  </div>
-                ))}
-              </div>
-            ))}
+      <div className="flex flex-wrap justify-center gap-4">
+        {badges.map((b, i) => (
+          <div
+            key={i}
+            className="flex cursor-default items-center gap-2.5 rounded-full border border-eco-green/15 bg-gradient-to-r from-beige-soft/50 to-white px-6 py-3 whitespace-nowrap transition-all hover:-translate-y-0.5 hover:border-eco-green/30 hover:shadow-lg hover:shadow-eco-green/10 hover:bg-eco-green/5"
+          >
+            <span className="flex text-eco-green">{b.icon}</span>
+            <span className="text-sm font-semibold text-text-muted">{b.label}</span>
           </div>
-        </div>
-      </Reveal>
+        ))}
+      </div>
     </section>
   );
 }
@@ -291,32 +177,28 @@ function HowItWorks() {
     <section id="how-it-works" className="relative bg-beige-soft py-24 px-[5%] overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-eco-green/20 to-transparent" />
       <div className="max-w-[1200px] mx-auto">
-        <Reveal>
-          <div className="text-center max-w-[700px] mx-auto mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
-              Simple Process
-            </span>
-            <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark leading-tight tracking-tight mb-5">
-              How CarbonSync Works
-            </h2>
-            <p className="text-base text-text-muted leading-relaxed">From raw business data to measurable impact in three simple steps.</p>
-          </div>
-        </Reveal>
+        <div className="text-center max-w-[700px] mx-auto mb-16">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
+            Simple Process
+          </span>
+          <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark leading-tight tracking-tight mb-5">
+            How CarbonSync Works
+          </h2>
+          <p className="text-base text-text-muted leading-relaxed">From raw business data to measurable impact in three simple steps.</p>
+        </div>
 
         <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
           {steps.map((s, i) => (
-            <Reveal key={s.step} delay={i * 150}>
-              <div className="group relative bg-white rounded-2xl p-8 text-center shadow-sm border border-black/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-eco-green/5 hover:border-eco-green/20 cursor-default">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-eco-green text-white text-xs font-extrabold flex items-center justify-center shadow-lg shadow-eco-green/30">
-                  {s.step}
-                </div>
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-eco-green/10 to-emerald-light/10 text-eco-green flex items-center justify-center mx-auto mb-5 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-eco-green/20">
-                  {s.icon}
-                </div>
-                <h3 className="font-heading text-lg font-bold text-text-dark mb-3">{s.title}</h3>
-                <p className="text-sm text-text-muted leading-relaxed">{s.desc}</p>
+            <div key={s.step} className="group relative bg-white rounded-2xl p-8 text-center shadow-sm border border-black/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-eco-green/5 hover:border-eco-green/20 cursor-default">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-eco-green text-white text-xs font-extrabold flex items-center justify-center shadow-lg shadow-eco-green/30">
+                {s.step}
               </div>
-            </Reveal>
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-eco-green/10 to-emerald-light/10 text-eco-green flex items-center justify-center mx-auto mb-5 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-eco-green/20">
+                {s.icon}
+              </div>
+              <h3 className="font-heading text-lg font-bold text-text-dark mb-3">{s.title}</h3>
+              <p className="text-sm text-text-muted leading-relaxed">{s.desc}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -357,29 +239,25 @@ function CorePillars() {
       </div>
 
       <div className="max-w-[1200px] mx-auto relative z-10">
-        <Reveal>
-          <div className="text-center max-w-[700px] mx-auto mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white/80 text-[11px] font-extrabold uppercase tracking-widest mb-5">
-              Core Pillars
-            </span>
-            <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-white leading-tight tracking-tight">
-              A Complete Operating System for{' '}
-              <span className="text-gradient-emerald">Sustainability</span>
-            </h2>
-          </div>
-        </Reveal>
+        <div className="text-center max-w-[700px] mx-auto mb-16">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white/80 text-[11px] font-extrabold uppercase tracking-widest mb-5">
+            Core Pillars
+          </span>
+          <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-white leading-tight tracking-tight">
+            A Complete Operating System for{' '}
+            <span className="text-gradient-emerald">Sustainability</span>
+          </h2>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {pillars.map((p, i) => (
-            <Reveal key={p.title} delay={i * 100}>
-              <div className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-lg transition-all duration-500 hover:bg-white/10 hover:border-white/20 hover:-translate-y-1">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-eco-green/30 to-emerald-light/20 text-eco-green flex items-center justify-center mb-5 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-eco-green/20">
-                  {p.icon}
-                </div>
-                <h3 className="font-heading text-xl font-bold text-white mb-3">{p.title}</h3>
-                <p className="text-sm text-white/65 leading-relaxed" dangerouslySetInnerHTML={{ __html: p.desc }} />
+            <div key={p.title} className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-lg transition-all duration-500 hover:bg-white/10 hover:border-white/20 hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-eco-green/30 to-emerald-light/20 text-eco-green flex items-center justify-center mb-5 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-eco-green/20">
+                {p.icon}
               </div>
-            </Reveal>
+              <h3 className="font-heading text-xl font-bold text-white mb-3">{p.title}</h3>
+              <p className="text-sm text-white/65 leading-relaxed" dangerouslySetInnerHTML={{ __html: p.desc }} />
+            </div>
           ))}
         </div>
       </div>
@@ -399,29 +277,25 @@ function ImpactBenefits() {
     <section className="relative bg-white py-24 px-[5%] overflow-hidden">
       <div className="section-divider absolute top-0 left-0" />
       <div className="max-w-[1200px] mx-auto">
-        <Reveal>
-          <div className="text-center max-w-[700px] mx-auto mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
-              Value Delivered
-            </span>
-            <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark leading-tight tracking-tight mb-5">
-              Impact & Benefits
-            </h2>
-            <p className="text-base text-text-muted leading-relaxed">Transforming sustainability into a measurable competitive advantage across your organization.</p>
-          </div>
-        </Reveal>
+        <div className="text-center max-w-[700px] mx-auto mb-16">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
+            Value Delivered
+          </span>
+          <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark leading-tight tracking-tight mb-5">
+            Impact & Benefits
+          </h2>
+          <p className="text-base text-text-muted leading-relaxed">Transforming sustainability into a measurable competitive advantage across your organization.</p>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {benefits.map((b, i) => (
-            <Reveal key={b.title} delay={i * 100}>
-              <div className="group bg-white rounded-2xl border border-black/5 shadow-sm p-7 h-full flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-eco-green/5 hover:border-eco-green/20">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-eco-green/10 to-emerald-light/5 text-eco-green flex items-center justify-center mb-5 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-eco-green/15">
-                  {b.icon}
-                </div>
-                <h3 className="font-heading text-lg font-bold text-text-dark mb-2">{b.title}</h3>
-                <p className="text-sm text-text-muted leading-relaxed">{b.desc}</p>
+            <div key={b.title} className="group bg-white rounded-2xl border border-black/5 shadow-sm p-7 h-full flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-eco-green/5 hover:border-eco-green/20">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-eco-green/10 to-emerald-light/5 text-eco-green flex items-center justify-center mb-5 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-eco-green/15">
+                {b.icon}
               </div>
-            </Reveal>
+              <h3 className="font-heading text-lg font-bold text-text-dark mb-2">{b.title}</h3>
+              <p className="text-sm text-text-muted leading-relaxed">{b.desc}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -439,29 +313,25 @@ function Ecosystem() {
       </div>
 
       <div className="max-w-[1200px] mx-auto relative z-10">
-        <Reveal>
-          <div className="text-center max-w-[700px] mx-auto mb-16">
-            <span className="inline-block px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-[11px] font-extrabold uppercase tracking-widest mb-5">
-              The Ecosystem
-            </span>
-            <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-white leading-tight tracking-tight">
-              An Integrated ESG & Sustainability{' '}
-              <span className="text-gradient-emerald">Platform</span>
-            </h2>
-            <p className="text-base text-white/70 leading-relaxed max-w-[640px] mx-auto">
-              A comprehensive suite of modules designed to handle every stage of your sustainability journey.
-            </p>
-          </div>
-        </Reveal>
+        <div className="text-center max-w-[700px] mx-auto mb-16">
+          <span className="inline-block px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-[11px] font-extrabold uppercase tracking-widest mb-5">
+            The Ecosystem
+          </span>
+          <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-white leading-tight tracking-tight">
+            An Integrated ESG & Sustainability{' '}
+            <span className="text-gradient-emerald">Platform</span>
+          </h2>
+          <p className="text-base text-white/70 leading-relaxed max-w-[640px] mx-auto">
+            A comprehensive suite of modules designed to handle every stage of your sustainability journey.
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 bg-white rounded-2xl shadow-xl border border-black/5 overflow-hidden">
-            <Reveal>
-              <div className="px-8 py-5 border-b border-gray-100 flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-eco-green" />
-                <span className="font-heading text-base font-bold text-text-dark">CarbonSync Core Modules</span>
-              </div>
-            </Reveal>
+            <div className="px-8 py-5 border-b border-gray-100 flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-eco-green" />
+              <span className="font-heading text-base font-bold text-text-dark">CarbonSync Core Modules</span>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
               {[
                 { icon: <ShieldCheck size={20} />, title: 'CarbonSync ESG',
@@ -469,8 +339,7 @@ function Ecosystem() {
                 { icon: <Zap size={20} />, title: 'CarbonSync Net-Zero',
                   items: ['Real-time GHGP Aligned Calculations', 'Emissions Hotspot Identification', 'AI-Driven Decarbonization Pathways', 'Simulation Sandbox for Net-Zero', 'Automated Scope 3 Mapping', 'Carbon Credit & Offset Integration'] },
               ].map((product, i) => (
-                <Reveal key={product.title} delay={i * 100}>
-                  <div className="border-r border-gray-100 last:border-r-0 h-full flex flex-col transition-all duration-500 hover:bg-gray-50/50">
+                <div key={product.title} className="border-r border-gray-100 last:border-r-0 h-full flex flex-col transition-all duration-500 hover:bg-gray-50/50">
                     <div className="px-6 py-5 border-b border-gray-100 flex items-center gap-3">
                       <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-eco-green/10 to-emerald-light/5 text-eco-green flex items-center justify-center flex-shrink-0">
                         {product.icon}
@@ -493,14 +362,12 @@ function Ecosystem() {
                       </a>
                     </div>
                   </div>
-                </Reveal>
               ))}
             </div>
           </div>
 
           <div className="flex flex-col gap-6">
-            <Reveal delay={200}>
-              <div className="bg-white/10 backdrop-blur-xl border border-white/15 rounded-2xl overflow-hidden shadow-lg h-full">
+            <div className="bg-white/10 backdrop-blur-xl border border-white/15 rounded-2xl overflow-hidden shadow-lg h-full">
                 <div className="px-6 py-5 border-b border-white/10">
                   <h3 className="font-heading text-sm font-bold text-white flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-eco-green animate-pulse-soft" />
@@ -548,7 +415,6 @@ function Ecosystem() {
                   </div>
                 </div>
               </div>
-            </Reveal>
           </div>
         </div>
       </div>
@@ -575,33 +441,30 @@ function DashboardPreview() {
     <section className="relative bg-white py-24 px-[5%]">
       <div className="section-divider absolute top-0 left-0" />
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-        <Reveal>
-          <div>
-            <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
-              Platform Preview
-            </span>
-            <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark leading-tight tracking-tight mb-5">
-              Smart Monitoring &{' '}
-              <span className="text-gradient-emerald">Automation</span>
-            </h2>
-            <p className="text-base text-text-muted leading-relaxed mb-6">
-              Experience the most advanced sustainability dashboard. Integrate operational data seamlessly and watch as AI translates it into actionable carbon metrics.
-            </p>
-            <ul className="flex flex-col gap-4">
-              {['Automated Data Ingestion', 'Predictive Emission Modeling', 'Scenario Analysis Tools', 'Custom Compliance Reports'].map((item) => (
-                <li key={item} className="flex items-center gap-3 font-semibold text-text-dark text-sm">
-                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-eco-green to-emerald-light flex items-center justify-center flex-shrink-0 shadow-sm shadow-eco-green/30">
-                    <CheckCircle size={14} color="#fff" />
-                  </div>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
+        <div>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
+            Platform Preview
+          </span>
+          <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark leading-tight tracking-tight mb-5">
+            Smart Monitoring &{' '}
+            <span className="text-gradient-emerald">Automation</span>
+          </h2>
+          <p className="text-base text-text-muted leading-relaxed mb-6">
+            Experience the most advanced sustainability dashboard. Integrate operational data seamlessly and watch as AI translates it into actionable carbon metrics.
+          </p>
+          <ul className="flex flex-col gap-4">
+            {['Automated Data Ingestion', 'Predictive Emission Modeling', 'Scenario Analysis Tools', 'Custom Compliance Reports'].map((item) => (
+              <li key={item} className="flex items-center gap-3 font-semibold text-text-dark text-sm">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-eco-green to-emerald-light flex items-center justify-center flex-shrink-0 shadow-sm shadow-eco-green/30">
+                  <CheckCircle size={14} color="#fff" />
+                </div>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <Reveal delay={200}>
-          <div className="relative">
+        <div className="relative">
             <div className="rounded-[20px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-black/5 transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)]">
               <div className="bg-[#1a3a28] px-4 py-3 flex items-center gap-2">
                 <div className="flex gap-1.5">
@@ -654,139 +517,6 @@ function DashboardPreview() {
             <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-eco-green/8 rounded-full blur-3xl -z-10" />
             <div className="absolute -top-6 -left-6 w-32 h-32 bg-emerald-light/8 rounded-full blur-3xl -z-10" />
           </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-function Testimonials() {
-  const [active, setActive] = useState(0);
-
-  return (
-    <section className="relative bg-beige-soft py-24 px-[5%] overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-eco-green/20 to-transparent" />
-      <div className="max-w-[900px] mx-auto">
-        <Reveal>
-          <div className="text-center max-w-[700px] mx-auto mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
-              Testimonials
-            </span>
-            <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark">What our customers say</h2>
-          </div>
-        </Reveal>
-
-        <div className="relative">
-          <div className="absolute -top-6 -left-6 w-20 h-20 bg-eco-green/5 rounded-full blur-2xl" />
-          <div className="absolute -bottom-6 -right-6 w-20 h-20 bg-emerald-light/5 rounded-full blur-2xl" />
-
-          <div className="bg-white rounded-2xl p-10 md:p-12 text-center shadow-lg border border-black/5 relative overflow-hidden transition-all duration-500">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-eco-green/3 to-transparent rounded-bl-full" />
-
-            <div className="flex justify-center gap-1 mb-8">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={18} className="fill-eco-green text-eco-green" />
-              ))}
-            </div>
-
-            <div className="relative">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4 text-[6rem] font-heading text-eco-green/8 leading-none pointer-events-none select-none">&ldquo;</div>
-              <p className="text-lg leading-relaxed text-text-dark font-medium mb-8 relative z-10 italic">
-                {testimonials[active].quote}
-              </p>
-            </div>
-
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-eco-green/20 to-emerald-light/10 flex items-center justify-center mx-auto mb-4 border-2 border-eco-green/20">
-              <span className="text-xl font-extrabold text-eco-green">
-                {testimonials[active].name.split(' ').map(n => n[0]).join('')}
-              </span>
-            </div>
-
-            <div className="flex flex-col items-center gap-0.5">
-              <span className="font-bold text-text-dark">{testimonials[active].name}</span>
-              <span className="text-sm text-text-muted">{testimonials[active].position}</span>
-            </div>
-
-            <div className="flex items-center justify-center gap-4 mt-10">
-              <button
-                className="w-11 h-11 rounded-full bg-white border border-gray-200 text-text-dark flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-eco-green hover:text-white hover:border-eco-green hover:shadow-lg hover:shadow-eco-green/25 active:scale-95"
-                onClick={() => setActive((p) => (p === 0 ? testimonials.length - 1 : p - 1))}
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft size={18} />
-              </button>
-
-              <div className="flex gap-2">
-                {testimonials.map((_, i) => (
-                  <button
-                    key={i}
-                    className={`rounded-full border-none transition-all duration-300 cursor-pointer ${
-                      i === active
-                        ? 'w-8 h-2.5 bg-eco-green'
-                        : 'w-2.5 h-2.5 bg-eco-green/20 hover:bg-eco-green/40'
-                    }`}
-                    onClick={() => setActive(i)}
-                    aria-label={`Go to testimonial ${i + 1}`}
-                  />
-                ))}
-              </div>
-
-              <button
-                className="w-11 h-11 rounded-full bg-white border border-gray-200 text-text-dark flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-eco-green hover:text-white hover:border-eco-green hover:shadow-lg hover:shadow-eco-green/25 active:scale-95"
-                onClick={() => setActive((p) => (p + 1) % testimonials.length)}
-                aria-label="Next testimonial"
-              >
-                <ArrowRight size={18} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function SustainabilityCta() {
-  return (
-    <section className="relative overflow-hidden py-28 px-[5%] text-white">
-      <div className="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&q=80&w=1920" alt="" className="w-full h-full object-cover scale-105" />
-        <div className="absolute inset-0 bg-gradient-to-b from-forest-deep/85 via-forest-deep/70 to-forest-deep/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(22,163,74,0.15),transparent_70%)]" />
-      </div>
-      <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-eco-green/5 to-transparent" />
-        <div className="absolute bottom-0 right-0 w-1/3 h-1/2 bg-gradient-to-t from-emerald-light/5 to-transparent" />
-      </div>
-      <div className="max-w-[800px] mx-auto text-center relative z-10">
-        <Reveal>
-          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-xs font-bold tracking-widest uppercase mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-eco-green animate-pulse-soft" />
-            Get Started
-          </span>
-        </Reveal>
-        <Reveal delay={150}>
-          <h2 className="font-heading text-[clamp(2.2rem,4vw,3.2rem)] font-extrabold text-white leading-[1.1] tracking-tight mb-5">
-            Ready to Start Your{' '}
-            <span className="text-gradient-emerald">Sustainability Journey</span>?
-          </h2>
-        </Reveal>
-        <Reveal delay={300}>
-          <p className="text-lg text-white/75 leading-relaxed max-w-[600px] mx-auto mb-12">
-            Join hundreds of forward-thinking companies using CarbonSync to drive real environmental change.
-          </p>
-        </Reveal>
-        <Reveal delay={450}>
-          <div className="flex flex-wrap justify-center gap-5">
-            <button className="btn-primary shadow-lg shadow-eco-green/30">
-              Get Started Now <ArrowRight size={18} />
-            </button>
-            <button className="btn-secondary">
-              <Sparkles size={18} />
-              Request a Demo
-            </button>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
@@ -799,133 +529,56 @@ function Faq() {
     <section id="faq" className="relative bg-beige-soft py-24 px-[5%]">
       <div className="section-divider absolute top-0 left-0" />
       <div className="max-w-[1200px] mx-auto">
-        <Reveal>
-          <div className="text-center max-w-[700px] mx-auto mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
-              FAQ
-            </span>
-            <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark">Common Questions</h2>
-          </div>
-        </Reveal>
+        <div className="text-center max-w-[700px] mx-auto mb-16">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
+            FAQ
+          </span>
+          <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark">Common Questions</h2>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {faqs.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
-              <Reveal key={i} delay={i * 80}>
-                <div
-                  className={`bg-white rounded-2xl border transition-all duration-300 cursor-pointer overflow-hidden ${
-                    isOpen ? 'shadow-lg border-eco-green/20' : 'shadow-sm border-black/5 hover:border-eco-green/10 hover:shadow-md'
-                  }`}
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                >
-                  <div className="p-5 md:p-6">
-                    <div className="flex justify-between items-start gap-4">
-                      <div className="flex gap-4 items-start">
-                        <div className={`flex-shrink-0 mt-0.5 p-2 rounded-full flex items-center justify-center transition-all duration-300 ${
-                          isOpen ? 'bg-eco-green text-white' : 'bg-eco-green/10 text-eco-green'
-                        }`}>
-                          <HelpCircle size={18} strokeWidth={2.5} />
-                        </div>
-                        <div className="font-heading font-bold text-sm md:text-base text-text-dark leading-relaxed pt-1">
-                          {faq.q}
-                        </div>
-                      </div>
-                      <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                        isOpen ? 'bg-eco-green text-white rotate-180' : 'bg-eco-green/10 text-eco-green'
+              <div
+                key={i}
+                className={`bg-white rounded-2xl border transition-all duration-300 cursor-pointer overflow-hidden ${
+                  isOpen ? 'shadow-lg border-eco-green/20' : 'shadow-sm border-black/5 hover:border-eco-green/10 hover:shadow-md'
+                }`}
+                onClick={() => setOpenIndex(isOpen ? null : i)}
+              >
+                <div className="p-5 md:p-6">
+                  <div className="flex justify-between items-start gap-4">
+                    <div className="flex gap-4 items-start">
+                      <div className={`flex-shrink-0 mt-0.5 p-2 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        isOpen ? 'bg-eco-green text-white' : 'bg-eco-green/10 text-eco-green'
                       }`}>
-                        <ChevronDown size={18} />
+                        <HelpCircle size={18} strokeWidth={2.5} />
+                      </div>
+                      <div className="font-heading font-bold text-sm md:text-base text-text-dark leading-relaxed pt-1">
+                        {faq.q}
                       </div>
                     </div>
-                    <div className={`grid transition-all duration-300 ease-in-out ${
-                      isOpen ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0 mt-0'
+                    <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      isOpen ? 'bg-eco-green text-white rotate-180' : 'bg-eco-green/10 text-eco-green'
                     }`}>
-                      <div className="overflow-hidden">
-                        <div className="text-sm text-text-muted leading-relaxed pl-14">
-                          {faq.a}
-                        </div>
+                      <ChevronDown size={18} />
+                    </div>
+                  </div>
+                  <div className={`grid transition-all duration-300 ease-in-out ${
+                    isOpen ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0 mt-0'
+                  }`}>
+                    <div className="overflow-hidden">
+                      <div className="text-sm text-text-muted leading-relaxed pl-14">
+                        {faq.a}
                       </div>
                     </div>
                   </div>
                 </div>
-              </Reveal>
+              </div>
             );
           })}
         </div>
-      </div>
-    </section>
-  );
-}
-
-function ContactCta() {
-  return (
-    <section id="contact-forms" className="relative premium-gradient py-16 px-[5%] overflow-hidden border-y border-white/5">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(22,163,74,0.12),transparent_70%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(52,211,153,0.08),transparent_50%)]" />
-      <div className="max-w-[1000px] mx-auto flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 relative z-10">
-        <div className="text-center md:text-left">
-          <h2 className="font-heading text-[clamp(1.5rem,2.5vw,2rem)] font-bold text-white leading-snug">
-            Ready to take meaningful action on your <span className="text-gradient-emerald">ESG</span> journey?
-          </h2>
-          <p className="text-white/60 text-sm font-medium mt-2 max-w-[480px]">
-            Talk to our team and see how CarbonSync can transform your sustainability goals into measurable outcomes.
-          </p>
-        </div>
-        <button className="btn-dark text-base shadow-lg shadow-black/20 whitespace-nowrap">
-          Contact us <ArrowRight size={18} />
-        </button>
-      </div>
-    </section>
-  );
-}
-
-function Newsletter() {
-  return (
-    <section className="relative overflow-hidden py-28 px-[5%] text-white">
-      <div className="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&q=80&w=1920" alt="" className="w-full h-full object-cover scale-105" />
-        <div className="absolute inset-0 bg-gradient-to-b from-forest-deep/85 via-forest-deep/70 to-forest-deep/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(22,163,74,0.12),transparent_70%)]" />
-      </div>
-      <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
-        <div className="absolute -top-1/2 -right-1/2 w-1/2 h-full bg-[radial-gradient(circle,rgba(52,211,153,0.06),transparent_70%)]" />
-      </div>
-      <div className="max-w-[600px] mx-auto text-center relative z-10">
-        <Reveal>
-          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-xs font-bold tracking-widest uppercase mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-eco-green animate-pulse-soft" />
-            Stay Connected
-          </span>
-        </Reveal>
-        <Reveal delay={150}>
-          <h2 className="font-heading text-[clamp(2.2rem,4vw,3.2rem)] font-extrabold text-white leading-[1.1] mb-4">
-            Stay Ahead on <span className="text-gradient-emerald">Sustainability</span>
-          </h2>
-        </Reveal>
-        <Reveal delay={300}>
-          <p className="text-base text-white/70 leading-relaxed max-w-[480px] mx-auto mb-12">
-            Get weekly insights on carbon regulations, ESG trends, and platform updates.
-          </p>
-        </Reveal>
-        <Reveal delay={450}>
-          <form className="flex justify-center gap-3 max-w-[500px] mx-auto max-sm:flex-col"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <div className="flex-1">
-              <div className="relative">
-                <input
-                  type="email"
-                  placeholder="Enter your work email"
-                  required
-                  className="w-full px-6 py-4.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white font-body text-sm outline-none transition-all duration-300 placeholder:text-white/50 focus:border-eco-green focus:bg-white/[0.15] focus:shadow-[0_0_0_4px_rgba(22,163,74,0.2)]"
-                />
-              </div>
-            </div>
-            <button type="submit" className="btn-primary shadow-lg shadow-eco-green/30 min-w-[150px] justify-center">
-              <Send size={17} /> Subscribe
-            </button>
-          </form>
-        </Reveal>
       </div>
     </section>
   );
@@ -946,11 +599,7 @@ export default function Home() {
       </Suspense>
       <Ecosystem />
       <DashboardPreview />
-      <Testimonials />
-      <SustainabilityCta />
       <Faq />
-      <ContactCta />
-      <Newsletter />
     </div>
   );
 }
