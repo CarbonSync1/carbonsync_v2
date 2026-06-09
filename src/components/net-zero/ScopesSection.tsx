@@ -14,7 +14,6 @@ import {
   CheckCircle,
   ChevronRight,
 } from 'lucide-react';
-import { testimonials } from '@/data/testimonials';
 
 export default function ScopesSection() {
   return (
