@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`} suppressHydrationWarning>
         <div className="flex flex-col min-h-screen">
           <Navbar />
@@ -31,3 +31,4 @@ export default function RootLayout({
     </html>
   );
 }
+

@@ -8,23 +8,16 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 86400,
   },
   async headers() {
+    // Only apply aggressive caching to static image assets.
+    // Do NOT cache JS/CSS — Next.js already handles this correctly
+    // with content-hashed filenames in production builds.
+    // Caching JS/CSS here causes stale bundles in development,
+    // which is the root cause of persistent hydration errors.
     return [
       {
         source: '/:path*.(webp|avif|png|jpg|jpeg|gif|svg)',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
-        ],
-      },
-      {
-        source: '/:path*.(js|css)',
-        headers: [
-          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
-        ],
-      },
-      {
-        source: '/:path*.json',
-        headers: [
-          { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' },
         ],
       },
     ];
