@@ -9,8 +9,7 @@ const Newsroom = dynamic(() => import('@/components/about-us/Newsroom'));
 const Logos = dynamic(() => import('@/components/about-us/Logos'));
 const Timeline = dynamic(() => import('@/components/about-us/Timeline'));
 const Mentors = dynamic(() => import('@/components/about-us/Mentors'));
-const CallToAction = dynamic(() => import('@/components/about-us/CallToAction'));
-const Experience = dynamic(() => import('@/components/about-us/Experience'));
+
 
 import '@/components/about-us/about-styles.css';
 
@@ -26,8 +25,6 @@ export default function AboutPage() {
       <Logos />
       <Timeline />
       <Mentors />
-      <CallToAction />
-      <Experience />
     </>
   );
 }
