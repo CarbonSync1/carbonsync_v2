@@ -24,15 +24,13 @@ const Mentors = () => {
         {/* Header */}
         <div className="mentors-header">
           <div className="mentors-tag">
-            <span className="mentors-tag-dot" />
-            GUIDED BY THE BEST
+            EXECUTIVE ADVISORY
           </div>
           <h2 className="mentors-title">
-            The minds that <span>inspire us.</span>
+            Guided by Industry Experts
           </h2>
           <p className="mentors-subtitle">
-            Our mentors bring decades of experience in technology, academia, and
-            industry — shaping the vision and technical foundation of CarbonSync.
+            CarbonSync is supported by experienced mentors across sustainability, enterprise architecture, and deep technology — helping us build a reliable and future-ready carbon intelligence platform.
           </p>
         </div>
 
@@ -40,28 +38,17 @@ const Mentors = () => {
         <div className="mentors-grid">
           {mentors.map((mentor, index) => (
             <div key={index} className="mentor-card">
-              <div className="mentor-portrait">
-                <img src={mentor.image} alt={mentor.name} />
-                <div className="mentor-portrait-overlay" />
-              </div>
-              <div className="mentor-details">
-                <div className="mentor-name-block">
+              <div className="mentor-card-header">
+                <div className="mentor-avatar">
+                  <img src={mentor.image} alt={mentor.name} />
+                </div>
+                <div className="mentor-info">
                   <h3 className="mentor-name">{mentor.name}</h3>
                   <span className="mentor-role">{mentor.role}</span>
                 </div>
-                <div className="mentor-quote-block">
-                  <svg
-                    className="mentor-quote-icon"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    width="36"
-                    height="36"
-                    style={{ width: '36px', height: '36px', minWidth: '36px' }}
-                  >
-                    <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z" />
-                  </svg>
-                  <p className="mentor-quote-text">{mentor.quote}</p>
-                </div>
+              </div>
+              <div className="mentor-quote">
+                <p className="mentor-quote-text">"{mentor.quote}"</p>
               </div>
             </div>
           ))}
@@ -72,3 +59,4 @@ const Mentors = () => {
 };
 
 export default Mentors;
+

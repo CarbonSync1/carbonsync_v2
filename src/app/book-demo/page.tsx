@@ -1,18 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function BookDemoPage() {
   const router = useRouter();
-  const [selectedDate, setSelectedDate] = useState<number | null>(18);
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
-
-  // Mock calendar data
-  const weekdays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-  const daysInMonth = 30;
-  const firstDayOffset = 0; // starts on Monday
-  const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4 sm:p-8 bg-[#f4fdf8] relative font-sans">
@@ -83,109 +75,21 @@ export default function BookDemoPage() {
 
         </div>
 
-        {/* Right Column: Calendar Mock UI */}
-        <div className="flex-1 relative bg-white p-8 md:p-10 flex flex-col min-h-[550px]">
+        {/* Right Column: Calendly Iframe */}
+        <div className="flex-1 relative min-h-[600px] md:min-h-[700px] bg-white">
           {/* Close Button */}
           <button 
             onClick={() => router.back()}
-            className="absolute right-5 top-5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 rounded-full w-8 h-8 flex items-center justify-center cursor-pointer transition-colors z-10"
+            className="absolute right-4 top-4 md:right-6 md:top-6 bg-gray-50 text-gray-400 hover:bg-gray-100 hover:text-gray-900 rounded-full w-10 h-10 flex items-center justify-center cursor-pointer text-xl font-bold z-10 transition-colors"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            ×
           </button>
 
-          <div className="flex-1 flex flex-col max-w-[420px] w-full mx-auto mt-2 md:mt-0">
-            <h2 className="text-[20px] font-bold text-gray-900 mb-8">Select a Date & Time</h2>
-            
-            {/* Month Selector */}
-            <div className="flex items-center justify-between mb-6">
-              <button className="text-gray-400 hover:bg-gray-50 p-2 rounded-full transition-colors">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-              </button>
-              <span className="text-[15px] font-medium text-gray-900">June 2026</span>
-              <button className="text-[#059669] hover:bg-green-50 p-2 rounded-full transition-colors">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-              </button>
-            </div>
-
-            {/* Calendar Grid */}
-            <div className="grid grid-cols-7 gap-y-3 gap-x-1 text-center mb-6">
-              {weekdays.map(day => (
-                <div key={day} className="text-[11px] font-bold text-gray-400 tracking-wider mb-2">{day}</div>
-              ))}
-              
-              {/* Empty slots for first day offset */}
-              {Array.from({ length: firstDayOffset }).map((_, i) => (
-                <div key={`empty-${i}`} />
-              ))}
-              
-              {/* Days */}
-              {days.map(day => {
-                const isWeekend = (day + firstDayOffset) % 7 === 6 || (day + firstDayOffset) % 7 === 0;
-                const isPast = day < 15;
-                const isDisabled = isWeekend || isPast || day === 22 || day === 25;
-                const isSelected = day === selectedDate;
-                
-                return (
-                  <div key={day} className="flex justify-center">
-                    <button 
-                      onClick={() => !isDisabled && setSelectedDate(day)}
-                      disabled={isDisabled}
-                      className={`
-                        w-10 h-10 rounded-full flex items-center justify-center text-[14px] font-medium transition-all
-                        ${isSelected 
-                          ? 'bg-[#059669] text-white shadow-md' 
-                          : isDisabled 
-                            ? 'text-gray-300 cursor-not-allowed' 
-                            : 'text-gray-700 hover:bg-green-50 hover:text-[#059669] bg-green-50/40'
-                        }
-                      `}
-                    >
-                      {day}
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Time Slots (Visible if date selected) */}
-            {selectedDate && (
-              <div className="mt-auto border-t border-gray-100 pt-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
-                <h3 className="text-[14px] font-semibold text-gray-800 mb-4">
-                  Available times for June {selectedDate}
-                </h3>
-                <div className="grid grid-cols-3 gap-3">
-                  {['09:00 AM', '10:30 AM', '01:00 PM', '02:30 PM', '04:00 PM', '05:00 PM'].map(time => (
-                    <button 
-                      key={time}
-                      onClick={() => setSelectedTime(time)}
-                      className={`
-                        py-2.5 rounded-lg border text-[13px] font-medium transition-all
-                        ${selectedTime === time 
-                          ? 'bg-[#059669] border-[#059669] text-white shadow-sm' 
-                          : 'bg-white border-gray-200 text-gray-700 hover:border-[#059669] hover:text-[#059669]'
-                        }
-                      `}
-                    >
-                      {time}
-                    </button>
-                  ))}
-                </div>
-                
-                {selectedTime && (
-                  <button 
-                    onClick={() => {
-                      alert('Demo booking successful!');
-                      router.back();
-                    }}
-                    className="w-full mt-6 bg-[#059669] hover:bg-green-700 text-white font-medium py-3 rounded-xl transition-colors shadow-sm animate-in fade-in zoom-in-95 duration-200"
-                  >
-                    Confirm Selection
-                  </button>
-                )}
-              </div>
-            )}
-
-          </div>
+          <iframe 
+            src="https://calendly.com/pushkarsingh-carbonsync/30min?hide_event_type_details=1&primary_color=059669&text_color=0f172a"
+            className="absolute inset-0 w-full h-full border-0"
+            title="Calendly Scheduling"
+          />
         </div>
       </div>
     </div>
