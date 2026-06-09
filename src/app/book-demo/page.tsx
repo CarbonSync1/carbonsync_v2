@@ -1,118 +1,102 @@
 'use client';
 
 import React from 'react';
-
 import { useRouter } from 'next/navigation';
+import { Clock, Video, Globe } from 'lucide-react';
 
 export default function BookDemoPage() {
   const router = useRouter();
 
   return (
-    <div style={{ 
-      display: "flex", 
-      justifyContent: "center", 
-      alignItems: "center", 
-      minHeight: "100vh",
-      padding: "20px",
-      background: "#020617", 
-      position: "relative",
-      fontFamily: "'Inter', sans-serif"
-    }}>
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "1100px",
-          height: "90vh",
-          background: "#ffffff",
-          borderRadius: "16px",
-          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-          display: "flex",
-          overflow: "hidden",
-          position: "relative"
-        }}
-      >
-        {/* Left Column: Event Card */}
-        <div className="event-card" style={{
-          width: "420px",
-          padding: "40px",
-          borderRight: "1px solid #f1f5f9",
-          overflowY: "auto"
-        }}>
-          <img src="/calendly-assets-logo.webp" className="logo" alt="Logo" style={{ width: "60px", marginBottom: "10px" }} />
+    <div className="flex items-center justify-center min-h-screen bg-gray-50/50 p-4 sm:p-8 font-sans">
+      
+      <div className="w-full max-w-[1060px] bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col md:flex-row overflow-hidden border border-gray-200/60 h-[700px]">
+        
+        {/* Left Column: Event Details */}
+        <div className="w-full md:w-[400px] h-full overflow-y-auto bg-[#f2faf5] p-8 md:p-10 border-b md:border-b-0 md:border-r border-gray-200/50 flex flex-col shrink-0 custom-scrollbar">
           
-          <p className="host" style={{ color: "#6b7280", margin: 0, fontSize: "14px" }}>
-            Pushkar Singh
-          </p>
-          
-          <h2 className="title" style={{ fontSize: "28px", margin: "5px 0 15px", color: "#1f2937", fontWeight: "700" }}>
-            CarbonSync Net Zero Discovery Call
-          </h2>
+          {/* Logo & Name Badge (Centered) */}
+          <div className="flex flex-col items-center mb-8">
+            <img 
+              src="/netzero/carbonsync-logo.webp" 
+              alt="CarbonSync Logo" 
+              className="h-20 object-contain mb-4 drop-shadow-sm" 
+            />
+            <div className="bg-emerald-100 text-emerald-700 font-semibold px-4 py-1 rounded-full text-sm">
+              Pushkar Singh
+            </div>
+          </div>
 
-          <div className="meta" style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-            <p style={{ margin: "6px 0", color: "#374151", fontSize: "14px", display: "flex", alignItems: "center", gap: "8px" }}>
-              <span>⏱</span> 30 min
+          {/* Title */}
+          <h1 className="text-[28px] font-bold text-slate-900 mb-6 leading-[1.2] tracking-tight">
+            CarbonSync Net Zero Discovery Call
+          </h1>
+
+          {/* Icons & Details */}
+          <div className="flex flex-col gap-4 mb-8">
+            <div className="flex items-start gap-3 text-slate-600 font-medium text-[15px]">
+              <Clock className="w-5 h-5 shrink-0 text-slate-400 mt-0.5" strokeWidth={2} />
+              <span>30 min</span>
+            </div>
+            
+            <div className="flex items-start gap-3 text-slate-600 font-medium text-[15px]">
+              <Video className="w-5 h-5 shrink-0 text-slate-400 mt-0.5" strokeWidth={2} />
+              <span>Web conferencing details provided upon confirmation.</span>
+            </div>
+
+            <div className="flex items-start gap-3 text-slate-600 font-medium text-[15px]">
+              <Globe className="w-5 h-5 shrink-0 text-slate-400 mt-0.5" strokeWidth={2} />
+              <span>India Standard Time</span>
+            </div>
+          </div>
+
+          {/* Description Text */}
+          <div className="text-slate-600 text-[14.5px] leading-relaxed space-y-5 font-medium">
+            <p>
+              Thank you for interest in booking a Net Zero Discovery Call.
             </p>
-            <p style={{ margin: "6px 0", color: "#374151", fontSize: "14px", display: "flex", alignItems: "center", gap: "8px" }}>
-              <span>💻</span> Web conferencing details provided upon confirmation.
+            <p>
+              Whether starting your Net Zero journey or looking to refine your existing strategy, our expert team will provide the insights and guidance you need to drive meaningful change.
             </p>
-            <p style={{ margin: "6px 0", color: "#374151", fontSize: "14px", display: "flex", alignItems: "center", gap: "8px" }}>
-              <span>📅</span> 10:30am - 11:00am, Tuesday, May 5, 2026
-            </p>
-            <p style={{ margin: "6px 0", color: "#374151", fontSize: "14px", display: "flex", alignItems: "center", gap: "8px" }}>
-              <span>🌍</span> India Standard Time
+            <p>
+              Book your Discovery Call today and take the first step towards a more sustainable and future-ready future.
             </p>
           </div>
 
-          <p className="desc" style={{ marginTop: "25px", color: "#374151", lineHeight: "1.6", fontSize: "15px" }}>
-            Book Your 30-Minute CarbonSync Net Zero Discovery Call.
-          </p>
-
-          <p className="desc" style={{ marginTop: "15px", color: "#374151", lineHeight: "1.6", fontSize: "15px" }}>
-            Whether you're just beginning your Net Zero journey or looking to refine your existing strategy, 
-            our expert team will provide the insights and guidance you need to drive meaningful change.
-          </p>
-
-          <p className="desc" style={{ marginTop: "15px", color: "#374151", lineHeight: "1.6", fontSize: "15px" }}>
-            Book your discovery call today and take the first step towards a more sustainable and responsible future.
-          </p>
         </div>
 
         {/* Right Column: Calendly Iframe */}
-        <div style={{ flex: 1, background: "#fff", position: "relative" }}>
-          {/* Close Button */}
+        <div className="flex-1 relative h-full bg-white">
+          {/* Close Button matching the image (Black circle with X) */}
           <button 
             onClick={() => router.back()}
-            style={{
-              position: "absolute",
-              right: "24px",
-              top: "24px",
-              background: "#000",
-              color: "#fff",
-              border: "none",
-              borderRadius: "50%",
-              width: "32px",
-              height: "32px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              cursor: "pointer",
-              fontSize: "20px",
-              fontWeight: "bold",
-              zIndex: 10
-            }}
+            className="absolute right-4 top-4 bg-black text-white hover:bg-gray-800 rounded-full w-8 h-8 flex items-center justify-center cursor-pointer text-sm font-bold z-10 transition-colors shadow-sm"
+            aria-label="Close"
           >
             ×
           </button>
 
           <iframe 
-            src="https://calendly.com/pushkarsingh-carbonsync/30min?hide_event_type_details=1"
-            width="100%" 
-            height="100%" 
-            frameBorder="0"
+            src="https://calendly.com/pushkarsingh-carbonsync/30min?hide_event_type_details=1&primary_color=059669&text_color=0f172a"
+            className="absolute inset-0 w-full h-full border-0"
             title="Calendly Scheduling"
           />
         </div>
+        
       </div>
+
+      <style dangerouslySetInnerHTML={{__html: `
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background-color: rgba(156, 163, 175, 0.3);
+          border-radius: 20px;
+        }
+      `}} />
     </div>
   );
 }
