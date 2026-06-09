@@ -41,17 +41,17 @@ export default function LocationMap() {
               <span className="text-[11px] text-gray-400 font-bold ml-1 uppercase tracking-wider">24 Reviews</span>
             </div>
 
-            <a href="#" className="inline-flex items-center gap-2 text-[13px] font-bold text-green-600 hover:text-green-700 transition-colors group/link">
+            <a href="https://www.google.com/maps/place/Noida,+Uttar+Pradesh/@28.5355161,77.30156945,12z" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[13px] font-bold text-green-600 hover:text-green-700 transition-colors group/link">
               Open in Google Maps <ArrowRight size={16} className="transition-transform group-hover/link:translate-x-1" />
             </a>
           </div>
           
-          <div className="flex flex-col items-center justify-center border-t md:border-t-0 md:border-l border-gray-100 pt-6 md:pt-0 md:pl-8">
+          <a href="https://www.google.com/maps/dir//Noida,+Uttar+Pradesh+201301" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center border-t md:border-t-0 md:border-l border-gray-100 pt-6 md:pt-0 md:pl-8 no-underline">
              <div className="w-16 h-16 flex items-center justify-center text-white bg-green-600 rounded-2xl cursor-pointer hover:bg-green-700 transition-all shadow-xl shadow-green-500/20 hover:scale-110 active:scale-95 mb-3">
                <Navigation size={28} />
              </div>
              <span className="text-[11px] text-gray-400 font-bold uppercase tracking-widest">Directions</span>
-          </div>
+          </a>
         </div>
       </div>
     </div>
