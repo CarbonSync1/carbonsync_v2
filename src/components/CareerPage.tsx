@@ -21,7 +21,7 @@ import {
   Sliders,
   DollarSign
 } from "lucide-react";
-const heroVisual = "/career-assets/team_culture.webp";
+const heroVisual = "/career-assets/careers_hero_visual.png";
 const mandateVisual = "/career-assets/climate_accounting_mandate.webp";
 const campusBuilding = "/career-assets/team_culture.webp";
 
@@ -59,10 +59,10 @@ const BENEFITS = [
 ];
 
 const VOICES = [
-  { quote: "Our products directly impact global mitigation metrics. Shipping code here feels deeply consequential. Every pixel represents real carbon accountability.", name: "Ayush Chaudhary", role: "Chief Operation Officer", tenure: "Joined 1 years ago" },
-  { quote: "The scientific rigor here is peerless. We care passionately about accurate carbon accounting, not just green compliance. It is a breath of fresh air.", name: "Pushkar Singh Raghuvanshi", role: "Chief Executive Officer", tenure: "Joined 1 years ago" },
-  { quote: "Having served global consultancies, the sheer scale of direct policy influence here in 38 countries is unprecedented. It's the standard for our generation.", name: "Sarwang Agarwal", role: "Frontend Engineer", tenure: "Joined 8 months ago" },
-  { quote: "The autonomy and trust given to engineers is incredible. We are solving problems that matter, building the core infrastructure for tomorrow.", name: "Priyanshu Barai", role: "Backend Engineer", tenure: "Joined 8 months ago" },
+  { quote: "What sets CarbonSync apart isn't just the scale of our ambition, it's the operational rigor we apply to get there. We are building the foundational infrastructure for global carbon markets, and every decision we make here has a tangible impact.", name: "Ayush Chaudhary", role: "Chief Operation Officer", tenure: "Joined 1 year ago" },
+  { quote: "Our vision was never to build just another compliance tool. We set out to engineer an absolute source of truth for carbon accountability. The depth of scientific integrity our team brings to the table every single day is what makes this mission possible.", name: "Pushkar Singh Raghuvanshi", role: "Chief Executive Officer", tenure: "Joined 1 year ago" },
+  { quote: "Translating complex, high-density climate data into intuitive, lightning-fast dashboards is an incredible engineering challenge. The autonomy here is real—you aren't just writing UI code; you are architecting the lens through which enterprises view their impact.", name: "Sarwang Agarwal", role: "Full Stack Developer", tenure: "Joined 8 months ago" },
+  { quote: "The sheer volume of real-time emissions data we process requires backend architecture that is both relentlessly resilient and highly scalable. It's a rare opportunity to tackle complex distributed systems problems while directly contributing to global climate action.", name: "Priyanshu Barai", role: "Backend Engineer", tenure: "Joined 8 months ago" },
 ];
 
 const FILTERS = ["All", "Engineering", "Climate Science", "Product", "Policy", "Go-to-Market"];
@@ -196,12 +196,36 @@ export default function CarbonSyncCareerPage() {
             </div>
           </div>
 
-          {/* Premium Glass Dashboard Visual */}
+          {/* Premium Glass Dashboard Visual with Inside Content */}
           <div className="relative plus-corner plus-top-left plus-top-right plus-bottom-left plus-bottom-right">
             <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-emerald-500/5 to-transparent blur-xl" />
-            <div className="relative rounded-3xl border border-slate-200 bg-white p-3 shadow-2xl shadow-black/50 backdrop-blur-xl">
-              <div className="relative overflow-hidden rounded-2xl">
-                <img src={heroVisual} alt="CarbonSync Sustainable Office" className="w-full h-[280px] md:h-[340px] object-cover" />
+            <div className="relative rounded-3xl border border-slate-200 bg-slate-900 p-2 shadow-2xl shadow-black/50 backdrop-blur-xl">
+              <div className="relative overflow-hidden rounded-2xl group border border-slate-700/50">
+                {/* Background Image with Dark/Green Overlay */}
+                <img src="/career-assets/hero-office.png" alt="CarbonSync Realistic Corporate Office" className="w-full h-[280px] md:h-[340px] object-cover opacity-50 mix-blend-luminosity group-hover:scale-105 transition-transform duration-700 ease-out" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#061214] via-[#061214]/90 to-emerald-900/20" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-500/20 via-transparent to-transparent" />
+
+                {/* Text and Logo Embedded INSIDE the Image */}
+                <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-center">
+                  {/* Embedded Logo Moved Above JOIN */}
+                  <img src="/logo.webp" alt="CarbonSync Logo" className="h-8 md:h-10 w-auto object-contain brightness-0 invert drop-shadow-lg mb-4 self-start" />
+
+                  <p className="text-white font-medium tracking-widest text-sm uppercase mb-1 drop-shadow-md">Join Our</p>
+                  
+                  <h2 className="text-white text-5xl md:text-6xl font-black uppercase tracking-tighter drop-shadow-lg leading-[0.9] mb-1">
+                    Mission
+                  </h2>
+                  
+                  <h2 className="text-white text-3xl md:text-4xl font-bold uppercase tracking-tight drop-shadow-lg leading-none mb-6">
+                    CarbonSync
+                  </h2>
+
+                  <p className="text-slate-300 text-[11px] md:text-xs max-w-[220px] font-light leading-relaxed border-l-2 border-emerald-500 pl-3">
+                    Building a Sustainable Future. Apply Now.<br/>
+                    Your Career in Climate Innovation.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -212,10 +236,10 @@ export default function CarbonSyncCareerPage() {
       <section className="px-6 py-10 md:px-12 lg:px-20 max-w-7xl mx-auto" role="button" tabIndex={0} onKeyPress={(e) => { if (e.key === 'Enter' || e.key === ' ') { window.open('https://youtu.be/ZyGjc9gFT4w', '_blank'); } }}>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {([
-            ["2.4M+", "Tonnes CO2 Tracked", "Verifiable & direct pipeline carbon monitoring", TrendingUp],
-            ["140+", "Team Members", "Scientists, engineers, and market specialists", Sparkles],
-            ["38", "Countries Active", "Covering global corporate operations and entities", Globe2],
-            ["$120M", "Series C Raised", "Backed by leading systemic infrastructure funds", DollarSign]
+            ["500K+", "Tonnes Under Mgmt.", "In closed-beta enterprise pilot programs", TrendingUp],
+            ["15+", "Core Architects", "Elite engineers, data scientists, and climate experts", Sparkles],
+            ["5+", "Enterprise Pilots", "Integrating with global supply chain partners", Globe2],
+            ["100%", "Science-Backed", "Zero greenwashing. Absolute verifiable transparency", ShieldCheck]
           ] as [string, string, string, React.ComponentType<{ size?: number }>][]).map(([v, l, d, Icon], i) => (
             <div
               key={l}
@@ -240,8 +264,9 @@ export default function CarbonSyncCareerPage() {
         <div
           className="group relative rounded-[2.5rem] overflow-hidden shadow-2xl min-h-[480px] md:min-h-[560px] flex items-end border border-slate-200"
         >
-          {/* Zooming background gradient */}
-          <div className="absolute inset-0 transition-transform duration-[1500ms] ease-out group-hover:scale-[1.03] bg-gradient-to-br from-slate-800 via-slate-700 to-emerald-900" />
+          {/* Zooming background image */}
+          <img src="/career-assets/r_bharat_conclave.jpg" alt="Republic Bharat Conclave" className="absolute inset-0 w-full h-full object-cover object-[center_15%] transition-transform duration-[1500ms] ease-out group-hover:scale-[1.03]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/60 via-slate-800/40 to-emerald-900/30" />
 
           {/* Cinematic overlay - lighter to show image */}
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent transition-opacity duration-500 group-hover:opacity-90" />
@@ -357,14 +382,9 @@ export default function CarbonSyncCareerPage() {
           {/* Gorgeous 3-Image Gallery Grid */}
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-            {/* Left Photo from User Workspace */}
+            {/* Left Photo — Focus Lab */}
             <div className="relative h-[400px] rounded-2xl overflow-hidden border border-slate-200 shadow-md group">
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-700 transition-transform duration-500 group-hover:scale-105" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center backdrop-blur-sm">
-                  <Zap className="w-8 h-8 text-emerald-400" />
-                </div>
-              </div>
+              <img src="/career-assets/focus_lab.png" alt="Developer focus desk" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 text-white">
                 <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest">Focus Lab</span>
@@ -372,14 +392,9 @@ export default function CarbonSyncCareerPage() {
               </div>
             </div>
 
-            {/* Right Photo from User Workspace */}
+            {/* Right Photo — Synergy Hub */}
             <div className="relative h-[400px] rounded-2xl overflow-hidden border border-slate-200 shadow-md group">
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-800 transition-transform duration-500 group-hover:scale-105" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center backdrop-blur-sm">
-                  <Users className="w-8 h-8 text-emerald-400" />
-                </div>
-              </div>
+              <img src="/career-assets/synergy_hub.png" alt="High-performance collaboration desk" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 text-white">
                 <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest">Synergy Hub</span>
@@ -387,14 +402,9 @@ export default function CarbonSyncCareerPage() {
               </div>
             </div>
 
-            {/* Third New Workspace Collaboration Image */}
+            {/* Third — Workspace Collaboration */}
             <div className="relative h-[400px] rounded-2xl overflow-hidden border border-slate-200 shadow-md sm:col-span-2 lg:col-span-1 group">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 to-slate-800 transition-transform duration-500 group-hover:scale-105" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center backdrop-blur-sm">
-                  <Leaf className="w-8 h-8 text-emerald-400" />
-                </div>
-              </div>
+              <img src="/career-assets/workspace_collaboration.png" alt="CarbonSync Team Collaboration" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 text-white">
                 <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest">Team Culture</span>
@@ -694,6 +704,35 @@ export default function CarbonSyncCareerPage() {
         </div>
       </section>
 
+      {/* VALUES */}
+      <section id="values" className="bg-slate-50/50 px-6 py-24 md:px-12 lg:px-20 border-t border-b border-slate-200/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-bold text-emerald-600 uppercase tracking-widest">
+              <ShieldCheck className="h-3.5 w-3.5" />
+              Operating Values
+            </div>
+            <h2 className="mt-4 text-4xl font-extrabold text-slate-900 md:text-5xl tracking-tight">Highly opinionated culture</h2>
+            <p className="mt-4 text-slate-500 leading-relaxed text-sm md:text-base font-light">
+              We select candidates for high intellectual curiosity and ownership. These principles guide our day-to-day work, engineering roadmap, and commercial choices.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {VALUES.map((v, i) => (
+              <div
+                key={v.title}
+                className="group relative rounded-2xl border border-slate-200 bg-white p-8 shadow-sm hover:shadow-xl hover:border-emerald-500/30 transition-all duration-500 overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-emerald-500/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="inline-flex rounded-xl bg-emerald-500/20 p-3 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-slate-900 transition-all duration-300"><v.icon size={20} /></div>
+                <h3 className="mt-5 text-lg font-bold text-slate-900 tracking-tight">{v.title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-slate-500 font-light">{v.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* TESTIMONIALS */}
       <section className="px-6 py-20 md:px-12 lg:px-20 max-w-7xl mx-auto">
@@ -727,36 +766,6 @@ export default function CarbonSyncCareerPage() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* VALUES */}
-      <section id="values" className="bg-slate-50/50 px-6 py-24 md:px-12 lg:px-20 border-t border-b border-slate-200/50">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-bold text-emerald-600 uppercase tracking-widest">
-              <ShieldCheck className="h-3.5 w-3.5" />
-              Operating Values
-            </div>
-            <h2 className="mt-4 text-4xl font-extrabold text-slate-900 md:text-5xl tracking-tight">Highly opinionated culture</h2>
-            <p className="mt-4 text-slate-500 leading-relaxed text-sm md:text-base font-light">
-              We select candidates for high intellectual curiosity and ownership. These principles guide our day-to-day work, engineering roadmap, and commercial choices.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {VALUES.map((v, i) => (
-              <div
-                key={v.title}
-                className="group relative rounded-2xl border border-slate-200 bg-white p-8 shadow-sm hover:shadow-xl hover:border-emerald-500/30 transition-all duration-500 overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-emerald-500/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="inline-flex rounded-xl bg-emerald-500/20 p-3 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-slate-900 transition-all duration-300"><v.icon size={20} /></div>
-                <h3 className="mt-5 text-lg font-bold text-slate-900 tracking-tight">{v.title}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-500 font-light">{v.text}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

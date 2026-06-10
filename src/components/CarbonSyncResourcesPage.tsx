@@ -626,10 +626,10 @@ export default function CarbonSyncResourcesPage() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const path = window.location.pathname.toLowerCase();
-      if (path.startsWith('/resources/')) {
+      if (path.startsWith('/platform/resources/') && path.split('/').length > 3) {
         const parts = path.split('/');
-        const type = parts[2];
-        const slug = parts[3];
+        const type = parts[3];
+        const slug = parts[4];
         const found = resources.find(r => {
           const rType = r.type.toLowerCase() === 'newsroom' ? 'press' : r.type.toLowerCase() + 's';
           return rType === type && slugify(r.title) === slug;
@@ -638,11 +638,11 @@ export default function CarbonSyncResourcesPage() {
           setActiveResource(found);
           setActive(found.type);
         } else {
-          setActiveResource(resources[0] || null);
+          setActiveResource(null);
         }
       } else {
-        setActiveResource(resources[0] || null);
-        const cleanPath = path.replace('/', '').toLowerCase();
+        setActiveResource(null);
+        const cleanPath = path.replace('/platform/resources', '').replace(/\//g, '').toLowerCase();
         if (cleanPath === 'articles') setActive('Article');
         else if (cleanPath === 'whitepapers') setActive('Whitepaper');
         else if (cleanPath === 'guides') setActive('Guide');
@@ -650,7 +650,7 @@ export default function CarbonSyncResourcesPage() {
         else setActive('All');
       }
     } else {
-      setActiveResource(resources[0] || null);
+      setActiveResource(null);
     }
   }, []);
   const [activeTag, setActiveTag] = useState('All');
@@ -748,10 +748,10 @@ export default function CarbonSyncResourcesPage() {
   useEffect(() => {
     const onPopState = () => {
       const path = window.location.pathname.toLowerCase();
-      if (path.startsWith('/resources/')) {
+      if (path.startsWith('/platform/resources/') && path.split('/').length > 3) {
         const parts = path.split('/');
-        const type = parts[2];
-        const slug = parts[3];
+        const type = parts[3];
+        const slug = parts[4];
         const res = resources.find(r => {
           const rType = r.type.toLowerCase() === 'newsroom' ? 'press' : r.type.toLowerCase() + 's';
           return rType === type && slugify(r.title) === slug;
@@ -763,7 +763,7 @@ export default function CarbonSyncResourcesPage() {
         }
       }
       setActiveResource(null);
-      const cleanPath = path.replace('/', '').toLowerCase();
+      const cleanPath = path.replace('/platform/resources', '').replace(/\//g, '').toLowerCase();
       if (cleanPath === 'articles') setActive('Article');
       else if (cleanPath === 'whitepapers') setActive('Whitepaper');
       else if (cleanPath === 'guides') setActive('Guide');
@@ -779,10 +779,10 @@ export default function CarbonSyncResourcesPage() {
     setActiveResource(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    let path = '/';
+    let path = '/platform/resources';
     if (newCategory !== 'All') {
-      if (newCategory === 'Newsroom') path = '/press';
-      else path = `/${newCategory.toLowerCase()}s`;
+      if (newCategory === 'Newsroom') path = '/platform/resources/press';
+      else path = `/platform/resources/${newCategory.toLowerCase()}s`;
     }
     window.history.pushState({}, '', path);
   };
@@ -915,7 +915,7 @@ export default function CarbonSyncResourcesPage() {
 
     let typePath = item.type.toLowerCase() === 'newsroom' ? 'press' : item.type.toLowerCase() + 's';
     const slug = slugify(item.title);
-    window.history.pushState({}, '', `/resources/${typePath}/${slug}`);
+    window.history.pushState({}, '', `/platform/resources/${typePath}/${slug}`);
   };
 
   const renderResourceContent = (item: typeof resources[0]) => {
@@ -2958,7 +2958,7 @@ export default function CarbonSyncResourcesPage() {
             <div className="glow-orb" style={{ position: 'absolute', top: '-100px', right: '-100px', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%)', filter: 'blur(50px)', pointerEvents: 'none' }} />
             <div className="glow-orb" style={{ position: 'absolute', top: '100px', left: '-100px', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
 
-            <div className="container hero-content" style={{ position: 'relative', zIndex: 1, padding: '80px 20px 60px' }}>
+            <div className="container hero-content" style={{ position: 'relative', zIndex: 1, padding: '20px 20px 60px' }}>
               <div
                 className="hero-copy"
                 style={{ textAlign: 'center', marginBottom: '50px' }}
@@ -3333,7 +3333,7 @@ export default function CarbonSyncResourcesPage() {
                       {items.map((item, index) => (
                         item.logoText ? (
                           <article
-                            key={item.title}
+                            key={`${item.title}-${index}`}
                             className={`resource-card ${item.accent}`}
                             onClick={() => handleResourceClick(item)}
                             style={{ cursor: 'pointer' }}
@@ -3361,7 +3361,7 @@ export default function CarbonSyncResourcesPage() {
                           </article>
                         ) : (
                           <article
-                            key={item.title}
+                            key={`${item.title}-${index}`}
                             className={`resource-card ${item.accent}`}
                             onClick={() => handleResourceClick(item)}
                             style={{ cursor: 'pointer' }}
@@ -3416,7 +3416,7 @@ export default function CarbonSyncResourcesPage() {
           onClose={() => {
             setShowArticleDetail(false);
             setArticleDetailResource(null);
-            window.history.pushState({}, '', '/');
+            window.history.pushState({}, '', '/platform/resources');
           }}
           onDownload={() => handleDownloadResource(articleDetailResource)}
         />
