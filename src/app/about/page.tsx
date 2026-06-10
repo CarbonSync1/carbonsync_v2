@@ -6,10 +6,10 @@ const Innovation = dynamic(() => import('@/components/about-us/Innovation'));
 const Offerings = dynamic(() => import('@/components/about-us/Offerings'));
 const Team = dynamic(() => import('@/components/about-us/Team'));
 const Newsroom = dynamic(() => import('@/components/about-us/Newsroom'));
-const Logos = dynamic(() => import('@/components/about-us/Logos'));
+
 const Timeline = dynamic(() => import('@/components/about-us/Timeline'));
 const Mentors = dynamic(() => import('@/components/about-us/Mentors'));
-const Experience = dynamic(() => import('@/components/about-us/Experience'));
+
 
 import '@/components/about-us/about-styles.css';
 
@@ -22,10 +22,10 @@ export default function AboutPage() {
       <Offerings />
       <Team />
       <Newsroom />
-      <Logos />
+    
       <Timeline />
       <Mentors />
-      <Experience />
+      
     </>
   );
 }
