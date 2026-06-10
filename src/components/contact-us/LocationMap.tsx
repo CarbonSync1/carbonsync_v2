@@ -46,7 +46,7 @@ export default function LocationMap() {
             </a>
           </div>
           
-          <a href="https://www.google.com/maps/dir//Noida,+Uttar+Pradesh+201301" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center border-t md:border-t-0 md:border-l border-gray-100 pt-6 md:pt-0 md:pl-8 no-underline">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=28.5355161,77.30156945" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center border-t md:border-t-0 md:border-l border-gray-100 pt-6 md:pt-0 md:pl-8 no-underline">
              <div className="w-16 h-16 flex items-center justify-center text-white bg-green-600 rounded-2xl cursor-pointer hover:bg-green-700 transition-all shadow-xl shadow-green-500/20 hover:scale-110 active:scale-95 mb-3">
                <Navigation size={28} />
              </div>

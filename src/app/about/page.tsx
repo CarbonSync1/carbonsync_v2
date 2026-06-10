@@ -22,10 +22,10 @@ export default function AboutPage() {
       <Offerings />
       <Team />
       <Newsroom />
-    
+
       <Timeline />
       <Mentors />
-      
+
     </>
   );
 }
