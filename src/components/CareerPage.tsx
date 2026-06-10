@@ -622,6 +622,79 @@ export default function CarbonSyncCareerPage() {
         </div>
       </section>
 
+      {/* INTERNSHIP PROGRAM SECTION */}
+      <section className="px-6 py-24 md:px-12 lg:px-20 border-t border-b border-slate-800 bg-[#0a0a0a]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-bold text-emerald-500 uppercase tracking-widest">
+              <GraduationCap className="h-3.5 w-3.5" />
+              Future Climate Leaders
+            </div>
+            <h2 className="mt-4 text-4xl font-extrabold text-white md:text-5xl tracking-tight">
+              Meet Our Current Interns
+            </h2>
+            <p className="mt-4 text-slate-400 leading-relaxed text-sm md:text-base font-light">
+              At CarbonSync, we are proud to empower the next generation of innovators. Our current cohort of exceptional interns is actively working alongside our engineering and climate science teams, tackling real-world challenges and driving our mission of global carbon accountability forward.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Abhijeet */}
+            <div className="group relative rounded-2xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition-colors shadow-xl flex flex-col">
+              <div className="relative aspect-[4/5] rounded-xl overflow-hidden mb-5">
+                <img src="/career-assets/interns/abhijeet.jpg" alt="Abhijeet" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent opacity-60"></div>
+                <a href="https://www.linkedin.com/in/iabhiijeet?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="absolute bottom-3 right-3 bg-black/50 hover:bg-emerald-600 backdrop-blur-md p-2 rounded-full text-white transition-colors duration-300">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+              </div>
+              <h3 className="text-white font-bold text-lg tracking-tight">Abhijeet Rao</h3>
+              <p className="text-emerald-400 text-xs font-bold uppercase tracking-wider mt-1">Backend Engineer</p>
+            </div>
+
+            {/* Prateek */}
+            <div className="group relative rounded-2xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition-colors shadow-xl flex flex-col">
+              <div className="relative aspect-[4/5] rounded-xl overflow-hidden mb-5">
+                <img src="/career-assets/interns/prateek.jpg" alt="Prateek" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent opacity-60"></div>
+                <a href="https://www.linkedin.com/in/itsprateek4510?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="absolute bottom-3 right-3 bg-black/50 hover:bg-emerald-600 backdrop-blur-md p-2 rounded-full text-white transition-colors duration-300">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+              </div>
+              <h3 className="text-white font-bold text-lg tracking-tight">Prateek Kushwaha</h3>
+              <p className="text-emerald-400 text-xs font-bold uppercase tracking-wider mt-1">Backend Engineer</p>
+            </div>
+
+            {/* Ata Waris */}
+            <div className="group relative rounded-2xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition-colors shadow-xl flex flex-col">
+              <div className="relative aspect-[4/5] rounded-xl overflow-hidden mb-5">
+                <img src="/career-assets/interns/atawaris.jpg" alt="Ata Waris" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent opacity-60"></div>
+                <a href="https://www.linkedin.com/in/atawaris?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="absolute bottom-3 right-3 bg-black/50 hover:bg-emerald-600 backdrop-blur-md p-2 rounded-full text-white transition-colors duration-300">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+              </div>
+              <h3 className="text-white font-bold text-lg tracking-tight leading-tight">Ata Waris</h3>
+              <p className="text-emerald-400 text-[10px] font-bold uppercase tracking-wider mt-1.5 leading-snug">Creative Head & Frontend Sys Eng.</p>
+            </div>
+
+            {/* Divi Tyagi */}
+            <div className="group relative rounded-2xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition-colors shadow-xl flex flex-col">
+              <div className="relative aspect-[4/5] rounded-xl overflow-hidden mb-5">
+                <img src="/career-assets/interns/divi.jpg" alt="Divi Tyagi" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent opacity-60"></div>
+                <a href="https://www.linkedin.com/in/divi-tyagi-86449b205?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="absolute bottom-3 right-3 bg-black/50 hover:bg-emerald-600 backdrop-blur-md p-2 rounded-full text-white transition-colors duration-300">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+              </div>
+              <h3 className="text-white font-bold text-lg tracking-tight">Divi Tyagi</h3>
+              <p className="text-emerald-400 text-xs font-bold uppercase tracking-wider mt-1">Brand Designer Head</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
       {/* TESTIMONIALS */}
       <section className="px-6 py-20 md:px-12 lg:px-20 max-w-7xl mx-auto">
         <div>
