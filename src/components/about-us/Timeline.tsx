@@ -3,32 +3,32 @@ import { useState } from 'react'
 
 const timelineData = [
   {
-    date: 'Jul 2024',
-    fullDate: 'JULY, 2024',
+    date: 'Nov 2025',
+    fullDate: 'NOVEMBER, 2025',
     title: 'Founded',
     desc: 'CarbonSync was incorporated with a vision to transform the sustainability landscape by leveraging cutting-edge technology.'
   },
   {
-    date: 'Oct 2024',
-    fullDate: 'OCTOBER, 2024',
+    date: 'Dec 2025',
+    fullDate: 'DECEMBER, 2025',
     title: 'AI Core Development',
     desc: 'Completed the integration of our proprietary LLM-driven carbon analysis engine, enabling autonomous supplier data verification.'
   },
   {
-    date: 'Apr 2025',
-    fullDate: 'APRIL, 2025',
+    date: 'Feb 2026',
+    fullDate: 'FEBRUARY, 2026',
     title: 'Supply Chain Protocol',
     desc: 'Deployed our decentralized ledger protocol to over 10,000 tier-2 and tier-3 suppliers, ensuring unprecedented data integrity across the value chain.'
   },
   {
-    date: 'Dec 2025',
-    fullDate: 'DECEMBER, 2025',
+    date: 'Apr 2026',
+    fullDate: 'APRIL, 2026',
     title: 'Autonomous Audit',
     desc: 'Launched our AI-driven "Self-Healing" audit engine that automatically detects and resolves data discrepancies in real-time without human intervention.'
   },
   {
-    date: 'Mar 2026',
-    fullDate: 'MARCH, 2026',
+    date: 'May 2026',
+    fullDate: 'MAY, 2026',
     title: 'Credit Exchange',
     desc: 'Launched our integrated carbon credit exchange, allowing partners to offset residual emissions with verified, high-impact climate projects directly through the platform.'
   },
