@@ -11,10 +11,10 @@ const Timeline = dynamic(() => import('@/components/about-us/Timeline'));
 const Mentors = dynamic(() => import('@/components/about-us/Mentors'));
 
 
-import '@/components/about-us/about-styles.css';
+//import '@/components/about-us/about-styles.css';
 
-export default function AboutPage() {
-  return (
+//export default function AboutPage() {
+  //return (
     <>
       <Hero />
       <About />
