@@ -2937,59 +2937,59 @@ export default function CarbonSyncResourcesPage() {
     <main className="page-shell">
       {active === 'All' && (
         <>
-          <section className="hero-section" style={{ position: 'relative', overflow: 'hidden', background: 'radial-gradient(circle at top right, rgba(5, 150, 105, 0.05), transparent 50%), radial-gradient(circle at top left, rgba(13, 148, 136, 0.05), transparent 50%)' }}>
+          <section className="hero-section" style={{ position: 'relative', overflow: 'hidden' }}>
             <style>{`
-              .hero-section {
-                background: radial-gradient(circle at top right, rgba(5, 150, 105, 0.05), transparent 50%), radial-gradient(circle at top left, rgba(13, 148, 136, 0.05), transparent 50%) !important;
-              }
               .stat-card {
-                background: rgba(255, 255, 255, 0.8) !important;
-                backdrop-filter: blur(10px) !important;
-                border: 1px solid rgba(226, 232, 240, 0.8) !important;
-                border-radius: 16px !important;
-                transition: transform 0.2s, box-shadow 0.2s !important;
+                background: rgba(255, 255, 255, 0.75) !important;
+                backdrop-filter: blur(16px) !important;
+                -webkit-backdrop-filter: blur(16px) !important;
+                border: 1px solid rgba(226, 232, 240, 0.6) !important;
+                border-radius: 20px !important;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
               }
               .stat-card:hover {
-                transform: translateY(-5px) !important;
-                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
+                transform: translateY(-6px) !important;
+                box-shadow: 0 20px 40px -12px rgba(5, 150, 105, 0.12), 0 8px 16px -4px rgba(0,0,0,0.04) !important;
+                border-color: rgba(16, 185, 129, 0.25) !important;
               }
             `}</style>
             <div className="hero-bg" />
-            <div className="glow-orb" style={{ position: 'absolute', top: '-100px', right: '-100px', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%)', filter: 'blur(50px)', pointerEvents: 'none' }} />
-            <div className="glow-orb" style={{ position: 'absolute', top: '100px', left: '-100px', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+            <div className="glow-orb" style={{ position: 'absolute', top: '-80px', right: '-60px', width: '350px', height: '350px', background: 'radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+            <div className="glow-orb" style={{ position: 'absolute', top: '120px', left: '-80px', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none', animationDelay: '2s' }} />
+            <div className="glow-orb" style={{ position: 'absolute', bottom: '-40px', left: '50%', width: '250px', height: '250px', background: 'radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%)', filter: 'blur(50px)', pointerEvents: 'none', animationDelay: '4s' }} />
 
             <div className="container hero-content" style={{ position: 'relative', zIndex: 1, padding: '20px 20px 60px' }}>
               <div
                 className="hero-copy"
                 style={{ textAlign: 'center', marginBottom: '50px' }}
               >
-                <div className="eyebrow" style={{ background: 'rgba(5, 150, 105, 0.1)', border: '1px solid rgba(5, 150, 105, 0.2)', backdropFilter: 'blur(4px)', color: '#047857', padding: '8px 16px', borderRadius: '20px', display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '13px', fontWeight: 600, marginBottom: '24px' }}>
-                  <Sparkles size={16} /> CarbonSync Knowledge Hub
+                <div className="eyebrow" style={{ background: 'rgba(5, 150, 105, 0.08)', border: '1px solid rgba(5, 150, 105, 0.18)', backdropFilter: 'blur(8px)', color: '#047857', padding: '8px 20px', borderRadius: '20px', display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '13px', fontWeight: 600, marginBottom: '24px', letterSpacing: '0.02em' }}>
+                  <Sparkles size={15} /> CarbonSync Knowledge Hub
                 </div>
-                <h1 style={{ fontSize: '48px', fontWeight: 800, color: '#0f172a', marginBottom: '20px', lineHeight: 1.2 }}>Resources for a smarter <span style={{ background: 'linear-gradient(to right, #059669, #0d9488)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>net zero journey.</span></h1>
-                <p style={{ fontSize: '18px', color: '#64748b', maxWidth: '700px', margin: '0 auto 32px', lineHeight: 1.6 }}>
-                  Premium guides, whitepapers, templates, webinars, and case studies to help your business measure emissions,
+                <h1 style={{ fontSize: '52px', fontWeight: 800, color: '#0f172a', marginBottom: '18px', lineHeight: 1.08, letterSpacing: '-0.03em' }}>Resources for a smarter <span style={{ background: 'linear-gradient(135deg, #059669, #0d9488, #0891b2)', backgroundSize: '200% 200%', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>net zero journey.</span></h1>
+                <p style={{ fontSize: '17px', color: '#64748b', maxWidth: '620px', margin: '0 auto 32px', lineHeight: 1.7, letterSpacing: '0.01em' }}>
+                  Premium guides, whitepapers, templates, and case studies to help your business measure emissions,
                   reduce carbon impact, and report progress with confidence.
                 </p>
-                <div className="hero-actions" style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
-                  <a className="btn btn-dark" href="#library" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)', color: '#fff', padding: '12px 24px', borderRadius: '12px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', border: 'none', cursor: 'pointer', textDecoration: 'none', transition: 'transform 0.2s' }} onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'} onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}>Explore Library <ArrowRight size={18} /></a>
-                  <a className="btn btn-light" href="#featured" style={{ background: '#fff', border: '1px solid #e2e8f0', color: '#0f172a', padding: '12px 24px', borderRadius: '12px', fontWeight: 600, cursor: 'pointer', textDecoration: 'none', transition: 'background-color 0.2s, border-color 0.2s' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#f8fafc'; e.currentTarget.style.borderColor = '#cbd5e1'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = '#fff'; e.currentTarget.style.borderColor = '#e2e8f0'; }}>Download Playbook</a>
+                <div className="hero-actions" style={{ display: 'flex', gap: '14px', justifyContent: 'center' }}>
+                  <a className="btn btn-dark" href="#library" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)', color: '#fff', padding: '14px 28px', borderRadius: '14px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', border: 'none', cursor: 'pointer', textDecoration: 'none', transition: 'all 0.35s', boxShadow: '0 4px 14px rgba(15, 23, 42, 0.2)' }} onMouseOver={(e) => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 12px 28px rgba(15, 23, 42, 0.25)'; }} onMouseOut={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 14px rgba(15, 23, 42, 0.2)'; }}>Explore Library <ArrowRight size={18} /></a>
+                  <a className="btn btn-light" href="#featured" style={{ background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(226, 232, 240, 0.8)', color: '#0f172a', padding: '14px 28px', borderRadius: '14px', fontWeight: 600, cursor: 'pointer', textDecoration: 'none', transition: 'all 0.35s', backdropFilter: 'blur(8px)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#fff'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 12px 28px rgba(0,0,0,0.06)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.9)'; e.currentTarget.style.borderColor = 'rgba(226, 232, 240, 0.8)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>Download Playbook</a>
                 </div>
               </div>
 
-              <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px', maxWidth: '1000px', margin: '0 auto' }}>
+              <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px', maxWidth: '1000px', margin: '0 auto' }}>
                 {stats.map((stat, index) => {
                   const Icon = stat.icon;
                   return (
                     <div
                       key={stat.label}
                       className="stat-card"
-                      style={{ background: 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(10px)', border: '1px solid rgba(226, 232, 240, 0.8)', borderRadius: '16px', padding: '24px', display: 'flex', alignItems: 'center', gap: '16px', transition: 'transform 0.2s, box-shadow 0.2s' }}
+                      style={{ background: 'rgba(255, 255, 255, 0.75)', backdropFilter: 'blur(16px)', border: '1px solid rgba(226, 232, 240, 0.6)', borderRadius: '20px', padding: '26px', display: 'flex', alignItems: 'center', gap: '16px', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)' }}
                     >
-                      <div className="icon-box" style={{ background: 'rgba(5, 150, 105, 0.1)', color: '#059669', width: '48px', height: '48px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon size={25} /></div>
+                      <div className="icon-box" style={{ background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.12), rgba(20, 184, 166, 0.08))', color: '#059669', width: '52px', height: '52px', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s' }}><Icon size={24} /></div>
                       <div>
-                        <strong style={{ fontSize: '24px', color: '#0f172a', fontWeight: 800, display: 'block' }}>{stat.value}</strong>
-                        <p style={{ fontSize: '14px', color: '#64748b', margin: 0 }}>{stat.label}</p>
+                        <strong style={{ fontSize: '28px', color: '#0f172a', fontWeight: 800, display: 'block', letterSpacing: '-0.02em' }}>{stat.value}</strong>
+                        <p style={{ fontSize: '14px', color: '#64748b', margin: 0, fontWeight: 500 }}>{stat.label}</p>
                       </div>
                     </div>
                   );
