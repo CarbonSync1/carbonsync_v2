@@ -41,7 +41,6 @@ const ScopesSection = dynamic(() => import('@/components/net-zero/ScopesSection'
 export default function App() {
  const [activeDashboardTab, setActiveDashboardTab] = useState('overview');
  const [selectedIndustry, setSelectedIndustry] = useState('manufacturing');
- const [activeTestimonial, setActiveTestimonial] = useState(0);
  const [reductionScore, setReductionScore] = useState(38);
  const [aiActionsApplied, setAiActionsApplied] = useState({ action1: false, action2: false });
  const [activeTimelineStep, setActiveTimelineStep] = useState(0);
@@ -212,14 +211,6 @@ export default function App() {
  ];
 
  const activeCapabilityData = platformCapabilities[activeCapability];
-
- // Auto scroll testimonials
- useEffect(() => {
- const timer = setInterval(() => {
- setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
- }, 8000);
- return () => clearInterval(timer);
- }, []);
 
  useEffect(() => {
  const ctaSection = document.getElementById('cta');
@@ -2006,83 +1997,6 @@ export default function App() {
  </div>
  </section>
 
- {/* 9. TESTIMONIALS SECTION (CINEMATIC NATURE IMAGE + DARK OVERLAY + WHITE TEXT) */}
- <section
- id="testimonials"
- className="py-24 px-6 relative overflow-hidden bg-white"
- >
- <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
-
- <div className="max-w-7xl mx-auto relative z-10">
- <div className="text-center max-w-3xl mx-auto mb-16">
- <h2 className="text-xs font-bold uppercase tracking-widest text-[#4ade80] mb-3">Enterprise Endorsements</h2>
- <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-4">
- Pioneering <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">Sustainability</span> with Trust
- </h3>
- <p className="text-slate-600">
- Read how global sustainability directors and executive managers utilize CarbonSync to monitor compliance, track carbon, and save audits.
- </p>
- </div>
-
- {/* Testimonial slider / carousel */}
- <div className="max-w-4xl mx-auto relative">
- <div className="absolute inset-y-0 left-0 flex items-center justify-center -translate-x-6 lg:-translate-x-12 z-20">
- <button
- onClick={() => setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
- className="p-3 rounded-full bg-white border border-slate-200 hover:border-primary hover:scale-105 text-slate-600 hover:text-slate-900 transition-colors"
- >
- <ChevronLeft className="w-5 h-5" />
- </button>
- </div>
-
- <div className="absolute inset-y-0 right-0 flex items-center justify-center translate-x-6 lg:translate-x-12 z-20">
- <button
- onClick={() => setActiveTestimonial((prev) => (prev + 1) % testimonials.length)}
- className="p-3 rounded-full bg-white border border-slate-200 hover:border-primary text-slate-600 hover:text-slate-900 transition-colors"
- >
- <ChevronRight className="w-5 h-5" />
- </button>
- </div>
-
- <div className="overflow-hidden rounded-2xl bg-white backdrop-blur-md border border-slate-200 p-8 md:p-12 shadow-2xl relative">
- <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl" />
-
- <div
- className="space-y-6"
- >
- <p className="text-md md:text-xl text-slate-600 leading-relaxed italic">
- "{testimonials[activeTestimonial].quote}"
- </p>
-
- <div className="flex items-center gap-4 pt-6 border-t border-slate-200">
- <div className="w-12 h-12 rounded-full bg-slate-800 border border-slate-200 flex items-center justify-center font-bold text-[#4ade80]">
- {testimonials[activeTestimonial].author[0]}
- </div>
- <div>
- <h4 className="text-sm font-bold text-slate-900">{testimonials[activeTestimonial].author}</h4>
- <p className="text-xs text-slate-600">{testimonials[activeTestimonial].role} at <span className="text-[#4ade80] font-semibold">{testimonials[activeTestimonial].company}</span></p>
- </div>
- </div>
- </div>
-
- </div>
-
- {/* Slider dots */}
- <div className="flex justify-center gap-2 mt-6">
- {testimonials.map((_, i) => (
- <button
- key={i}
- onClick={() => setActiveTestimonial(i)}
- className={`w-2 h-2 rounded-full transition-all ${
- activeTestimonial === i ? 'bg-primary w-6' : 'bg-slate-700'
- }`}
- />
- ))}
- </div>
- </div>
- </div>
- </section>
-
  {/* 10b. AS EASY AS 1-2-3 STEPS SECTION */}
  <section className="py-24 px-6 bg-white">
  <div className="max-w-5xl mx-auto">
@@ -2468,24 +2382,3 @@ const carbonSyncBenefits = [
  }
 ];
 
-// TESTIMONIALS
-const testimonials = [
- {
- quote: "CarbonSync allowed us to automate Scope 1 and 2 calculations across 14 manufacturing facilities. We finished our annual CSRD audit in three days rather than four months, saving thousands in consultancy costs.",
- author: "Elena Rostova",
- role: "Global Sustainability Director",
- company: "EcoPower Holdings"
- },
- {
- quote: "The supplier mapping module has been a game-changer for our logistics team. We identified three high-emission vendors and worked with CarbonSync's AI optimizer to select lower-impact transport partners.",
- author: "Marcus Vance",
- role: "VP of Logistics",
- company: "Future Freight SA"
- },
- {
- quote: "With rising ESG regulations in Germany and California, compliance was a primary concern for our board. CarbonSync gave us continuous tracking and verified reporting that auditors signed off on without delay.",
- author: "Dr. Clara Schilling",
- role: "Chief Compliance Officer",
- company: "Zephyr Energy"
- }
-];
