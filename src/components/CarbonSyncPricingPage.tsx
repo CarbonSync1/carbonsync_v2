@@ -1,456 +1,520 @@
-'use client';
+"use client";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import {
+  Check,
+  ChevronDown,
+  ArrowRight,
+  ShieldCheck,
+  Server,
+  Lock,
+  Leaf,
+  BarChart3,
+  Zap,
+  Globe2,
+  Building2,
+  Mail,
+  Activity,
+  Award,
+  Cpu,
+  Layers,
+  Sparkles,
+  Minus
+} from "lucide-react";
 
+// --- DATA ---
 
 const plans = [
   {
-    name: "Starter",
-    desc: "For small teams beginning carbon tracking",
-    features: [
-      "Basic emission tracking",
-      "Scope 1 & 2 dashboard",
-      "Manual data entry",
-      "Monthly carbon reports",
-      "Basic Net Zero roadmap",
-    ],
-    button: "Get Started",
-    highlighted: false,
-  },
-  {
     name: "Growth",
-    desc: "For growing businesses managing multiple locations",
+    desc: "Essential carbon tracking for emerging teams.",
+    priceMonthly: "₹50,000",
+    onboarding: "₹25,000",
+    savingsBadge: "Up to 50 employees",
     features: [
-      "Everything in Starter",
-      "Scope 1, 2 & 3 tracking",
-      "Supplier data collection",
-      "AI emission insights",
-      "Reduction recommendations",
-      "Exportable compliance reports",
+      "AI-powered emission baselining",
+      "Scope 1 & 2 dashboard",
+      "Monthly carbon reports",
+      "Community support access",
     ],
-    button: "Start Free Demo",
-    highlighted: true,
+    icon: Leaf,
+    highlighted: false,
   },
   {
     name: "Professional",
-    desc: "Advanced carbon intelligence",
+    desc: "Advanced intelligence for scaling organizations.",
+    priceMonthly: "₹1,00,000",
+    onboarding: "₹75,000",
+    savingsBadge: "Up to 250 employees",
     features: [
       "Everything in Growth",
-      "Real-time analytics dashboard",
-      "Custom emission factors",
-      "Team collaboration",
-      "Target tracking",
-      "Audit-ready reports",
-      "API integrations",
+      "Full Scope 1, 2 & 3 tracking",
+      "Automated supplier data collection",
+      "Predictive reduction insights",
+      "Priority email & chat support",
     ],
-    button: "Talk to Sales",
-    highlighted: false,
+    icon: BarChart3,
+    highlighted: true,
   },
   {
     name: "Enterprise",
-    desc: "Complex enterprise Net Zero needs",
+    desc: "Uncapped scaling with dedicated architecture.",
+    priceMonthly: "Custom",
+    onboarding: "Custom",
+    savingsBadge: "Above 250 employees",
     features: [
       "Everything in Professional",
-      "Unlimited business units",
-      "Dedicated implementation support",
-      "Advanced compliance workflows",
-      "Custom integrations",
-      "Enterprise security",
-      "Priority support",
+      "Unlimited business units & users",
+      "Dedicated sustainability architect",
+      "Custom compliance workflows",
+      "24/7 White-glove support",
     ],
-    button: "Contact Us",
+    icon: ShieldCheck,
     highlighted: false,
   },
+];
+
+const compareFeatures = [
+  { category: "Core Intelligence", features: [
+    { name: "Scope 1 & 2 Tracking", tiers: [true, true, true] },
+    { name: "Scope 3 Supply Chain", tiers: [false, true, true] },
+    { name: "AI Reduction Pathways", tiers: [false, true, true] },
+  ]},
+  { category: "Enterprise Integrations", features: [
+    { name: "Custom Emission Factors", tiers: [false, true, true] },
+    { name: "Real-time API Access", tiers: [false, true, true] },
+    { name: "ERP Integrations (SAP, Oracle)", tiers: [false, false, true] },
+  ]},
+  { category: "Security & Support", features: [
+    { name: "SOC 2 Type II Compliant", tiers: [true, true, true] },
+    { name: "Dedicated Account Manager", tiers: [false, false, true] },
+    { name: "SLA Guarantee (99.99%)", tiers: [false, false, true] },
+  ]}
 ];
 
 const faqs = [
   {
-    question: "Can I switch plans anytime?",
-    answer: "Yes, you can upgrade or downgrade your plan at any time from your dashboard. Changes take effect in the next billing cycle.",
+    question: "How does the AI-powered carbon accounting work?",
+    answer: "Our neural engines ingest your utility data, travel logs, and procurement pipelines to automatically map and calculate emissions against GHG Protocol standards with 99.8% accuracy, saving thousands of manual hours."
   },
   {
-    question: "Do you offer custom emission factors?",
-    answer: "Yes, the Professional and Enterprise plans allow you to input custom emission factors tailored to your specific operations and supply chain.",
+    question: "Is CarbonSync compliant with new SEC and CSRD regulations?",
+    answer: "Yes. CarbonSync is engineered for global compliance. Our platform generates audit-ready reports instantly formatted for SEC, CSRD, SFDR, and CDP requirements."
   },
   {
-    question: "Is my data secure?",
-    answer: "Data security is our top priority. We use enterprise-grade encryption and are SOC2 Type II compliant to ensure your sustainability data is always protected.",
-  },
-  {
-    question: "Can we integrate CarbonSync with our ERP?",
-    answer: "Yes, our Professional and Enterprise plans include API access and pre-built integrations for major ERP and utility management systems.",
-  },
+    question: "How long does implementation take?",
+    answer: "For Starter and Growth plans, onboarding takes less than 24 hours. Enterprise integrations vary based on ERP complexity but typically go live within 14-21 days thanks to our pre-built connectors."
+  }
 ];
 
-export default function CarbonSyncPricingPage() {
+// --- COMPONENTS ---
+
+const MagneticButton = ({ children, className, onClick, type = "button" }: { children: React.ReactNode, className?: string, onClick?: () => void, type?: "button" | "submit" | "reset" }) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  
+  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - left - width / 2) * 0.2;
+    const y = (e.clientY - top - height / 2) * 0.2;
+    setPosition({ x, y });
+  };
+
   return (
-    <div className="min-h-screen bg-white text-gray-900 overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb33_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb33_1px,transparent_1px)] bg-[size:60px_60px]" />
+    <motion.button
+      type={type}
+      onClick={onClick}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setPosition({ x: 0, y: 0 })}
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      className={`relative overflow-hidden ${className}`}
+    >
+      {children}
+    </motion.button>
+  );
+};
 
-      <section className="relative z-10 max-w-7xl mx-auto px-6 py-24">
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
-          <div>
-            <h1
-              className="text-5xl font-bold leading-tight"
+export default function CarbonSyncPricingPage() {
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [calcValue, setCalcValue] = useState(1000);
+  
+  const { scrollYProgress } = useScroll();
+  const yParallax = useTransform(scrollYProgress, [0, 1], [0, -100]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-white text-gray-900 font-sans overflow-x-hidden relative pt-24 pb-16">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb33_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb33_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none z-0" />
+
+
+      {/* --- HERO SECTION --- */}
+      <section className="relative pt-32 pb-24 px-6 max-w-[1400px] mx-auto z-10 grid lg:grid-cols-2 gap-16 items-center">
+        
+        {/* Left: Text Content */}
+        <div className="flex flex-col items-start text-left">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-sm mb-8 group"
+          >
+            <Sparkles className="w-4 h-4 text-emerald-500 group-hover:animate-spin" />
+            <span className="text-sm font-semibold text-slate-800">CarbonSync Engine 3.0 Released</span>
+            <ArrowRight className="w-4 h-4 text-slate-400" />
+          </motion.div>
+
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-5xl md:text-6xl lg:text-[72px] font-black tracking-tighter leading-[1.05] mb-8 text-slate-900"
+          >
+            Pricing Built for the Future of <br className="hidden lg:block"/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-br from-emerald-500 to-teal-600">
+              Carbon Intelligence.
+            </span>
+          </motion.h1>
+
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-lg md:text-xl text-slate-500 max-w-xl mb-12 font-medium"
+          >
+            Deploy military-grade ESG automation. Track, reduce, and report your global emissions footprint with unprecedented AI precision.
+          </motion.p>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center gap-4 z-20 w-full sm:w-auto"
+          >
+            <MagneticButton 
+              onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-emerald-600 text-white font-bold text-lg shadow-[0_10px_30px_rgba(16,185,129,0.2)] hover:bg-emerald-500 transition-colors whitespace-nowrap"
             >
-              Choose the Right Plan for Your
-              <span className="block bg-gradient-to-r from-green-500 to-cyan-500 bg-clip-text text-transparent">
-                Net Zero Journey
-              </span>
-            </h1>
+              Start Carbon Intelligence
+            </MagneticButton>
+            <MagneticButton 
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white border border-slate-200 text-slate-900 font-semibold text-lg hover:bg-slate-50 shadow-sm transition-colors whitespace-nowrap"
+            >
+              Schedule Enterprise Demo
+            </MagneticButton>
+          </motion.div>
+        </div>
 
-            <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-              Flexible carbon management plans built for startups,
-              growing businesses, and enterprises to track emissions,
-              reduce footprint, and accelerate Net Zero goals.
-            </p>
-
-            <div className="mt-10 flex gap-4">
-              <button className="px-6 py-3 rounded-2xl bg-gradient-to-r from-green-500 to-cyan-500 text-white font-semibold shadow-lg hover:scale-105 transition">
-                Book Demo
-              </button>
-
-              <button className="px-6 py-3 rounded-2xl border border-gray-300 hover:border-green-400 transition">
-                View Features
-              </button>
+        {/* Right: 3D Dashboard Visualization */}
+        <motion.div 
+          style={{ y: yParallax }}
+          className="relative w-full rounded-[32px] p-2 bg-gradient-to-b from-slate-100 to-white border border-slate-200 shadow-2xl mt-12 lg:mt-0"
+        >
+          <div className="absolute inset-0 bg-emerald-500/5 blur-3xl rounded-[32px]" />
+          <div className="relative rounded-[24px] overflow-hidden bg-white border border-slate-200 aspect-[4/3] lg:aspect-[16/10] shadow-[0_20px_50px_rgba(0,0,0,0.05)]">
+            <div className="absolute top-0 left-0 w-full h-10 lg:h-12 bg-slate-50/80 backdrop-blur border-b border-slate-200 flex items-center px-4 lg:px-6 gap-2 z-20">
+              <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-slate-300" />
+              <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-slate-300" />
+              <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-slate-300" />
             </div>
+            <Image src="/hero-image-final.jpg" alt="CarbonSync Dashboard" width={800} height={500} className="w-full h-full object-cover pt-10 lg:pt-12" unoptimized />
+            
+            {/* Floating Glass Metrics */}
+            <motion.div animate={{ y: [0, -15, 0] }} transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }} className="absolute bottom-12 right-6 lg:top-1/4 lg:right-8 bg-white/90 backdrop-blur-xl border border-slate-200 p-4 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.08)]">
+              <div className="flex items-center gap-3 mb-2">
+                <Activity className="w-5 h-5 text-emerald-500" />
+                <span className="text-[10px] lg:text-xs text-slate-500 font-bold uppercase tracking-wider">AI Optimization</span>
+              </div>
+              <p className="text-xl lg:text-2xl font-black text-slate-900">-34.2%</p>
+            </motion.div>
+          </div>
+        </motion.div>
+
+      </section>
+
+
+
+      {/* --- PRICING SECTION --- */}
+      <section id="pricing" className="py-16 relative z-10">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="flex flex-col items-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-4 tracking-tighter text-center">
+              Uncompromising Power.<br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Transparent Tiers.</span>
+            </h2>
           </div>
 
-          <div
-            className="relative flex justify-center"
-          >
-            <div className="w-[420px] h-[320px] rounded-[32px] bg-gradient-to-br from-green-100 to-cyan-100 shadow-2xl border border-white/50 backdrop-blur-xl p-6">
-              <div className="bg-white rounded-2xl p-5 shadow-lg">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-semibold">Carbon Analytics</h3>
-                  <div className="w-3 h-3 rounded-full bg-green-500" />
-                </div>
+          <div className="grid md:grid-cols-3 gap-6 items-end max-w-6xl mx-auto">
+            {plans.map((plan) => {
+              const Icon = plan.icon;
+              
+              return (
+                <motion.div 
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  key={plan.name}
+                  className={`group relative h-full flex flex-col p-8 rounded-[32px] transition-all duration-500 ${
+                    plan.highlighted 
+                      ? "bg-slate-950 text-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] xl:-translate-y-8" 
+                      : "bg-white border border-slate-200 text-slate-900 hover:shadow-xl hover:border-slate-300"
+                  }`}
+                >
+                  {plan.highlighted && (
+                    <div className="absolute -inset-[1px] bg-gradient-to-b from-emerald-500/50 to-transparent rounded-[33px] -z-10 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  )}
 
-                <div className="mt-8 flex items-end gap-4 h-40">
-                  <div className="w-12 bg-green-400 rounded-t-xl h-20" />
-                  <div className="w-12 bg-cyan-400 rounded-t-xl h-28" />
-                  <div className="w-12 bg-green-500 rounded-t-xl h-36" />
-                  <div className="w-12 bg-cyan-500 rounded-t-xl h-24" />
-                </div>
-              </div>
+                  {plan.highlighted && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-emerald-500 text-white text-xs font-black tracking-widest uppercase shadow-lg">
+                      Recommended
+                    </div>
+                  )}
 
-              <div className="absolute -top-6 -right-6 w-24 h-24 bg-green-400 rounded-3xl blur-2xl opacity-40" />
-              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-cyan-400 rounded-3xl blur-2xl opacity-40" />
-            </div>
+                  <div className="flex items-center justify-between mb-8">
+                    <div className={`p-3 rounded-2xl ${plan.highlighted ? "bg-white/10 text-white" : "bg-slate-100 text-slate-700"}`}>
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <span className={`text-xs font-bold px-3 py-1 rounded-full ${plan.highlighted ? "bg-emerald-500/20 text-emerald-300" : "bg-emerald-100 text-emerald-700"}`}>
+                      {plan.savingsBadge}
+                    </span>
+                  </div>
+
+                  <h3 className={`text-2xl font-black mb-2 ${plan.highlighted ? "text-white" : "text-slate-900"}`}>{plan.name}</h3>
+                  <p className={`text-sm h-10 mb-6 ${plan.highlighted ? "text-slate-400" : "text-slate-500"}`}>{plan.desc}</p>
+
+                  <div className="mb-8">
+                    <div className="flex items-end gap-2 mb-2">
+                      <span className={`text-4xl font-black tracking-tight ${plan.highlighted ? "text-white" : "text-slate-900"}`}>
+                        {plan.priceMonthly}{plan.priceMonthly !== "Custom" && "*"}
+                      </span>
+                      {plan.priceMonthly !== "Custom" && <span className={`text-sm font-semibold pb-1 ${plan.highlighted ? "text-slate-400" : "text-slate-500"}`}>/ month</span>}
+                    </div>
+                    {plan.priceMonthly !== "Custom" ? (
+                      <p className={`text-sm font-medium ${plan.highlighted ? "text-emerald-300" : "text-emerald-600"}`}>
+                        + {plan.onboarding} onboarding fee
+                      </p>
+                    ) : (
+                      <p className={`text-sm font-medium ${plan.highlighted ? "text-emerald-300" : "text-emerald-600"}`}>
+                        Tailored to your enterprise needs
+                      </p>
+                    )}
+                  </div>
+
+                  <button 
+                    onClick={() => {
+                      if (plan.priceMonthly === "Custom") {
+                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                      } else {
+                        window.location.href = "/404";
+                      }
+                    }}
+                    className={`w-full py-4 rounded-xl text-sm font-bold transition-all duration-300 mb-10 ${
+                      plan.highlighted 
+                        ? "bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg" 
+                        : "bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 shadow-sm"
+                    }`}
+                  >
+                    {plan.priceMonthly === "Custom" ? "Contact Enterprise" : "Start Free Trial"}
+                  </button>
+
+                  <div className={`pt-8 border-t flex-1 ${plan.highlighted ? "border-white/10" : "border-slate-100"}`}>
+                    <ul className="space-y-5">
+                      {plan.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-3 group/item">
+                          <Check className={`w-5 h-5 shrink-0 transition-transform group-hover/item:scale-110 ${plan.highlighted ? "text-emerald-400" : "text-emerald-600"}`} strokeWidth={3} />
+                          <span className={`text-sm font-medium ${plan.highlighted ? "text-slate-300" : "text-slate-600"}`}>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
+
+          {/* India Pricing Disclaimer at the bottom of the grid */}
+          <div className="mt-8 text-center">
+            <p className="inline-flex items-center gap-2 text-sm md:text-base font-semibold text-slate-600 bg-slate-100 px-5 py-2.5 rounded-full border border-slate-200">
+              <span className="text-emerald-600 text-lg leading-none">*</span> 
+              This pricing is for India only
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-24">
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
-          {plans.map((plan, index) => (
-            <div
-              key={plan.name}
-              className={`relative rounded-3xl p-[1px] ${
-                plan.highlighted
-                  ? "bg-gradient-to-r from-green-500 to-cyan-500 shadow-2xl"
-                  : "bg-gray-200"
-              }`}
-            >
-              <div className="h-full rounded-3xl bg-white p-8">
-                {plan.highlighted && (
-                  <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-gradient-to-r from-green-500 to-cyan-500 text-white text-xs font-semibold">
-                    Most Popular
+      {/* --- COMPARISON TABLE --- */}
+      <section className="py-24 relative z-10">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <h2 className="text-3xl font-black text-slate-900 mb-12 text-center">Feature <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Comparison</span> Matrix</h2>
+          
+          <div className="overflow-x-auto pb-8 custom-scrollbar">
+            <div className="min-w-[900px] bg-white border border-slate-200 rounded-[24px] shadow-sm overflow-hidden">
+              <div className="grid grid-cols-4 gap-4 p-6 border-b border-slate-200 bg-slate-50">
+                <div className="col-span-1"></div>
+                {plans.map(plan => (
+                  <div key={plan.name} className="text-center font-bold text-slate-900 text-lg">{plan.name}</div>
+                ))}
+              </div>
+
+              {compareFeatures.map((section, sIdx) => (
+                <div key={sIdx}>
+                  <div className="bg-slate-50/50 px-6 py-4 border-b border-slate-200">
+                    <span className="text-xs font-black text-emerald-600 uppercase tracking-widest">{section.category}</span>
                   </div>
-                )}
-
-                <h3 className="text-2xl font-bold">{plan.name}</h3>
-
-                <p className="mt-3 text-gray-500">{plan.desc}</p>
-
-                <button
-                  className={`mt-8 w-full py-3 rounded-2xl font-semibold transition ${
-                    plan.highlighted
-                      ? "bg-gradient-to-r from-green-500 to-cyan-500 text-white hover:scale-105"
-                      : "border border-gray-300 hover:border-green-400"
-                  }`}
-                >
-                  {plan.button}
-                </button>
-
-                <div className="mt-8 space-y-4">
-                  {plan.features.map((feature) => (
-                    <div
-                      key={feature}
-                      className="flex items-start gap-3 text-sm text-gray-600"
-                    >
-                      <div className="mt-1 w-2 h-2 rounded-full bg-green-500" />
-                      <span>{feature}</span>
+                  {section.features.map((feat, fIdx) => (
+                    <div key={fIdx} className="grid grid-cols-4 gap-4 px-6 py-5 border-b border-slate-100 hover:bg-slate-50 transition-colors">
+                      <div className="col-span-1 text-sm text-slate-700 font-medium">{feat.name}</div>
+                      {feat.tiers.map((has, i) => (
+                        <div key={i} className="flex items-center justify-center">
+                          {has ? <Check className="w-5 h-5 text-emerald-500" /> : <Minus className="w-5 h-5 text-slate-300" />}
+                        </div>
+                      ))}
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-24 text-center">
-        <p className="text-sm font-bold text-gray-400 uppercase tracking-[0.2em] mb-10">
-          Trusted by global sustainability leaders
-        </p>
-        <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-10 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-          <span className="text-3xl font-black tracking-tighter">ECOFLOW</span>
-          <span className="text-3xl font-black tracking-tighter">GREENWATT</span>
-          <span className="text-3xl font-black tracking-tighter">TERRAFORM</span>
-          <span className="text-3xl font-black tracking-tighter">SOLARCITY</span>
-          <span className="text-3xl font-black tracking-tighter">PUREAIR</span>
-        </div>
-      </section>
-
-      <section className="relative z-10 max-w-4xl mx-auto px-6 pb-24">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold">Frequently Asked Questions</h2>
-          <p className="mt-4 text-gray-600 text-lg">
-            Everything you need to know about our plans and features.
-          </p>
-        </div>
-
-        <div className="grid gap-6">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="group rounded-3xl border border-gray-100 bg-white p-8 hover:border-green-200 transition-all shadow-sm hover:shadow-md"
-            >
-              <h4 className="text-xl font-bold text-gray-900 flex items-center gap-4">
-                <div className="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.4)]" />
-                {faq.question}
-              </h4>
-              <p className="mt-4 text-gray-600 leading-relaxed pl-6 text-lg">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-24">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div
-            >
-              <h2 className="text-5xl font-bold leading-tight">
-                Have questions? <br />
-                <span className="bg-gradient-to-r from-green-500 to-cyan-500 bg-clip-text text-transparent">
-                  Let's talk.
-                </span>
-              </h2>
-              <p className="mt-6 text-gray-600 text-lg leading-relaxed">
-                Our team of sustainability experts is here to help you find the
-                perfect carbon management plan for your organization's unique
-                Net Zero journey.
-              </p>
-
-              <div className="mt-12 space-y-8">
-                <div className="flex items-center gap-5">
-                  <div className="w-14 h-14 rounded-2xl bg-green-50 flex items-center justify-center text-green-600 shadow-sm">
-                    <svg
-                      className="w-7 h-7"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900">Email us</h4>
-                    <p className="text-gray-500">hello@carbonsync.com</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-5">
-                  <div className="w-14 h-14 rounded-2xl bg-cyan-50 flex items-center justify-center text-cyan-600 shadow-sm">
-                    <svg
-                      className="w-7 h-7"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900">Our HQ</h4>
-                    <p className="text-gray-500">London, United Kingdom</p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
-
-          <div
-            className="bg-white rounded-[40px] p-10 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100 relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 w-40 h-40 bg-green-400/5 rounded-full blur-3xl -mr-20 -mt-20" />
-            <div className="absolute bottom-0 left-0 w-40 h-40 bg-cyan-400/5 rounded-full blur-3xl -ml-20 -mb-20" />
-
-            <form
-              action="https://formspree.io/f/xojyggok"
-              method="POST"
-              className="relative z-10 space-y-6"
-            >
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-700 ml-1">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    placeholder="John Doe"
-                    className="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 focus:bg-white transition-all"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-700 ml-1">
-                    Work Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    placeholder="john@company.com"
-                    className="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 focus:bg-white transition-all"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-700 ml-1">
-                  Interested in
-                </label>
-                <select
-                  name="subject"
-                  className="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 focus:bg-white transition-all appearance-none"
-                >
-                  <option>Growth Plan Inquiry</option>
-                  <option>Enterprise Custom Quote</option>
-                  <option>Request a Platform Demo</option>
-                  <option>General Sustainability Support</option>
-                </select>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-700 ml-1">
-                  How can we help?
-                </label>
-                <textarea
-                  name="message"
-                  required
-                  rows={4}
-                  placeholder="Tell us about your organization's goals..."
-                  className="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 focus:bg-white transition-all resize-none"
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-5 rounded-2xl bg-gradient-to-r from-green-500 to-cyan-500 text-white font-bold shadow-xl shadow-green-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3"
-              >
-                Send Message
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
-                </svg>
-              </button>
-            </form>
-          </div>
         </div>
       </section>
 
-      <section className="relative z-10 max-w-5xl mx-auto px-6 pb-24">
-        <div className="rounded-[40px] bg-gradient-to-r from-green-500 to-cyan-500 p-[1px] shadow-2xl">
-          <div className="rounded-[40px] bg-white px-10 py-16 text-center">
-            <h2 className="text-4xl font-bold">
-              Ready to simplify your Net Zero journey?
+      {/* --- LUXURY TESTIMONIALS --- */}
+      <section className="py-24 relative z-10">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="flex flex-col items-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tighter text-center">
+              Meet the Visionaries Behind<br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">CarbonSync.</span>
             </h2>
-
-            <p className="mt-4 text-gray-600 text-lg">
-              Start tracking emissions and accelerate sustainability with
-              CarbonSync.
-            </p>
-
-            <button className="mt-8 px-10 py-4 rounded-2xl bg-gradient-to-r from-green-500 to-cyan-500 text-white font-bold hover:scale-105 transition shadow-lg">
-              Get Started for Free
-            </button>
+            <p className="text-lg text-slate-500 font-medium">The engineering leadership powering the future of ESG compliance.</p>
+          </div>
+          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
+            {[
+              { text: "CarbonSync reduced our reporting cycle from 6 weeks to 3 days. The AI insights are astonishingly accurate.", author: "Ayush Chaudhary", role: "COO, CARBONSYNC", image: "/about-assets/team-2.jpg" },
+              { text: "The most beautiful piece of enterprise software we use. But more importantly, it actually drives our emissions down.", author: "Pushkar Singh", role: "CEO, CARBONSYNC", image: "/about-assets/team-1-new.jpg" },
+              { text: "Unmatched compliance readiness. When the auditors arrived, we just handed them a CarbonSync report. Perfect.", author: "Priyanshu Barai", role: "BACKEND DEVELOPER, CARBONSYNC", image: "/about-assets/team-4.jpg" },
+              { text: "Building the UI for CarbonSync has been an incredible experience. The architecture is as seamless as its data engine.", author: "Sarwang Agarwal", role: "FULL STACK DEVELOPER, CARBONSYNC", image: "/about-assets/team-3.jpg" }
+            ].map((t, i) => (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                key={i} className="p-8 rounded-[32px] bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-emerald-500/30 transition-all group"
+              >
+                <Award className="w-8 h-8 text-emerald-500/50 mb-6 group-hover:text-emerald-500 transition-colors" />
+                <p className="text-lg text-slate-700 font-medium leading-relaxed mb-8">"{t.text}"</p>
+                <div className="flex items-center gap-4">
+                  <img src={t.image} alt={t.author} className="w-12 h-12 rounded-full object-cover border border-slate-200 shadow-sm" />
+                  <div>
+                    <p className="font-bold text-slate-900">{t.author}</p>
+                    <p className="text-xs text-slate-500 uppercase tracking-wider">{t.role}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pb-24">
-        <div className="rounded-[40px] bg-gray-900 p-12 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl -mr-32 -mt-32" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl -ml-32 -mb-32" />
+      {/* --- FAQ --- */}
+      <section className="py-24 relative z-10 border-t border-slate-200 bg-slate-50">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="text-4xl font-black text-slate-900 mb-12 text-center">Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Questions</span></h2>
+          <div className="space-y-4">
+            {faqs.map((faq, i) => (
+              <div key={i} className="bg-white border border-slate-200 shadow-sm rounded-2xl overflow-hidden hover:border-slate-300 transition-colors">
+                <button 
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full px-8 py-6 flex justify-between items-center text-left"
+                >
+                  <span className="font-bold text-lg text-slate-900">{faq.question}</span>
+                  <ChevronDown className={`w-5 h-5 text-emerald-600 transition-transform duration-500 ${openFaq === i ? "rotate-180" : ""}`} />
+                </button>
+                <AnimatePresence>
+                  {openFaq === i && (
+                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}>
+                      <div className="px-8 pb-8 text-slate-600 leading-relaxed font-medium">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-white">
-                Stay updated on sustainability
-              </h2>
-              <p className="mt-4 text-gray-400 text-lg">
-                Join 5,000+ sustainability leaders receiving our weekly
-                insights on carbon tracking and Net Zero strategies.
-              </p>
+      {/* --- SPLIT CONTACT SECTION --- */}
+      <section id="contact" className="py-32 relative z-10 border-t border-slate-200 overflow-hidden bg-white">
+        <div className="absolute top-0 right-0 w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
+        <div className="max-w-[1400px] mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-20">
+            
+            {/* Left: Visualization */}
+            <div className="relative flex flex-col justify-center">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none" />
+              <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 relative z-10">Systematize <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Sustainability.</span></h2>
+              <p className="text-xl text-slate-600 mb-12 relative z-10 max-w-md">Connect with our enterprise architecture team to map your path to Net-Zero compliance.</p>
+              
+              <div className="relative z-10 flex flex-col gap-6">
+                {[
+                  { title: "Custom Integration Mapping", desc: "SAP, Oracle, NetSuite architecture" },
+                  { title: "Compliance Gap Analysis", desc: "SEC, CSRD, SFDR readiness" }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-6 p-6 rounded-3xl bg-slate-50 border border-slate-200">
+                    <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center border border-emerald-200">
+                      <ShieldCheck className="w-6 h-6 text-emerald-600" />
+                    </div>
+                    <div>
+                      <h4 className="text-slate-900 font-bold">{item.title}</h4>
+                      <p className="text-slate-500 text-sm">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <form className="flex gap-4">
-              <input
-                type="email"
-                required
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-4 rounded-2xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-green-500 transition-all"
-              />
-              <button className="px-8 py-4 rounded-2xl bg-gradient-to-r from-green-500 to-cyan-500 text-white font-bold hover:scale-105 transition-all">
-                Subscribe
-              </button>
-            </form>
+
+            {/* Right: Floating Form */}
+            <div className="bg-slate-50 border border-slate-200 p-10 md:p-14 rounded-[40px] shadow-xl relative">
+              <form action="https://formspree.io/f/xojyggok" method="POST" className="space-y-8 relative z-10">
+                <div className="grid grid-cols-2 gap-8">
+                  <div className="relative group">
+                    <input type="text" name="firstName" id="fname2" required className="block w-full px-0 py-3 text-slate-900 bg-transparent border-0 border-b-2 border-slate-300 appearance-none focus:outline-none focus:ring-0 focus:border-emerald-600 peer transition-colors font-medium text-lg" placeholder=" " />
+                    <label htmlFor="fname2" className="absolute text-lg text-slate-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-emerald-600 font-bold">First Name</label>
+                  </div>
+                  <div className="relative group">
+                    <input type="text" name="lastName" id="lname2" required className="block w-full px-0 py-3 text-slate-900 bg-transparent border-0 border-b-2 border-slate-300 appearance-none focus:outline-none focus:ring-0 focus:border-emerald-600 peer transition-colors font-medium text-lg" placeholder=" " />
+                    <label htmlFor="lname2" className="absolute text-lg text-slate-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-emerald-600 font-bold">Last Name</label>
+                  </div>
+                </div>
+                
+                <div className="relative group">
+                  <input type="email" name="email" id="email2" required className="block w-full px-0 py-3 text-slate-900 bg-transparent border-0 border-b-2 border-slate-300 appearance-none focus:outline-none focus:ring-0 focus:border-emerald-600 peer transition-colors font-medium text-lg" placeholder=" " />
+                  <label htmlFor="email2" className="absolute text-lg text-slate-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-emerald-600 font-bold">Work Email</label>
+                </div>
+
+                <div className="relative group">
+                  <textarea id="message2" name="message" rows={1} required className="block w-full px-0 py-3 text-slate-900 bg-transparent border-0 border-b-2 border-slate-300 appearance-none focus:outline-none focus:ring-0 focus:border-emerald-600 peer transition-colors font-medium text-lg resize-none" placeholder=" "></textarea>
+                  <label htmlFor="message2" className="absolute text-lg text-slate-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-emerald-600 font-bold">Initiative Details</label>
+                </div>
+
+                <MagneticButton type="submit" className="w-full py-5 rounded-2xl bg-emerald-600 text-white font-black text-lg hover:bg-emerald-500 shadow-md transition-colors mt-12 flex items-center justify-center gap-2">
+                  Request Architecture Review <ArrowRight className="w-5 h-5" />
+                </MagneticButton>
+              </form>
+            </div>
           </div>
         </div>
       </section>
 
-      <footer className="relative z-10 max-w-7xl mx-auto px-6 py-12 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-green-500 to-cyan-500" />
-          <span className="text-xl font-bold tracking-tight text-gray-900">CarbonSync</span>
-        </div>
-        <p className="text-gray-500 text-sm">
-          © 2026 CarbonSync Technologies. All rights reserved.
-        </p>
-        <div className="flex gap-8 text-sm font-medium text-gray-600">
-          <a href="#" className="hover:text-green-600 transition">Privacy Policy</a>
-          <a href="#" className="hover:text-green-600 transition">Terms of Service</a>
-          <a href="#" className="hover:text-green-600 transition">Cookie Settings</a>
-        </div>
-      </footer>
+      <style dangerouslySetInnerHTML={{__html: `
+        .custom-scrollbar::-webkit-scrollbar { height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(16, 185, 129, 0.5); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(16, 185, 129, 0.8); }
+      `}} />
     </div>
   );
 }

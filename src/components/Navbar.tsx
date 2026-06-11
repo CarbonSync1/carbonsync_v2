@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -51,10 +51,39 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on route change
   useEffect(() => {
     setOpen(false);
     setActiveDropdown(null);
   }, [pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    };
+  }, [open]);
+
+  // Close menu on Escape key
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, []);
+
+  const toggleDropdown = useCallback((name: string) => {
+    setActiveDropdown((prev) => (prev === name ? null : name));
+  }, []);
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -71,7 +100,8 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Link href="/" className="flex items-center gap-2.5 shrink-0">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             <Image
               src="/netzero/carbonsync-logo.webp"
               alt="CarbonSync"
@@ -79,13 +109,14 @@ export default function Navbar() {
               height={36}
               priority
               unoptimized
-              className="w-8 h-8 md:w-9 md:h-9 object-contain"
+              className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 object-contain"
             />
-            <span className="text-xl md:text-2xl font-bold tracking-tight text-[#1a2e35]">
+            <span className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[#1a2e35]">
               Carbon<span className="text-[#10b981]">Sync</span>
             </span>
           </Link>
 
+          {/* Desktop navigation */}
           <nav className="hidden lg:flex items-center gap-1">
             {links.map((link) => {
               const active = !link.hasDropdown && isActive(link.href);
@@ -143,6 +174,7 @@ export default function Navbar() {
             })}
           </nav>
 
+          {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
               href="/book-demo"
@@ -153,72 +185,120 @@ export default function Navbar() {
             </Link>
           </div>
 
+          {/* Mobile hamburger button */}
           <button
-            className="lg:hidden relative z-50 p-2 text-gray-700 hover:text-gray-900"
+            className="lg:hidden relative z-[60] flex items-center justify-center w-11 h-11 rounded-xl text-gray-700 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200 transition-all"
             onClick={() => setOpen(!open)}
             aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
           >
-            {open ? <X size={24} /> : <Menu size={24} />}
+            <div className="relative w-6 h-6">
+              <Menu
+                size={24}
+                className={`absolute inset-0 transition-all duration-300 ${
+                  open ? 'opacity-0 rotate-90 scale-75' : 'opacity-100 rotate-0 scale-100'
+                }`}
+              />
+              <X
+                size={24}
+                className={`absolute inset-0 transition-all duration-300 ${
+                  open ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-75'
+                }`}
+              />
+            </div>
           </button>
         </div>
       </div>
 
+      {/* ========= MOBILE MENU ========= */}
+
+      {/* Backdrop overlay */}
       <div
-        className={`fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-[55] bg-black/30 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setOpen(false)}
+        aria-hidden="true"
       />
 
+      {/* Slide-out drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed top-0 right-0 z-[58] h-[100dvh] w-[85vw] max-w-[380px] bg-white shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] lg:hidden ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
       >
-        <div className="flex flex-col h-full pt-20 pb-6 px-6">
-          <nav className="flex-1 overflow-y-auto space-y-1">
-            {links.map((link) => (
-              <div key={link.name}>
+        {/* Drawer header with logo */}
+        <div className="flex items-center justify-between h-16 md:h-20 px-5 border-b border-gray-100">
+          <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2">
+            <Image
+              src="/netzero/carbonsync-logo.webp"
+              alt="CarbonSync"
+              width={28}
+              height={28}
+              unoptimized
+              className="w-7 h-7 object-contain"
+            />
+            <span className="text-lg font-bold tracking-tight text-[#1a2e35]">
+              Carbon<span className="text-[#10b981]">Sync</span>
+            </span>
+          </Link>
+          <button
+            onClick={() => setOpen(false)}
+            className="flex items-center justify-center w-10 h-10 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+            aria-label="Close menu"
+          >
+            <X size={22} />
+          </button>
+        </div>
+
+        {/* Drawer body */}
+        <div className="flex flex-col h-[calc(100dvh-4rem)] md:h-[calc(100dvh-5rem)]">
+          <nav className="flex-1 overflow-y-auto overscroll-contain px-4 py-4 space-y-1">
+            {links.map((link, index) => (
+              <div
+                key={link.name}
+                className="animate-[slideIn_0.3s_ease_forwards]"
+                style={{ animationDelay: `${index * 50}ms`, opacity: 0 }}
+              >
                 {link.hasDropdown ? (
                   <>
                     <button
-                      onClick={() =>
-                        setActiveDropdown(
-                          activeDropdown === link.name ? null : link.name
-                        )
-                      }
-                      className="flex items-center justify-between w-full px-3 py-3 text-base font-semibold text-gray-900 rounded-lg hover:bg-gray-50 transition-colors"
+                      onClick={() => toggleDropdown(link.name)}
+                      className="flex items-center justify-between w-full px-3 py-3.5 text-[15px] font-semibold text-gray-900 rounded-xl hover:bg-gray-50 active:bg-gray-100 transition-colors"
                     >
-                      {link.name}
+                      <span>{link.name}</span>
                       <ChevronDown
                         size={18}
-                        className={`text-gray-400 transition-transform ${
+                        className={`text-gray-400 transition-transform duration-200 ${
                           activeDropdown === link.name ? 'rotate-180' : ''
                         }`}
                       />
                     </button>
                     <div
-                      className={`overflow-hidden transition-all duration-200 ${
+                      className={`overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                         activeDropdown === link.name
-                          ? 'max-h-96 opacity-100'
+                          ? 'max-h-[500px] opacity-100'
                           : 'max-h-0 opacity-0'
                       }`}
                     >
-                      <div className="pl-4 pb-2 space-y-1">
+                      <div className="ml-2 pl-3 border-l-2 border-green-200 space-y-0.5 pb-2">
                         {link.items?.map((item) => (
                           <Link
                             key={item.name}
                             href={item.href}
                             onClick={() => setOpen(false)}
-                            className={`block px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+                            className={`block px-3 py-3 rounded-xl transition-all ${
                               isActive(item.href)
-                                ? 'text-green-600 bg-green-50'
-                                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                                ? 'text-green-700 bg-green-50'
+                                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50 active:bg-gray-100'
                             }`}
                           >
-                            <div>{item.name}</div>
+                            <div className="text-sm font-medium">{item.name}</div>
                             {item.description && (
-                              <div className="text-xs text-gray-400 mt-0.5">
+                              <div className="text-xs text-gray-400 mt-0.5 leading-relaxed">
                                 {item.description}
                               </div>
                             )}
@@ -231,10 +311,10 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className={`block px-3 py-3 text-base font-semibold rounded-lg transition-colors ${
+                    className={`block px-3 py-3.5 text-[15px] font-semibold rounded-xl transition-all ${
                       isActive(link.href)
-                        ? 'text-green-600 bg-green-50'
-                        : 'text-gray-900 hover:bg-gray-50'
+                        ? 'text-green-700 bg-green-50'
+                        : 'text-gray-900 hover:bg-gray-50 active:bg-gray-100'
                     }`}
                   >
                     {link.name}
@@ -244,11 +324,12 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="pt-4 border-t border-gray-100">
+          {/* CTA at bottom */}
+          <div className="p-4 border-t border-gray-100 bg-gray-50/50">
             <Link
               href="/book-demo"
               onClick={() => setOpen(false)}
-              className="bg-gray-900 text-white px-5 py-3.5 rounded-xl text-base font-semibold flex items-center justify-center gap-2 w-full hover:bg-gray-800 transition-colors"
+              className="bg-gray-900 text-white px-5 py-3.5 rounded-xl text-[15px] font-semibold flex items-center justify-center gap-2 w-full hover:bg-gray-800 active:bg-gray-700 transition-all active:scale-[0.98] shadow-lg shadow-gray-900/10"
             >
               Book a demo
               <ArrowRight size={18} />
@@ -256,6 +337,20 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+
+      {/* Slide-in animation for mobile menu items */}
+      <style jsx>{`
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateX(16px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+      `}</style>
     </header>
   );
 }
