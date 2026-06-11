@@ -17,7 +17,6 @@ const WaveDivider = dynamic(() => import('./components/WaveDivider'))
 const StickyCTA = dynamic(() => import('./components/StickyCTA'))
 const ExitIntentPopup = dynamic(() => import('./components/ExitIntentPopup'))
 const VideoModal = dynamic(() => import('./components/VideoModal'))
-const Testimonials = dynamic(() => import('./sections/Testimonials'))
 
 function SectionFallback() {
   return (
@@ -131,12 +130,6 @@ export default function SupplyChainPage() {
             <div className="section glass-card">
               <Suspense fallback={<SectionFallback />}>
                 <Roadmap />
-              </Suspense>
-            </div>
-
-            <div className="section">
-              <Suspense fallback={<SectionFallback />}>
-                <Testimonials />
               </Suspense>
             </div>
           </div>

@@ -3,7 +3,6 @@
 import { ArrowRight, PlayCircle } from 'lucide-react'
 import TrustBadges from '../components/TrustBadges'
 import ClientLogos from '../components/ClientLogos'
-import LiveCounter from '../components/LiveCounter'
 
 export default function Hero() {
   return (
@@ -38,7 +37,6 @@ export default function Hero() {
               <PlayCircle className="w-5 h-5" /> See Platform in Action
             </button>
           </div>
-          <LiveCounter />
           <TrustBadges className="mt-6" />
           <ClientLogos className="mt-8" />
         </div>
