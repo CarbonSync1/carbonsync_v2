@@ -586,7 +586,7 @@ function Faq() {
 
 export default function Home() {
   return (
-    <div className="font-body text-text-dark bg-beige-soft overflow-x-hidden">
+    <div className="font-body text-text-dark bg-beige-soft overflow-x-hidden -mt-16 md:-mt-20">
       <HeroSection />
       <AboutSection />
       <ImpactStrip />

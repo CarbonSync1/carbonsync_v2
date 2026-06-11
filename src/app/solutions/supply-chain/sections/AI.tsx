@@ -45,10 +45,10 @@ export default function AI() {
                 className="group relative overflow-hidden rounded-2xl p-6 bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300"
               >
                 <div
-                  className={`absolute inset-0 bg-gradient-br ${capability.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
+                  className={`absolute inset-0 bg-gradient-to-br ${capability.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
                 />
                 <div
-                  className={`w-10 h-10 rounded-xl bg-gradient-br ${capability.gradient} flex items-center justify-center mb-3 shadow-sm`}
+                  className={`w-10 h-10 rounded-xl bg-gradient-to-br ${capability.gradient} flex items-center justify-center mb-3 shadow-sm`}
                 >
                   <Icon className="w-6 h-6 text-white" />
                 </div>

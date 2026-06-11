@@ -105,11 +105,11 @@ export default function Navbar() {
             <Image
               src="/netzero/carbonsync-logo.webp"
               alt="CarbonSync"
-              width={36}
-              height={36}
+              width={64}
+              height={64}
               priority
               unoptimized
-              className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 object-contain"
+              className="w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain"
             />
             <span className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[#1a2e35]">
               Carbon<span className="text-[#10b981]">Sync</span>
@@ -236,10 +236,10 @@ export default function Navbar() {
             <Image
               src="/netzero/carbonsync-logo.webp"
               alt="CarbonSync"
-              width={28}
-              height={28}
+              width={48}
+              height={48}
               unoptimized
-              className="w-7 h-7 object-contain"
+              className="w-11 h-11 object-contain"
             />
             <span className="text-lg font-bold tracking-tight text-[#1a2e35]">
               Carbon<span className="text-[#10b981]">Sync</span>

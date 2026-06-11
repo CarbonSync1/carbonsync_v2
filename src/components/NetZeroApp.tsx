@@ -3,7 +3,6 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import {
- Leaf,
  ArrowRight,
  TrendingDown,
  Cpu,
@@ -50,7 +49,7 @@ export default function App() {
  const [activeCapability, setActiveCapability] = useState(0);
  const [expandedImpact, setExpandedImpact] = useState<number | null>(null);
  const [expandedOutcome, setExpandedOutcome] = useState<number | null>(null);
- const [isCtaVisible, setIsCtaVisible] = useState(false);
+
  const [isModalOpen, setIsModalOpen] = useState(false);
  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
  const [formStatus, setFormStatus] = useState('');
@@ -212,18 +211,7 @@ export default function App() {
 
  const activeCapabilityData = platformCapabilities[activeCapability];
 
- useEffect(() => {
- const ctaSection = document.getElementById('cta');
- if (!ctaSection) return undefined;
 
- const observer = new IntersectionObserver(
- ([entry]) => setIsCtaVisible(entry.isIntersecting),
- { threshold: 0.28 }
- );
-
- observer.observe(ctaSection);
- return () => observer.disconnect();
- }, []);
 
  const handleApplyAiAction = (id: 'action1' | 'action2', reduction: number) => {
  if (!aiActionsApplied[id]) {
@@ -233,16 +221,9 @@ export default function App() {
  };
 
  return (
- <div className="min-h-screen bg-slate-50 text-black relative font-sans overflow-x-hidden">
+ <div className="min-h-screen bg-slate-50 text-black relative font-sans overflow-x-hidden -mt-16 md:-mt-20">
 
- {!isCtaVisible && (
- <button
- onClick={() => setIsModalOpen(true)}
- className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-slate-900 font-bold shadow-lg shadow-emerald-200 transition-colors"
- >
- Get Started Today <ArrowRight className="w-4 h-4" />
- </button>
- )}
+
 
  {/* 1. HERO SECTION */}
  <section
@@ -260,9 +241,9 @@ export default function App() {
  {/* Hero Content */}
  <div className="lg:col-span-6 flex flex-col items-start text-left">
  <div
- className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-[#4ade80] mb-6"
+ className="inline-flex items-center gap-2 text-xs font-semibold text-[#4ade80] mb-6"
  >
- <Leaf className="w-4 h-4 text-[#4ade80]" strokeWidth={1.5} />
+ <img src="/logo.webp" alt="CarbonSync Logo" className="w-10 h-10 object-contain" />
  <span>Version 2.4 Enterprise Platform Now Live</span>
  </div>
 
@@ -283,7 +264,7 @@ export default function App() {
  <div
  className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto"
  >
- <button onClick={() => setIsCalendlyOpen(true)} className="btn-primary bg-white/10 text-white border border-white/20 hover:bg-white/20 text-center">
+ <button onClick={() => { window.location.href = '/book-demo'; }} className="btn-primary bg-white/10 text-white border border-white/20 hover:bg-white/20 text-center">
  Book Demo
  </button>
  <a href="#features" className="btn-primary flex items-center justify-center gap-2">
@@ -510,8 +491,8 @@ export default function App() {
  <div className="max-w-4xl mx-auto text-center">
  <div
  >
- <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-700 mb-6 uppercase tracking-widest">
- <Leaf className="w-3.5 h-3.5 text-emerald-600" strokeWidth={1.5} /> About the Platform
+ <div className="inline-flex items-center gap-2 text-xs font-bold text-emerald-700 mb-6 uppercase tracking-widest">
+ <img src="/logo.webp" alt="CarbonSync Logo" className="w-10 h-10 object-contain" /> About the Platform
  </div>
  <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">
  What is <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-400">CarbonSync</span>?
@@ -614,9 +595,7 @@ export default function App() {
  style={{ backfaceVisibility: 'hidden' }}
  >
  <div>
- <div className="w-10 h-10 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center mb-4">
- <Leaf className="w-5 h-5 text-emerald-600" strokeWidth={1.5} />
- </div>
+ <img src="/logo.webp" alt="CarbonSync Logo" className="w-14 h-14 object-contain mb-4" />
  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-red-400 mb-2 block">The Challenge</span>
  <h3 className="text-lg font-extrabold text-slate-900 mb-3">{val.label}</h3>
  <p className="text-slate-500 text-sm leading-relaxed">{val.challenge}</p>
@@ -655,7 +634,7 @@ export default function App() {
  </div>
  <h3 className="text-lg font-extrabold text-slate-900 mb-2">Ready to solve yours?</h3>
  <p className="text-slate-500 text-sm mb-5">See how CarbonSync handles your specific use case.</p>
- <button onClick={() => setIsCalendlyOpen(true)} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 text-slate-900 text-sm font-bold hover:bg-emerald-700 transition-colors shadow-md">
+ <button onClick={() => { window.location.href = '/book-demo'; }} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 text-slate-900 text-sm font-bold hover:bg-emerald-700 transition-colors shadow-md">
  Book a Demo <ArrowRight className="w-3.5 h-3.5" />
  </button>
  </div>
@@ -740,8 +719,8 @@ export default function App() {
  <span className="w-2 h-2 rounded-full bg-[#27c93f]" />
  </div>
  {/* URL / Brand Address Bar */}
- <div className="flex items-center gap-1.5 px-3 py-1 rounded bg-slate-200/50 text-[10px] font-semibold text-slate-600 border border-slate-200/30">
- <Leaf className="w-3.5 h-3.5 text-emerald-600" strokeWidth={1.5} />
+ <div className="flex items-center gap-1.5 text-[10px] font-semibold text-slate-600">
+ <img src="/logo.webp" alt="CarbonSync Logo" className="w-10 h-10 object-contain" />
  <span className="tracking-tight text-slate-700">app.carbonsync.com</span>
  </div>
  <div className="w-10" /> {/* Spacer to center URL bar */}
@@ -822,7 +801,7 @@ export default function App() {
  <div className="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-full blur-2xl" />
 
  <h4 className="text-lg font-bold text-black mb-6 flex items-center gap-2">
- <Leaf className="w-5 h-5 text-emerald-600" strokeWidth={1.5} /> Dynamic Decarbonization Pipeline
+ <img src="/logo.webp" alt="CarbonSync Logo" className="w-12 h-12 object-contain" /> Dynamic Decarbonization Pipeline
  </h4>
 
  {/* Progress Targets */}
@@ -1168,7 +1147,7 @@ export default function App() {
  <div className="flex flex-wrap items-center justify-between border-b border-slate-200 p-4 gap-4 bg-slate-100/20 rounded-t-2xl">
  <div className="flex items-center gap-6">
  <span className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
- <Leaf className="w-6 h-6 text-emerald-600" strokeWidth={1.5} /> CarbonSync Pro
+ <img src="/logo.webp" alt="CarbonSync Logo" className="w-12 h-12 object-contain" /> CarbonSync Pro
  </span>
  <div className="hidden sm:flex items-center gap-2 text-xs text-slate-600">
  <span className="px-2 py-0.5 rounded bg-slate-50 border border-slate-200">v2.4</span>
@@ -1450,8 +1429,8 @@ export default function App() {
  <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
 
  <div className="flex-1 text-center lg:text-left relative z-10">
- <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-[10px] font-bold text-emerald-400 mb-4 uppercase tracking-widest">
- <Leaf className="w-3 h-3 text-emerald-600" strokeWidth={1.5} />
+ <div className="inline-flex items-center gap-2 text-[10px] font-bold text-emerald-400 mb-4 uppercase tracking-widest">
+ <img src="/logo.webp" alt="CarbonSync Logo" className="w-10 h-10 object-contain" />
  Join 100+ Enterprise Pacesetters
  </div>
  <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white mb-3">
@@ -1463,12 +1442,7 @@ export default function App() {
  </div>
 
  <div className="shrink-0 relative z-10 w-full lg:w-auto">
- <button
- onClick={() => setIsModalOpen(true)}
- className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold shadow-lg shadow-emerald-500/25 transition-colors w-full sm:w-auto text-sm"
- >
- Get Started Today <ArrowRight className="w-4 h-4" />
- </button>
+
  </div>
  </div>
  </div>
@@ -1615,9 +1589,7 @@ export default function App() {
  <div className="absolute top-0 right-0 w-24 h-24 bg-slate-100 rounded-full blur-2xl" />
 
  <div className="flex items-center gap-3 mb-6 pb-6 border-b border-slate-200">
- <div className="p-2.5 rounded-lg bg-slate-100 text-slate-600">
- <img src="/logo.webp" alt="CarbonSync Logo" className="w-6 h-6 object-contain" />
- </div>
+ <img src="/logo.webp" alt="CarbonSync Logo" className="w-14 h-14 object-contain" />
  <div>
  <h4 className="text-lg font-bold text-slate-900">Traditional ESG Management</h4>
  <p className="text-xs text-slate-600">Fragmented spreadsheets & custom consultants</p>
@@ -1630,9 +1602,7 @@ export default function App() {
  key={i}
  className="flex gap-4 items-start group/item hover:bg-white/[0.03] rounded-lg p-2 -m-2 transition-colors duration-200"
  >
- <div className="p-1 rounded-full bg-slate-100 text-slate-600 mt-0.5 shrink-0 group-hover/item:bg-red-500/20 group-hover/item:text-red-400 transition-colors duration-200">
- <Leaf className="w-3.5 h-3.5 text-emerald-600" strokeWidth={1.5} />
- </div>
+ <img src="/logo.webp" alt="CarbonSync Logo" className="w-10 h-10 object-contain shrink-0 mt-0.5" />
  <div>
  <h5 className="text-sm font-bold text-slate-900 mb-0.5">{item.title}</h5>
  <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
@@ -1648,9 +1618,7 @@ export default function App() {
 
  <div className="flex items-center justify-between mb-6 pb-6 border-b border-slate-200">
  <div className="flex items-center gap-3">
- <div className="p-2.5 rounded-lg bg-primary/10 text-[#4ade80]">
- <img src="/logo.webp" alt="CarbonSync Logo" className="w-6 h-6 object-contain" />
- </div>
+ <img src="/logo.webp" alt="CarbonSync Logo" className="w-14 h-14 object-contain" />
  <div>
  <h4 className="text-lg font-bold text-slate-900">CarbonSync AI Platform</h4>
  <p className="text-xs text-slate-600">Continuous telemetry & AI-led decarbonization</p>
@@ -2048,12 +2016,7 @@ export default function App() {
  </div>
 
  <div className="text-center mt-14">
- <button
- onClick={() => setIsModalOpen(true)}
- className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-slate-900 font-bold shadow-lg shadow-emerald-200 transition-all"
- >
- Get Started Today <ArrowRight className="w-4 h-4" />
- </button>
+
  </div>
  </div>
  </section>
@@ -2191,9 +2154,7 @@ export default function App() {
  </button>
 
  <div className="mb-8">
- <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center mb-4 border border-emerald-100 shadow-sm p-2">
- <Leaf className="w-6 h-6 text-emerald-600" strokeWidth={1.5} />
- </div>
+ <img src="/logo.webp" alt="CarbonSync Logo" className="w-16 h-16 object-contain mb-4" />
  <h3 className="text-2xl font-extrabold text-slate-900 mb-2">Start Your Journey</h3>
  <p className="text-slate-500 text-sm">Join enterprise leaders driving measurable climate impact with CarbonSync.</p>
  </div>
