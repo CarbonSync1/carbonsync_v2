@@ -16,6 +16,23 @@ export interface ChartData {
 }
 
 export const chartData: ChartData = {
+  2026: {
+    months: [
+      { m: 'Jan', val: 7.5, s1: 44, s2: 19, s3: 37 },
+      { m: 'Feb', val: 6.8, s1: 43, s2: 20, s3: 37 },
+      { m: 'Mar', val: 8.0, s1: 41, s2: 21, s3: 38 },
+      { m: 'Apr', val: 5.8, s1: 42, s2: 19, s3: 39 },
+      { m: 'May', val: 5.0, s1: 43, s2: 18, s3: 39 },
+      { m: 'Jun', val: 4.0, s1: 45, s2: 17, s3: 38 },
+      { m: 'Jul', val: 4.5, s1: 44, s2: 18, s3: 38 },
+      { m: 'Aug', val: 4.3, s1: 46, s2: 16, s3: 38 },
+      { m: 'Sep', val: 4.0, s1: 47, s2: 16, s3: 37 },
+      { m: 'Oct', val: 3.8, s1: 48, s2: 15, s3: 37 },
+      { m: 'Nov', val: 3.5, s1: 49, s2: 15, s3: 36 },
+      { m: 'Dec', val: 3.2, s1: 50, s2: 14, s3: 36 },
+    ],
+    trend: '↓ 25.4%',
+  },
   2025: {
     months: [
       { m: 'Jan', val: 8.5, s1: 42, s2: 20, s3: 38 },

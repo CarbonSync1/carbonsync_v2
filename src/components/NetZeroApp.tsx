@@ -1625,7 +1625,7 @@ export default function App() {
 
  <div className="flex items-center gap-3 mb-6 pb-6 border-b border-slate-200">
  <div className="p-2.5 rounded-lg bg-slate-100 text-slate-600">
- <Leaf className="w-6 h-6 text-emerald-600" strokeWidth={1.5} />
+ <img src="/logo.webp" alt="CarbonSync Logo" className="w-6 h-6 object-contain" />
  </div>
  <div>
  <h4 className="text-lg font-bold text-slate-900">Traditional ESG Management</h4>
@@ -1658,7 +1658,7 @@ export default function App() {
  <div className="flex items-center justify-between mb-6 pb-6 border-b border-slate-200">
  <div className="flex items-center gap-3">
  <div className="p-2.5 rounded-lg bg-primary/10 text-[#4ade80]">
- <Leaf className="w-6 h-6 text-emerald-600" strokeWidth={1.5} />
+ <img src="/logo.webp" alt="CarbonSync Logo" className="w-6 h-6 object-contain" />
  </div>
  <div>
  <h4 className="text-lg font-bold text-slate-900">CarbonSync AI Platform</h4>

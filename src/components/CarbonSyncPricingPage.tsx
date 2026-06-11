@@ -215,21 +215,14 @@ export default function CarbonSyncPricingPage() {
         >
           <div className="absolute inset-0 bg-emerald-500/5 blur-3xl rounded-[32px]" />
           <div className="relative rounded-[24px] overflow-hidden bg-white border border-slate-200 aspect-[4/3] lg:aspect-[16/10] shadow-[0_20px_50px_rgba(0,0,0,0.05)]">
+            {/* Browser chrome bar */}
             <div className="absolute top-0 left-0 w-full h-10 lg:h-12 bg-slate-50/80 backdrop-blur border-b border-slate-200 flex items-center px-4 lg:px-6 gap-2 z-20">
               <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-slate-300" />
               <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-slate-300" />
               <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-slate-300" />
             </div>
-            <Image src="/hero-image-final.jpg" alt="CarbonSync Dashboard" width={800} height={500} className="w-full h-full object-cover pt-10 lg:pt-12" unoptimized />
-            
-            {/* Floating Glass Metrics */}
-            <motion.div animate={{ y: [0, -15, 0] }} transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }} className="absolute bottom-12 right-6 lg:top-1/4 lg:right-8 bg-white/90 backdrop-blur-xl border border-slate-200 p-4 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.08)]">
-              <div className="flex items-center gap-3 mb-2">
-                <Activity className="w-5 h-5 text-emerald-500" />
-                <span className="text-[10px] lg:text-xs text-slate-500 font-bold uppercase tracking-wider">AI Optimization</span>
-              </div>
-              <p className="text-xl lg:text-2xl font-black text-slate-900">-34.2%</p>
-            </motion.div>
+            {/* Dashboard image */}
+            <Image src="/hero-image-final.jpg" alt="CarbonSync Dashboard" width={1200} height={750} className="w-full h-full object-cover object-center" unoptimized />
           </div>
         </motion.div>
 
@@ -305,11 +298,7 @@ export default function CarbonSyncPricingPage() {
 
                   <button 
                     onClick={() => {
-                      if (plan.priceMonthly === "Custom") {
-                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                      } else {
-                        window.location.href = "/404";
-                      }
+                      window.location.href = "/book-demo";
                     }}
                     className={`w-full py-4 rounded-xl text-sm font-bold transition-all duration-300 mb-10 ${
                       plan.highlighted 

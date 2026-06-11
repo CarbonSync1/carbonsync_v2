@@ -73,10 +73,10 @@ export default function BookDemoPage() {
         <div className="flex-1 relative h-full bg-white z-0">
           <button
             onClick={() => router.back()}
-            className="absolute right-0 top-0 bg-black text-white hover:bg-gray-800 rounded-bl-[10px] w-10 h-10 flex items-center justify-center cursor-pointer text-xl font-bold z-20 transition-colors"
+            className="absolute right-0 top-0 bg-black text-white hover:bg-gray-800 rounded-bl-[10px] w-12 h-12 flex items-center justify-center cursor-pointer z-20 transition-colors"
             aria-label="Go back"
           >
-            ×
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
           </button>
 
           <iframe

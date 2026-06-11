@@ -210,22 +210,22 @@ const pillars = [
   {
     icon: <BarChart3 size={28} />,
     title: 'Quantify Footprint',
-    desc: 'Automate the ingestion of raw operational data to precisely map your <span class="text-eco-green font-semibold">full organizational emissions</span>. Our engine instantly categorizes activities across Scopes 1, 2, and 3 with audit-grade accuracy.',
+    desc: 'Automate the ingestion of raw operational data to precisely map your <a href="/solutions/net-zero" class="text-eco-green font-semibold underline decoration-2 underline-offset-2 hover:text-emerald-400 transition-colors">full organizational emissions</a>. Our engine instantly categorizes activities across Scopes 1, 2, and 3 with audit-grade accuracy.',
   },
   {
     icon: <ShieldCheck size={28} />,
     title: 'Streamline Compliance',
-    desc: 'Generate dynamic, <span class="text-eco-green font-semibold">board-ready disclosures</span> in minutes. CarbonSync instantly aligns your raw metrics with evolving global mandates like CSRD and ISSB, ensuring you stay ahead of regulatory curves.',
+    desc: 'Generate dynamic, <a href="/solutions/supply-chain" class="text-eco-green font-semibold underline decoration-2 underline-offset-2 hover:text-emerald-400 transition-colors">board-ready disclosures</a> in minutes. CarbonSync instantly aligns your raw metrics with evolving global mandates like CSRD and ISSB, ensuring you stay ahead of regulatory curves.',
   },
   {
     icon: <Activity size={28} />,
     title: 'Uncover Intelligence',
-    desc: 'Move beyond static numbers with <span class="text-eco-green font-semibold">predictive carbon analytics</span>. Identify underlying inefficiencies in your supply chain and forecast the financial impact of your environmental risks in real-time.',
+    desc: 'Move beyond static numbers with <a href="/solutions/net-zero" class="text-eco-green font-semibold underline decoration-2 underline-offset-2 hover:text-emerald-400 transition-colors">predictive carbon analytics</a>. Identify underlying inefficiencies in your supply chain and forecast the financial impact of your environmental risks in real-time.',
   },
   {
     icon: <Leaf size={28} />,
     title: 'Drive Net-Zero',
-    desc: 'Transition from measurement to meaningful action. Deploy targeted <span class="text-eco-green font-semibold">carbon reduction initiatives</span> and model abatement scenarios to reach your climate goals faster and more cost-effectively.',
+    desc: 'Transition from measurement to meaningful action. Deploy targeted <a href="/solutions/net-zero" class="text-eco-green font-semibold underline decoration-2 underline-offset-2 hover:text-emerald-400 transition-colors">carbon reduction initiatives</a> and model abatement scenarios to reach your climate goals faster and more cost-effectively.',
   },
 ];
 

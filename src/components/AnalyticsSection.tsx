@@ -6,7 +6,7 @@ import { chartData } from '@/data/chartData';
 import { ArrowRight, ShieldCheck, TrendingDown, Leaf, BarChart3, Activity, Zap, Award, HelpCircle, ChevronDown, Send, Upload, LineChart, FileCheck, Globe2, Users, Layers, Database, CheckCircle } from 'lucide-react';
 
 export function Analytics() {
-  const [selectedYear, setSelectedYear] = useState(2025);
+  const [selectedYear, setSelectedYear] = useState(2026);
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
 
   return (
@@ -44,7 +44,7 @@ export function Analytics() {
                   {chartData[selectedYear].trend}
                 </span>
                 <div className="flex gap-1 rounded-xl bg-[#f1f8e9] p-1">
-                  {[2023, 2024, 2025].map((y) => (
+                  {[2025, 2026].map((y) => (
                     <button
                       key={y}
                       className={`cursor-pointer rounded-lg border-none px-3 py-1 text-xs font-bold transition-all ${

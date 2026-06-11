@@ -2973,7 +2973,7 @@ export default function CarbonSyncResourcesPage() {
                 </p>
                 <div className="hero-actions" style={{ display: 'flex', gap: '14px', justifyContent: 'center' }}>
                   <a className="btn btn-dark" href="#library" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)', color: '#fff', padding: '14px 28px', borderRadius: '14px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', border: 'none', cursor: 'pointer', textDecoration: 'none', transition: 'all 0.35s', boxShadow: '0 4px 14px rgba(15, 23, 42, 0.2)' }} onMouseOver={(e) => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 12px 28px rgba(15, 23, 42, 0.25)'; }} onMouseOut={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 14px rgba(15, 23, 42, 0.2)'; }}>Explore Library <ArrowRight size={18} /></a>
-                  <a className="btn btn-light" href="#featured" style={{ background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(226, 232, 240, 0.8)', color: '#0f172a', padding: '14px 28px', borderRadius: '14px', fontWeight: 600, cursor: 'pointer', textDecoration: 'none', transition: 'all 0.35s', backdropFilter: 'blur(8px)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#fff'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 12px 28px rgba(0,0,0,0.06)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.9)'; e.currentTarget.style.borderColor = 'rgba(226, 232, 240, 0.8)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>Download Playbook</a>
+                  <a className="btn btn-light" href="/book-demo" style={{ background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(226, 232, 240, 0.8)', color: '#0f172a', padding: '14px 28px', borderRadius: '14px', fontWeight: 600, cursor: 'pointer', textDecoration: 'none', transition: 'all 0.35s', backdropFilter: 'blur(8px)' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#fff'; e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 12px 28px rgba(0,0,0,0.06)'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.9)'; e.currentTarget.style.borderColor = 'rgba(226, 232, 240, 0.8)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>Book a Demo</a>
                 </div>
               </div>
 
@@ -2998,54 +2998,6 @@ export default function CarbonSyncResourcesPage() {
             </div>
           </section>
 
-          <section id="featured" className="section-pad">
-            <div className="container featured-shell">
-              <div className="featured-card">
-                <div className="featured-left">
-                  <span className="pill"><PlayCircle size={16} /> Featured Resource</span>
-                  <h2>Net Zero Action Playbook 2026</h2>
-                  <p>
-                    A complete roadmap to measure emissions, identify carbon hotspots, set reduction goals,
-                    and communicate progress across your business.
-                  </p>
-                  <div className="chips">
-                    {['Emission baseline', 'Reduction roadmap', 'Reporting workflow'].map((item) => (
-                      <span key={item}><CheckCircle2 size={16} /> {item}</span>
-                    ))}
-                  </div>
-                </div>
-                <div className="playbook-card">
-                  <div className="playbook-header">
-                    <div>
-                      <small>Inside the playbook</small>
-                      <h3>CarbonSync Framework</h3>
-                    </div>
-                    <Download
-                      size={26}
-                      onClick={handleDownload}
-                      style={{ cursor: 'pointer', opacity: isDownloading ? 0.5 : 1 }}
-                    />
-                  </div>
-                  <div className="steps">
-                    {['Measure your carbon footprint', 'Find operational emission hotspots', 'Build reduction initiatives', 'Track progress through dashboards'].map((item, index) => (
-                      <div key={item} className="step-row">
-                        <span>0{index + 1}</span>
-                        <p>{item}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <button
-                    className="btn full-btn"
-                    onClick={handleDownload}
-                    disabled={isDownloading}
-                    style={{ opacity: isDownloading ? 0.7 : 1, cursor: isDownloading ? 'not-allowed' : 'pointer' }}
-                  >
-                    {isDownloading ? '⏳ Downloading...' : 'Download Free Playbook'}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </section>
         </>
       )}
 
