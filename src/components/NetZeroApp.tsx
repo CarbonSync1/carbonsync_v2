@@ -221,7 +221,7 @@ export default function App() {
  };
 
  return (
- <div className="min-h-screen bg-slate-50 text-black relative font-sans overflow-x-hidden -mt-16 md:-mt-20">
+ <div className="min-h-screen bg-slate-50 text-black relative font-sans overflow-x-hidden">
 
 
 

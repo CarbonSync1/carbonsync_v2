@@ -6,7 +6,9 @@ const Hero = () => {
   const [showStory, setShowStory] = useState(false);
 
   return (
-    <><section className="hero" id="hero">
+    <><h1 style={{ color: "red", fontSize: "60px", zIndex: 9999, position: "relative" }}>
+
+    </h1><section className="hero" id="hero">
         {/* Background Image */}
         <div className="hero-bg">
           <img src={heroBg} alt="Modern skyscrapers" />

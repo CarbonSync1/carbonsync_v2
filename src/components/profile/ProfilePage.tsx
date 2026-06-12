@@ -670,9 +670,9 @@ export default function ProfilePage() {
 
 
   return (
-    <div className="flex min-h-screen bg-slate-50 selection:bg-primary/10 selection:text-primary overflow-x-hidden">
+    <div className="flex min-h-screen pt-16 md:pt-20 bg-slate-50 selection:bg-primary/10 selection:text-primary overflow-x-hidden">
       {/* --- Column 1: Navigation Sidebar --- */}
-      <aside className="fixed inset-y-0 left-0 w-72 bg-white border-r border-slate-200 hidden lg:flex flex-col z-50">
+      <aside className="fixed top-16 md:top-20 bottom-0 left-0 w-72 bg-white border-r border-slate-200 hidden lg:flex flex-col z-40">
         <div className="p-8 pb-4">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">

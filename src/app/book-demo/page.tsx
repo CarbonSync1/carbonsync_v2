@@ -7,10 +7,19 @@ export default function BookDemoPage() {
   const router = useRouter();
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4 sm:p-8 bg-[#f4fdf8] relative font-sans">
+    <div className="flex items-center justify-center min-h-screen pt-[100px] pb-8 px-4 sm:px-8 bg-[#f4fdf8] relative font-sans">
       <div 
-        className="w-full max-w-[1060px] h-[700px] bg-white rounded-[10px] shadow-[0_25px_80px_-12px_rgba(0,0,0,0.6),0_0_60px_rgba(16,185,129,0.15)] flex flex-col md:flex-row overflow-hidden relative z-10"
+        className="w-full max-w-[1060px] h-[700px] bg-white rounded-[20px] shadow-2xl flex flex-col md:flex-row overflow-hidden relative z-10"
       >
+        {/* Prominent Close Button */}
+        <button
+          onClick={() => router.push('/')}
+          className="absolute right-4 top-4 md:right-6 md:top-6 bg-white/90 backdrop-blur border border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-50 shadow-md rounded-full w-10 h-10 flex items-center justify-center cursor-pointer z-[60] transition-all hover:scale-105"
+          aria-label="Close and go back"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+
         {/* Left Column */}
         <div className="w-full md:w-[380px] h-full overflow-y-auto bg-[#f0faf5] p-8 md:p-10 flex flex-col shrink-0 custom-scrollbar relative z-10 border-r border-gray-100">
           
@@ -70,14 +79,7 @@ export default function BookDemoPage() {
         </div>
 
         {/* Right Column (Calendly) */}
-        <div className="flex-1 relative h-full bg-white z-0">
-          <button
-            onClick={() => router.back()}
-            className="absolute right-0 top-0 bg-black text-white hover:bg-gray-800 rounded-bl-[10px] w-12 h-12 flex items-center justify-center cursor-pointer z-20 transition-colors"
-            aria-label="Go back"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-          </button>
+        <div className="flex-1 relative h-full bg-white z-0 pt-4 md:pt-0">
 
           <iframe
             src="https://calendly.com/pushkarsingh-carbonsync/30min?hide_event_type_details=1&primary_color=059669&text_color=0f172a"
