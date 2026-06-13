@@ -28,7 +28,7 @@ export default function PremiumFooter() {
             </div>
           </div>
 
-          <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8">
             <div>
               <h4 className="text-[14px] font-black tracking-widest text-[#0f172a] uppercase mb-6">Solutions</h4>
               <ul className="space-y-4">
@@ -40,16 +40,8 @@ export default function PremiumFooter() {
               <h4 className="text-[14px] font-black tracking-widest text-[#0f172a] uppercase mb-6">Company</h4>
               <ul className="space-y-4">
                 <li><Link href="/about" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">About Us</Link></li>
-                <li><Link href="#" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Analytics</Link></li>
                 <li><Link href="/careers" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Careers</Link></li>
                 <li><Link href="/contact" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Contact Us</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-[14px] font-black tracking-widest text-[#0f172a] uppercase mb-6">Platform</h4>
-              <ul className="space-y-4">
-                <li><Link href="/dashboard" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Dashboard</Link></li>
-                <li><Link href="/profile" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Profile</Link></li>
               </ul>
             </div>
             <div>
@@ -57,7 +49,6 @@ export default function PremiumFooter() {
               <ul className="space-y-4">
                 <li><Link href="/platform/resources" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Guides</Link></li>
                 <li><Link href="/platform/resources" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Articles</Link></li>
-                <li><Link href="/platform/resources" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Whitepapers</Link></li>
               </ul>
             </div>
           </div>

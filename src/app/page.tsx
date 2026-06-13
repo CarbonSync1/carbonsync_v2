@@ -1,14 +1,14 @@
 'use client';
 
 import { useState, Suspense } from 'react';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import {
   ArrowRight, Upload, LineChart, FileCheck, Zap, ShieldCheck, Award, Activity,
   TrendingDown, Leaf, BarChart3, Globe2, HelpCircle, ChevronDown,
-  CheckCircle, Users, Layers, Database, Sparkles,
+  CheckCircle, Users, Layers, Database,
 } from 'lucide-react';
 import { faqs } from '@/data/faqs';
-
 const Analytics = dynamic(() => import('@/components/AnalyticsSection').then(m => ({ default: m.Analytics })), { ssr: false });
 
 function HeroSection() {
@@ -40,14 +40,10 @@ function HeroSection() {
           AI-driven sustainability analytics and carbon accounting platform for the modern enterprise.
         </p>
 
-        <div className="flex flex-wrap justify-center items-center gap-4 max-sm:flex-col max-sm:items-stretch">
-          <button className="btn-primary text-base px-10 py-4 text-[15px] shadow-lg shadow-eco-green/30 hover:shadow-xl hover:shadow-eco-green/40">
+        <div className="flex justify-center">
+          <Link href="/book-demo" className="btn-primary text-base px-10 py-4 text-[15px] shadow-lg shadow-eco-green/30 hover:shadow-xl hover:shadow-eco-green/40 inline-flex items-center gap-2">
             Get Started <ArrowRight size={18} />
-          </button>
-          <button className="btn-secondary text-base px-10 py-4 text-[15px]">
-            <Sparkles size={18} />
-            Explore Dashboard
-          </button>
+          </Link>
         </div>
       </div>
     </section>
