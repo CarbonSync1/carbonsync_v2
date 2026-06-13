@@ -9,17 +9,14 @@ import {
   Filter,
   CheckCircle2,
   GraduationCap,
-  LineChart,
   Globe2,
   Leaf,
   Zap,
-  Users,
   ShieldCheck,
   Award,
   Sparkles,
   TrendingUp,
-  Sliders,
-  DollarSign
+  
 } from "lucide-react";
 const heroVisual = "/career-assets/careers_hero_visual.png";
 const mandateVisual = "/career-assets/climate_accounting_mandate.webp";
