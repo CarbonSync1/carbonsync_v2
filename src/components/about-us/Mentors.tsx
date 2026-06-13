@@ -10,7 +10,14 @@ const mentors = [
   },
   {
     name: 'Rachit Mathur',
-    role: 'Technical Mentor',
+    role: (
+      <span className="flex flex-col gap-1">
+        <span>Technical Mentor</span>
+        <span className="text-eco-green font-bold text-xs tracking-wider uppercase bg-eco-green/10 px-2 py-1 rounded-md inline-block mt-1 border border-eco-green/20 shadow-sm self-start">
+          Entrepreneur and Advisor to startups
+        </span>
+      </span>
+    ),
     image: '/about-assets/mentor-2.jpg',
     quote:
       'What excites me most about CarbonSync is the relentless pursuit of precision. Building an autonomous carbon intelligence platform demands not just technical excellence, but the courage to solve problems no one else is willing to tackle.',

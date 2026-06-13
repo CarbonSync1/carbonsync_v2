@@ -571,6 +571,10 @@ export default function DataProcessingAgreement() {
                         <input name="Customer Title" type="text" placeholder="e.g. Chief Legal Officer" required className="w-full bg-white border border-gray-200 p-5 rounded-2xl font-black text-gray-900 focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/5 transition-all placeholder:text-gray-200" />
                       </div>
                       <div className="group">
+                        <label className="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 group-focus-within:text-green-600 transition-colors">Client Email</label>
+                        <input name="Customer Email" type="email" placeholder="client@company.com" required className="w-full bg-white border border-gray-200 p-5 rounded-2xl font-black text-gray-900 focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/5 transition-all placeholder:text-gray-200" />
+                      </div>
+                      <div className="group">
                         <label className="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 group-focus-within:text-green-600 transition-colors">Execution Date</label>
                         <input name="Execution Date" type="date" required className="w-full bg-white border border-gray-200 p-5 rounded-2xl font-black text-gray-900 focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/5 transition-all" />
                       </div>
@@ -649,13 +653,22 @@ export default function DataProcessingAgreement() {
                           </div>
                         </div>
                       ) : (
-                        <button 
-                          disabled={ticketStatus === 'submitting'}
-                          type="submit"
-                          className="block w-full text-center bg-gray-900 text-white px-12 py-8 rounded-[2rem] font-black uppercase text-sm tracking-widest hover:bg-green-600 transition-all shadow-2xl active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                          {ticketStatus === 'submitting' ? 'Submitting...' : 'Raise Compliance Ticket'}
-                        </button>
+                        <>
+                          <input 
+                            name="Client Email" 
+                            type="email" 
+                            placeholder="Your work email address" 
+                            required 
+                            className="w-full bg-white/10 border border-white/20 p-6 rounded-3xl font-black text-white focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/20 transition-all placeholder:text-gray-400"
+                          />
+                          <button 
+                            disabled={ticketStatus === 'submitting'}
+                            type="submit"
+                            className="block w-full text-center bg-gray-950 text-white px-12 py-8 rounded-3xl font-black uppercase text-sm tracking-widest hover:bg-green-600 transition-all shadow-2xl active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            {ticketStatus === 'submitting' ? 'Submitting...' : 'Raise Compliance Ticket'}
+                          </button>
+                        </>
                       )}
                       {ticketStatus === 'error' && (
                         <p className="text-sm font-black text-red-500 text-center">Failed to raise ticket. Please try again.</p>

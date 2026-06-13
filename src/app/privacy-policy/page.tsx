@@ -426,13 +426,22 @@ export default function PrivacyPolicy() {
                           </div>
                         </div>
                       ) : (
-                        <button 
-                          disabled={formStatus === 'submitting'}
-                          type="submit"
-                          className="inline-block w-full sm:w-auto text-center bg-white text-gray-900 px-12 py-6 rounded-[2rem] font-black uppercase text-xs tracking-widest hover:bg-green-600 hover:text-white transition-all shadow-2xl active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                          {formStatus === 'submitting' ? 'Submitting...' : 'Initialize Support Request'}
-                        </button>
+                        <div className="flex flex-col gap-4">
+                          <input 
+                            name="Client Email" 
+                            type="email" 
+                            placeholder="Your work email address" 
+                            required 
+                            className="w-full bg-white/10 border border-white/20 p-6 rounded-3xl font-black text-white focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/20 transition-all placeholder:text-gray-400"
+                          />
+                          <button 
+                            disabled={formStatus === 'submitting'}
+                            type="submit"
+                            className="w-full text-center bg-green-600 text-white px-12 py-6 rounded-3xl font-black uppercase text-xs tracking-widest hover:bg-white hover:text-green-700 transition-all shadow-2xl active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            {formStatus === 'submitting' ? 'Submitting...' : 'Initialize Support Request'}
+                          </button>
+                        </div>
                       )}
                       {formStatus === 'error' && (
                         <p className="text-sm font-black text-red-500 mt-2">Failed to send request. Please try again.</p>

@@ -36,6 +36,33 @@ const Section = ({ id, title, children, index }: { id: string, title: string, ch
 
 export default function TermsOfService() {
   const [activeSection, setActiveSection] = useState('acceptance');
+  const [legalFormStatus, setLegalFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleLegalSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLegalFormStatus('submitting');
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xojyggok', {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+      if (response.ok) {
+        setLegalFormStatus('success');
+        form.reset();
+        setTimeout(() => setLegalFormStatus('idle'), 3000);
+      } else {
+        setLegalFormStatus('error');
+        setTimeout(() => setLegalFormStatus('idle'), 3000);
+      }
+    } catch (error) {
+      setLegalFormStatus('error');
+      setTimeout(() => setLegalFormStatus('idle'), 3000);
+    }
+  };
 
   const sections = [
     { id: 'acceptance', title: 'Acceptance of terms' },
@@ -216,12 +243,32 @@ export default function TermsOfService() {
                   <h4 className="text-2xl font-bold mb-2">Legal Inquiries</h4>
                   <p className="text-gray-400 text-sm font-medium">Have questions about our terms? Our legal team is here to help.</p>
                 </div>
-                <Link 
-                  href="/contact"
-                  className="bg-white text-gray-900 px-10 py-4 rounded-2xl font-bold hover:bg-green-600 hover:text-white transition-all duration-300 shadow-xl whitespace-nowrap active:scale-95"
-                >
-                  Contact Us
-                </Link>
+                <form onSubmit={handleLegalSubmit} className="flex flex-col sm:flex-row items-center gap-3 w-full md:max-w-md">
+                  <input type="hidden" name="Subject" value="Legal Inquiry from Terms of Service" />
+                  {legalFormStatus === 'success' ? (
+                    <div className="bg-green-500/10 border border-green-500/20 text-green-400 px-6 py-4 rounded-2xl flex items-center gap-3 w-full">
+                      <CheckCircle2 size={20} />
+                      <span className="font-bold text-sm">Request received!</span>
+                    </div>
+                  ) : (
+                    <>
+                      <input 
+                        name="Client Email" 
+                        type="email" 
+                        placeholder="Your work email address" 
+                        required 
+                        className="w-full bg-white/10 border border-white/20 px-6 py-4 rounded-2xl font-bold text-white focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-all placeholder:text-gray-400 text-sm"
+                      />
+                      <button 
+                        disabled={legalFormStatus === 'submitting'}
+                        type="submit"
+                        className="bg-white text-gray-900 px-8 py-4 rounded-2xl font-bold hover:bg-green-600 hover:text-white transition-all duration-300 shadow-xl whitespace-nowrap active:scale-95 disabled:opacity-50 text-sm"
+                      >
+                        {legalFormStatus === 'submitting' ? 'Sending...' : 'Contact Us'}
+                      </button>
+                    </>
+                  )}
+                </form>
               </div>
             </Section>
           </div>

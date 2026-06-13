@@ -618,28 +618,99 @@ const stats = [
 ];
 
 const InlineCTAs = ({ onDownload, type }: { onDownload?: () => void, type: string }) => {
-  const [submitted, setSubmitted] = useState<'assessment' | 'expert' | null>(null);
-  if (submitted) {
+  const [formType, setFormType] = useState<'assessment' | 'expert' | null>(null);
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    data.append('Source', formType === 'assessment' ? 'Book Carbon Assessment' : 'Talk to Expert');
+
+    try {
+      const response = await fetch('https://formspree.io/f/xojyggok', {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+      if (response.ok) {
+        setFormStatus('success');
+      } else {
+        setFormStatus('error');
+        setTimeout(() => setFormStatus('idle'), 3000);
+      }
+    } catch {
+      setFormStatus('error');
+      setTimeout(() => setFormStatus('idle'), 3000);
+    }
+  };
+
+  if (formStatus === 'success') {
     return (
       <div className="detail-cta-success" style={{ marginTop: '40px' }}>
         <CheckCircle2 size={40} />
         <h4>Message Sent Successfully!</h4>
         <p>Thank you for reaching out. Our team will get back to you shortly.</p>
-        <button className="cta-ghost" onClick={() => setSubmitted(null)}>
+        <button className="cta-ghost" onClick={() => { setFormStatus('idle'); setFormType(null); }}>
           Send another message
         </button>
       </div>
     );
   }
+
+  if (formType) {
+    return (
+      <form onSubmit={handleSubmit} className="detail-cta-form" style={{ marginTop: '40px', padding: '24px', backgroundColor: '#f8f9fa', borderRadius: '16px', border: '1px solid #e9ecef' }}>
+        <h4 style={{ marginBottom: '16px', fontSize: '18px', fontWeight: 'bold' }}>
+          {formType === 'assessment' ? 'Book Carbon Assessment' : 'Talk to CarbonSync Expert'}
+        </h4>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <input 
+            type="email" 
+            name="Client Email" 
+            placeholder="Your work email address" 
+            required 
+            style={{ padding: '12px 16px', borderRadius: '8px', border: '1px solid #dee2e6', width: '100%', outline: 'none', color: '#1a1a1a' }}
+          />
+          <textarea 
+            name="Message" 
+            placeholder="How can we help?" 
+            rows={3}
+            required
+            style={{ padding: '12px 16px', borderRadius: '8px', border: '1px solid #dee2e6', width: '100%', outline: 'none', resize: 'vertical', color: '#1a1a1a' }}
+          />
+          <div style={{ display: 'flex', gap: '12px', marginTop: '8px' }}>
+            <button 
+              type="submit" 
+              disabled={formStatus === 'submitting'}
+              style={{ padding: '12px 24px', backgroundColor: '#00d053', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', opacity: formStatus === 'submitting' ? 0.7 : 1 }}
+            >
+              {formStatus === 'submitting' ? 'Submitting...' : 'Submit Request'}
+            </button>
+            <button 
+              type="button"
+              onClick={() => setFormType(null)}
+              style={{ padding: '12px 24px', backgroundColor: 'transparent', color: '#6c757d', border: '1px solid #dee2e6', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer' }}
+            >
+              Cancel
+            </button>
+          </div>
+          {formStatus === 'error' && <p style={{ color: 'red', fontSize: '14px' }}>Failed to send. Please try again.</p>}
+        </div>
+      </form>
+    );
+  }
+
   return (
     <div className="detail-cta-row" style={{ marginTop: '40px' }}>
       <button className="cta-primary" onClick={onDownload}>
         <Download size={18} /> Download {type || 'Resource'}
       </button>
-      <button className="cta-secondary" onClick={() => setSubmitted('assessment')}>
+      <button className="cta-secondary" onClick={() => setFormType('assessment')}>
         <BarChart3 size={18} /> Book Carbon Assessment
       </button>
-      <button className="cta-accent" onClick={() => setSubmitted('expert')}>
+      <button className="cta-accent" onClick={() => setFormType('expert')}>
         <Users size={18} /> Talk to CarbonSync Expert
       </button>
     </div>
