@@ -5,6 +5,32 @@ import { Leaf, Mail, Phone, MapPin, Clock, ShieldCheck, User, Building, ChevronD
 
 export default function ContactHero() {
   const [isAgreed, setIsAgreed] = useState(false);
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xojyggok', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
+        setFormStatus('success');
+        form.reset();
+      } else {
+        setFormStatus('error');
+      }
+    } catch (error) {
+      setFormStatus('error');
+    }
+  };
 
   return (
     <div 
@@ -92,7 +118,7 @@ export default function ContactHero() {
         {/* Right Side: Form Card */}
         <div className="w-full lg:w-[50%] max-w-[580px]">
           <div className="bg-white rounded-[40px] shadow-[0_30px_100px_rgba(0,0,0,0.08)] p-10 md:p-12 border border-slate-50 relative">
-            <form action="https://formspree.io/f/xojyggok" method="POST" className="space-y-6">
+            <form onSubmit={handleFormSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[11px] font-black text-[#0f172a] uppercase tracking-wider ml-1">Full Name</label>
@@ -161,17 +187,32 @@ export default function ContactHero() {
                 </p>
               </div>
 
-              <button 
-                type="submit" 
-                disabled={!isAgreed}
-                className={`w-full font-black py-4 rounded-2xl transition-all flex justify-center items-center gap-3 text-[15px] ${
-                  isAgreed 
-                  ? "bg-green-600 hover:bg-green-700 text-white shadow-xl shadow-green-600/20" 
-                  : "bg-slate-200 text-slate-400 cursor-not-allowed"
-                }`}
-              >
-                Start Net Zero Journey <ArrowRight size={18} />
-              </button>
+              {formStatus === 'success' ? (
+                <div className="bg-green-50 border border-green-100 text-green-800 px-8 py-6 rounded-2xl flex items-center gap-4">
+                  <CheckCircle2 size={24} className="text-green-600 shrink-0" />
+                  <div>
+                    <h4 className="font-black text-[15px]">Message Sent</h4>
+                    <p className="text-[13px] font-medium text-green-700/80">We'll get back to you shortly.</p>
+                  </div>
+                </div>
+              ) : (
+                <button 
+                  type="submit" 
+                  disabled={!isAgreed || formStatus === 'submitting'}
+                  className={`w-full font-black py-4 rounded-2xl transition-all flex justify-center items-center gap-3 text-[15px] ${
+                    isAgreed && formStatus !== 'submitting'
+                    ? "bg-green-600 hover:bg-green-700 text-white shadow-xl shadow-green-600/20" 
+                    : "bg-slate-200 text-slate-400 cursor-not-allowed"
+                  }`}
+                >
+                  {formStatus === 'submitting' ? 'Submitting...' : (
+                    <>Start Net Zero Journey <ArrowRight size={18} /></>
+                  )}
+                </button>
+              )}
+              {formStatus === 'error' && (
+                <p className="text-sm font-black text-red-500 mt-2 text-center">Failed to send message. Please try again.</p>
+              )}
             </form>
 
             <div className="mt-10 pt-8 border-t border-slate-50 flex flex-wrap justify-between items-center gap-4">

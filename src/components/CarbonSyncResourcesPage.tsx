@@ -3031,6 +3031,7 @@ export default function CarbonSyncResourcesPage() {
                           href={`#${item.id}`}
                           onClick={(e) => {
                             e.preventDefault();
+                            setMainActiveSection(item.id);
                             document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' });
                           }}
                           style={{
@@ -3081,7 +3082,7 @@ export default function CarbonSyncResourcesPage() {
                         <a
                           key={item.id}
                           href={`#${item.id}`}
-                          onClick={(e) => { e.preventDefault(); document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' }); }}
+                          onClick={(e) => { e.preventDefault(); setMainActiveSection(item.id); document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' }); }}
                           style={{
                             fontSize: '14px',
                             fontWeight: mainActiveSection === item.id ? 700 : 500,
@@ -3240,12 +3241,78 @@ export default function CarbonSyncResourcesPage() {
             ) : (
               <>
                 {active === 'All' && (
-                  <div className="section-heading" style={{ marginBottom: 40, textAlign: 'center', justifyContent: 'center' }}>
-                    <div style={{ width: '100%' }}>
-                      <small style={{ display: 'block', marginBottom: 8 }}>Resource Library</small>
-                      <h2 style={{ margin: 0 }}>Curated insights for carbon teams</h2>
+                  <>
+                    <div id="featured" className="featured-section" style={{ marginBottom: 60 }}>
+                      <div className="section-heading" style={{ marginBottom: 30, paddingBottom: 16, borderBottom: '1px solid #e2e8f0' }}>
+                        <div>
+                          <h2 style={{ fontSize: 28, margin: 0 }}>Featured Resource</h2>
+                        </div>
+                      </div>
+                      
+                      {(() => {
+                        const featuredItem = resources.find(r => r.title === 'The Blueprint for Scope 3 Data Collection') || resources[0];
+                        return (
+                          <article 
+                            className={`resource-card ${featuredItem.accent || 'accent-emerald'}`} 
+                            onClick={() => handleResourceClick(featuredItem)}
+                            style={{ 
+                              cursor: 'pointer', 
+                              display: 'flex', 
+                              flexDirection: 'row', 
+                              alignItems: 'stretch',
+                              gap: '0',
+                              padding: '0',
+                              background: '#fff',
+                              borderRadius: '24px',
+                              boxShadow: '0 20px 40px -12px rgba(0,0,0,0.1)',
+                              border: '1px solid #e2e8f0',
+                              transition: 'transform 0.3s, box-shadow 0.3s',
+                              overflow: 'hidden'
+                            }}
+                            onMouseOver={(e) => {
+                              e.currentTarget.style.transform = 'translateY(-4px)';
+                              e.currentTarget.style.boxShadow = '0 25px 50px -12px rgba(0,0,0,0.15)';
+                            }}
+                            onMouseOut={(e) => {
+                              e.currentTarget.style.transform = 'translateY(0)';
+                              e.currentTarget.style.boxShadow = '0 20px 40px -12px rgba(0,0,0,0.1)';
+                            }}
+                          >
+                            {featuredItem.image && (
+                              <div style={{ flex: '1', minHeight: '320px', minWidth: '300px' }}>
+                                <img src={featuredItem.image} alt={featuredItem.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                              </div>
+                            )}
+                            <div style={{ flex: '1.2', display: 'flex', flexDirection: 'column', gap: '16px', padding: '40px' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                <span style={{ background: '#ecfdf5', color: '#059669', padding: '6px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: 700 }}>
+                                  {featuredItem.type}
+                                </span>
+                                <span style={{ fontSize: '13px', color: '#64748b', fontWeight: 600 }}>{featuredItem.tag}</span>
+                              </div>
+                              <h3 style={{ fontSize: '32px', fontWeight: 800, color: '#0f172a', margin: 0, lineHeight: 1.2 }}>{featuredItem.title}</h3>
+                              <p style={{ fontSize: '16px', color: '#475569', margin: 0, lineHeight: 1.6 }}>{featuredItem.desc}</p>
+                              
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: 'auto', paddingTop: '16px' }}>
+                                <CarbonSyncLogoSticker size={32} />
+                                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                  <span style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a' }}>CarbonSync</span>
+                                  <span style={{ fontSize: '12px', color: '#64748b' }}>{featuredItem.read || '5 min read'}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </article>
+                        );
+                      })()}
                     </div>
-                  </div>
+
+                    <div id="library" className="section-heading" style={{ marginBottom: 40, textAlign: 'center', justifyContent: 'center' }}>
+                      <div style={{ width: '100%' }}>
+                        <small style={{ display: 'block', marginBottom: 8 }}>Resource Library</small>
+                        <h2 style={{ margin: 0 }}>Curated insights for carbon teams</h2>
+                      </div>
+                    </div>
+                  </>
                 )}
 
                 {active !== 'All' && (

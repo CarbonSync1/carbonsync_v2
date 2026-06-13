@@ -44,6 +44,32 @@ const Section = ({ id, title, children, index }: { id: string, title: string, ch
 
 export default function PrivacyPolicy() {
   const [activeSection, setActiveSection] = useState('mission');
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleSupportRequest = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xojyggok', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
+        setFormStatus('success');
+        form.reset();
+      } else {
+        setFormStatus('error');
+      }
+    } catch (error) {
+      setFormStatus('error');
+    }
+  };
 
   const sections = [
     { id: 'mission', title: 'Privacy Sovereignty' },
@@ -388,12 +414,30 @@ export default function PrivacyPolicy() {
                         <p className="text-gray-400 font-medium">+91 9911875613</p>
                       </div>
                     </div>
-                    <Link 
-                      href="/"
-                      className="inline-block bg-white text-gray-900 px-12 py-6 rounded-[2rem] font-black uppercase text-xs tracking-widest hover:bg-green-600 hover:text-white transition-all shadow-2xl active:scale-95"
-                    >
-                      Initialize Support Request
-                    </Link>
+                    <form onSubmit={handleSupportRequest} className="space-y-4">
+                      <input type="hidden" name="Subject" value="Privacy Policy Support Request" />
+                      <input type="hidden" name="Source" value="Privacy Policy Page" />
+                      {formStatus === 'success' ? (
+                        <div className="bg-green-500/20 border border-green-400 text-white px-8 py-6 rounded-[2rem] flex items-center gap-4">
+                          <CheckCircle2 size={24} className="text-green-400" />
+                          <div>
+                            <h4 className="font-black text-base">Request Sent</h4>
+                            <p className="text-xs font-medium">Our DPO office will contact you soon.</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <button 
+                          disabled={formStatus === 'submitting'}
+                          type="submit"
+                          className="inline-block w-full sm:w-auto text-center bg-white text-gray-900 px-12 py-6 rounded-[2rem] font-black uppercase text-xs tracking-widest hover:bg-green-600 hover:text-white transition-all shadow-2xl active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {formStatus === 'submitting' ? 'Submitting...' : 'Initialize Support Request'}
+                        </button>
+                      )}
+                      {formStatus === 'error' && (
+                        <p className="text-sm font-black text-red-500 mt-2">Failed to send request. Please try again.</p>
+                      )}
+                    </form>
                   </div>
                 </div>
               </div>

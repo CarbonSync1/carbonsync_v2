@@ -38,6 +38,32 @@ const Section = ({ id, title, children, index }: { id: string, title: string, ch
 
 export default function RefundPolicy() {
   const [activeSection, setActiveSection] = useState('eligibility');
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleRefundRequest = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xojyggok', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
+        setFormStatus('success');
+        form.reset();
+      } else {
+        setFormStatus('error');
+      }
+    } catch (error) {
+      setFormStatus('error');
+    }
+  };
 
   const sections = [
     { id: 'eligibility', title: 'Eligibility Framework' },
@@ -217,12 +243,30 @@ export default function RefundPolicy() {
                       <p className="text-xs font-bold text-gray-400 mb-1">Direct Contact</p>
                       <p className="text-sm font-black">pushkarsingh.carbonsync@gmail.com</p>
                     </div>
-                    <Link 
-                      href="/"
-                      className="bg-white text-gray-900 px-12 py-6 rounded-[2rem] font-black uppercase text-xs tracking-widest hover:bg-green-600 hover:text-white transition-all shadow-2xl text-center active:scale-95"
-                    >
-                      Contact Finance Team
-                    </Link>
+                    <form onSubmit={handleRefundRequest} className="flex flex-col gap-2">
+                      <input type="hidden" name="Subject" value="Refund Request Initiated" />
+                      <input type="hidden" name="Source" value="Refund Policy Page" />
+                      {formStatus === 'success' ? (
+                        <div className="bg-green-500/20 border border-green-400 text-white px-8 py-6 rounded-[2rem] flex items-center gap-4">
+                          <CheckCircle2 size={24} className="text-green-400 shrink-0" />
+                          <div>
+                            <h4 className="font-black text-sm">Request Initiated</h4>
+                            <p className="text-[10px] font-medium">Finance team will verify shortly.</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <button 
+                          disabled={formStatus === 'submitting'}
+                          type="submit"
+                          className="w-full bg-white text-gray-900 px-12 py-6 rounded-[2rem] font-black uppercase text-xs tracking-widest hover:bg-green-600 hover:text-white transition-all shadow-2xl text-center active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {formStatus === 'submitting' ? 'Submitting...' : 'Contact Finance Team'}
+                        </button>
+                      )}
+                      {formStatus === 'error' && (
+                        <p className="text-sm font-black text-red-500 mt-2 text-center">Failed to send. Please try again.</p>
+                      )}
+                    </form>
                   </div>
                 </div>
               </div>

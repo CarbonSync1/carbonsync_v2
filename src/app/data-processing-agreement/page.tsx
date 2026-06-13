@@ -42,6 +42,58 @@ const Section = ({ id, title, children, index }: { id: string, title: string, ch
 export default function DataProcessingAgreement() {
   const [activeSection, setActiveSection] = useState('definitions');
   const [dateStr, setDateStr] = useState('');
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [ticketStatus, setTicketStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleSignAgreement = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xojyggok', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
+        setFormStatus('success');
+        form.reset();
+      } else {
+        setFormStatus('error');
+      }
+    } catch (error) {
+      setFormStatus('error');
+    }
+  };
+
+  const handleRaiseTicket = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setTicketStatus('submitting');
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xojyggok', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
+        setTicketStatus('success');
+        form.reset();
+      } else {
+        setTicketStatus('error');
+      }
+    } catch (error) {
+      setTicketStatus('error');
+    }
+  };
 
   const sections = [
     { id: 'definitions', title: 'Definitions' },
@@ -502,7 +554,7 @@ export default function DataProcessingAgreement() {
             </Section>
 
             <Section id="signatories" title="Signatories" index={13}>
-              <form action="https://formspree.io/f/xojyggok" method="POST" className="bg-gray-50 border border-gray-100 rounded-[3rem] p-16 shadow-inner">
+              <form onSubmit={handleSignAgreement} className="bg-gray-50 border border-gray-100 rounded-[3rem] p-16 shadow-inner">
                 <p className="text-xl text-gray-800 leading-relaxed font-black mb-16 text-center">Please complete the digital execution fields below to acknowledge this agreement.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
                   {/* Customer Side */}
@@ -549,10 +601,25 @@ export default function DataProcessingAgreement() {
                   </div>
                 </div>
                 <div className="mt-20 flex flex-col items-center">
-                  <button type="submit" className="bg-green-600 text-white px-20 py-8 rounded-[2.5rem] font-black uppercase text-xs tracking-widest hover:bg-gray-900 transition-all shadow-2xl shadow-green-200 active:scale-95">
-                    Digitally Sign & Execute Agreement
-                  </button>
-                  <p className="mt-8 text-[10px] font-black text-gray-400 uppercase tracking-widest italic">By clicking above, you agree to the electronic execution of this DPA.</p>
+                  {formStatus === 'success' ? (
+                    <div className="bg-green-50 border border-green-200 text-green-800 px-10 py-6 rounded-[2rem] flex items-center gap-4">
+                      <CheckCircle2 size={24} className="text-green-600" />
+                      <div>
+                        <h4 className="font-black text-lg">Agreement Executed Successfully</h4>
+                        <p className="text-sm font-medium">Your submission has been recorded securely.</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <button disabled={formStatus === 'submitting'} type="submit" className="bg-green-600 text-white px-20 py-8 rounded-[2.5rem] font-black uppercase text-xs tracking-widest hover:bg-gray-900 transition-all shadow-2xl shadow-green-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed">
+                        {formStatus === 'submitting' ? 'Executing...' : 'Digitally Sign & Execute Agreement'}
+                      </button>
+                      <p className="mt-8 text-[10px] font-black text-gray-400 uppercase tracking-widest italic">By clicking above, you agree to the electronic execution of this DPA.</p>
+                    </>
+                  )}
+                  {formStatus === 'error' && (
+                    <p className="mt-4 text-sm font-black text-red-500">Something went wrong. Please try again.</p>
+                  )}
                 </div>
               </form>
             </Section>
@@ -570,15 +637,29 @@ export default function DataProcessingAgreement() {
                       <p className="text-xs font-black uppercase tracking-widest text-green-700 mb-3">Direct Legal Contact</p>
                       <p className="text-2xl font-black text-gray-900">pushkarsingh.carbonsync@gmail.com</p>
                     </div>
-                    <form action="https://formspree.io/f/xojyggok" method="POST" className="space-y-4">
+                    <form onSubmit={handleRaiseTicket} className="space-y-4">
                       <input type="hidden" name="Subject" value="New Compliance Ticket Requested" />
                       <input type="hidden" name="Source" value="DPA Page - Contact Section" />
-                      <button 
-                        type="submit"
-                        className="block w-full text-center bg-gray-900 text-white px-12 py-8 rounded-[2rem] font-black uppercase text-sm tracking-widest hover:bg-green-600 transition-all shadow-2xl active:scale-95"
-                      >
-                        Raise Compliance Ticket
-                      </button>
+                      {ticketStatus === 'success' ? (
+                        <div className="bg-green-50 border border-green-200 text-green-800 px-8 py-6 rounded-[2rem] flex items-center gap-4">
+                          <CheckCircle2 size={24} className="text-green-600" />
+                          <div>
+                            <h4 className="font-black text-base">Ticket Raised</h4>
+                            <p className="text-xs font-medium">Our DPO office will contact you soon.</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <button 
+                          disabled={ticketStatus === 'submitting'}
+                          type="submit"
+                          className="block w-full text-center bg-gray-900 text-white px-12 py-8 rounded-[2rem] font-black uppercase text-sm tracking-widest hover:bg-green-600 transition-all shadow-2xl active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {ticketStatus === 'submitting' ? 'Submitting...' : 'Raise Compliance Ticket'}
+                        </button>
+                      )}
+                      {ticketStatus === 'error' && (
+                        <p className="text-sm font-black text-red-500 text-center">Failed to raise ticket. Please try again.</p>
+                      )}
                     </form>
                   </div>
                 </div>
