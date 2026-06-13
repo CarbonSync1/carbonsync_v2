@@ -1602,7 +1602,9 @@ export default function App() {
  key={i}
  className="flex gap-4 items-start group/item hover:bg-white/[0.03] rounded-lg p-2 -m-2 transition-colors duration-200"
  >
- <img src="/logo.webp" alt="CarbonSync Logo" className="w-10 h-10 object-contain shrink-0 mt-0.5" />
+ <div className="p-1 rounded-full bg-red-500/10 text-red-400 mt-0.5 shrink-0 group-hover/item:bg-red-500/20 transition-colors duration-200">
+ <X className="w-3.5 h-3.5" />
+ </div>
  <div>
  <h5 className="text-sm font-bold text-slate-900 mb-0.5">{item.title}</h5>
  <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>

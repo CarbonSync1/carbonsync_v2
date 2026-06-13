@@ -110,10 +110,11 @@ const faqs = [
 
 // --- COMPONENTS ---
 
-const MagneticButton = ({ children, className, onClick, type = "button" }: { children: React.ReactNode, className?: string, onClick?: () => void, type?: "button" | "submit" | "reset" }) => {
+const MagneticButton = ({ children, className, onClick, type = "button", disabled = false }: { children: React.ReactNode, className?: string, onClick?: () => void, type?: "button" | "submit" | "reset", disabled?: boolean }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (disabled) return;
     const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - left - width / 2) * 0.2;
     const y = (e.clientY - top - height / 2) * 0.2;
@@ -128,7 +129,8 @@ const MagneticButton = ({ children, className, onClick, type = "button" }: { chi
       onMouseLeave={() => setPosition({ x: 0, y: 0 })}
       animate={{ x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-      className={`relative overflow-hidden ${className}`}
+      className={`relative overflow-hidden ${className} ${disabled ? 'opacity-75 cursor-not-allowed' : ''}`}
+      disabled={disabled}
     >
       {children}
     </motion.button>
@@ -139,6 +141,35 @@ export default function CarbonSyncPricingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [calcValue, setCalcValue] = useState(1000);
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus("submitting");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    
+    try {
+      const response = await fetch("https://formspree.io/f/xojyggok", {
+        method: "POST",
+        body: data,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      if (response.ok) {
+        setFormStatus("success");
+        form.reset();
+        setTimeout(() => setFormStatus("idle"), 5000);
+      } else {
+        setFormStatus("error");
+        setTimeout(() => setFormStatus("idle"), 5000);
+      }
+    } catch (error) {
+      setFormStatus("error");
+      setTimeout(() => setFormStatus("idle"), 5000);
+    }
+  };
   
   const { scrollYProgress } = useScroll();
   const yParallax = useTransform(scrollYProgress, [0, 1], [0, -100]);
@@ -467,7 +498,7 @@ export default function CarbonSyncPricingPage() {
 
             {/* Right: Floating Form */}
             <div className="bg-slate-50 border border-slate-200 p-10 md:p-14 rounded-[40px] shadow-xl relative">
-              <form action="https://formspree.io/f/xojyggok" method="POST" className="space-y-8 relative z-10">
+              <form onSubmit={handleFormSubmit} action="https://formspree.io/f/xojyggok" method="POST" className="space-y-8 relative z-10">
                 <div className="grid grid-cols-2 gap-8">
                   <div className="relative group">
                     <input type="text" name="firstName" id="fname2" required className="block w-full px-0 py-3 text-slate-900 bg-transparent border-0 border-b-2 border-slate-300 appearance-none focus:outline-none focus:ring-0 focus:border-emerald-600 peer transition-colors font-medium text-lg" placeholder=" " />
@@ -489,8 +520,26 @@ export default function CarbonSyncPricingPage() {
                   <label htmlFor="message2" className="absolute text-lg text-slate-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-emerald-600 font-bold">Initiative Details</label>
                 </div>
 
-                <MagneticButton type="submit" className="w-full py-5 rounded-2xl bg-emerald-600 text-white font-black text-lg hover:bg-emerald-500 shadow-md transition-colors mt-12 flex items-center justify-center gap-2">
-                  Request Architecture Review <ArrowRight className="w-5 h-5" />
+                <MagneticButton 
+                  type="submit" 
+                  className={`w-full py-5 rounded-2xl font-black text-lg shadow-md transition-colors mt-12 flex items-center justify-center gap-2 ${
+                    formStatus === "success" 
+                      ? "bg-emerald-500 text-white" 
+                      : formStatus === "error"
+                      ? "bg-red-500 text-white"
+                      : "bg-emerald-600 text-white hover:bg-emerald-500"
+                  }`}
+                  disabled={formStatus === "submitting" || formStatus === "success"}
+                >
+                  {formStatus === "submitting" ? (
+                    "Sending Request..."
+                  ) : formStatus === "success" ? (
+                    <>Request Received <Check className="w-5 h-5" /></>
+                  ) : formStatus === "error" ? (
+                    "Error. Try Again"
+                  ) : (
+                    <>Request Architecture Review <ArrowRight className="w-5 h-5" /></>
+                  )}
                 </MagneticButton>
               </form>
             </div>

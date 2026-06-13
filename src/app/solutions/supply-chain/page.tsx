@@ -17,6 +17,7 @@ const WaveDivider = dynamic(() => import('./components/WaveDivider'))
 const StickyCTA = dynamic(() => import('./components/StickyCTA'))
 const ExitIntentPopup = dynamic(() => import('./components/ExitIntentPopup'))
 const VideoModal = dynamic(() => import('./components/VideoModal'))
+const ExpertModal = dynamic(() => import('./components/ExpertModal'))
 
 function SectionFallback() {
   return (
@@ -66,6 +67,7 @@ export default function SupplyChainPage() {
             <StickyCTA />
             <ExitIntentPopup />
             <VideoModal />
+            <ExpertModal />
             <Hero />
             <WaveDivider />
             <div className="flex items-center justify-center pb-12 pt-6">

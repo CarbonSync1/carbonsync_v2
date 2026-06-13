@@ -2,11 +2,12 @@
 
 import { useState, Suspense } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import {
   ArrowRight, Upload, LineChart, FileCheck, Zap, ShieldCheck, Award, Activity,
   TrendingDown, Leaf, BarChart3, Globe2, HelpCircle, ChevronDown,
-  CheckCircle, Users, Layers, Database,
+  CheckCircle, Users, Layers, Database, X,
 } from 'lucide-react';
 import { faqs } from '@/data/faqs';
 const Analytics = dynamic(() => import('@/components/AnalyticsSection').then(m => ({ default: m.Analytics })), { ssr: false });
@@ -300,6 +301,78 @@ function ImpactBenefits() {
 }
 
 function Ecosystem() {
+  const [modalContent, setModalContent] = useState<{title: string, desc: string, features: string[], hasForm?: boolean} | null>(null);
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    data.append('context', modalContent?.title || 'General');
+
+    try {
+      const response = await fetch('https://formspree.io/f/xojyggok', {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+      if (response.ok) {
+        setFormStatus('success');
+        form.reset();
+        setTimeout(() => {
+          setModalContent(null);
+          setFormStatus('idle');
+        }, 3000);
+      } else {
+        setFormStatus('error');
+        setTimeout(() => setFormStatus('idle'), 3000);
+      }
+    } catch (error) {
+      setFormStatus('error');
+      setTimeout(() => setFormStatus('idle'), 3000);
+    }
+  };
+
+  const modalData: Record<string, {title: string, desc: string, features: string[], hasForm?: boolean}> = {
+    'CarbonSync ESG': {
+      title: 'CarbonSync ESG',
+      desc: 'Our Enterprise ESG platform is built for modern compliance and risk management. With automated data pipelines, you can generate BRSR, CSRD, and GRI disclosures in a fraction of the time. Transform your supplier data into actionable risk intelligence.',
+      features: ['Unified Data Hub', 'Audit-Ready Disclosures', 'Supplier Risk Scoring', 'Dynamic Materiality']
+    },
+    'CarbonSync Net-Zero': {
+      title: 'CarbonSync Net-Zero',
+      desc: 'Accelerate your decarbonization journey with real-time GHGP-aligned calculations. Our Net-Zero engine identifies emission hotspots across your value chain and uses AI to simulate the most cost-effective reduction pathways.',
+      features: ['Real-time GHG Calculations', 'AI Reduction Pathways', 'Scope 3 Automation', 'Offset Integration']
+    },
+    'Strategic Ecosystem': {
+      title: 'Strategic Ecosystem Partnerships',
+      desc: 'CarbonSync integrates seamlessly with leading IoT providers, sensor networks, and sustainability advisory firms. Join our partner network to deliver end-to-end assurance and carbon finance solutions to enterprise clients.',
+      features: ['IoT & API Integration', 'Advisory Networks', 'Assurance Support', 'Carbon Finance'],
+      hasForm: true
+    },
+    'Bespoke Solutions': {
+      title: 'Bespoke Enterprise Solutions',
+      desc: 'Every enterprise has unique operational complexities. Our engineering team works directly with you to build custom metrics, specialized industry modules, and dedicated on-premise hooks for legacy systems.',
+      features: ['Custom Metric Engines', 'Legacy System Hooks', 'Industry-Specific Logic', 'On-Premise Deployments'],
+      hasForm: true
+    }
+  };
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
+
   return (
     <section id="ecosystem" className="relative overflow-hidden py-24 px-[5%]">
       <div className="absolute inset-0 z-0">
@@ -308,8 +381,14 @@ function Ecosystem() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(22,163,74,0.08),transparent_70%)]" />
       </div>
 
-      <div className="max-w-[1200px] mx-auto relative z-10">
-        <div className="text-center max-w-[700px] mx-auto mb-16">
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="max-w-[1200px] mx-auto relative z-10"
+      >
+        <motion.div variants={itemVariants} className="text-center max-w-[700px] mx-auto mb-16">
           <span className="inline-block px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-[11px] font-extrabold uppercase tracking-widest mb-5">
             The Ecosystem
           </span>
@@ -317,13 +396,13 @@ function Ecosystem() {
             An Integrated ESG & Sustainability{' '}
             <span className="text-gradient-emerald">Platform</span>
           </h2>
-          <p className="text-base text-white/70 leading-relaxed max-w-[640px] mx-auto">
+          <p className="text-base text-white/70 leading-relaxed max-w-[640px] mx-auto mt-4">
             A comprehensive suite of modules designed to handle every stage of your sustainability journey.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 bg-white rounded-2xl shadow-xl border border-black/5 overflow-hidden">
+          <motion.div variants={itemVariants} className="lg:col-span-2 bg-white rounded-2xl shadow-xl border border-black/5 overflow-hidden transition-all duration-500 hover:shadow-2xl">
             <div className="px-8 py-5 border-b border-gray-100 flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-eco-green" />
               <span className="font-heading text-base font-bold text-text-dark">CarbonSync Core Modules</span>
@@ -335,35 +414,40 @@ function Ecosystem() {
                 { icon: <Zap size={20} />, title: 'CarbonSync Net-Zero',
                   items: ['Real-time GHGP Aligned Calculations', 'Emissions Hotspot Identification', 'AI-Driven Decarbonization Pathways', 'Simulation Sandbox for Net-Zero', 'Automated Scope 3 Mapping', 'Carbon Credit & Offset Integration'] },
               ].map((product, i) => (
-                <div key={product.title} className="border-r border-gray-100 last:border-r-0 h-full flex flex-col transition-all duration-500 hover:bg-gray-50/50">
+                <motion.div 
+                  whileHover={{ scale: 1.01, backgroundColor: 'rgba(249, 250, 251, 1)' }}
+                  key={product.title} 
+                  className="border-r border-gray-100 last:border-r-0 h-full flex flex-col transition-all duration-300 relative group"
+                >
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-eco-green to-emerald-light scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                     <div className="px-6 py-5 border-b border-gray-100 flex items-center gap-3">
-                      <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-eco-green/10 to-emerald-light/5 text-eco-green flex items-center justify-center flex-shrink-0">
+                      <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-eco-green/10 to-emerald-light/5 text-eco-green flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                         {product.icon}
                       </span>
                       <h3 className="font-heading text-sm font-bold text-text-dark">{product.title}</h3>
                     </div>
                     <ul className="p-6 flex-1 flex flex-col gap-3">
                       {product.items.map((item) => (
-                        <li key={item} className="text-sm text-text-muted flex items-start gap-3 leading-relaxed">
-                          <span className="w-5 h-5 rounded-full bg-eco-green text-white flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <li key={item} className="text-sm text-text-muted flex items-start gap-3 leading-relaxed group/item hover:text-text-dark transition-colors">
+                          <span className="w-5 h-5 rounded-full bg-eco-green text-white flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform">
                             <span className="text-[10px] font-bold">✓</span>
                           </span>
                           {item}
                         </li>
                       ))}
                     </ul>
-                    <div className="px-6 py-4 border-t border-gray-100">
-                      <a href="#" className="text-sm font-bold text-eco-green no-underline flex items-center gap-1.5 transition-all hover:gap-2.5 group/link">
+                    <div className="px-6 py-4 border-t border-gray-100 mt-auto">
+                      <button type="button" onClick={() => setModalContent(modalData[product.title])} className="text-sm font-bold text-eco-green no-underline flex items-center gap-1.5 transition-all hover:gap-2.5 group/link bg-transparent border-none cursor-pointer p-0">
                         Learn more <ArrowRight size={14} className="transition-all group-hover/link:translate-x-0.5" />
-                      </a>
+                      </button>
                     </div>
-                  </div>
+                  </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           <div className="flex flex-col gap-6">
-            <div className="bg-white/10 backdrop-blur-xl border border-white/15 rounded-2xl overflow-hidden shadow-lg h-full">
+            <motion.div variants={itemVariants} className="bg-white/10 backdrop-blur-xl border border-white/15 rounded-2xl overflow-hidden shadow-lg h-full transition-all duration-500 hover:bg-white/15 hover:border-white/25">
                 <div className="px-6 py-5 border-b border-white/10">
                   <h3 className="font-heading text-sm font-bold text-white flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-eco-green animate-pulse-soft" />
@@ -371,7 +455,10 @@ function Ecosystem() {
                   </h3>
                 </div>
                 <div className="p-6 space-y-5">
-                  <div className="bg-white/10 rounded-xl p-5 border border-white/5">
+                  <motion.div 
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    className="bg-white/10 rounded-xl p-5 border border-white/5 transition-all duration-300 hover:border-emerald-light/30 hover:bg-white/20 hover:shadow-lg"
+                  >
                     <h4 className="font-heading text-sm font-bold text-white mb-4 flex items-center gap-2.5">
                       <Globe2 size={16} className="text-emerald-light" />
                       Strategic Ecosystem
@@ -385,12 +472,15 @@ function Ecosystem() {
                       ))}
                     </ul>
                     <div className="mt-5 pt-4 border-t border-white/10">
-                      <a href="#" className="text-sm font-bold text-emerald-light no-underline flex items-center gap-1.5 transition-all hover:gap-2.5 group/link">
+                      <button type="button" onClick={() => setModalContent(modalData['Strategic Ecosystem'])} className="text-sm font-bold text-emerald-light no-underline flex items-center gap-1.5 transition-all hover:gap-2.5 group/link bg-transparent border-none cursor-pointer p-0">
                         Explore Partnerships <ArrowRight size={14} className="transition-all group-hover/link:translate-x-0.5" />
-                      </a>
+                      </button>
                     </div>
-                  </div>
-                  <div className="bg-white/10 rounded-xl p-5 border border-white/5">
+                  </motion.div>
+                  <motion.div 
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    className="bg-white/10 rounded-xl p-5 border border-white/5 transition-all duration-300 hover:border-emerald-light/30 hover:bg-white/20 hover:shadow-lg"
+                  >
                     <h4 className="font-heading text-sm font-bold text-white mb-4 flex items-center gap-2.5">
                       <Zap size={16} className="text-emerald-light" />
                       Bespoke Solutions
@@ -404,16 +494,97 @@ function Ecosystem() {
                       ))}
                     </ul>
                     <div className="mt-5 pt-4 border-t border-white/10">
-                      <a href="#" className="text-sm font-bold text-emerald-light no-underline flex items-center gap-1.5 transition-all hover:gap-2.5 group/link">
+                      <button type="button" onClick={() => setModalContent(modalData['Bespoke Solutions'])} className="text-sm font-bold text-emerald-light no-underline flex items-center gap-1.5 transition-all hover:gap-2.5 group/link bg-transparent border-none cursor-pointer p-0">
                         Request Customization <ArrowRight size={14} className="transition-all group-hover/link:translate-x-0.5" />
-                      </a>
+                      </button>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
+
+      {modalContent && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6">
+          <div 
+            className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+            onClick={() => setModalContent(null)}
+          />
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden p-8"
+          >
+            <button 
+              onClick={() => { setModalContent(null); setFormStatus('idle'); }}
+              className="absolute top-6 right-6 w-8 h-8 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-500 hover:text-slate-700 transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
+            
+            {formStatus === 'success' ? (
+              <div className="py-12 text-center flex flex-col items-center">
+                <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6">
+                  <CheckCircle className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">Request Received!</h3>
+                <p className="text-slate-500">Our team will contact you shortly.</p>
+              </div>
+            ) : (
+              <>
+                <div className="mb-6">
+                  <h3 className="font-heading text-2xl font-bold text-slate-900 mb-3">{modalContent.title}</h3>
+                  <p className="text-slate-600 leading-relaxed text-sm">
+                    {modalContent.desc}
+                  </p>
+                </div>
+
+                {!modalContent.hasForm && (
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Key Features</h4>
+                    <ul className="space-y-3">
+                      {modalContent.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-3 text-sm font-semibold text-slate-700">
+                          <CheckCircle className="w-4 h-4 text-eco-green flex-shrink-0" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {modalContent.hasForm ? (
+                  <form onSubmit={handleFormSubmit} className="space-y-4 mt-6 border-t border-slate-100 pt-6">
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-1">Work Email</label>
+                      <input required type="email" name="email" id="email" className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-eco-green focus:border-eco-green transition-shadow text-sm text-slate-900" placeholder="name@company.com" />
+                    </div>
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-semibold text-slate-700 mb-1">Message</label>
+                      <textarea required name="message" id="message" rows={2} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-eco-green focus:border-eco-green transition-shadow text-sm text-slate-900 resize-none" placeholder="How can we help?" />
+                    </div>
+                    <button 
+                      type="submit" 
+                      disabled={formStatus === 'submitting'}
+                      className="w-full bg-eco-green hover:bg-emerald-600 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-eco-green/20 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    >
+                      {formStatus === 'submitting' ? 'Sending...' : formStatus === 'error' ? 'Error, Try Again' : 'Submit Request'}
+                    </button>
+                  </form>
+                ) : (
+                  <div className="mt-8 pt-6 border-t border-slate-100 flex justify-end">
+                    <button onClick={() => setModalContent(null)} className="px-6 py-2.5 bg-eco-green hover:bg-emerald-600 text-white text-sm font-bold rounded-xl transition-colors shadow-lg shadow-eco-green/20">
+                      Got it
+                    </button>
+                  </div>
+                )}
+              </>
+            )}
+          </motion.div>
+        </div>
+      )}
     </section>
   );
 }

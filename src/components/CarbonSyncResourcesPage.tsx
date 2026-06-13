@@ -617,6 +617,35 @@ const stats = [
   { label: 'Action Frameworks', value: '20+', icon: TrendingUp },
 ];
 
+const InlineCTAs = ({ onDownload, type }: { onDownload?: () => void, type: string }) => {
+  const [submitted, setSubmitted] = useState<'assessment' | 'expert' | null>(null);
+  if (submitted) {
+    return (
+      <div className="detail-cta-success" style={{ marginTop: '40px' }}>
+        <CheckCircle2 size={40} />
+        <h4>Message Sent Successfully!</h4>
+        <p>Thank you for reaching out. Our team will get back to you shortly.</p>
+        <button className="cta-ghost" onClick={() => setSubmitted(null)}>
+          Send another message
+        </button>
+      </div>
+    );
+  }
+  return (
+    <div className="detail-cta-row" style={{ marginTop: '40px' }}>
+      <button className="cta-primary" onClick={onDownload}>
+        <Download size={18} /> Download {type || 'Resource'}
+      </button>
+      <button className="cta-secondary" onClick={() => setSubmitted('assessment')}>
+        <BarChart3 size={18} /> Book Carbon Assessment
+      </button>
+      <button className="cta-accent" onClick={() => setSubmitted('expert')}>
+        <Users size={18} /> Talk to CarbonSync Expert
+      </button>
+    </div>
+  );
+};
+
 export default function CarbonSyncResourcesPage() {
   const slugify = (text: string) => text.toLowerCase().replace(/ /g, '-').replace(/[^\w-]/g, '');
 
@@ -3237,6 +3266,8 @@ export default function CarbonSyncResourcesPage() {
                   </div>
                 )}
                 {renderResourceContent(activeResource)}
+                <div className="detail-section-divider" style={{ margin: '40px 0', height: '1px', background: '#e2e8f0' }} />
+                <InlineCTAs onDownload={() => handleDownloadResource(activeResource)} type={activeResource.type} />
               </div>
             ) : (
               <>

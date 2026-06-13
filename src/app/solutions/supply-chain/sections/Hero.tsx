@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight, PlayCircle } from 'lucide-react'
+import { ArrowRight, Users } from 'lucide-react'
 import TrustBadges from '../components/TrustBadges'
 import ClientLogos from '../components/ClientLogos'
 
@@ -31,10 +31,10 @@ export default function Hero() {
               Book a Demo <ArrowRight className="w-5 h-5" />
             </button>
             <button
-              onClick={() => window.dispatchEvent(new CustomEvent('openVideoModal'))}
+              onClick={() => window.dispatchEvent(new CustomEvent('openExpertModal'))}
               className="inline-flex items-center gap-2 px-8 py-3 bg-white/10 backdrop-blur-md text-white font-semibold rounded-xl border border-white/20 hover:border-emerald-300 hover:bg-white/20 transition cursor-pointer"
             >
-              <PlayCircle className="w-5 h-5" /> See Platform in Action
+              <Users className="w-5 h-5" /> Talk to an Expert
             </button>
           </div>
           <TrustBadges className="mt-6" />
