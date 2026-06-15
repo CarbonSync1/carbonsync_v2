@@ -177,6 +177,18 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
+              href="/login"
+              className="px-4 py-2.5 text-sm font-semibold text-gray-600 hover:text-green-600 transition-colors"
+            >
+              Log in
+            </Link>
+            <Link
+              href="/register"
+              className="px-4 py-2.5 text-sm font-semibold text-green-600 border border-green-600 rounded-lg hover:bg-green-50 transition-all"
+            >
+              Register
+            </Link>
+            <Link
               href="/book-demo"
               className="bg-gray-900 text-white px-5 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 hover:bg-gray-800 transition-all hover:shadow-lg active:scale-[0.98]"
             >
@@ -325,7 +337,23 @@ export default function Navbar() {
           </nav>
 
           {/* CTA at bottom */}
-          <div className="p-4 border-t border-gray-100 bg-gray-50/50">
+          <div className="p-4 border-t border-gray-100 bg-gray-50/50 space-y-2">
+            <div className="flex items-center gap-2">
+              <Link
+                href="/login"
+                onClick={() => setOpen(false)}
+                className="flex-1 px-4 py-3 rounded-xl text-[15px] font-semibold text-center text-gray-700 border border-gray-200 hover:bg-gray-100 transition-all active:scale-[0.98]"
+              >
+                Log in
+              </Link>
+              <Link
+                href="/register"
+                onClick={() => setOpen(false)}
+                className="flex-1 px-4 py-3 rounded-xl text-[15px] font-semibold text-center text-white bg-green-600 hover:bg-green-700 transition-all active:scale-[0.98]"
+              >
+                Register
+              </Link>
+            </div>
             <Link
               href="/book-demo"
               onClick={() => setOpen(false)}

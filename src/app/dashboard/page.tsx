@@ -1,13 +1,15 @@
-import dynamic from 'next/dynamic';
-import 'leaflet/dist/leaflet.css';
-import '@/components/dashboard/dashboard-styles.css';
+"use client";
 
-const DashboardApp = dynamic(() => import('@/components/DashboardApp'));
+import { ProtectedRoute } from "@/components/shared/ProtectedRoute";
+import { AuthenticatedLayout } from "@/components/layout/AuthenticatedLayout";
+import { EmissionsDashboard } from "@/components/dashboard/EmissionsDashboard";
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen">
-      <DashboardApp />
-    </div>
+    <ProtectedRoute>
+      <AuthenticatedLayout>
+        <EmissionsDashboard />
+      </AuthenticatedLayout>
+    </ProtectedRoute>
   );
 }
