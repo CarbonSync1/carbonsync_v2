@@ -6,7 +6,7 @@ const timelineData = [
     date: 'Nov 2025',
     fullDate: 'NOVEMBER, 2025',
     title: 'Founded',
-    desc: 'CarbonSync was incorporated with a vision to transform the sustainability landscape by leveraging cutting-edge technology.'
+    desc: 'CarbonSynqEarth was incorporated with a vision to transform the sustainability landscape by leveraging cutting-edge technology.'
   },
   {
     date: 'Dec 2025',
@@ -36,7 +36,7 @@ const timelineData = [
     date: 'Jul 2026',
     fullDate: 'JULY, 2026',
     title: 'Global Launch',
-    desc: 'CarbonSync is now fully operational and ready for global adoption. Our platform and website are open for organizations worldwide to begin their journey toward a liveable planet.'
+    desc: 'CarbonSynqEarth is now fully operational and ready for global adoption. Our platform and website are open for organizations worldwide to begin their journey toward a liveable planet.'
   }
 ]
 

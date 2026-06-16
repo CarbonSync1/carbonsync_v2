@@ -27,8 +27,8 @@ export default function BookDemoPage() {
           <div className="flex flex-col items-center mb-8">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
-              src="/netzero/carbonsync-logo.webp" 
-              alt="CarbonSync Logo" 
+              src="/netzero/carbonsynqearth-logo.webp" 
+              alt="CarbonSynqEarth Logo" 
               className="w-[140px] object-contain mb-3" 
             />
             <div className="bg-[#e0f8ea] text-[#15803d] font-bold px-3 py-1 rounded-full text-[13px] tracking-wide">
@@ -38,7 +38,7 @@ export default function BookDemoPage() {
 
           {/* Title */}
           <h1 className="text-[26px] font-bold text-[#111827] mb-6 leading-[1.25] tracking-tight font-sans">
-            CarbonSync Net Zero Discovery Call
+            CarbonSynqEarth Net Zero Discovery Call
           </h1>
 
           {/* Details List */}
@@ -67,7 +67,7 @@ export default function BookDemoPage() {
           {/* Paragraphs */}
           <div className="text-[#6b7280] text-[13px] leading-[1.6] space-y-4 font-medium font-sans">
             <p>
-              Book Your 30-Minute CarbonSync Net Zero Discovery Call.
+              Book Your 30-Minute CarbonSynqEarth Net Zero Discovery Call.
             </p>
             <p>
               Whether you're just beginning your Net Zero journey or looking to refine your existing strategy, our expert team will provide the insights and guidance you need to drive meaningful change.
@@ -82,7 +82,7 @@ export default function BookDemoPage() {
         <div className="flex-1 relative h-full bg-white z-0 pt-4 md:pt-0">
 
           <iframe
-            src="https://calendly.com/pushkarsingh-carbonsync/30min?hide_event_type_details=1&primary_color=059669&text_color=0f172a"
+            src="https://calendly.com/pushkarsingh-carbonsynqearth/30min?hide_event_type_details=1&primary_color=059669&text_color=0f172a"
             width="100%"
             height="100%"
             frameBorder="0"

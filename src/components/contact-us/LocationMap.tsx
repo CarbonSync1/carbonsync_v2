@@ -19,14 +19,14 @@ export default function LocationMap() {
           allowFullScreen 
           loading="lazy" 
           referrerPolicy="no-referrer-when-downgrade"
-          title="Google Maps CarbonSync Location"
+          title="Google Maps CarbonSynqEarth Location"
           className="transition-all duration-1000"
         ></iframe>
 
         {/* Info Card Overlay */}
         <div className="absolute bottom-10 left-10 right-10 md:right-auto bg-white/95 backdrop-blur-md p-8 md:p-10 rounded-[32px] shadow-2xl border border-white/50 max-w-md flex flex-col md:flex-row justify-between gap-8 translate-y-4 group-hover:translate-y-0 transition-all duration-700">
           <div className="flex-grow">
-            <h3 className="font-bold text-gray-900 text-2xl mb-3 tracking-tight">CarbonSync India</h3>
+            <h3 className="font-bold text-gray-900 text-2xl mb-3 tracking-tight">CarbonSynqEarth India</h3>
             <p className="text-[15px] text-gray-500 font-medium leading-relaxed mb-6">
               Corporate Office, Sector 62,<br />Noida, Uttar Pradesh 201301
             </p>

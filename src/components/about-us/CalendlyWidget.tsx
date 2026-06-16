@@ -29,7 +29,7 @@ export default function CalendlyWidget({ onClose }: CalendlyWidgetProps) {
           
           <div className="flex items-center gap-4 mb-6">
             <div className="bg-green-50/80 w-14 h-14 rounded-2xl border border-green-100/50 flex items-center justify-center shrink-0">
-              <img src="/netzero/carbonsync-logo.webp" alt="CarbonSync Logo" className="w-[32px] object-contain" />
+              <img src="/netzero/carbonsynqearth-logo.webp" alt="CarbonSynqEarth Logo" className="w-[32px] object-contain" />
             </div>
             <div className="flex flex-col justify-center">
               <div className="flex items-center gap-1.5 mb-0.5">
@@ -48,7 +48,7 @@ export default function CalendlyWidget({ onClose }: CalendlyWidgetProps) {
           </div>
           
           <h2 className="text-[24px] font-extrabold text-gray-900 leading-[1.2] tracking-tight mb-3">
-            CarbonSync Net Zero Discovery Call
+            CarbonSynqEarth Net Zero Discovery Call
           </h2>
 
           <p className="text-[14px] text-gray-500 leading-relaxed mb-8">

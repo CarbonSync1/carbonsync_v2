@@ -6,7 +6,7 @@ import { AppShell } from "@/components/shared/AppShell";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CarbonSync - Enterprise ESG & Carbon Management Platform",
+  title: "CarbonSynqEarth - Enterprise ESG & Carbon Management Platform",
   description:
     "The intelligent ESG layer for modern enterprise. Track, manage, and reduce your carbon footprint with AI-powered analytics and supply chain insights.",
   keywords:

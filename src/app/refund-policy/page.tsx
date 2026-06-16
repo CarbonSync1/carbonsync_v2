@@ -241,7 +241,7 @@ export default function RefundPolicy() {
                   <div className="shrink-0 flex flex-col gap-6">
                     <div className="p-8 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-xl">
                       <p className="text-xs font-bold text-gray-400 mb-1">Direct Contact</p>
-                      <p className="text-sm font-black">pushkarsingh.carbonsync@gmail.com</p>
+                      <p className="text-sm font-black">pushkarsingh.carbonsynqearth@gmail.com</p>
                     </div>
                     <form onSubmit={handleRefundRequest} className="flex flex-col gap-2">
                       <input type="hidden" name="Subject" value="Refund Request Initiated" />

@@ -56,7 +56,7 @@ export default function ScopesSection() {
             The <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">Three Layers</span> of Carbon Emissions
           </h2>
           <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-            Most companies only see the tip of the iceberg. <strong className="text-slate-700">Scope 3 emissions make up 75% of the average enterprise carbon footprint</strong> — yet they're the hardest to measure. Here's how CarbonSync Zero maps every layer.
+            Most companies only see the tip of the iceberg. <strong className="text-slate-700">Scope 3 emissions make up 75% of the average enterprise carbon footprint</strong> — yet they're the hardest to measure. Here's how CarbonSynqEarth Zero maps every layer.
           </p>
         </div>
 
@@ -363,7 +363,7 @@ export default function ScopesSection() {
           {/* Bottom CTA */}
           <div className="text-center mt-8">
             <p className="text-sm text-slate-500 mb-4">
-              CarbonSync Zero maps <strong className="text-slate-700">all 15 Scope 3 categories</strong> automatically — from purchased goods to end-of-life treatment.
+              CarbonSynqEarth Zero maps <strong className="text-slate-700">all 15 Scope 3 categories</strong> automatically — from purchased goods to end-of-life treatment.
             </p>
             <a
               href="#features"

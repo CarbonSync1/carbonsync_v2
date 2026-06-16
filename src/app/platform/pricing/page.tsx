@@ -2,8 +2,8 @@
 
 import dynamic from 'next/dynamic';
 
-const CarbonSyncPricingPage = dynamic(() => import('@/components/CarbonSyncPricingPage'), { ssr: false });
+const CarbonSynqEarthPricingPage = dynamic(() => import('@/components/CarbonSynqEarthPricingPage'), { ssr: false });
 
 export default function PricingPage() {
-  return <CarbonSyncPricingPage />;
+  return <CarbonSynqEarthPricingPage />;
 }

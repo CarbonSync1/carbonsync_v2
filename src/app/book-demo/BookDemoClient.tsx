@@ -24,8 +24,8 @@ export default function BookDemoClient() {
           {/* Logo & Name Pill */}
           <div className="flex flex-col items-center mb-8">
             <img 
-              src="/netzero/carbonsync-logo.webp" 
-              alt="CarbonSync Logo" 
+              src="/netzero/carbonsynqearth-logo.webp" 
+              alt="CarbonSynqEarth Logo" 
               className="w-[140px] object-contain mb-3" 
             />
             <div className="bg-[#e0f8ea] text-[#15803d] font-bold px-3 py-1 rounded-full text-[13px] tracking-wide">
@@ -35,7 +35,7 @@ export default function BookDemoClient() {
 
           {/* Title */}
           <h1 className="text-[26px] font-bold text-[#111827] mb-6 leading-[1.25] tracking-tight">
-            CarbonSync Net Zero Discovery Call
+            CarbonSynqEarth Net Zero Discovery Call
           </h1>
 
           {/* Details List */}
@@ -64,7 +64,7 @@ export default function BookDemoClient() {
           {/* Paragraphs */}
           <div className="text-[#6b7280] text-[13px] leading-[1.6] space-y-4 font-medium">
             <p>
-              Book Your 30-Minute CarbonSync Net Zero Discovery Call.
+              Book Your 30-Minute CarbonSynqEarth Net Zero Discovery Call.
             </p>
             <p>
               Whether you're just beginning your Net Zero journey or looking to refine your existing strategy, our expert team will provide the insights and guidance you need to drive meaningful change.

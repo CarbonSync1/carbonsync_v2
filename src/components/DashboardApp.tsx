@@ -146,7 +146,7 @@ export default function DashboardApp() {
                 <div className="w-20 h-20 bg-white/5 rounded-[2.5rem] flex items-center justify-center border border-white/10 shadow-2xl">
                   <Leaf size={40} />
                 </div>
-                <h5 className="text-4xl font-black tracking-tighter uppercase text-iridescent">CarbonSync</h5>
+                <h5 className="text-4xl font-black tracking-tighter uppercase text-iridescent">CarbonSynqEarth</h5>
               </div>
               <div className="px-10 py-4 glass-god rounded-full inline-flex items-center gap-6">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />

@@ -6,7 +6,7 @@ import ContactHero from '@/components/contact-us/ContactHero';
 
 const LocationMap = dynamic(() => import('@/components/contact-us/LocationMap'), { ssr: false });
 
-export default function CarbonSyncContact() {
+export default function CarbonSynqEarthContact() {
   return (
     <>
       <ContactHero />

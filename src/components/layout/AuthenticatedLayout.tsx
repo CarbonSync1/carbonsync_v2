@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, LogOut, User } from "lucide-react";
+import { ChevronDown, LogOut } from "lucide-react";
 import { AuthService } from "@/services/auth.service";
 import { getInitials } from "@/lib/utils";
 import type { Session } from "@/types/auth";
@@ -47,8 +47,8 @@ export function AuthenticatedLayout({
               className="flex items-center gap-2.5"
             >
               <Image
-                src="/netzero/carbonsync-logo.webp"
-                alt="CarbonSync"
+                src="/netzero/carbonsynqearth-logo.webp"
+                alt="CarbonSynqEarth"
                 width={40}
                 height={40}
                 unoptimized
@@ -91,14 +91,6 @@ export function AuthenticatedLayout({
                       transition={{ duration: 0.15 }}
                       className="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl border border-gray-200/50 shadow-xl z-50 py-1.5"
                     >
-                      <Link
-                        href="/profile"
-                        onClick={() => setDropdownOpen(false)}
-                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-text-dark hover:bg-gray-50 transition-colors"
-                      >
-                        <User className="w-4 h-4 text-muted" />
-                        Profile
-                      </Link>
                       <div className="h-px bg-gray-100 my-1" />
                       <button
                         onClick={handleLogout}

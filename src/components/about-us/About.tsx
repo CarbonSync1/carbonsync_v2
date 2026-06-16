@@ -17,7 +17,7 @@ const About = () => {
       id: 'vision',
       tag: 'OUR VISION',
       title: 'To empower every organization for a liveable planet.',
-      desc: 'At CarbonSync, we believe that sustainability data should be as accurate, accessible, and actionable as financial data. Our vision is a world where every enterprise, regardless of size, has the clarity to thrive in a circular economy.',
+      desc: 'At CarbonSynqEarth, we believe that sustainability data should be as accurate, accessible, and actionable as financial data. Our vision is a world where every enterprise, regardless of size, has the clarity to thrive in a circular economy.',
       image: visionBg,
       cta: 'SEE OUR VISION',
       reverse: false,
@@ -35,7 +35,7 @@ const About = () => {
       id: 'story',
       tag: 'OUR STORY',
       title: 'From a single seed of frustration to a global canopy.',
-      desc: 'CarbonSync was born from the realization that while the climate crisis was accelerating, the tools to manage it were stuck in the past. Today, we are transforming how leading organizations manage their environmental footprint.',
+      desc: 'CarbonSynqEarth was born from the realization that while the climate crisis was accelerating, the tools to manage it were stuck in the past. Today, we are transforming how leading organizations manage their environmental footprint.',
       image: storyBg,
       cta: 'READ OUR FULL STORY',
       reverse: false,
@@ -141,7 +141,7 @@ const About = () => {
                   <div className="story-tag">OUR JOURNEY</div>
                   <h2 className="story-title">A Vision for <span>Certainty.</span></h2>
                   <p className="story-body">
-                    Founded in November 2025, CarbonSync began with a simple yet profound realization: 
+                    Founded in November 2025, CarbonSynqEarth began with a simple yet profound realization: 
                     the transition to net-zero is the greatest challenge of our generation, 
                     but the tools to manage it were fragmented and manual.
                   </p>

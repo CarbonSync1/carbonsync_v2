@@ -65,7 +65,7 @@ function AboutSection() {
             <span className="text-gradient-emerald">Competitive Advantage</span>
           </h2>
           <p className="text-base text-text-muted leading-relaxed mb-5">
-            At CarbonSync, sustainability isn&apos;t a burden — it&apos;s an opportunity. Our platform simplifies the complex landscape of carbon accounting, enabling organizations to measure, report, and reduce their environmental footprint with unparalleled precision.
+            At CarbonSynqEarth, sustainability isn&apos;t a burden — it&apos;s an opportunity. Our platform simplifies the complex landscape of carbon accounting, enabling organizations to measure, report, and reduce their environmental footprint with unparalleled precision.
           </p>
           <p className="text-base text-text-muted leading-relaxed mb-8">
             Founded on principles of transparency and innovation, we empower businesses to turn ESG compliance into strategic value creation.
@@ -143,7 +143,7 @@ function TrustedMarquee() {
         <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-4">
           Trusted & Certified
         </span>
-        <h2 className="font-heading text-[1.5rem] font-extrabold text-text-dark">CarbonSync is trusted by leading enterprises worldwide</h2>
+        <h2 className="font-heading text-[1.5rem] font-extrabold text-text-dark">CarbonSynqEarth is trusted by leading enterprises worldwide</h2>
       </div>
       <div className="flex flex-wrap justify-center gap-4">
         {badges.map((b, i) => (
@@ -179,7 +179,7 @@ function HowItWorks() {
             Simple Process
           </span>
           <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark leading-tight tracking-tight mb-5">
-            How CarbonSync Works
+            How CarbonSynqEarth Works
           </h2>
           <p className="text-base text-text-muted leading-relaxed">From raw business data to measurable impact in three simple steps.</p>
         </div>
@@ -212,7 +212,7 @@ const pillars = [
   {
     icon: <ShieldCheck size={28} />,
     title: 'Streamline Compliance',
-    desc: 'Generate dynamic, <a href="/solutions/supply-chain" class="text-eco-green font-semibold underline decoration-2 underline-offset-2 hover:text-emerald-400 transition-colors">board-ready disclosures</a> in minutes. CarbonSync instantly aligns your raw metrics with evolving global mandates like CSRD and ISSB, ensuring you stay ahead of regulatory curves.',
+    desc: 'Generate dynamic, <a href="/solutions/supply-chain" class="text-eco-green font-semibold underline decoration-2 underline-offset-2 hover:text-emerald-400 transition-colors">board-ready disclosures</a> in minutes. CarbonSynqEarth instantly aligns your raw metrics with evolving global mandates like CSRD and ISSB, ensuring you stay ahead of regulatory curves.',
   },
   {
     icon: <Activity size={28} />,
@@ -335,19 +335,19 @@ function Ecosystem() {
   };
 
   const modalData: Record<string, {title: string, desc: string, features: string[], hasForm?: boolean}> = {
-    'CarbonSync ESG': {
-      title: 'CarbonSync ESG',
+    'CarbonSynqEarth ESG': {
+      title: 'CarbonSynqEarth ESG',
       desc: 'Our Enterprise ESG platform is built for modern compliance and risk management. With automated data pipelines, you can generate BRSR, CSRD, and GRI disclosures in a fraction of the time. Transform your supplier data into actionable risk intelligence.',
       features: ['Unified Data Hub', 'Audit-Ready Disclosures', 'Supplier Risk Scoring', 'Dynamic Materiality']
     },
-    'CarbonSync Net-Zero': {
-      title: 'CarbonSync Net-Zero',
+    'CarbonSynqEarth Net-Zero': {
+      title: 'CarbonSynqEarth Net-Zero',
       desc: 'Accelerate your decarbonization journey with real-time GHGP-aligned calculations. Our Net-Zero engine identifies emission hotspots across your value chain and uses AI to simulate the most cost-effective reduction pathways.',
       features: ['Real-time GHG Calculations', 'AI Reduction Pathways', 'Scope 3 Automation', 'Offset Integration']
     },
     'Strategic Ecosystem': {
       title: 'Strategic Ecosystem Partnerships',
-      desc: 'CarbonSync integrates seamlessly with leading IoT providers, sensor networks, and sustainability advisory firms. Join our partner network to deliver end-to-end assurance and carbon finance solutions to enterprise clients.',
+      desc: 'CarbonSynqEarth integrates seamlessly with leading IoT providers, sensor networks, and sustainability advisory firms. Join our partner network to deliver end-to-end assurance and carbon finance solutions to enterprise clients.',
       features: ['IoT & API Integration', 'Advisory Networks', 'Assurance Support', 'Carbon Finance'],
       hasForm: true
     },
@@ -405,13 +405,13 @@ function Ecosystem() {
           <motion.div variants={itemVariants} className="lg:col-span-2 bg-white rounded-2xl shadow-xl border border-black/5 overflow-hidden transition-all duration-500 hover:shadow-2xl">
             <div className="px-8 py-5 border-b border-gray-100 flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-eco-green" />
-              <span className="font-heading text-base font-bold text-text-dark">CarbonSync Core Modules</span>
+              <span className="font-heading text-base font-bold text-text-dark">CarbonSynqEarth Core Modules</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
               {[
-                { icon: <ShieldCheck size={20} />, title: 'CarbonSync ESG',
+                { icon: <ShieldCheck size={20} />, title: 'CarbonSynqEarth ESG',
                   items: ['Unified ESG Data Hub', 'Multi-Framework Compliance (BRSR, CSRD, GRI)', 'Dynamic Materiality Assessment', 'Supplier Sustainability Scoring', 'Automated ESG Disclosure Generation', 'Enterprise Risk Intelligence'] },
-                { icon: <Zap size={20} />, title: 'CarbonSync Net-Zero',
+                { icon: <Zap size={20} />, title: 'CarbonSynqEarth Net-Zero',
                   items: ['Real-time GHGP Aligned Calculations', 'Emissions Hotspot Identification', 'AI-Driven Decarbonization Pathways', 'Simulation Sandbox for Net-Zero', 'Automated Scope 3 Mapping', 'Carbon Credit & Offset Integration'] },
               ].map((product, i) => (
                 <motion.div 
@@ -640,7 +640,7 @@ function DashboardPreview() {
                   <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
                 </div>
                 <div className="flex-1 mx-3">
-                  <div className="bg-white/10 rounded-md px-3 py-1.5 text-xs text-white/50 text-center">app.carbonsync.io/dashboard</div>
+                  <div className="bg-white/10 rounded-md px-3 py-1.5 text-xs text-white/50 text-center">app.carbonsynqearth.io/dashboard</div>
                 </div>
                 <div className="flex items-center gap-1.5 bg-eco-green/20 rounded-full px-2.5 py-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-eco-green animate-pulse" />

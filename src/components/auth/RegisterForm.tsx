@@ -114,7 +114,7 @@ export function RegisterForm() {
                   Create an account
                 </h1>
                 <p className="text-text-muted text-sm mt-2">
-                  Start your CarbonSync journey
+                  Start your CarbonSynqEarth journey
                 </p>
               </div>
 

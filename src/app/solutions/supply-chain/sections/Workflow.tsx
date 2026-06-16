@@ -30,7 +30,7 @@ export default function Workflow() {
           className="text-center max-w-3xl mx-auto mb-16 md:mb-20"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
-            How CarbonSync Works
+            How CarbonSynqEarth Works
           </h2>
           <p className="text-lg md:text-xl text-slate-600">
             From raw data to actionable insights in six seamless steps, powered by intelligent automation.

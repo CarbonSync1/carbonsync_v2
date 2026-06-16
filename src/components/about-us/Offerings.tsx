@@ -77,7 +77,7 @@ const Offerings = () => {
         <div className="why-us-column">
           <div
           >
-            <div className="tag-premium">WHY CARBONSYNC?</div>
+            <div className="tag-premium">WHY CARBONSYNEARTH?</div>
             <h2 className="title-premium">
               The precision for a <br />
               <span>circular future.</span>

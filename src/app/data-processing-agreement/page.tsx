@@ -152,7 +152,7 @@ export default function DataProcessingAgreement() {
           DPA <span className="text-green-600">Protocol.</span>
         </h1>
         <p className="text-2xl text-gray-800 max-w-4xl mx-auto font-black leading-relaxed">
-          A comprehensive framework for the lawful, secure, and transparent processing of data within CarbonSync.
+          A comprehensive framework for the lawful, secure, and transparent processing of data within CarbonSynqEarth.
         </p>
       </header>
 
@@ -199,7 +199,7 @@ export default function DataProcessingAgreement() {
                     { t: 'Processing', d: 'Any operation or set of operations which is performed upon Personal Data, whether or not by automatic means.' },
                     { t: 'Processor', d: 'The entity which Processes Personal Data on behalf of the Controller.' },
                     { t: 'Security Breach', d: 'Any accidental or unlawful destruction, loss, alteration, unauthorized disclosure of, or access to, Personal Data transmitted, stored or otherwise Processed.' },
-                    { t: 'Sub-processor', d: 'Any Processor engaged by CarbonSync or its Affiliates to assist in fulfilling its obligations with respect to providing the Services.' },
+                    { t: 'Sub-processor', d: 'Any Processor engaged by CarbonSynqEarth or its Affiliates to assist in fulfilling its obligations with respect to providing the Services.' },
                     { t: 'EEA', d: 'The European Economic Area, which constitutes the member states of the European Union plus Iceland, Liechtenstein and Norway.' },
                     { t: 'Standard Contractual Clauses', d: 'The standard contractual clauses for the transfer of personal data to processors established in third countries which do not ensure an adequate level of data protection.' }
                   ].map((item, i) => (
@@ -225,7 +225,7 @@ export default function DataProcessingAgreement() {
                   <Cpu className="text-green-400 mb-6" size={32} />
                   <div>
                     <h4 className="font-black text-2xl mb-4 text-white">Processor</h4>
-                    <p className="text-lg text-gray-300 font-black leading-relaxed">CarbonSync, which processes data strictly on behalf of the Controller under these rigorous safety protocols.</p>
+                    <p className="text-lg text-gray-300 font-black leading-relaxed">CarbonSynqEarth, which processes data strictly on behalf of the Controller under these rigorous safety protocols.</p>
                   </div>
                 </div>
               </div>
@@ -233,7 +233,7 @@ export default function DataProcessingAgreement() {
 
             <Section id="purpose" title="Description and Purpose of Personal Data Processing" index={2}>
               <p className="text-gray-800 leading-relaxed font-black mb-10 text-lg">
-                CarbonSync processes data solely to provide ESG tracking, carbon footprint calculations, and sustainability reporting analytics. The processing operations include:
+                CarbonSynqEarth processes data solely to provide ESG tracking, carbon footprint calculations, and sustainability reporting analytics. The processing operations include:
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
                 <div className="p-8 rounded-[2rem] bg-white border border-gray-100 shadow-sm">
@@ -270,7 +270,7 @@ export default function DataProcessingAgreement() {
                     <div className="space-y-8">
                       <h6 className="text-green-400 font-black uppercase text-sm tracking-widest">Compliance & Instructions</h6>
                       <p className="text-xl text-white leading-relaxed font-black">
-                        CarbonSync shall process Personal Data only on documented instructions from the Controller, including with regard to transfers of Personal Data to a third country or an international organization, unless required to do so by applicable law.
+                        CarbonSynqEarth shall process Personal Data only on documented instructions from the Controller, including with regard to transfers of Personal Data to a third country or an international organization, unless required to do so by applicable law.
                       </p>
                       <p className="text-xl text-white leading-relaxed font-black">
                         Processor shall immediately inform the Controller if, in its opinion, an instruction infringes Data Protection Laws.
@@ -279,7 +279,7 @@ export default function DataProcessingAgreement() {
                     <div className="space-y-8">
                       <h6 className="text-green-400 font-black uppercase text-sm tracking-widest">Confidentiality & Training</h6>
                       <p className="text-xl text-white leading-relaxed font-black">
-                        CarbonSync ensures that persons authorized to process the Personal Data have committed themselves to confidentiality or are under an appropriate statutory obligation of confidentiality.
+                        CarbonSynqEarth ensures that persons authorized to process the Personal Data have committed themselves to confidentiality or are under an appropriate statutory obligation of confidentiality.
                       </p>
                       <p className="text-xl text-white leading-relaxed font-black">
                         Regular security awareness training is mandatory for all personnel having access to the processing environment.
@@ -290,7 +290,7 @@ export default function DataProcessingAgreement() {
                     <div className="space-y-8">
                       <h6 className="text-green-400 font-black uppercase text-sm tracking-widest">Security of Processing</h6>
                       <p className="text-xl text-white leading-relaxed font-black">
-                        Taking into account the state of the art, the costs of implementation and the nature, scope, context and purposes of processing, CarbonSync shall implement appropriate technical and organizational measures to ensure a level of security appropriate to the risk.
+                        Taking into account the state of the art, the costs of implementation and the nature, scope, context and purposes of processing, CarbonSynqEarth shall implement appropriate technical and organizational measures to ensure a level of security appropriate to the risk.
                       </p>
                     </div>
                     <div className="space-y-8">
@@ -332,14 +332,14 @@ export default function DataProcessingAgreement() {
                     <Landmark className="text-gray-900 group-hover:scale-110 transition-transform" size={32} />
                     <div>
                       <h4 className="font-black text-lg mb-3">Indemnification Clause</h4>
-                      <p className="text-sm text-gray-500 font-black leading-relaxed">Controller shall indemnify CarbonSync against all costs, claims, and damages arising out of the Controller's failure to provide adequate notice or obtain necessary consents from Data Subjects.</p>
+                      <p className="text-sm text-gray-500 font-black leading-relaxed">Controller shall indemnify CarbonSynqEarth against all costs, claims, and damages arising out of the Controller's failure to provide adequate notice or obtain necessary consents from Data Subjects.</p>
                     </div>
                   </div>
                   <div className="p-10 rounded-[3rem] bg-gray-50 border border-gray-100 flex items-start gap-6 hover:bg-white hover:border-green-200 transition-all group">
                     <ShieldAlert className="text-red-500 group-hover:scale-110 transition-transform" size={32} />
                     <div>
                       <h4 className="font-black text-lg mb-3 text-red-900">Breach Liability</h4>
-                      <p className="text-sm text-gray-500 font-black leading-relaxed">CarbonSync's liability for a Security Breach caused by its gross negligence shall be capped at three times (3x) the annual fees paid by the Customer.</p>
+                      <p className="text-sm text-gray-500 font-black leading-relaxed">CarbonSynqEarth's liability for a Security Breach caused by its gross negligence shall be capped at three times (3x) the annual fees paid by the Customer.</p>
                     </div>
                   </div>
                 </div>
@@ -407,7 +407,7 @@ export default function DataProcessingAgreement() {
                 <div className="p-10 border-b border-gray-50 bg-gray-50/30">
                   <h5 className="font-black text-sm mb-4 text-green-600 uppercase tracking-widest">A. Categories of Data Subjects</h5>
                   <p className="text-sm text-gray-800 font-black leading-relaxed">
-                    CarbonSync processes data relating to: Employees (full-time/contract), On-site visitors, Supply chain partners, Logistical coordinators, and Authorized administrative users.
+                    CarbonSynqEarth processes data relating to: Employees (full-time/contract), On-site visitors, Supply chain partners, Logistical coordinators, and Authorized administrative users.
                   </p>
                 </div>
                 <div className="p-10 border-b border-gray-50">
@@ -433,7 +433,7 @@ export default function DataProcessingAgreement() {
               </div>
             </Section>
 
-            <Section id="annex2" title="Annex 2: CarbonSync's Sub-processors" index={10}>
+            <Section id="annex2" title="Annex 2: CarbonSynqEarth's Sub-processors" index={10}>
               <div className="overflow-hidden rounded-[3rem] border border-gray-100 shadow-sm bg-white">
                 <table className="w-full text-left">
                   <thead className="bg-gray-100 border-b border-gray-200">
@@ -502,7 +502,7 @@ export default function DataProcessingAgreement() {
 
             <Section id="technical-annex" title="Technical Annex: Security Protocols" index={11}>
               <div className="bg-white border border-gray-100 rounded-[3rem] p-12 shadow-sm space-y-10">
-                <p className="text-gray-800 leading-relaxed font-black">CarbonSync maintains the following technical security measures to ensure the highest level of data protection:</p>
+                <p className="text-gray-800 leading-relaxed font-black">CarbonSynqEarth maintains the following technical security measures to ensure the highest level of data protection:</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                   {[
                     'Pseudonymization and encryption of personal data at rest.',
@@ -581,10 +581,10 @@ export default function DataProcessingAgreement() {
                     </div>
                   </div>
 
-                  {/* CarbonSync Side */}
+                  {/* CarbonSynqEarth Side */}
                   <div className="space-y-10 opacity-80">
                     <div className="h-1 bg-gray-900 w-24 mb-10 rounded-full" />
-                    <p className="text-xs font-black text-gray-400 uppercase tracking-[0.3em] mb-10">On behalf of CarbonSync</p>
+                    <p className="text-xs font-black text-gray-400 uppercase tracking-[0.3em] mb-10">On behalf of CarbonSynqEarth</p>
                     <div className="space-y-8">
                       <div className="group">
                         <label className="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Authorized Signatory</label>
@@ -599,7 +599,7 @@ export default function DataProcessingAgreement() {
                       <div className="group">
                         <label className="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">System Timestamp</label>
                         <div className="w-full bg-gray-100 border border-gray-200 p-5 rounded-2xl font-black text-gray-500">{dateStr}</div>
-                        <input type="hidden" name="Agreement Type" value="Data Processing Agreement (CarbonSync)" />
+                        <input type="hidden" name="Agreement Type" value="Data Processing Agreement (CarbonSynqEarth)" />
                       </div>
                     </div>
                   </div>
@@ -639,7 +639,7 @@ export default function DataProcessingAgreement() {
                   <div className="space-y-10">
                     <div className="p-10 rounded-[2.5rem] bg-white border border-gray-200 shadow-lg">
                       <p className="text-xs font-black uppercase tracking-widest text-green-700 mb-3">Direct Legal Contact</p>
-                      <p className="text-2xl font-black text-gray-900">pushkarsingh.carbonsync@gmail.com</p>
+                      <p className="text-2xl font-black text-gray-900">pushkarsingh.carbonsynqearth@gmail.com</p>
                     </div>
                     <form onSubmit={handleRaiseTicket} className="space-y-4">
                       <input type="hidden" name="Subject" value="New Compliance Ticket Requested" />

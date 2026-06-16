@@ -2,7 +2,7 @@ import type { InvoiceEmissionsResponse, EmissionSummaryResponse } from "@/types/
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ??
-  "https://carbonsync-backend-mp5h.onrender.com";
+  "https://carbonsynqearth-backend-mp5h.onrender.com";
 
 let latestInvoiceResult: InvoiceEmissionsResponse | null = null;
 let pendingFile: File | null = null;

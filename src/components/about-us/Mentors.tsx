@@ -6,7 +6,7 @@ const mentors = [
     role: 'Mentor',
     image: '/about-assets/mentor-1.jpg',
     quote:
-      'True innovation lies at the intersection of technology and purpose. CarbonSync represents a generation of builders who refuse to accept the status quo — they are engineering a future where sustainability is not optional, but inevitable.',
+      'True innovation lies at the intersection of technology and purpose. CarbonSynqEarth represents a generation of builders who refuse to accept the status quo — they are engineering a future where sustainability is not optional, but inevitable.',
   },
   {
     name: 'Rachit Mathur',
@@ -20,7 +20,7 @@ const mentors = [
     ),
     image: '/about-assets/mentor-2.jpg',
     quote:
-      'What excites me most about CarbonSync is the relentless pursuit of precision. Building an autonomous carbon intelligence platform demands not just technical excellence, but the courage to solve problems no one else is willing to tackle.',
+      'What excites me most about CarbonSynqEarth is the relentless pursuit of precision. Building an autonomous carbon intelligence platform demands not just technical excellence, but the courage to solve problems no one else is willing to tackle.',
   },
 ];
 
@@ -37,7 +37,7 @@ const Mentors = () => {
             Guided by Industry Experts
           </h2>
           <p className="mentors-subtitle">
-            CarbonSync is supported by experienced mentors across sustainability, enterprise architecture, and deep technology — helping us build a reliable and future-ready carbon intelligence platform.
+            CarbonSynqEarth is supported by experienced mentors across sustainability, enterprise architecture, and deep technology — helping us build a reliable and future-ready carbon intelligence platform.
           </p>
         </div>
 

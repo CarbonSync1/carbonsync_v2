@@ -1,6 +1,6 @@
 export const StorageKeys = {
-  USERS: "carbonsync_users",
-  SESSION: "carbonsync_session",
+  USERS: "carbonsynqearth_users",
+  SESSION: "carbonsynqearth_session",
 } as const;
 
 export function getStorageItem<T>(key: string): T | null {

@@ -72,7 +72,7 @@ const Hero = () => {
                   <div className="story-tag">OUR JOURNEY</div>
                   <h2 className="story-title">A Vision for <span>Certainty.</span></h2>
                   <p className="story-body">
-                    Founded in November 2025, CarbonSync began with a simple yet profound realization:
+                    Founded in November 2025, CarbonSynqEarth began with a simple yet profound realization:
                     the transition to net-zero is the greatest challenge of our generation,
                     but the tools to manage it were fragmented and manual.
                   </p>

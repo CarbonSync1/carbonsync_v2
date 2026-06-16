@@ -23,10 +23,10 @@ import {
   Leaf,
 } from 'lucide-react';
 
-const CarbonSyncLogoSticker = ({ size = 24, className = '', ...rest }: any) => (
+const CarbonSynqEarthLogoSticker = ({ size = 24, className = '', ...rest }: any) => (
   <img
-    src="/resources-assets/carbonsync-logo-v2.webp"
-    alt="CarbonSync"
+    src="/resources-assets/carbonsynqearth-logo-v2.webp"
+    alt="CarbonSynqEarth"
     style={{ height: size, width: 'auto', objectFit: 'contain' }}
     className={className}
     {...Object.keys(rest).reduce((acc: any, key) => {
@@ -54,8 +54,8 @@ type Resource = {
 const resources: Resource[] = [
   {
     type: 'Guide',
-    title: 'CarbonSync Net Zero Planning Guide',
-    desc: 'A practical step-by-step guide to help teams measure emissions, set targets, and move from planning to action with CarbonSync.',
+    title: 'CarbonSynqEarth Net Zero Planning Guide',
+    desc: 'A practical step-by-step guide to help teams measure emissions, set targets, and move from planning to action with CarbonSynqEarth.',
     icon: BookOpen,
     tag: 'Net Zero',
     read: '8 min read',
@@ -87,7 +87,7 @@ const resources: Resource[] = [
   {
     type: 'Guide',
     title: 'Advanced Scope 3 Emissions Modeling',
-    desc: 'Deep dive into supply chain emissions modeling and data collection strategies with CarbonSync.',
+    desc: 'Deep dive into supply chain emissions modeling and data collection strategies with CarbonSynqEarth.',
     icon: BookOpen,
     tag: 'Net Zero',
     read: '12 min read',
@@ -96,7 +96,7 @@ const resources: Resource[] = [
   },
   {
     type: 'Whitepaper',
-    title: 'The Future of ESG Reporting with CarbonSync',
+    title: 'The Future of ESG Reporting with CarbonSynqEarth',
     desc: 'An analysis of upcoming regulatory changes and how companies can prepare their data infrastructure.',
     icon: FileText,
     tag: 'Carbon Data',
@@ -118,7 +118,7 @@ const resources: Resource[] = [
   },
   {
     type: 'Guide',
-    title: 'CarbonSync Decarbonization Guide',
+    title: 'CarbonSynqEarth Decarbonization Guide',
     desc: 'Learn how to implement decarbonization strategies across your supply chain effectively.',
     icon: BookOpen,
     tag: 'Net Zero',
@@ -324,7 +324,7 @@ const resources: Resource[] = [
   {
     type: 'Newsroom',
     title: '100X.VC Fuels 22 Start-ups with $3.4M Funding...',
-    desc: 'CarbonSync part of the new cohort receiving strategic investment.',
+    desc: 'CarbonSynqEarth part of the new cohort receiving strategic investment.',
     icon: Globe2,
     tag: 'Company News',
     read: 'Jun 24, 2026',
@@ -335,7 +335,7 @@ const resources: Resource[] = [
   {
     type: 'Newsroom',
     title: '100X.VC Funds 22 Start-ups with Innovative iSAF...',
-    desc: 'Innovative SAFE notes used for latest funding round including CarbonSync.',
+    desc: 'Innovative SAFE notes used for latest funding round including CarbonSynqEarth.',
     icon: Globe2,
     tag: 'Company News',
     read: 'Jun 26, 2026',
@@ -346,7 +346,7 @@ const resources: Resource[] = [
   {
     type: 'Newsroom',
     title: 'Chrysalis Services and Breathe ESG Join Forces...',
-    desc: 'CarbonSync acquires new sustainability services firm to expand reach.',
+    desc: 'CarbonSynqEarth acquires new sustainability services firm to expand reach.',
     icon: Globe2,
     tag: 'Partnerships',
     read: 'Jun 20, 2026',
@@ -357,7 +357,7 @@ const resources: Resource[] = [
   {
     type: 'Newsroom',
     title: 'Gruhas Aspire Onboards Six Startups For Its...',
-    desc: 'Proptech accelerator selects CarbonSync for its new cohort.',
+    desc: 'Proptech accelerator selects CarbonSynqEarth for its new cohort.',
     icon: Globe2,
     tag: 'Company News',
     read: 'Oct 4, 2026',
@@ -379,7 +379,7 @@ const resources: Resource[] = [
   {
     type: 'Newsroom',
     title: 'Here Are The Six Startups That Made It To Gruhas...',
-    desc: 'Inc42 highlights CarbonSync as a top pick for real estate decarbonization.',
+    desc: 'Inc42 highlights CarbonSynqEarth as a top pick for real estate decarbonization.',
     icon: Globe2,
     tag: 'Awards',
     read: 'Oct 5, 2026',
@@ -663,7 +663,7 @@ const InlineCTAs = ({ onDownload, type }: { onDownload?: () => void, type: strin
     return (
       <form onSubmit={handleSubmit} className="detail-cta-form" style={{ marginTop: '40px', padding: '24px', backgroundColor: '#f8f9fa', borderRadius: '16px', border: '1px solid #e9ecef' }}>
         <h4 style={{ marginBottom: '16px', fontSize: '18px', fontWeight: 'bold' }}>
-          {formType === 'assessment' ? 'Book Carbon Assessment' : 'Talk to CarbonSync Expert'}
+          {formType === 'assessment' ? 'Book Carbon Assessment' : 'Talk to CarbonSynqEarth Expert'}
         </h4>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <input 
@@ -711,13 +711,13 @@ const InlineCTAs = ({ onDownload, type }: { onDownload?: () => void, type: strin
         <BarChart3 size={18} /> Book Carbon Assessment
       </button>
       <button className="cta-accent" onClick={() => setFormType('expert')}>
-        <Users size={18} /> Talk to CarbonSync Expert
+        <Users size={18} /> Talk to CarbonSynqEarth Expert
       </button>
     </div>
   );
 };
 
-export default function CarbonSyncResourcesPage() {
+export default function CarbonSynqEarthResourcesPage() {
   const slugify = (text: string) => text.toLowerCase().replace(/ /g, '-').replace(/[^\w-]/g, '');
 
   const [activeResource, setActiveResource] = useState<typeof resources[0] | null>(null);
@@ -833,7 +833,7 @@ export default function CarbonSyncResourcesPage() {
         "2. Find operational emission hotspots\n" +
         "3. Build reduction initiatives\n" +
         "4. Track progress through dashboards\n\n" +
-        "Thank you for downloading the CarbonSync Playbook!"
+        "Thank you for downloading the CarbonSynqEarth Playbook!"
       ], { type: 'text/plain' });
       element.href = URL.createObjectURL(file);
       element.download = "Net-Zero-Action-Playbook-2026.txt";
@@ -948,7 +948,7 @@ export default function CarbonSyncResourcesPage() {
         { id: 'best-practices', label: 'Best Practices' }
       ];
     }
-    if (title === 'The Future of ESG Reporting with CarbonSync') {
+    if (title === 'The Future of ESG Reporting with CarbonSynqEarth') {
       return [
         { id: 'introduction', label: 'Regulatory Shift' },
         { id: 'frameworks', label: 'Frameworks' },
@@ -965,7 +965,7 @@ export default function CarbonSyncResourcesPage() {
         { id: 'conclusion', label: 'Conclusion' }
       ];
     }
-    if (title === 'CarbonSync Decarbonization Guide') {
+    if (title === 'CarbonSynqEarth Decarbonization Guide') {
       return [
         { id: 'introduction', label: 'Introduction' },
         { id: 'core-principles', label: 'Reduction Pillars' },
@@ -1057,8 +1057,8 @@ export default function CarbonSyncResourcesPage() {
       return variations[section][hash];
     };
 
-    // Specific content for "CarbonSync Net Zero Planning Guide"
-    if (item.title === 'CarbonSync Net Zero Planning Guide') {
+    // Specific content for "CarbonSynqEarth Net Zero Planning Guide"
+    if (item.title === 'CarbonSynqEarth Net Zero Planning Guide') {
       return (
         <div className="detail-content" style={{ fontSize: 16, color: '#334155', lineHeight: 1.8 }}>
           <p style={{ fontSize: 18, color: '#1e293b', marginBottom: 20, fontWeight: 500 }}>
@@ -1321,7 +1321,7 @@ export default function CarbonSyncResourcesPage() {
           <p>It is important to note that the distribution of Scope 3 emissions is highly industry-dependent. For instance, in the financial services sector, Category 15 (Investments) often accounts for the vast majority of emissions, representing the carbon footprint of the companies they fund. In contrast, for an automobile manufacturer, the use phase of the vehicles sold (Category 11) is typically the largest contributor. Understanding your specific industry's breakdown is the first step in focusing reduction efforts where they will have the most significant impact, rather than wasting resources on low-impact categories.</p>
 
           <h3 id="advanced-techniques" style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 32, marginBottom: 16 }}>Advanced AI & ML Integration</h3>
-          <p>To bridge data gaps, CarbonSync leverages Machine Learning (ML) algorithms. These models predict emissions factors for suppliers who do not yet report their data, based on industry averages, location, and spend profiles. This hybrid approach ensures that organizations can maintain a comprehensive inventory even with incomplete primary data.</p>
+          <p>To bridge data gaps, CarbonSynqEarth leverages Machine Learning (ML) algorithms. These models predict emissions factors for suppliers who do not yet report their data, based on industry averages, location, and spend profiles. This hybrid approach ensures that organizations can maintain a comprehensive inventory even with incomplete primary data.</p>
           <p>Furthermore, machine learning can assist in anomaly detection within supplier-submitted data. Often, suppliers may submit data with errors due to misunderstanding of reporting boundaries or unit conversions. AI algorithms trained on historical data and industry benchmarks can flag these anomalies for review, ensuring the integrity of the overall corporate carbon inventory. This reduces the manual audit burden on sustainability teams and increases trust in the reported numbers among stakeholders and regulators.</p>
 
           <h3 id="regulatory-landscape" style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 32, marginBottom: 16 }}>The Evolving Regulatory Landscape</h3>
@@ -1342,7 +1342,7 @@ export default function CarbonSyncResourcesPage() {
           </p>
 
           <h3 id="introduction" style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 32, marginBottom: 16 }}>Introduction</h3>
-          <p>Gruhas Aspire is a leading accelerator program focused on proptech and clean technologies. In its latest cohort, six startups were selected from hundreds of applicants for their potential to revolutionize the built environment. CarbonSync is proud to be among them.</p>
+          <p>Gruhas Aspire is a leading accelerator program focused on proptech and clean technologies. In its latest cohort, six startups were selected from hundreds of applicants for their potential to revolutionize the built environment. CarbonSynqEarth is proud to be among them.</p>
 
           <h3 id="core-principles" style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 32, marginBottom: 16 }}>The Cohort Startups</h3>
           <p>Here is a list of the six startups and their core focus areas:</p>
@@ -1358,7 +1358,7 @@ export default function CarbonSyncResourcesPage() {
               </thead>
               <tbody>
                 <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
-                  <td style={{ padding: '12px 16px', fontWeight: 600, color: '#0f172a' }}>CarbonSync</td>
+                  <td style={{ padding: '12px 16px', fontWeight: 600, color: '#0f172a' }}>CarbonSynqEarth</td>
                   <td style={{ padding: '12px 16px', color: '#64748b' }}>Carbon Accounting & ESG</td>
                   <td style={{ padding: '12px 16px', color: '#059669', fontWeight: 600 }}>Zero Carbon Hubs</td>
                 </tr>
@@ -1429,10 +1429,10 @@ export default function CarbonSyncResourcesPage() {
           </div>
 
           <h3 id="future-outlook" style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 32, marginBottom: 16 }}>Future Outlook</h3>
-          <p>The success of this cohort will pave the way for future climate tech investments in India. Gruhas plans to double down on its commitment to sustainability by launching a dedicated climate fund in 2027. This will provide follow-on funding for startups like CarbonSync to scale their solutions globally.</p>
+          <p>The success of this cohort will pave the way for future climate tech investments in India. Gruhas plans to double down on its commitment to sustainability by launching a dedicated climate fund in 2027. This will provide follow-on funding for startups like CarbonSynqEarth to scale their solutions globally.</p>
 
           <h3 id="conclusion" style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 32, marginBottom: 16 }}>Conclusion</h3>
-          <p>Being part of the Gruhas Aspire cohort is a significant milestone for CarbonSync. The mentorship and network provided by the program will accelerate our mission to make carbon accounting accessible to every business. We are excited for the journey ahead and the impact we will create together.</p>
+          <p>Being part of the Gruhas Aspire cohort is a significant milestone for CarbonSynqEarth. The mentorship and network provided by the program will accelerate our mission to make carbon accounting accessible to every business. We are excited for the journey ahead and the impact we will create together.</p>
         </div>
       );
     }
@@ -1495,11 +1495,11 @@ export default function CarbonSyncResourcesPage() {
       return (
         <div className="detail-content" style={{ fontSize: 16, color: '#334155', lineHeight: 1.8 }}>
           <p style={{ fontSize: 18, color: '#1e293b', marginBottom: 20, fontWeight: 500 }}>
-            CarbonSync has joined forces with Chrysalis Services to expand its sustainability offerings.
+            CarbonSynqEarth has joined forces with Chrysalis Services to expand its sustainability offerings.
           </p>
 
           <h3 id="introduction" style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 32, marginBottom: 16 }}>Introduction</h3>
-          <p>In a strategic move to expand its market reach and service capabilities, CarbonSync has announced a partnership with Chrysalis Services. This collaboration brings together CarbonSync's advanced technology platform with Chrysalis's deep expertise in sustainability consulting.</p>
+          <p>In a strategic move to expand its market reach and service capabilities, CarbonSynqEarth has announced a partnership with Chrysalis Services. This collaboration brings together CarbonSynqEarth's advanced technology platform with Chrysalis's deep expertise in sustainability consulting.</p>
 
           <h3 id="core-principles" style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 32, marginBottom: 16 }}>Synergies & Strategy</h3>
           <p>The joint forces will focus on providing end-to-end ESG solutions, from data collection and carbon accounting to strategic advisory and reporting.</p>
@@ -1630,8 +1630,8 @@ export default function CarbonSyncResourcesPage() {
       );
     }
 
-    // Specific content for "CarbonSync Decarbonization Guide"
-    if (item.title === 'CarbonSync Decarbonization Guide') {
+    // Specific content for "CarbonSynqEarth Decarbonization Guide"
+    if (item.title === 'CarbonSynqEarth Decarbonization Guide') {
       return (
         <div className="detail-content" style={{ fontSize: 16, color: '#334155', lineHeight: 1.8 }}>
           <p style={{ fontSize: 18, color: '#1e293b', marginBottom: 20, fontWeight: 500 }}>
@@ -1855,7 +1855,7 @@ export default function CarbonSyncResourcesPage() {
 
           <h3 style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 32, marginBottom: 16 }}>Case Study: Global Logistics Firm</h3>
           <p>To understand the impact of real-time tracking, consider the case of a global logistics firm that transitioned from quarterly manual reporting to real-time carbon telemetry across its fleet and warehouses.</p>
-          <p>Before the transition, the company relied on fuel receipts and utility bills to calculate its carbon footprint. This data was often delayed by 45 to 60 days, making it impossible to identify inefficient routes or equipment failures that caused emission spikes. After implementing CarbonSync's real-time tracking solution, which integrated directly with vehicle telematics and smart meters, the company gained instant visibility.</p>
+          <p>Before the transition, the company relied on fuel receipts and utility bills to calculate its carbon footprint. This data was often delayed by 45 to 60 days, making it impossible to identify inefficient routes or equipment failures that caused emission spikes. After implementing CarbonSynqEarth's real-time tracking solution, which integrated directly with vehicle telematics and smart meters, the company gained instant visibility.</p>
           <p>Within the first month, the system identified a specific regional warehouse where emissions from refrigeration units were 30% higher than the baseline. An investigation revealed a faulty seal in one of the units. Because the issue was detected in real-time, it was fixed within 48 hours, saving an estimated 50 tons of CO2e that would have gone unnoticed until the next quarterly report.</p>
 
           <div style={{ width: '100%', height: 300, borderRadius: 16, overflow: 'hidden', margin: '32px 0' }}>
@@ -2006,7 +2006,7 @@ export default function CarbonSyncResourcesPage() {
             <p style={{ fontSize: '12px', color: '#64748b', textAlign: 'center', marginTop: '16px', margin: '16px 0 0' }}>Fig 3: Growth in legal challenges against misleading green claims.</p>
           </div>
 
-          <p>Ultimately, the best defense against greenwashing is transparency. Companies that use platforms like CarbonSync to track their emissions in real-time and share verifiable data with stakeholders can demonstrate their commitment to true sustainability and build lasting trust.</p>
+          <p>Ultimately, the best defense against greenwashing is transparency. Companies that use platforms like CarbonSynqEarth to track their emissions in real-time and share verifiable data with stakeholders can demonstrate their commitment to true sustainability and build lasting trust.</p>
         </div>
       );
     }
@@ -2204,7 +2204,7 @@ export default function CarbonSyncResourcesPage() {
               </thead>
               <tbody>
                 <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
-                  <td style={{ padding: '12px 16px', fontWeight: 600, color: '#0f172a' }}>CarbonSync</td>
+                  <td style={{ padding: '12px 16px', fontWeight: 600, color: '#0f172a' }}>CarbonSynqEarth</td>
                   <td style={{ padding: '12px 16px', color: '#334155' }}>Supply chain automation and deep tier mapping.</td>
                   <td style={{ padding: '12px 16px', color: '#059669', fontWeight: 600 }}>9.5 / 10</td>
                 </tr>
@@ -2222,7 +2222,7 @@ export default function CarbonSyncResourcesPage() {
             </table>
           </div>
 
-          <p>While CarbonSync leads in supply chain automation, the "best" platform depends heavily on an organization's specific industry and supply chain structure. For example, a company with a high number of Tier 2 and Tier 3 suppliers will benefit more from CarbonSync's deep tier mapping capabilities. Conversely, a company with a simpler supply chain but a high volume of transactions might prefer a platform that specializes in spend-based, spend-to-emission factor mapping with a vast database.</p>
+          <p>While CarbonSynqEarth leads in supply chain automation, the "best" platform depends heavily on an organization's specific industry and supply chain structure. For example, a company with a high number of Tier 2 and Tier 3 suppliers will benefit more from CarbonSynqEarth's deep tier mapping capabilities. Conversely, a company with a simpler supply chain but a high volume of transactions might prefer a platform that specializes in spend-based, spend-to-emission factor mapping with a vast database.</p>
 
           <h3 id="ai-platforms" style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 32, marginBottom: 16 }}>The Role of AI in 2026 Platforms</h3>
           <p>The defining feature of top platforms in 2026 is the integration of generative AI and predictive analytics. AI is being used to read and extract data from unstructured supplier invoices, predict emissions for non-reporting suppliers based on peer benchmarks, and suggest specific reduction initiatives to suppliers. This reduces the burden on both the reporting enterprise and its supply chain partners, making large-scale Scope 3 tracking finally feasible for global organizations.</p>
@@ -2366,8 +2366,8 @@ export default function CarbonSyncResourcesPage() {
       );
     }
 
-    // Specific content for "The Future of ESG Reporting with CarbonSync"
-    if (item.title === 'The Future of ESG Reporting with CarbonSync') {
+    // Specific content for "The Future of ESG Reporting with CarbonSynqEarth"
+    if (item.title === 'The Future of ESG Reporting with CarbonSynqEarth') {
       return (
         <div className="detail-content" style={{ fontSize: 16, color: '#334155', lineHeight: 1.8 }}>
           <p style={{ fontSize: 18, color: '#1e293b', marginBottom: 20, fontWeight: 500 }}>
@@ -2390,11 +2390,11 @@ export default function CarbonSyncResourcesPage() {
             </li>
           </ul>
 
-          <p style={{ marginTop: '32px' }}>The transition to mandatory ESG reporting is driven by investors and regulators demanding the same level of rigor and transparency for sustainability data as they do for financial data. This means that data must be traceable back to its source, with clear audit trails and robust internal controls. CarbonSync addresses this need by providing a centralized platform that automates data collection from utility bills, IoT sensors, and supplier disclosures, minimizing the risk of human error.</p>
+          <p style={{ marginTop: '32px' }}>The transition to mandatory ESG reporting is driven by investors and regulators demanding the same level of rigor and transparency for sustainability data as they do for financial data. This means that data must be traceable back to its source, with clear audit trails and robust internal controls. CarbonSynqEarth addresses this need by providing a centralized platform that automates data collection from utility bills, IoT sensors, and supplier disclosures, minimizing the risk of human error.</p>
 
           <p>Moreover, the platform enables real-time tracking against science-based targets. Rather than waiting for the annual report to see if goals were met, sustainability teams can monitor progress daily and adjust strategies proactively. This shift from backward-looking reporting to forward-looking management is the hallmark of a mature sustainability program.</p>
 
-          <p>Finally, as regulations harmonize globally, companies operating in multiple jurisdictions will benefit from a unified data model. CarbonSync's platform is designed to map data to multiple frameworks simultaneously, reducing the burden of reporting and ensuring consistency across all disclosures.</p>
+          <p>Finally, as regulations harmonize globally, companies operating in multiple jurisdictions will benefit from a unified data model. CarbonSynqEarth's platform is designed to map data to multiple frameworks simultaneously, reducing the burden of reporting and ensuring consistency across all disclosures.</p>
         </div>
       );
     }
@@ -2467,7 +2467,7 @@ export default function CarbonSyncResourcesPage() {
 
           <h3 id="supplier-engagement" style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 32, marginBottom: 16 }}>The Supplier Engagement Challenge</h3>
           <p>The success of data collection depends heavily on how well you engage your suppliers. Many suppliers, especially small and medium-sized enterprises (SMEs), do not have dedicated sustainability teams and may view data requests as an administrative burden. To overcome this, organizations must provide support. This can include training sessions, simplified data entry templates, and explaining the benefit to the supplier (e.g., helping them win more business by being low-carbon).</p>
-          <p>Furthermore, leading companies are moving away from annual surveys to continuous data sharing via APIs. This reduces the manual workload for both parties and ensures that data is fresh and actionable. CarbonSync facilitates this by providing automated connectors to common ERP systems, making data sharing as seamless as possible.</p>
+          <p>Furthermore, leading companies are moving away from annual surveys to continuous data sharing via APIs. This reduces the manual workload for both parties and ensures that data is fresh and actionable. CarbonSynqEarth facilitates this by providing automated connectors to common ERP systems, making data sharing as seamless as possible.</p>
 
           <h3 id="data-quality-tiers" style={{ fontSize: 22, fontWeight: 700, color: '#0f172a', marginTop: 32, marginBottom: 16 }}>Data Quality Tiers</h3>
           <p>As you collect data, it is important to categorize it by quality. **Tier 1 Data** is supplier-specific primary data, verified by a third party. This is the gold standard. **Tier 2 Data** is supplier-specific primary data but unverified. **Tier 3 Data** is secondary data based on industry averages. The blueprint recommends starting with Tier 3 to get a baseline, and then systematically working to replace it with Tier 1 data for your most critical suppliers.</p>
@@ -3064,7 +3064,7 @@ export default function CarbonSyncResourcesPage() {
                 style={{ textAlign: 'center', marginBottom: '50px' }}
               >
                 <div className="eyebrow" style={{ background: 'rgba(5, 150, 105, 0.08)', border: '1px solid rgba(5, 150, 105, 0.18)', backdropFilter: 'blur(8px)', color: '#047857', padding: '8px 20px', borderRadius: '20px', display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '13px', fontWeight: 600, marginBottom: '24px', letterSpacing: '0.02em' }}>
-                  <Sparkles size={15} /> CarbonSync Knowledge Hub
+                  <Sparkles size={15} /> CarbonSynqEarth Knowledge Hub
                 </div>
                 <h1 style={{ fontSize: '52px', fontWeight: 800, color: '#0f172a', marginBottom: '18px', lineHeight: 1.08, letterSpacing: '-0.03em' }}>Resources for a smarter <span style={{ background: 'linear-gradient(135deg, #059669, #0d9488, #0891b2)', backgroundSize: '200% 200%', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>net zero journey.</span></h1>
                 <p style={{ fontSize: '17px', color: '#64748b', maxWidth: '620px', margin: '0 auto 32px', lineHeight: 1.7, letterSpacing: '0.01em' }}>
@@ -3102,8 +3102,8 @@ export default function CarbonSyncResourcesPage() {
       )}
 
       <section id="library" className="library-section">
-        <div className={`container library-shell ${active !== 'All' ? 'category-page' : ''} ${(activeResource?.title === 'What is Australian Sustainability Reporting' || activeResource?.title === 'The Future of ESG Reporting with CarbonSync' || activeResource?.title === 'Data-Driven Sustainability Insights' || activeResource?.title === 'The Future of Carbon Pricing' || activeResource?.title === 'Decarbonizing Heavy Industry' || activeResource?.title === 'Innovations in Carbon Capture' || activeResource?.title === 'Understanding Carbon Credits and Offsets' || activeResource?.title === 'The Role of AI in Net Zero Planning') ? 'no-sidebar' : ''}`}>
-          {activeResource?.title !== 'What is Australian Sustainability Reporting' && activeResource?.title !== 'The Future of ESG Reporting with CarbonSync' && activeResource?.title !== 'Data-Driven Sustainability Insights' && activeResource?.title !== 'The Future of Carbon Pricing' && activeResource?.title !== 'Decarbonizing Heavy Industry' && activeResource?.title !== 'Innovations in Carbon Capture' && activeResource?.title !== 'Understanding Carbon Credits and Offsets' && activeResource?.title !== 'The Role of AI in Net Zero Planning' && (
+        <div className={`container library-shell ${active !== 'All' ? 'category-page' : ''} ${(activeResource?.title === 'What is Australian Sustainability Reporting' || activeResource?.title === 'The Future of ESG Reporting with CarbonSynqEarth' || activeResource?.title === 'Data-Driven Sustainability Insights' || activeResource?.title === 'The Future of Carbon Pricing' || activeResource?.title === 'Decarbonizing Heavy Industry' || activeResource?.title === 'Innovations in Carbon Capture' || activeResource?.title === 'Understanding Carbon Credits and Offsets' || activeResource?.title === 'The Role of AI in Net Zero Planning') ? 'no-sidebar' : ''}`}>
+          {activeResource?.title !== 'What is Australian Sustainability Reporting' && activeResource?.title !== 'The Future of ESG Reporting with CarbonSynqEarth' && activeResource?.title !== 'Data-Driven Sustainability Insights' && activeResource?.title !== 'The Future of Carbon Pricing' && activeResource?.title !== 'Decarbonizing Heavy Industry' && activeResource?.title !== 'Innovations in Carbon Capture' && activeResource?.title !== 'Understanding Carbon Credits and Offsets' && activeResource?.title !== 'The Role of AI in Net Zero Planning' && (
             <aside className="sidebar" style={{
               marginTop: activeResource?.title === 'Regulatory Compliance Playbook 2026' ? '150px' : '80px',
               alignSelf: 'stretch'
@@ -3248,7 +3248,7 @@ export default function CarbonSyncResourcesPage() {
           <div className="library-content">
             {activeResource ? (
               <div className="resource-detail" style={{ padding: '20px 0' }}>
-                {(activeResource.title === 'What is Australian Sustainability Reporting' || activeResource.title === 'The Future of ESG Reporting with CarbonSync' || activeResource.title === 'Data-Driven Sustainability Insights' || activeResource.title === 'The Future of Carbon Pricing' || activeResource.title === 'Decarbonizing Heavy Industry' || activeResource.title === 'Innovations in Carbon Capture' || activeResource.title === 'Understanding Carbon Credits and Offsets' || activeResource.title === 'The Role of AI in Net Zero Planning') && (
+                {(activeResource.title === 'What is Australian Sustainability Reporting' || activeResource.title === 'The Future of ESG Reporting with CarbonSynqEarth' || activeResource.title === 'Data-Driven Sustainability Insights' || activeResource.title === 'The Future of Carbon Pricing' || activeResource.title === 'Decarbonizing Heavy Industry' || activeResource.title === 'Innovations in Carbon Capture' || activeResource.title === 'Understanding Carbon Credits and Offsets' || activeResource.title === 'The Role of AI in Net Zero Planning') && (
                   <div style={{ marginBottom: 24 }}>
                     <button
                       onClick={() => handleCategoryChange('All')}
@@ -3396,9 +3396,9 @@ export default function CarbonSyncResourcesPage() {
                               <p style={{ fontSize: '16px', color: '#475569', margin: 0, lineHeight: 1.6 }}>{featuredItem.desc}</p>
                               
                               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: 'auto', paddingTop: '16px' }}>
-                                <CarbonSyncLogoSticker size={32} />
+                                <CarbonSynqEarthLogoSticker size={32} />
                                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                  <span style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a' }}>CarbonSync</span>
+                                  <span style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a' }}>CarbonSynqEarth</span>
                                   <span style={{ fontSize: '12px', color: '#64748b' }}>{featuredItem.read || '5 min read'}</span>
                                 </div>
                               </div>
@@ -3472,8 +3472,8 @@ export default function CarbonSyncResourcesPage() {
                               <p>{item.desc}</p>
                               <div className="resource-bottom">
                                 <div className="author-info">
-                                  <CarbonSyncLogoSticker size={30} className="author-icon" />
-                                  <span className="author-name">CarbonSync</span>
+                                  <CarbonSynqEarthLogoSticker size={30} className="author-icon" />
+                                  <span className="author-name">CarbonSynqEarth</span>
                                   <span className="dot">•</span>
                                   <span className="date">{item.type === 'Newsroom' && item.read && !item.read.includes('Read') ? item.read : 'May 8, 2026'}</span>
                                 </div>
@@ -3503,8 +3503,8 @@ export default function CarbonSyncResourcesPage() {
                               <p>{item.desc}</p>
                               <div className="resource-bottom">
                                 <div className="author-info">
-                                  <CarbonSyncLogoSticker size={30} className="author-icon" />
-                                  <span className="author-name">CarbonSync</span>
+                                  <CarbonSynqEarthLogoSticker size={30} className="author-icon" />
+                                  <span className="author-name">CarbonSynqEarth</span>
                                   <span className="dot">•</span>
                                   <span className="date">{item.read}</span>
                                 </div>
