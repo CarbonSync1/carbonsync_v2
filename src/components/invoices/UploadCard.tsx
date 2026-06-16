@@ -9,6 +9,8 @@ import {
   X,
   CheckCircle2,
   AlertCircle,
+  RefreshCw,
+  Loader2,
 } from "lucide-react";
 import { formatFileSize } from "@/lib/utils";
 
@@ -42,9 +44,17 @@ interface UploadCardProps {
   onFileSelect: (file: File | null) => void;
   file: File | null;
   error?: string | null;
+  loading?: boolean;
+  onRetry?: () => void;
 }
 
-export function UploadCard({ onFileSelect, file, error }: UploadCardProps) {
+export function UploadCard({
+  onFileSelect,
+  file,
+  error,
+  loading,
+  onRetry,
+}: UploadCardProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragActive, setDragActive] = useState(false);
 
@@ -79,12 +89,13 @@ export function UploadCard({ onFileSelect, file, error }: UploadCardProps) {
       e.preventDefault();
       e.stopPropagation();
       setDragActive(false);
+      if (loading) return;
       const droppedFile = e.dataTransfer.files?.[0];
       if (droppedFile) {
         validateAndSelect(droppedFile);
       }
     },
-    [validateAndSelect]
+    [validateAndSelect, loading]
   );
 
   const handleFileChange = useCallback(
@@ -98,11 +109,17 @@ export function UploadCard({ onFileSelect, file, error }: UploadCardProps) {
   );
 
   const handleRemove = useCallback(() => {
+    if (loading) return;
     onFileSelect(null);
     if (inputRef.current) {
       inputRef.current.value = "";
     }
-  }, [onFileSelect]);
+  }, [onFileSelect, loading]);
+
+  const handleBrowseClick = useCallback(() => {
+    if (loading) return;
+    inputRef.current?.click();
+  }, [loading]);
 
   const ext = file ? file.name.split(".").pop()?.toLowerCase() ?? "" : "";
 
@@ -113,22 +130,24 @@ export function UploadCard({ onFileSelect, file, error }: UploadCardProps) {
       transition={{ duration: 0.5, delay: 0.1 }}
     >
       <div
-        onDragEnter={handleDrag}
-        onDragLeave={handleDrag}
-        onDragOver={handleDrag}
-        onDrop={handleDrop}
-        onClick={() => !file && inputRef.current?.click()}
+        onDragEnter={loading ? undefined : handleDrag}
+        onDragLeave={loading ? undefined : handleDrag}
+        onDragOver={loading ? undefined : handleDrag}
+        onDrop={loading ? undefined : handleDrop}
+        onClick={() => !file && !loading && inputRef.current?.click()}
         className={`
           relative rounded-2xl border-2 border-dashed p-12 text-center cursor-pointer
           transition-all duration-300
           ${
             dragActive
               ? "border-eco-green bg-eco-green/5 shadow-lg shadow-eco-green/10"
-              : file
+              : file && !error
               ? "border-eco-green/30 bg-eco-green/[0.02]"
+              : error
+              ? "!border-red-400 !bg-red-50/30"
               : "border-outline-variant hover:border-eco-green/40 hover:bg-gray-50/50"
           }
-          ${error ? "!border-red-400 !bg-red-50/30" : ""}
+          ${loading ? "pointer-events-none opacity-70" : ""}
         `}
       >
         <input
@@ -137,10 +156,66 @@ export function UploadCard({ onFileSelect, file, error }: UploadCardProps) {
           accept={ACCEPT_MIME}
           onChange={handleFileChange}
           className="hidden"
+          disabled={loading}
         />
 
+        {/* Progress bar */}
+        {loading && (
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gray-100 rounded-t-2xl overflow-hidden">
+            <motion.div
+              className="h-full bg-eco-green"
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          </div>
+        )}
+
         <AnimatePresence mode="wait">
-          {file ? (
+          {loading ? (
+            <motion.div
+              key="loading"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="flex flex-col items-center gap-4"
+            >
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="w-16 h-16 rounded-2xl bg-eco-green/10 flex items-center justify-center"
+              >
+                <Loader2 className="w-7 h-7 text-eco-green" />
+              </motion.div>
+              <div>
+                <p className="text-base font-semibold text-text-dark">
+                  Uploading invoice...
+                </p>
+                <p className="text-sm text-text-muted mt-1">
+                  Processing your document, please wait
+                </p>
+              </div>
+              {file && (
+                <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-lg">
+                  {getFileTypeIcon(ext)}
+                  <span className="text-sm font-medium text-text-dark">
+                    {file.name}
+                  </span>
+                  <span className="text-xs text-text-muted">
+                    ({formatFileSize(file.size)})
+                  </span>
+                </div>
+              )}
+            </motion.div>
+          ) : file && !error ? (
             <motion.div
               key="file-selected"
               initial={{ opacity: 0, scale: 0.95 }}
@@ -164,17 +239,27 @@ export function UploadCard({ onFileSelect, file, error }: UploadCardProps) {
                   {ext.toUpperCase()} &middot; {formatFileSize(file.size)}
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleRemove();
-                }}
-                className="inline-flex items-center gap-1.5 text-sm text-red-500 hover:text-red-600 font-medium transition-colors"
-              >
-                <X className="w-4 h-4" />
-                Remove file
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={handleBrowseClick}
+                  className="inline-flex items-center gap-1.5 text-sm text-eco-green hover:text-eco-hover font-medium transition-colors"
+                >
+                  <Upload className="w-4 h-4" />
+                  Replace file
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleRemove();
+                  }}
+                  className="inline-flex items-center gap-1.5 text-sm text-red-500 hover:text-red-600 font-medium transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                  Remove
+                </button>
+              </div>
             </motion.div>
           ) : (
             <motion.div
@@ -195,7 +280,14 @@ export function UploadCard({ onFileSelect, file, error }: UploadCardProps) {
                   {dragActive ? "Drop your file here" : "Drag & drop your file"}
                 </p>
                 <p className="text-sm text-text-muted mt-1">
-                  or <span className="text-eco-green font-medium">browse</span>{" "}
+                  or{" "}
+                  <button
+                    type="button"
+                    onClick={handleBrowseClick}
+                    className="text-eco-green font-medium hover:text-eco-hover transition-colors"
+                  >
+                    browse
+                  </button>{" "}
                   to select a file
                 </p>
               </div>
@@ -217,14 +309,26 @@ export function UploadCard({ onFileSelect, file, error }: UploadCardProps) {
           )}
         </AnimatePresence>
 
-        {error && (
+        {error && !loading && (
           <motion.div
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-4 flex items-center justify-center gap-2 text-red-500 text-sm font-medium"
+            className="mt-4 flex flex-col items-center gap-3"
           >
-            <AlertCircle className="w-4 h-4 shrink-0" />
-            <span>{error}</span>
+            <div className="flex items-center justify-center gap-2 text-red-500 text-sm font-medium">
+              <AlertCircle className="w-4 h-4 shrink-0" />
+              <span>{error}</span>
+            </div>
+            {onRetry && (
+              <button
+                type="button"
+                onClick={onRetry}
+                className="inline-flex items-center gap-1.5 text-sm text-eco-green hover:text-eco-hover font-medium transition-colors"
+              >
+                <RefreshCw className="w-4 h-4" />
+                Try again
+              </button>
+            )}
           </motion.div>
         )}
       </div>

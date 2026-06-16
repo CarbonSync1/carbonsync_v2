@@ -5,12 +5,13 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Upload as UploadIcon,
-  BarChart3,
+  CloudUpload,
+  Loader2,
 } from "lucide-react";
 import { ProtectedRoute } from "@/components/shared/ProtectedRoute";
 import { AuthenticatedLayout } from "@/components/layout/AuthenticatedLayout";
 import { UploadCard } from "@/components/invoices/UploadCard";
-import { ReportService } from "@/services/report.service";
+import { EmissionsService } from "@/services/emissions";
 
 const ACCEPTED_TYPES = ["pdf", "png", "jpg", "jpeg"];
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
@@ -19,6 +20,7 @@ export default function InvoicesPage() {
   const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleFileSelect = useCallback((selected: File | null) => {
     setFile(selected);
@@ -35,17 +37,34 @@ export default function InvoicesPage() {
     }
 
     if (selected.size > MAX_FILE_SIZE) {
-      setUploadError(
-        "File too large. Maximum allowed size is 5MB."
-      );
+      setUploadError("File too large. Maximum allowed size is 5MB.");
       return;
     }
   }, []);
 
-  const handleEstimate = () => {
-    if (!file || uploadError) return;
-    ReportService.setPendingFile(file);
-    router.push("/dashboard");
+  const handleUpload = async () => {
+    if (!file || uploadError || loading) return;
+
+    setLoading(true);
+    setUploadError(null);
+
+    try {
+      await EmissionsService.uploadInvoice(file);
+      router.push("/dashboard");
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "An unexpected error occurred.";
+      setUploadError(message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRetry = () => {
+    setUploadError(null);
+    if (file) {
+      handleFileSelect(file);
+    }
   };
 
   return (
@@ -61,16 +80,22 @@ export default function InvoicesPage() {
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 15,
+                  delay: 0.1,
+                }}
                 className="w-14 h-14 rounded-2xl bg-eco-green/10 flex items-center justify-center mx-auto mb-5"
               >
                 <UploadIcon className="w-7 h-7 text-eco-green" />
               </motion.div>
               <h1 className="text-2xl sm:text-3xl font-heading font-extrabold text-text-dark tracking-tight">
-                Estimate Emissions
+                Upload Invoice
               </h1>
               <p className="text-text-muted text-sm sm:text-base mt-3 max-w-lg mx-auto">
-                Upload a document to automatically estimate carbon emissions.
+                Upload an invoice to automatically extract items and calculate
+                carbon emissions.
               </p>
               <div className="h-px bg-gradient-to-r from-transparent via-eco-green/20 to-transparent mt-6 max-w-xs mx-auto" />
             </div>
@@ -79,6 +104,8 @@ export default function InvoicesPage() {
               onFileSelect={handleFileSelect}
               file={file}
               error={uploadError}
+              loading={loading}
+              onRetry={handleRetry}
             />
 
             <motion.div
@@ -89,12 +116,21 @@ export default function InvoicesPage() {
             >
               <button
                 type="button"
-                onClick={handleEstimate}
-                disabled={!file || !!uploadError}
+                onClick={handleUpload}
+                disabled={!file || !!uploadError || loading}
                 className="inline-flex items-center gap-2.5 bg-eco-green hover:bg-eco-hover text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-eco-green/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98] hover:shadow-xl hover:shadow-eco-green/30"
               >
-                <BarChart3 className="w-5 h-5" />
-                Estimate Emissions
+                {loading ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Uploading...
+                  </>
+                ) : (
+                  <>
+                    <CloudUpload className="w-5 h-5" />
+                    Upload Invoice
+                  </>
+                )}
               </button>
             </motion.div>
           </motion.div>

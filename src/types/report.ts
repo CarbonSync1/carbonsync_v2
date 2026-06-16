@@ -45,3 +45,52 @@ export interface EmissionReport {
   success: boolean;
   data: EmissionReportData;
 }
+
+// ── Invoice Emissions API types ──
+
+export interface ExtractedItem {
+  item_name: string;
+  quantity: number;
+  unit: string;
+}
+
+export interface EmissionResultDetail {
+  co2e: number;
+  co2e_unit: string;
+  total_tco2e: number;
+  factor_name: string;
+  activity_id: string;
+  factor_region: string;
+  category: string;
+  source_lca_activity: string;
+}
+
+export interface EmissionResultEntry {
+  success: boolean;
+  item_name: string;
+  result: EmissionResultDetail;
+}
+
+export interface ReportDownloadUrls {
+  brsr: string;
+  cbam: string;
+}
+
+export interface InvoiceEmissionsResponse {
+  success: boolean;
+  message: string;
+  extracted_items: ExtractedItem[];
+  results: EmissionResultEntry[];
+  report_download_urls: ReportDownloadUrls;
+}
+
+export interface EmissionSummary {
+  total_records: string;
+  total_kgco2e: string;
+  total_tco2e: string;
+}
+
+export interface EmissionSummaryResponse {
+  success: boolean;
+  summary: EmissionSummary;
+}
