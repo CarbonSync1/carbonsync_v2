@@ -107,7 +107,7 @@ export default function CalendlyModal({ isOpen, onClose }: CalendlyModalProps) {
               </button>
 
               <iframe
-                src="https://calendly.com/pushkarsingh-carbonsynqearth/30min?hide_event_type_details=1&primary_color=059669&text_color=0f172a"
+                src="https://calendly.com/pushkarsingh-carbonsync/30min?hide_event_type_details=1&primary_color=059669&text_color=0f172a"
                 width="100%"
                 height="100%"
                 frameBorder="0"
