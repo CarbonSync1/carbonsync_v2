@@ -111,12 +111,12 @@ export default function Navbar() {
               className="w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain"
             />
             <span className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[#1a2e35]">
-              Carbon<span className="text-[#10b981]">Sync</span>
+              CarbonSynq<span className="text-[#10b981]">Earth</span>
             </span>
           </Link>
 
           {/* Desktop navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1">
             {links.map((link) => {
               const active = !link.hasDropdown && isActive(link.href);
               return (
@@ -174,7 +174,7 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2">
             <Link
               href="/login"
               className="px-4 py-2.5 text-sm font-semibold text-gray-600 hover:text-green-600 transition-colors"
@@ -198,7 +198,7 @@ export default function Navbar() {
 
           {/* Mobile hamburger button */}
           <button
-            className="lg:hidden relative z-[60] flex items-center justify-center w-11 h-11 rounded-xl text-gray-700 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200 transition-all"
+            className="md:hidden relative z-[60] flex items-center justify-center w-11 h-11 rounded-xl text-gray-700 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200 transition-all"
             onClick={() => setOpen(!open)}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
@@ -225,7 +225,7 @@ export default function Navbar() {
 
       {/* Backdrop overlay */}
       <div
-        className={`fixed inset-0 z-[55] bg-black/30 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-[55] bg-black/30 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
           open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setOpen(false)}
@@ -234,7 +234,7 @@ export default function Navbar() {
 
       {/* Slide-out drawer */}
       <div
-        className={`fixed top-0 right-0 z-[58] h-[100dvh] w-[85vw] max-w-[380px] bg-white shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] lg:hidden ${
+        className={`fixed top-0 right-0 z-[58] h-[100dvh] w-[85vw] max-w-[380px] bg-white shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] md:hidden ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
         role="dialog"
@@ -253,7 +253,7 @@ export default function Navbar() {
               className="w-11 h-11 object-contain"
             />
             <span className="text-lg font-bold tracking-tight text-[#1a2e35]">
-              Carbon<span className="text-[#10b981]">Sync</span>
+              CarbonSynq<span className="text-[#10b981]">Earth</span>
             </span>
           </Link>
           <button

@@ -55,7 +55,7 @@ export function AuthenticatedLayout({
                 className="w-9 h-9 object-contain"
               />
               <span className="text-lg font-bold tracking-tight text-[#1a2e35]">
-                Carbon<span className="text-[#10b981]">Sync</span>
+                CarbonSynq<span className="text-[#10b981]">Earth</span>
               </span>
             </Link>
 
