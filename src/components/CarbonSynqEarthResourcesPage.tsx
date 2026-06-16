@@ -25,7 +25,7 @@ import {
 
 const CarbonSynqEarthLogoSticker = ({ size = 24, className = '', ...rest }: any) => (
   <img
-    src="/resources-assets/carbonsynqearth-logo-v2.webp"
+    src="/netzero/unnamed.webp"
     alt="CarbonSynqEarth"
     style={{ height: size, width: 'auto', objectFit: 'contain' }}
     className={className}

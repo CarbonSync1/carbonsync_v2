@@ -102,7 +102,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             <Image
-              src="/netzero/carbonsynqearth-logo.webp"
+              src="/netzero/unnamed.webp"
               alt="CarbonSynqEarth"
               width={64}
               height={64}
@@ -245,7 +245,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20 px-5 border-b border-gray-100">
           <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2">
             <Image
-              src="/netzero/carbonsynqearth-logo.webp"
+              src="/netzero/unnamed.webp"
               alt="CarbonSynqEarth"
               width={48}
               height={48}

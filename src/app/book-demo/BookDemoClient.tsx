@@ -24,7 +24,7 @@ export default function BookDemoClient() {
           {/* Logo & Name Pill */}
           <div className="flex flex-col items-center mb-8">
             <img 
-              src="/netzero/carbonsynqearth-logo.webp" 
+              src="/netzero/unnamed.webp" 
               alt="CarbonSynqEarth Logo" 
               className="w-[140px] object-contain mb-3" 
             />

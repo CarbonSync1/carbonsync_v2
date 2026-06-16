@@ -10,7 +10,7 @@ export default function PremiumFooter() {
           <div className="lg:col-span-4 flex flex-col items-start">
             <div className="flex flex-col items-start gap-4 mb-6">
               <div className="flex items-start">
-                <img src="/logo.webp" alt="CarbonSynqEarth" className="h-16 w-auto object-contain" />
+                <img src="/unnamed.webp" alt="CarbonSynqEarth" className="h-16 w-auto object-contain" />
               </div>
               <p className="text-[#334155] text-[16px] font-bold leading-relaxed max-w-70">
                 Built on the belief in a greener, more sustainable future.

@@ -47,7 +47,7 @@ export function AuthenticatedLayout({
               className="flex items-center gap-2.5"
             >
               <Image
-                src="/netzero/carbonsynqearth-logo.webp"
+                src="/netzero/unnamed.webp"
                 alt="CarbonSynqEarth"
                 width={40}
                 height={40}

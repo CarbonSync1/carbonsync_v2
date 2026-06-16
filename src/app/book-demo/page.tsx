@@ -27,7 +27,7 @@ export default function BookDemoPage() {
           <div className="flex flex-col items-center mb-8">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
-              src="/netzero/carbonsynqearth-logo.webp" 
+              src="/netzero/unnamed.webp" 
               alt="CarbonSynqEarth Logo" 
               className="w-[140px] object-contain mb-3" 
             />
