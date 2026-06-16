@@ -1,6 +1,4 @@
-export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL ??
-  "https://carbonsynqearth-backend-mp5h.onrender.com";
+export const API_BASE_URL = "https://carbonsync-backend-mp5h.onrender.com";
 
 export const APP_NAME = "CarbonSynqEarth";
 

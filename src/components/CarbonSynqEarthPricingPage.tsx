@@ -183,12 +183,12 @@ export default function CarbonSynqEarthPricingPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans overflow-x-hidden relative pt-24 pb-16">
+    <div className="min-h-screen bg-white text-gray-900 font-sans overflow-x-hidden relative pt-16 pb-16">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb33_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb33_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none z-0" />
 
 
       {/* --- HERO SECTION --- */}
-      <section className="relative pt-32 pb-24 px-6 max-w-[1400px] mx-auto z-10 grid lg:grid-cols-2 gap-16 items-center">
+      <section className="relative pt-8 pb-24 px-6 max-w-[1400px] mx-auto z-10 grid lg:grid-cols-2 gap-16 items-center">
         
         {/* Left: Text Content */}
         <div className="flex flex-col items-start text-left">
