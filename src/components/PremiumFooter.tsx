@@ -64,7 +64,6 @@ export default function PremiumFooter() {
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
             {[
-              { label: 'Refund Policy', href: '/refund-policy' },
               { label: 'Privacy Policy', href: '/privacy-policy' },
               { label: 'Terms of Service', href: '/terms-of-service' },
               { label: 'Data Processing Agreement', href: '/data-processing-agreement' },

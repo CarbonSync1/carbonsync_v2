@@ -9,7 +9,7 @@ export default function BookDemoPage() {
   return (
     <div className="flex items-center justify-center min-h-screen pt-[100px] pb-8 px-4 sm:px-8 bg-[#f4fdf8] relative font-sans">
       <div 
-        className="w-full max-w-[1060px] h-[700px] bg-white rounded-[20px] shadow-2xl flex flex-col md:flex-row overflow-hidden relative z-10"
+        className="w-full max-w-[1060px] min-h-[650px] md:min-h-[700px] bg-white rounded-[20px] shadow-2xl flex flex-col md:flex-row relative z-10"
       >
         {/* Prominent Close Button */}
         <button
@@ -21,7 +21,7 @@ export default function BookDemoPage() {
         </button>
 
         {/* Left Column */}
-        <div className="w-full md:w-[380px] h-full overflow-y-auto bg-[#f0faf5] p-8 md:p-10 flex flex-col shrink-0 custom-scrollbar relative z-10 border-r border-gray-100">
+        <div className="w-full md:w-[380px] md:h-full overflow-y-auto bg-[#f0faf5] p-8 md:p-10 flex flex-col shrink-0 custom-scrollbar relative z-10 border-r border-gray-100">
           
           {/* Logo & Name Pill */}
           <div className="flex flex-col items-center mb-8">
@@ -79,7 +79,7 @@ export default function BookDemoPage() {
         </div>
 
         {/* Right Column (Calendly) */}
-        <div className="flex-1 relative h-full bg-white z-0 pt-4 md:pt-0">
+        <div className="flex-1 relative min-h-[600px] md:min-h-0 bg-white z-0">
 
           <iframe
             src="https://calendly.com/pushkarsingh-carbonsync/30min?hide_event_type_details=1&primary_color=059669&text_color=0f172a"
@@ -87,7 +87,7 @@ export default function BookDemoPage() {
             height="100%"
             frameBorder="0"
             title="Calendly Scheduling"
-            style={{ border: 'none' }}
+            style={{ border: 'none', position: 'absolute', inset: 0 }}
           />
         </div>
       </div>

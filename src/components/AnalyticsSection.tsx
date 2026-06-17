@@ -26,20 +26,20 @@ export function Analytics() {
 
         <div className="grid grid-cols-1 gap-5">
           <div
-            className="rounded-2xl border border-forest-mid/5 bg-white p-6 shadow-sm"
+            className="rounded-2xl border border-forest-mid/5 bg-white p-4 sm:p-6 lg:p-8 shadow-sm"
           >
-            <div className="mb-4 flex flex-col items-start gap-3 md:flex-row md:justify-between">
+            <div className="mb-4 sm:mb-6 flex flex-col items-start gap-3 md:flex-row md:justify-between">
               <div>
-                <div className="font-heading text-base font-bold text-text-dark mb-1">
+                <div className="font-heading text-sm sm:text-base lg:text-lg font-bold text-text-dark mb-1">
                   Monthly CO₂ Emissions & Scope Breakdown
                 </div>
-                <div className="text-xs text-text-muted">
+                <div className="text-[11px] sm:text-xs text-text-muted">
                   {selectedMonth !== null
                     ? `${chartData[selectedYear].months[selectedMonth].m} ${selectedYear} · Click a bar to change month`
                     : `Full year ${selectedYear} · Click a bar to see Scope Breakdown`}
                 </div>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap w-full sm:w-auto">
                 <span className="rounded-full bg-eco-green/10 px-3 py-1.5 text-xs font-bold text-eco-green">
                   {chartData[selectedYear].trend}
                 </span>
@@ -47,7 +47,7 @@ export function Analytics() {
                   {[2025, 2026].map((y) => (
                     <button
                       key={y}
-                      className={`cursor-pointer rounded-lg border-none px-3 py-1 text-xs font-bold transition-all ${
+                      className={`cursor-pointer rounded-lg border-none px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-bold transition-all ${
                         selectedYear === y
                           ? 'bg-white text-eco-green shadow-sm'
                           : 'bg-none text-text-muted'
@@ -61,34 +61,36 @@ export function Analytics() {
               </div>
             </div>
 
-            <div className="flex flex-col items-center gap-8 md:flex-row max-md:gap-6">
-              <div className="flex h-[180px] w-full flex-1 items-end gap-2">
-                {chartData[selectedYear].months.map((d, i) => {
-                  const maxVal = Math.max(...chartData[selectedYear].months.map((m) => m.val));
-                  const heightPct = Math.round((d.val / maxVal) * 100);
-                  const isSelected = selectedMonth === i;
-                  return (
-                    <div
-                      key={i}
-                      className="relative flex h-full flex-1 cursor-pointer flex-col items-center justify-end gap-1.5"
-                      onClick={() => setSelectedMonth(isSelected ? null : i)}
-                    >
-                      <div className="text-[0.7rem] font-bold text-text-muted">{d.val}k</div>
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+              <div className="w-full overflow-x-auto">
+                <div className="flex h-[180px] sm:h-[220px] md:h-[250px] lg:h-[280px] items-end gap-1 sm:gap-1.5 min-w-[480px]">
+                  {chartData[selectedYear].months.map((d, i) => {
+                    const maxVal = Math.max(...chartData[selectedYear].months.map((m) => m.val));
+                    const heightPct = Math.round((d.val / maxVal) * 100);
+                    const isSelected = selectedMonth === i;
+                    return (
                       <div
-                        className="min-h-[4px] w-full rounded-t"
-                        style={{
-                          height: `${heightPct}%`,
-                          background: isSelected ? '#4caf50' : selectedMonth === null ? 'rgba(76,175,80,0.3)' : 'rgba(76,175,80,0.15)',
-                          boxShadow: isSelected ? '0 0 12px rgba(76,175,80,0.5)' : 'none',
-                        }}
-                      />
-                      <div className="text-[0.72rem] font-semibold text-text-muted"
-                           style={{ fontWeight: isSelected ? 700 : 400, color: isSelected ? '#4caf50' : undefined }}>
-                        {d.m}
+                        key={i}
+                        className="relative flex h-full flex-1 cursor-pointer flex-col items-center justify-end gap-1 sm:gap-1.5"
+                        onClick={() => setSelectedMonth(isSelected ? null : i)}
+                      >
+                        <div className="text-[10px] sm:text-[11px] md:text-xs font-bold text-text-muted leading-tight">{d.val}k</div>
+                        <div
+                          className="min-h-[4px] w-full rounded-t"
+                          style={{
+                            height: `${heightPct}%`,
+                            background: isSelected ? '#4caf50' : selectedMonth === null ? 'rgba(76,175,80,0.3)' : 'rgba(76,175,80,0.15)',
+                            boxShadow: isSelected ? '0 0 12px rgba(76,175,80,0.5)' : 'none',
+                          }}
+                        />
+                        <div className="text-[10px] sm:text-[11px] md:text-xs font-semibold text-text-muted leading-tight"
+                             style={{ fontWeight: isSelected ? 700 : 400, color: isSelected ? '#4caf50' : undefined }}>
+                          {d.m}
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
 
               <div className="h-px w-full bg-black/5 md:h-[120px] md:w-px max-md:w-full max-md:h-px" />
@@ -108,9 +110,9 @@ export function Analytics() {
                 const s2offset = -s1dash;
                 const s3offset = -(s1dash + s2dash);
                 return (
-                  <div className="flex w-full items-center justify-center gap-5 md:w-auto">
-                    <div className="relative">
-                      <svg viewBox="0 0 120 120" className="w-[120px] flex-shrink-0 -rotate-90">
+                  <div className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-5 w-full md:w-auto">
+                    <div className="relative flex-shrink-0">
+                      <svg viewBox="0 0 120 120" className="w-[120px] sm:w-[140px] md:w-[160px] lg:w-[120px] -rotate-90">
                         <circle cx="60" cy="60" r="48" fill="none" stroke="#e8f5e9" strokeWidth="18" />
                         <circle cx="60" cy="60" r="48" fill="none" stroke="#4caf50"
                           strokeWidth={18}
@@ -123,8 +125,8 @@ export function Analytics() {
                           strokeDasharray={`${s3dash} ${circ - s3dash}`} strokeDashoffset={s3offset} strokeLinecap="round" />
                       </svg>
                     </div>
-                    <div className="flex flex-col gap-3">
-                      <div className="font-heading text-sm font-bold text-text-dark mb-3">
+                    <div className="flex flex-col items-center md:items-start gap-2 sm:gap-3">
+                      <div className="font-heading text-xs sm:text-sm font-bold text-text-dark text-center md:text-left">
                         {selectedMonth !== null ? `${chartData[selectedYear].months[selectedMonth].m} Breakdown` : `Avg ${selectedYear}`}
                       </div>
                       {[
@@ -133,9 +135,9 @@ export function Analytics() {
                         { label: 'Scope 3', pct: scope.s3, color: '#c8e6c9' },
                       ].map((item) => (
                         <div key={item.label}
-                          className="flex items-center gap-2.5 rounded px-2 py-1 text-sm font-semibold text-text-dark"
+                          className="flex items-center justify-center md:justify-start gap-2 sm:gap-2.5 rounded px-2 py-1 text-xs sm:text-sm font-semibold text-text-dark w-full sm:w-auto"
                         >
-                          <span className="h-3 w-3 flex-shrink-0 rounded" style={{ background: item.color }} />
+                          <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 flex-shrink-0 rounded" style={{ background: item.color }} />
                           {item.label} - {item.pct}%
                         </div>
                       ))}

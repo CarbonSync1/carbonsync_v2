@@ -93,22 +93,21 @@ export default function ScopesSection() {
               className="scope-card-accent rounded-2xl border border-emerald-200 bg-white p-7 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:border-emerald-300 flex flex-col h-full"
               style={{ '--accent-start': '#10b981', '--accent-end': '#34d399' } as React.CSSProperties}
             >
-              {/* Scope badge */}
-              <div className="flex items-center justify-between mb-5">
-                <div className="flex items-center gap-2.5">
-                  <div className="relative w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 scope-ring-pulse">
-                    <Zap className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-emerald-600">Scope 1</span>
-                    <p className="text-sm font-extrabold text-slate-900">Direct Emissions</p>
-                  </div>
+              <div className="flex flex-col gap-4 md:gap-6">
+                <span className="text-[10px] px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 font-bold border border-emerald-200 self-start">~5-10%</span>
+
+                <div className="relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 scope-ring-pulse">
+                  <Zap className="w-6 h-6 md:w-7 md:h-7" />
                 </div>
-                <span className="text-[10px] px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 font-bold border border-emerald-200">~5-10%</span>
+
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-emerald-600">Scope 1</span>
+                  <p className="text-sm md:text-base font-extrabold text-slate-900">Direct Emissions</p>
+                </div>
               </div>
 
               {/* Description */}
-              <p className="text-sm text-slate-600 leading-relaxed mb-5">
+              <p className="text-sm md:text-base text-slate-600 leading-relaxed mb-5 max-w-prose">
                 Emissions from sources your company <strong className="text-slate-800">owns or directly controls</strong> — on-site combustion, company vehicles, and fugitive refrigerant leaks from HVAC systems.
               </p>
 
@@ -158,22 +157,21 @@ export default function ScopesSection() {
               className="scope-card-accent rounded-2xl border border-sky-200 bg-white p-7 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:border-sky-300 flex flex-col h-full"
               style={{ '--accent-start': '#0ea5e9', '--accent-end': '#38bdf8' } as React.CSSProperties}
             >
-              {/* Scope badge */}
-              <div className="flex items-center justify-between mb-5">
-                <div className="flex items-center gap-2.5">
-                  <div className="relative w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center text-sky-600 scope-ring-pulse">
-                    <Activity className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-sky-600">Scope 2</span>
-                    <p className="text-sm font-extrabold text-slate-900">Purchased Energy</p>
-                  </div>
+              <div className="flex flex-col gap-4 md:gap-6">
+                <span className="text-[10px] px-2 py-1 rounded-full bg-sky-50 text-sky-700 font-bold border border-sky-200 self-start">~10-20%</span>
+
+                <div className="relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full bg-sky-100 flex items-center justify-center text-sky-600 scope-ring-pulse">
+                  <Activity className="w-6 h-6 md:w-7 md:h-7" />
                 </div>
-                <span className="text-[10px] px-2 py-1 rounded-full bg-sky-50 text-sky-700 font-bold border border-sky-200">~10-20%</span>
+
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-sky-600">Scope 2</span>
+                  <p className="text-sm md:text-base font-extrabold text-slate-900">Purchased Energy</p>
+                </div>
               </div>
 
               {/* Description */}
-              <p className="text-sm text-slate-600 leading-relaxed mb-5">
+              <p className="text-sm md:text-base text-slate-600 leading-relaxed mb-5 max-w-prose">
                 Indirect emissions from <strong className="text-slate-800">purchased electricity, steam, heating, and cooling</strong> — energy consumed at your facilities but generated off-site by utility providers.
               </p>
 
@@ -223,22 +221,21 @@ export default function ScopesSection() {
               className="scope-card-accent rounded-2xl border border-amber-200 bg-white p-7 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:border-amber-300 flex flex-col h-full"
               style={{ '--accent-start': '#f59e0b', '--accent-end': '#fbbf24' } as React.CSSProperties}
             >
-              {/* Scope badge */}
-              <div className="flex items-center justify-between mb-5">
-                <div className="flex items-center gap-2.5">
-                  <div className="relative w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 scope-ring-pulse">
-                    <Globe2 className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-amber-600">Scope 3</span>
-                    <p className="text-sm font-extrabold text-slate-900">Value Chain</p>
-                  </div>
+              <div className="flex flex-col gap-4 md:gap-6">
+                <span className="text-[10px] px-2 py-1 rounded-full bg-amber-50 text-amber-700 font-bold border border-amber-200 self-start">~70-90%</span>
+
+                <div className="relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 scope-ring-pulse">
+                  <Globe2 className="w-6 h-6 md:w-7 md:h-7" />
                 </div>
-                <span className="text-[10px] px-2 py-1 rounded-full bg-amber-50 text-amber-700 font-bold border border-amber-200">~70-90%</span>
+
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-amber-600">Scope 3</span>
+                  <p className="text-sm md:text-base font-extrabold text-slate-900">Value Chain</p>
+                </div>
               </div>
 
               {/* Description */}
-              <p className="text-sm text-slate-600 leading-relaxed mb-5">
+              <p className="text-sm md:text-base text-slate-600 leading-relaxed mb-5 max-w-prose">
                 The <strong className="text-slate-800">invisible giant</strong> — all other indirect emissions across your entire value chain. From raw material extraction to end-user product usage and disposal.
               </p>
 

@@ -29,8 +29,8 @@ export default function FeatureCard({ card, index }: FeatureCardProps) {
       <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-80 group-hover:opacity-70 transition-opacity duration-500`} />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
       <div className="relative h-full min-h-[320px] p-6 md:p-8 flex flex-col justify-end">
-        <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-3 border border-white/10">
-          <Icon className="w-7 h-7 text-white" />
+        <div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-3 border border-white/10 overflow-hidden">
+          <Icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
         </div>
         <h3 className="text-xl font-bold text-white mb-2">{card.title}</h3>
         <p className="text-white/80 leading-relaxed max-w-md">{card.description}</p>

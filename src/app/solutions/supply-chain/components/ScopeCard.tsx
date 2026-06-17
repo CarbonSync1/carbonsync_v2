@@ -18,7 +18,7 @@ export default function ScopeCard({ data, index }: ScopeCardProps) {
 
   return (
     <div
-      className={`relative flex flex-col h-full bg-white rounded-3xl transition-all duration-500 overflow-hidden group ${
+      className={`relative flex flex-col h-full bg-white rounded-3xl transition-all duration-500 overflow-hidden group min-w-0 ${
         data.prominent
           ? 'shadow-2xl border-emerald-200 ring-2 ring-emerald-100'
           : 'shadow-lg border border-slate-100 hover:shadow-xl hover:border-emerald-100'
@@ -28,38 +28,38 @@ export default function ScopeCard({ data, index }: ScopeCardProps) {
         <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-500" />
       )}
 
-      <div className="absolute top-6 right-6">
-        <div className="flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-100 rounded-full text-emerald-700 text-xs font-semibold">
+      <div className="flex flex-col gap-4 md:gap-6 p-6 md:p-8">
+        <div className="flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-100 rounded-full text-emerald-700 text-xs font-semibold self-start">
           <TrendingDown className="w-3.5 h-3.5" />
           {roi}
         </div>
-      </div>
 
-      <div className="flex flex-col gap-4 p-6 md:p-8">
         <div
-          className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 ${
+          className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-2xl flex items-center justify-center flex-shrink-0 overflow-hidden ${
             data.prominent
               ? 'bg-gradient-to-br from-emerald-500 to-teal-500 shadow-md'
               : 'bg-emerald-50 border border-emerald-100 group-hover:bg-emerald-100 transition-colors'
           }`}
         >
-          <Icon className={`w-7 h-7 ${data.prominent ? 'text-white' : 'text-emerald-600'}`} />
+          <Icon className={`w-6 h-6 md:w-7 md:h-7 ${data.prominent ? 'text-white' : 'text-emerald-600'}`} />
         </div>
-        <div className="mt-2">
+
+        <div>
           <div className="flex items-center gap-3 flex-wrap mb-1">
-            <h3 className="text-2xl font-bold text-slate-900">{data.title}</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-slate-900">{data.title}</h3>
             {data.prominent && (
               <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-600 text-white">
                 Most Comprehensive
               </span>
             )}
           </div>
-          <p className="text-sm font-semibold text-slate-500">{data.subtitle}</p>
+          <p className="text-sm md:text-base font-semibold text-slate-500">{data.subtitle}</p>
         </div>
+
+        <p className="text-slate-600 leading-relaxed text-sm md:text-base max-w-prose">{data.description}</p>
       </div>
 
       <div className="flex flex-col gap-5 p-6 md:p-8 pt-0 flex-1">
-        <p className="text-slate-600 leading-relaxed text-sm">{data.description}</p>
 
         <div className="h-16 flex items-end gap-1.5 mt-2">
           {[40, 70, 45, 90, 65, 80, 50, 100].map((height, i) => (

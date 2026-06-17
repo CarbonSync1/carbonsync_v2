@@ -32,13 +32,13 @@ export default function CalendlyModal({ isOpen, onClose }: CalendlyModalProps) {
           }}
         >
           <div
-            className="w-full max-w-[1060px] h-[700px] bg-white rounded-[10px] shadow-2xl flex flex-col md:flex-row overflow-hidden relative"
+            className="w-full max-w-[1060px] min-h-[650px] md:min-h-[700px] bg-white rounded-[10px] shadow-2xl flex flex-col md:flex-row relative"
             style={{
               boxShadow: '0 25px 80px -12px rgba(0, 0, 0, 0.6), 0 0 60px rgba(16, 185, 129, 0.15)',
             }}
           >
             {/* Left Column */}
-            <div className="w-full md:w-[380px] h-full overflow-y-auto bg-[#f0faf5] p-8 md:p-10 flex flex-col shrink-0 custom-scrollbar relative z-10 border-r border-gray-100">
+            <div className="w-full md:w-[380px] md:h-full overflow-y-auto bg-[#f0faf5] p-8 md:p-10 flex flex-col shrink-0 custom-scrollbar relative z-10 border-r border-gray-100">
               
               {/* Logo & Name Pill */}
               <div className="flex flex-col items-center mb-8">
@@ -97,7 +97,7 @@ export default function CalendlyModal({ isOpen, onClose }: CalendlyModalProps) {
             </div>
 
             {/* Right Column (Calendly) */}
-            <div className="flex-1 relative h-full bg-white z-0">
+            <div className="flex-1 relative min-h-[600px] md:min-h-0 bg-white z-0">
               <button
                 onClick={onClose}
                 className="absolute right-0 top-0 bg-black text-white hover:bg-gray-800 rounded-bl-[10px] w-10 h-10 flex items-center justify-center cursor-pointer text-xl font-bold z-20 transition-colors"
@@ -112,7 +112,7 @@ export default function CalendlyModal({ isOpen, onClose }: CalendlyModalProps) {
                 height="100%"
                 frameBorder="0"
                 title="Calendly Scheduling"
-                style={{ border: 'none' }}
+                style={{ border: 'none', position: 'absolute', inset: 0 }}
               />
             </div>
           </div>
