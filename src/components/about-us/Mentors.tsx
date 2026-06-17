@@ -13,7 +13,7 @@ const mentors = [
     ),
     image: '/about-assets/mentor-2.jpg',
     quote:
-      'What excites me most about CarbonSynqEarth is the relentless pursuit of precision. Building an autonomous carbon intelligence platform demands not just technical excellence, but the courage to solve problems no one else is willing to tackle.',
+      'What excites me most about CarbonSynq is the relentless pursuit of precision. Building an autonomous carbon intelligence platform demands not just technical excellence, but the courage to solve problems no one else is willing to tackle.',
   },
 ];
 
@@ -30,7 +30,7 @@ const Mentors = () => {
             Guided by Industry Experts
           </h2>
           <p className="mentors-subtitle">
-            CarbonSynqEarth is supported by experienced mentors across sustainability, enterprise architecture, and deep technology — helping us build a reliable and future-ready carbon intelligence platform.
+            CarbonSynq is supported by experienced mentors across sustainability, enterprise architecture, and deep technology — helping us build a reliable and future-ready carbon intelligence platform.
           </p>
         </div>
 

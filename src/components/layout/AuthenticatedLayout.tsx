@@ -48,7 +48,7 @@ export function AuthenticatedLayout({
             >
               <Image
                 src="/netzero/unnamed.webp"
-                alt="CarbonSynqEarth"
+                alt="CarbonSynq"
                 width={40}
                 height={40}
                 unoptimized

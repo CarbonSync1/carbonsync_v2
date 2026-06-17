@@ -103,7 +103,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             <Image
               src="/netzero/unnamed.webp"
-              alt="CarbonSynqEarth"
+              alt="CarbonSynq"
               width={64}
               height={64}
               priority
@@ -246,7 +246,7 @@ export default function Navbar() {
           <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2">
             <Image
               src="/netzero/unnamed.webp"
-              alt="CarbonSynqEarth"
+              alt="CarbonSynq"
               width={48}
               height={48}
               unoptimized

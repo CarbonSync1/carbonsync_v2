@@ -47,7 +47,7 @@ export default function ExitIntentPopup() {
               </h3>
               
               <p className="text-emerald-100/70 mb-8 text-lg">
-                Don't let complex emissions data hold you back. Join industry leaders who trust CarbonSynqEarth.
+                Don't let complex emissions data hold you back. Join industry leaders who trust CarbonSynq.
               </p>
 
               <div className="space-y-3">

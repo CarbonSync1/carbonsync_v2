@@ -1,6 +1,6 @@
 export const API_BASE_URL = "https://carbonsync-backend-mp5h.onrender.com";
 
-export const APP_NAME = "CarbonSynqEarth";
+export const APP_NAME = "CarbonSynq";
 
 export const ROUTES = {
   LOGIN: "/login",

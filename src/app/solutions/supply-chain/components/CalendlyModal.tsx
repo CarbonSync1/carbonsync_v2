@@ -45,7 +45,7 @@ export default function CalendlyModal({ isOpen, onClose }: CalendlyModalProps) {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
                   src="/netzero/unnamed.webp" 
-                  alt="CarbonSynqEarth Logo" 
+                  alt="CarbonSynq Logo" 
                   className="w-[140px] object-contain mb-3" 
                 />
                 <div className="bg-[#e0f8ea] text-[#15803d] font-bold px-3 py-1 rounded-full text-[13px] tracking-wide">
@@ -55,7 +55,7 @@ export default function CalendlyModal({ isOpen, onClose }: CalendlyModalProps) {
 
               {/* Title */}
               <h1 className="text-[26px] font-bold text-[#111827] mb-6 leading-[1.25] tracking-tight font-sans">
-                CarbonSynqEarth Net Zero Discovery Call
+                CarbonSynq Net Zero Discovery Call
               </h1>
 
               {/* Details List */}
@@ -84,7 +84,7 @@ export default function CalendlyModal({ isOpen, onClose }: CalendlyModalProps) {
               {/* Paragraphs */}
               <div className="text-[#6b7280] text-[13px] leading-[1.6] space-y-4 font-medium font-sans">
                 <p>
-                  Book Your 30-Minute CarbonSynqEarth Net Zero Discovery Call.
+                  Book Your 30-Minute CarbonSynq Net Zero Discovery Call.
                 </p>
                 <p>
                   Whether you're just beginning your Net Zero journey or looking to refine your existing strategy, our expert team will provide the insights and guidance you need to drive meaningful change.

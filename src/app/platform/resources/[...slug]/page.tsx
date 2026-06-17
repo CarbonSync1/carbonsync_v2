@@ -2,8 +2,8 @@
 
 import dynamic from 'next/dynamic';
 
-const CarbonSynqEarthResourcesPage = dynamic(() => import('@/components/CarbonSynqEarthResourcesPage'), { ssr: false });
+const CarbonSynqResourcesPage = dynamic(() => import('@/components/CarbonSynqResourcesPage'), { ssr: false });
 
 export default function ResourcesDynamicPage() {
-  return <CarbonSynqEarthResourcesPage />;
+  return <CarbonSynqResourcesPage />;
 }

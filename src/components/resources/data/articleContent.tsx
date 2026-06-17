@@ -300,7 +300,7 @@ export function InlineCTAs({ onDownload, type }: { onDownload?: () => void, type
     return (
       <form onSubmit={handleSubmit} className="detail-cta-form" style={{ marginTop: '40px', padding: '24px', backgroundColor: '#f8f9fa', borderRadius: '16px', border: '1px solid #e9ecef' }}>
         <h4 style={{ marginBottom: '16px', fontSize: '18px', fontWeight: 'bold' }}>
-          {formType === 'assessment' ? 'Book Carbon Assessment' : 'Talk to CarbonSynqEarth Expert'}
+          {formType === 'assessment' ? 'Book Carbon Assessment' : 'Talk to CarbonSynq Expert'}
         </h4>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <input 
@@ -348,7 +348,7 @@ export function InlineCTAs({ onDownload, type }: { onDownload?: () => void, type
         <BarChart3 size={18} /> Book Carbon Assessment
       </button>
       <button className="cta-accent" onClick={() => setFormType('expert')}>
-        <Users size={18} /> Talk to CarbonSynqEarth Expert
+        <Users size={18} /> Talk to CarbonSynq Expert
       </button>
     </div>
   );
@@ -579,9 +579,9 @@ function HeroSection({ title }: { title: string }) {
       <div className="dh-image" style={{ backgroundImage: `url(${img})` }} />
       <div className="dh-overlay" />
       <div className="dh-content">
-        <div className="dh-eyebrow"><Sparkles size={14} /> CarbonSynqEarth Research Portal</div>
+        <div className="dh-eyebrow"><Sparkles size={14} /> CarbonSynq Research Portal</div>
         <h1>{title}</h1>
-        <p>{subtitle[title] || 'An in-depth analysis from CarbonSynqEarth\u2019s research team.'}</p>
+        <p>{subtitle[title] || 'An in-depth analysis from CarbonSynq\u2019s research team.'}</p>
         <div className="dh-meta">
           <span><BookOpen size={14} /> 12 min read</span>
           <span><BarChart3 size={14} /> Data-driven analysis</span>
@@ -735,10 +735,10 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           ]} />
 
           <h2>Filing Risk Analytics</h2>
-          <p>Our analysis of early adopters reveals common filing pitfalls: 43% of companies underestimated Scope 3 materiality, 28% lacked adequate board-level governance documentation, and 19% failed to map climate risks to financial statements. CarbonSynqEarth\u2019s automated compliance engine reduces these risks by providing real-time gap analysis against SEC requirements.</p>
+          <p>Our analysis of early adopters reveals common filing pitfalls: 43% of companies underestimated Scope 3 materiality, 28% lacked adequate board-level governance documentation, and 19% failed to map climate risks to financial statements. CarbonSynq\u2019s automated compliance engine reduces these risks by providing real-time gap analysis against SEC requirements.</p>
 
           <h2>Audit Readiness Indicators</h2>
-          <p>The SEC requires limited assurance for Scope 1 & 2 emissions starting in 2026, transitioning to reasonable assurance by 2028. Companies must ensure their data pipelines maintain a complete audit trail, with source documents, calculation methodologies, and emission factor versions tracked immutably. CarbonSynqEarth provides blockchain-verified audit trails for every data point.</p>
+          <p>The SEC requires limited assurance for Scope 1 & 2 emissions starting in 2026, transitioning to reasonable assurance by 2028. Companies must ensure their data pipelines maintain a complete audit trail, with source documents, calculation methodologies, and emission factor versions tracked immutably. CarbonSynq provides blockchain-verified audit trails for every data point.</p>
         </div>
       </>);
 
@@ -1018,7 +1018,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           ]} />
 
           <h2 id="workflow">Workflow Visualization</h2>
-          <p>CarbonSynqEarth\u2019s workflow engine automates the entire ESG data pipeline: from automated data collection via 500+ API connectors, through validation and normalization, to collaborative review workflows with role-based access controls. Approvals are tracked immutably, providing auditors with a complete chain of custody for every data point.</p>
+          <p>CarbonSynq\u2019s workflow engine automates the entire ESG data pipeline: from automated data collection via 500+ API connectors, through validation and normalization, to collaborative review workflows with role-based access controls. Approvals are tracked immutably, providing auditors with a complete chain of custody for every data point.</p>
 
           <SimpleAreaChart
             title="Reporting Cycle Duration Reduction (Months)"
@@ -1031,7 +1031,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2 id="case-study">Case Study: Global Manufacturer</h2>
-          <p>A multinational manufacturer with operations in 35 countries reduced its ESG reporting cycle from 9 months to 3 weeks after implementing a centralized data architecture. The company had previously relied on 23 separate Excel workbooks maintained by regional sustainability leads. By integrating its SAP ERP, facility management systems, and supplier portals into CarbonSynqEarth\u2019s unified platform, it achieved real-time visibility into 96% of its emissions and passed its first CSRD audit without a single material finding.</p>
+          <p>A multinational manufacturer with operations in 35 countries reduced its ESG reporting cycle from 9 months to 3 weeks after implementing a centralized data architecture. The company had previously relied on 23 separate Excel workbooks maintained by regional sustainability leads. By integrating its SAP ERP, facility management systems, and supplier portals into CarbonSynq\u2019s unified platform, it achieved real-time visibility into 96% of its emissions and passed its first CSRD audit without a single material finding.</p>
 
           <ComparisonTable
             headers={['Capability', 'Before', 'After', 'Improvement']}
@@ -1131,7 +1131,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2>The Path Forward</h2>
-          <p>The VCMI\u2019s guidance has crystallized market best practices: companies must first prioritize internal emission reductions, use only high-quality credits for residual emissions, and make transparent disclosures about their credit portfolio. CarbonSynqEarth\u2019s credit assessment engine evaluates each credit against VCMI, ICVCM, and CORSIA criteria, providing a quality score and recommendation. As of 2026, over 1,800 companies have established carbon credit portfolios under VCMI-aligned frameworks.</p>
+          <p>The VCMI\u2019s guidance has crystallized market best practices: companies must first prioritize internal emission reductions, use only high-quality credits for residual emissions, and make transparent disclosures about their credit portfolio. CarbonSynq\u2019s credit assessment engine evaluates each credit against VCMI, ICVCM, and CORSIA criteria, providing a quality score and recommendation. As of 2026, over 1,800 companies have established carbon credit portfolios under VCMI-aligned frameworks.</p>
         </div>
       </>);
 
@@ -1149,7 +1149,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           ]} />
 
           <h2 id="risk-heatmap">Resilience Score Heatmaps</h2>
-          <p>CarbonSynqEarth\u2019s Climate Resilience Score integrates 15 physical risk indicators — including flood depth projections, wildfire probability, extreme heat days, and hurricane wind speeds — into a single 0\u2013100 score for any property location. Properties in the top 20% of climate resilience command a 12% rental premium and 8\u201315% higher valuation multiples compared to high-risk assets.</p>
+          <p>CarbonSynq\u2019s Climate Resilience Score integrates 15 physical risk indicators — including flood depth projections, wildfire probability, extreme heat days, and hurricane wind speeds — into a single 0\u2013100 score for any property location. Properties in the top 20% of climate resilience command a 12% rental premium and 8\u201315% higher valuation multiples compared to high-risk assets.</p>
 
           <SimpleBarChart title="Properties at Risk by Climate Hazard (%)" data={[
             { label: 'Flooding', value: 42, color: '#3b82f6' },
@@ -1205,7 +1205,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2 id="risk-zoning">Climate Risk Zone Mapping</h2>
-          <p>Using FEMA flood maps, NOAA sea level rise projections, and First Street Foundation wildfire models, CarbonSynqEarth maps every commercial property into one of five risk zones: Critical (score 0\u201320), High (21\u201340), Moderate (41\u201360), Low (61\u201380), and Resilient (81\u2013100). Institutional investors now routinely apply a 1\u20133% cap rate adjustment based on resilience scores, directly impacting property valuations.</p>
+          <p>Using FEMA flood maps, NOAA sea level rise projections, and First Street Foundation wildfire models, CarbonSynq maps every commercial property into one of five risk zones: Critical (score 0\u201320), High (21\u201340), Moderate (41\u201360), Low (61\u201380), and Resilient (81\u2013100). Institutional investors now routinely apply a 1\u20133% cap rate adjustment based on resilience scores, directly impacting property valuations.</p>
 
           <Timeline items={[
             { year: '2023', title: 'SEC Climate Rule (Proposed)', desc: 'Climate risk disclosure requirements proposed for publicly traded companies including CRE exposure.' },
@@ -1215,7 +1215,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           ]} />
 
           <h2>Future-Proofing Strategy</h2>
-          <p>Leading CRE owners are adopting a \u201cresilience-first\u201d investment strategy, allocating 5\u201310% of capital expenditure to climate adaptation measures. Green bonds earmarked for resilience retrofits have grown to $45B annually. CarbonSynqEarth\u2019s Resilience Optimizer provides property-specific investment recommendations with ROI projections, helping owners prioritize capital allocation for maximum risk reduction and value preservation.</p>
+          <p>Leading CRE owners are adopting a \u201cresilience-first\u201d investment strategy, allocating 5\u201310% of capital expenditure to climate adaptation measures. Green bonds earmarked for resilience retrofits have grown to $45B annually. CarbonSynq\u2019s Resilience Optimizer provides property-specific investment recommendations with ROI projections, helping owners prioritize capital allocation for maximum risk reduction and value preservation.</p>
         </div>
       </>);
 
@@ -1532,7 +1532,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           ]} />
 
           <h2>Sustainable Packaging ROI</h2>
-          <p>Investing in sustainable packaging delivers measurable business returns. Companies that have made the transition report: 15\u201325% reduction in packaging material costs (through lightweighting), 20\u201330% lower transportation costs (due to weight and volume reduction), 8\u201312% revenue growth from sustainability-marketed products, and 30\u201345% reduction in plastic waste fees under EPR schemes. CarbonSynqEarth\u2019s Packaging Optimizer helps companies model the financial and environmental ROI of packaging transformation initiatives.</p>
+          <p>Investing in sustainable packaging delivers measurable business returns. Companies that have made the transition report: 15\u201325% reduction in packaging material costs (through lightweighting), 20\u201330% lower transportation costs (due to weight and volume reduction), 8\u201312% revenue growth from sustainability-marketed products, and 30\u201345% reduction in plastic waste fees under EPR schemes. CarbonSynq\u2019s Packaging Optimizer helps companies model the financial and environmental ROI of packaging transformation initiatives.</p>
         </div>
       </>);
 
@@ -1641,7 +1641,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           ]} />
 
           <h2 id="transparency">Transparency & Trust Metrics</h2>
-          <p>Consumer trust in environmental claims has reached an all-time low. Our global survey of 12,000 consumers reveals that only 32% trust corporate environmental claims, and 68% have stopped buying from a brand due to suspected greenwashing. However, companies that provide third-party verified data, specific measurable targets, and transparent supply chain disclosures earn significantly higher trust scores. The CarbonSynqEarth Trust Index measures corporate environmental communications against 15 integrity criteria.</p>
+          <p>Consumer trust in environmental claims has reached an all-time low. Our global survey of 12,000 consumers reveals that only 32% trust corporate environmental claims, and 68% have stopped buying from a brand due to suspected greenwashing. However, companies that provide third-party verified data, specific measurable targets, and transparent supply chain disclosures earn significantly higher trust scores. The CarbonSynq Trust Index measures corporate environmental communications against 15 integrity criteria.</p>
 
           <KpiRow items={[
             { label: 'Consumer Trust in Eco Claims', value: '32%', change: '-12% YoY', positive: false },
@@ -1718,7 +1718,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           ]} />
 
           <h2 id="automation">Compliance Automation ROI</h2>
-          <p>Organizations that have deployed AI-powered ESG automation report transformative results. Manual data collection efforts that required 2,400 person-hours per year are completed in 120 hours. Audit preparation time drops from 6 months to 2 weeks. Data accuracy improves from 68% to 97%. The average enterprise saves $3.2M annually in compliance costs while simultaneously improving reporting quality and reducing regulatory risk. CarbonSynqEarth\u2019s AI engine processes 50+ million data points per client, applying 200+ validation rules automatically.</p>
+          <p>Organizations that have deployed AI-powered ESG automation report transformative results. Manual data collection efforts that required 2,400 person-hours per year are completed in 120 hours. Audit preparation time drops from 6 months to 2 weeks. Data accuracy improves from 68% to 97%. The average enterprise saves $3.2M annually in compliance costs while simultaneously improving reporting quality and reducing regulatory risk. CarbonSynq\u2019s AI engine processes 50+ million data points per client, applying 200+ validation rules automatically.</p>
 
           <KpiRow items={[
             { label: 'Manual Hours Saved', value: '2,280/yr', change: 'Per reporting cycle', positive: true },
@@ -1748,7 +1748,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2 id="case-study">Case Study: Financial Services AI Compliance</h2>
-          <p>A global bank with $800B in assets under management deployed CarbonSynqEarth\u2019s AI-powered ESG compliance platform to manage reporting across 15 jurisdictions with different regulatory frameworks. The AI system automatically mapped each regulatory requirement to the appropriate data sources, flagged gaps, and generated framework-specific disclosures. Results included: 92% reduction in compliance reporting time (from 8 months to 3 weeks), 99.6% data accuracy rate, successful audits across all 15 jurisdictions without material findings, and $8.2M in annual compliance cost savings. The bank\u2019s ESG rating improved from BBB to AA within 18 months.</p>
+          <p>A global bank with $800B in assets under management deployed CarbonSynq\u2019s AI-powered ESG compliance platform to manage reporting across 15 jurisdictions with different regulatory frameworks. The AI system automatically mapped each regulatory requirement to the appropriate data sources, flagged gaps, and generated framework-specific disclosures. Results included: 92% reduction in compliance reporting time (from 8 months to 3 weeks), 99.6% data accuracy rate, successful audits across all 15 jurisdictions without material findings, and $8.2M in annual compliance cost savings. The bank\u2019s ESG rating improved from BBB to AA within 18 months.</p>
 
           <ComparisonTable
             headers={['Capability', 'Traditional', 'AI-Powered', 'Improvement']}
@@ -1851,7 +1851,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2>Case Study: Electronics Supply Chain Decarbonization</h2>
-          <p>A leading electronics manufacturer with 1,200 Tier 1 suppliers across 45 countries implemented a comprehensive Scope 3 program using CarbonSynqEarth\u2019s supplier engagement platform. The program automated data collection from 85% of suppliers, identified 320 high-emission suppliers for targeted intervention, provided capacity-building workshops and financial incentives for decarbonization investments. Results achieved over 24 months: 28% reduction in supply chain emission intensity, 92% supplier participation rate, $180M in identified energy cost savings across the supply base, and a CDP Supply Chain rating improvement from B to A. The company\u2019s investor relations team reported that Scope 3 disclosure was cited positively in 78% of ESG-focused investor meetings.</p>
+          <p>A leading electronics manufacturer with 1,200 Tier 1 suppliers across 45 countries implemented a comprehensive Scope 3 program using CarbonSynq\u2019s supplier engagement platform. The program automated data collection from 85% of suppliers, identified 320 high-emission suppliers for targeted intervention, provided capacity-building workshops and financial incentives for decarbonization investments. Results achieved over 24 months: 28% reduction in supply chain emission intensity, 92% supplier participation rate, $180M in identified energy cost savings across the supply base, and a CDP Supply Chain rating improvement from B to A. The company\u2019s investor relations team reported that Scope 3 disclosure was cited positively in 78% of ESG-focused investor meetings.</p>
         </div>
       </>);
 
@@ -1898,7 +1898,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2 id="impact">Economic Impact Assessment</h2>
-          <p>Carbon taxes are reshaping profitability across sectors. Energy-intensive industries face cost increases of 5\u201315% of EBITDA under current pricing scenarios. However, the revenue \u2014 $108B globally in 2025 \u2014 is increasingly used for green investments, dividend recycling, and social compensation. CarbonSynqEarth\u2019s analysis shows that companies that proactively decarbonize see their carbon tax liability decrease by an average of 12% annually, while laggards face 8% annual increases due to rising carbon prices and stagnant emission profiles.</p>
+          <p>Carbon taxes are reshaping profitability across sectors. Energy-intensive industries face cost increases of 5\u201315% of EBITDA under current pricing scenarios. However, the revenue \u2014 $108B globally in 2025 \u2014 is increasingly used for green investments, dividend recycling, and social compensation. CarbonSynq\u2019s analysis shows that companies that proactively decarbonize see their carbon tax liability decrease by an average of 12% annually, while laggards face 8% annual increases due to rising carbon prices and stagnant emission profiles.</p>
 
           <KpiRow items={[
             { label: 'Global Carbon Revenue (2025)', value: '$108B', change: '+35% YoY', positive: true },
@@ -1943,7 +1943,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
       return base(<>
         <HeroSection title={title} />
         <div className="detail-body">
-          <p id="overview" className="detail-lede">As ESG reporting transitions from voluntary to mandatory across the globe, organizations are discovering that the path to compliant, credible sustainability disclosure is fraught with challenges. Based on CarbonSynqEarth\u2019s analysis of 2,500+ corporate ESG reports and 400+ regulatory audit findings, we have identified five critical pitfalls that undermine reporting quality and expose organizations to regulatory, financial, and reputational risk.</p>
+          <p id="overview" className="detail-lede">As ESG reporting transitions from voluntary to mandatory across the globe, organizations are discovering that the path to compliant, credible sustainability disclosure is fraught with challenges. Based on CarbonSynq\u2019s analysis of 2,500+ corporate ESG reports and 400+ regulatory audit findings, we have identified five critical pitfalls that undermine reporting quality and expose organizations to regulatory, financial, and reputational risk.</p>
 
           <StatCards items={[
             { label: 'Reports with Material Errors', value: '45%', icon: AlertTriangle, color: '#ef4444' },
@@ -1967,7 +1967,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           <p>55% of reports fail to adequately define or consistently apply organizational and operational boundaries. Common omissions include: excluding acquired entities for the first 1\u20132 years post-acquisition, inconsistent treatment of joint ventures and leased assets, and selectively reporting emissions from high-performing facilities while omitting under-performing ones. The GHG Protocol\u2019s control approach (financial or operational) must be applied consistently, and any changes must be disclosed with restated comparative figures. Automated boundary management systems ensure that all entities are consistently included or excluded based on predefined rules.</p>
 
           <h2 id="pitfall-3">Pitfall 3: Insufficient Assurance Readiness</h2>
-          <p>48% of reports fail to meet the evidence standards required for limited or reasonable assurance. Auditors commonly cite: missing source documentation for emission factors, inadequate audit trails for calculated figures, lack of internal approval records, and insufficient documentation of estimation methodologies. With the SEC requiring limited assurance for Scope 1 & 2 by 2026 and the EU CSRD requiring mandatory assurance, organizations must maintain complete, immutable evidence chains for every reported data point. CarbonSynqEarth\u2019s platform automatically captures and preserves all source documents, calculation steps, and approval workflows.</p>
+          <p>48% of reports fail to meet the evidence standards required for limited or reasonable assurance. Auditors commonly cite: missing source documentation for emission factors, inadequate audit trails for calculated figures, lack of internal approval records, and insufficient documentation of estimation methodologies. With the SEC requiring limited assurance for Scope 1 & 2 by 2026 and the EU CSRD requiring mandatory assurance, organizations must maintain complete, immutable evidence chains for every reported data point. CarbonSynq\u2019s platform automatically captures and preserves all source documents, calculation steps, and approval workflows.</p>
 
           <KpiRow items={[
             { label: 'Audit Readiness Gap', value: '52%', change: 'Of companies', positive: false },
@@ -2013,7 +2013,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2>Case Study: Fortune 500 Reporting Transformation</h2>
-          <p>A Fortune 500 industrial company faced 22 material findings in its 2024 ESG audit, triggering a 15% stock decline and regulatory inquiry. CarbonSynqEarth conducted a comprehensive gap analysis, revealing all five pitfalls across the company\u2019s reporting process. The company implemented a centralized ESG data platform with automated data collection from 45 ERP systems, consistent methodology governance, immutable audit trails, and double materiality reporting aligned with CSRD. Within 12 months, the company achieved its first audit with zero material findings, reduced reporting cycle time from 9 months to 4 weeks, and improved its MSCI ESG rating from BB to A.</p>
+          <p>A Fortune 500 industrial company faced 22 material findings in its 2024 ESG audit, triggering a 15% stock decline and regulatory inquiry. CarbonSynq conducted a comprehensive gap analysis, revealing all five pitfalls across the company\u2019s reporting process. The company implemented a centralized ESG data platform with automated data collection from 45 ERP systems, consistent methodology governance, immutable audit trails, and double materiality reporting aligned with CSRD. Within 12 months, the company achieved its first audit with zero material findings, reduced reporting cycle time from 9 months to 4 weeks, and improved its MSCI ESG rating from BB to A.</p>
         </div>
       </>);
 
@@ -2064,7 +2064,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2 id="action-plan">Action Plan: Year 1 Priorities</h2>
-          <p>CarbonSynqEarth\u2019s recommended Year 1 action plan: <strong>Month 1-2</strong>: Complete comprehensive carbon footprint across all scopes with third-party data validation. <strong>Month 3-4</strong>: Establish decarbonization governance including board-level ESG committee and executive compensation linked to carbon targets. <strong>Month 5-6</strong>: Submit SBTi commitment letter and begin target validation process. <strong>Month 7-9</strong>: Deploy energy efficiency measures with highest ROI (lighting, HVAC, compressed air improvements). <strong>Month 10-12</strong>: Execute renewable energy PPA agreements covering 50%+ of electricity consumption. Companies following this timeline achieve an average 18% emission reduction in Year 1.</p>
+          <p>CarbonSynq\u2019s recommended Year 1 action plan: <strong>Month 1-2</strong>: Complete comprehensive carbon footprint across all scopes with third-party data validation. <strong>Month 3-4</strong>: Establish decarbonization governance including board-level ESG committee and executive compensation linked to carbon targets. <strong>Month 5-6</strong>: Submit SBTi commitment letter and begin target validation process. <strong>Month 7-9</strong>: Deploy energy efficiency measures with highest ROI (lighting, HVAC, compressed air improvements). <strong>Month 10-12</strong>: Execute renewable energy PPA agreements covering 50%+ of electricity consumption. Companies following this timeline achieve an average 18% emission reduction in Year 1.</p>
 
           <SimpleBarChart title="Average Year 1 Reduction by Action (%)" data={[
             { label: 'Energy Efficiency', value: 12, color: '#059669' },
@@ -2101,7 +2101,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2>Case Study: Mid-Size Manufacturer Full Decarbonization</h2>
-          <p>A mid-size industrial manufacturer with $800M revenue and 35,000 tCO2e annual emissions implemented the full decarbonization action plan using CarbonSynqEarth\u2019s platform. Over 3 years, the company reduced emissions by 52% (from 35,000 to 16,800 tCO2e) through: LED and HVAC upgrades (18% reduction), 8 MW on-site solar installation (22% reduction), fleet electrification of 120 vehicles (8% reduction), and supplier decarbonization program (4% reduction). Total investment of $4.8M generated $1.2M annual energy savings plus $840K in avoided carbon taxes. The company\u2019s CDP score improved from D to A-, and it secured a \u20ac30M sustainability-linked loan at 60 bps below market rate.</p>
+          <p>A mid-size industrial manufacturer with $800M revenue and 35,000 tCO2e annual emissions implemented the full decarbonization action plan using CarbonSynq\u2019s platform. Over 3 years, the company reduced emissions by 52% (from 35,000 to 16,800 tCO2e) through: LED and HVAC upgrades (18% reduction), 8 MW on-site solar installation (22% reduction), fleet electrification of 120 vehicles (8% reduction), and supplier decarbonization program (4% reduction). Total investment of $4.8M generated $1.2M annual energy savings plus $840K in avoided carbon taxes. The company\u2019s CDP score improved from D to A-, and it secured a \u20ac30M sustainability-linked loan at 60 bps below market rate.</p>
         </div>
       </>);
 
@@ -2131,7 +2131,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           ]} />
 
           <h2 id="supplier-scoring">Supplier ESG Scoring Methodology</h2>
-          <p>CarbonSynqEarth\u2019s supplier ESG scoring model evaluates suppliers across 45 quantitative and qualitative indicators using automated data collection and third-party verification. The scoring framework produces a 0\u2013100 score across E, S, and G dimensions, with an overall ESG tier rating (Platinum 85+, Gold 70\u201384, Silver 55\u201369, Bronze 40\u201354, and Below Threshold {'<40'}). Companies using this methodology report that Platinum and Gold suppliers deliver 22% fewer supply disruptions, 15% higher quality ratings, and 8% lower total cost of ownership compared to Bronze-rated suppliers.</p>
+          <p>CarbonSynq\u2019s supplier ESG scoring model evaluates suppliers across 45 quantitative and qualitative indicators using automated data collection and third-party verification. The scoring framework produces a 0\u2013100 score across E, S, and G dimensions, with an overall ESG tier rating (Platinum 85+, Gold 70\u201384, Silver 55\u201369, Bronze 40\u201354, and Below Threshold {'<40'}). Companies using this methodology report that Platinum and Gold suppliers deliver 22% fewer supply disruptions, 15% higher quality ratings, and 8% lower total cost of ownership compared to Bronze-rated suppliers.</p>
 
           <ComparisonTable
             headers={['Tier', 'Score Range', '% of Suppliers', 'Risk Level']}
@@ -2174,7 +2174,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2 id="case-study">Case Study: Automotive OEM Sustainable Procurement Transformation</h2>
-          <p>A global automotive manufacturer with 3,500+ suppliers and $48B annual procurement spend implemented a comprehensive sustainable procurement strategy using CarbonSynqEarth\u2019s platform. Over 24 months, the company: assessed and scored 100% of Tier 1 suppliers against 45 ESG criteria, launched a supplier capacity-building program reaching 850 strategic suppliers, established contractual ESG KPIs with financial incentives covering 72% of procurement spend, and achieved a 28% reduction in supply chain carbon intensity. The program cost $6.2M to implement but generated $42M in annual savings through energy efficiency, waste reduction, and logistics optimization identified through supplier collaboration. The company\u2019s supply chain resilience score improved by 35%, and it achieved an A- rating on CDP Supply Chain for the first time.</p>
+          <p>A global automotive manufacturer with 3,500+ suppliers and $48B annual procurement spend implemented a comprehensive sustainable procurement strategy using CarbonSynq\u2019s platform. Over 24 months, the company: assessed and scored 100% of Tier 1 suppliers against 45 ESG criteria, launched a supplier capacity-building program reaching 850 strategic suppliers, established contractual ESG KPIs with financial incentives covering 72% of procurement spend, and achieved a 28% reduction in supply chain carbon intensity. The program cost $6.2M to implement but generated $42M in annual savings through energy efficiency, waste reduction, and logistics optimization identified through supplier collaboration. The company\u2019s supply chain resilience score improved by 35%, and it achieved an A- rating on CDP Supply Chain for the first time.</p>
         </div>
       </>);
 
@@ -2226,7 +2226,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2 id="preparation">Preparation Strategy for Importers</h2>
-          <p>Companies importing CBAM-covered goods should take immediate action: <strong>Step 1</strong>: Identify all CBAM-covered products in your import portfolio and assess exposure. <strong>Step 2</strong>: Engage suppliers to collect verified embedded emission data using the EU\u2019s default or actual calculation methodology. <strong>Step 3</strong>: Register as an authorized CBAM declarant with your member state customs authority. <strong>Step 4</strong>: Implement systems for quarterly CBAM reporting with auditable data trails. <strong>Step 5</strong>: Develop a decarbonization roadmap for your supply chain to reduce CBAM liability over time. CarbonSynqEarth\u2019s CBAM module automates the entire compliance workflow from data collection through certificate management.</p>
+          <p>Companies importing CBAM-covered goods should take immediate action: <strong>Step 1</strong>: Identify all CBAM-covered products in your import portfolio and assess exposure. <strong>Step 2</strong>: Engage suppliers to collect verified embedded emission data using the EU\u2019s default or actual calculation methodology. <strong>Step 3</strong>: Register as an authorized CBAM declarant with your member state customs authority. <strong>Step 4</strong>: Implement systems for quarterly CBAM reporting with auditable data trails. <strong>Step 5</strong>: Develop a decarbonization roadmap for your supply chain to reduce CBAM liability over time. CarbonSynq\u2019s CBAM module automates the entire compliance workflow from data collection through certificate management.</p>
 
           <FlowDiagram steps={[
             { label: 'Identify Exposure', sub: 'CBAM-covered products' },
@@ -2253,7 +2253,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2>Case Study: Steel Importer CBAM Readiness</h2>
-          <p>A European steel importer handling 500,000 tons annually from non-EU suppliers faced a potential \u20ac49M annual CBAM liability at full implementation. Using CarbonSynqEarth\u2019s CBAM Readiness Platform, the company: mapped 185 SKUs to CBAM product categories, onboarded 45 supplier facilities onto the platform for automated emission data collection, identified 12 suppliers with significantly lower carbon intensity for preferential sourcing, and developed a 5-year decarbonization partnership program with its top 10 suppliers. Within 18 months, the company reduced its average embedded carbon intensity by 22%, cutting its projected CBAM liability by \u20ac10.8M annually, while the program cost just \u20ac1.2M. The company also secured preferred importer status with customs authorities through its demonstrated compliance system.</p>
+          <p>A European steel importer handling 500,000 tons annually from non-EU suppliers faced a potential \u20ac49M annual CBAM liability at full implementation. Using CarbonSynq\u2019s CBAM Readiness Platform, the company: mapped 185 SKUs to CBAM product categories, onboarded 45 supplier facilities onto the platform for automated emission data collection, identified 12 suppliers with significantly lower carbon intensity for preferential sourcing, and developed a 5-year decarbonization partnership program with its top 10 suppliers. Within 18 months, the company reduced its average embedded carbon intensity by 22%, cutting its projected CBAM liability by \u20ac10.8M annually, while the program cost just \u20ac1.2M. The company also secured preferred importer status with customs authorities through its demonstrated compliance system.</p>
         </div>
       </>);
 
@@ -2324,7 +2324,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2 id="case-study">Case Study: Industrial Facility Comprehensive Audit</h2>
-          <p>A food processing facility with 85,000 m² of production space and annual energy costs of $4.2M underwent a Level 3 investment-grade audit using CarbonSynqEarth\u2019s energy audit platform. The audit identified 22 ECMs with total investment of $3.8M and annual savings of $1.2M (28% reduction). Key findings included: compressed air leak repair ($180K savings, 3-month payback), ammonia refrigeration VFD controls ($320K savings, 18-month payback), waste heat recovery from ovens ($240K savings, 30-month payback), and solar PV installation on 40,000 m² of roof space ($460K savings, 7-year payback). The company implemented the first 14 ECMs within 12 months at $1.5M investment, achieving $780K annual savings and validating the audit methodology. The remaining ECMs were phased into a 3-year capital plan with combined payback of 3.2 years.</p>
+          <p>A food processing facility with 85,000 m² of production space and annual energy costs of $4.2M underwent a Level 3 investment-grade audit using CarbonSynq\u2019s energy audit platform. The audit identified 22 ECMs with total investment of $3.8M and annual savings of $1.2M (28% reduction). Key findings included: compressed air leak repair ($180K savings, 3-month payback), ammonia refrigeration VFD controls ($320K savings, 18-month payback), waste heat recovery from ovens ($240K savings, 30-month payback), and solar PV installation on 40,000 m² of roof space ($460K savings, 7-year payback). The company implemented the first 14 ECMs within 12 months at $1.5M investment, achieving $780K annual savings and validating the audit methodology. The remaining ECMs were phased into a 3-year capital plan with combined payback of 3.2 years.</p>
         </div>
       </>);
 
@@ -2460,7 +2460,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2 id="case-study">Case Study: Manufacturer SBTi Validation Journey</h2>
-          <p>A European manufacturer with 28 production facilities across 12 countries embarked on the SBTi validation process using CarbonSynqEarth\u2019s SBTi Readiness Platform. The company\u2019s base year emissions were 285,000 tCO2e (Scope 1 & 2: 95,000 tCO2e; Scope 3: 190,000 tCO2e). The SBTi validation process required: 8 months from commitment to submission, 12 weeks for validation review with two clarification rounds, and a total investment of $380K in data systems and consultant support. The approved targets were: 46.2% reduction in Scope 1 & 2 by 2030 (from 2023 base) and 30% reduction in Scope 3 by 2030. To achieve these targets, the company deployed a comprehensive decarbonization plan including: 25 MW on-site solar, 40% fleet EV transition, and a supplier engagement program covering 75% of Scope 3 emissions. Progress tracking showed 18% Scope 1&2 reduction and 12% Scope 3 reduction in Year 1, on track for 2030 targets.</p>
+          <p>A European manufacturer with 28 production facilities across 12 countries embarked on the SBTi validation process using CarbonSynq\u2019s SBTi Readiness Platform. The company\u2019s base year emissions were 285,000 tCO2e (Scope 1 & 2: 95,000 tCO2e; Scope 3: 190,000 tCO2e). The SBTi validation process required: 8 months from commitment to submission, 12 weeks for validation review with two clarification rounds, and a total investment of $380K in data systems and consultant support. The approved targets were: 46.2% reduction in Scope 1 & 2 by 2030 (from 2023 base) and 30% reduction in Scope 3 by 2030. To achieve these targets, the company deployed a comprehensive decarbonization plan including: 25 MW on-site solar, 40% fleet EV transition, and a supplier engagement program covering 75% of Scope 3 emissions. Progress tracking showed 18% Scope 1&2 reduction and 12% Scope 3 reduction in Year 1, on track for 2030 targets.</p>
 
           <SimpleBarChart title="SBTi Rejection Reasons (% of submissions)" data={[
             { label: 'Insufficient Ambition', value: 32, color: '#ef4444' },
@@ -2605,7 +2605,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           ]} />
 
           <h2 id="case-study">Case Study: CSRD Compliance Transformation</h2>
-          <p>A German automotive supplier with \u20ac12B revenue and operations in 28 countries undertook a comprehensive CSRD compliance program using CarbonSynqEarth\u2019s CSRD Compliance Platform. The 18-month program included: double materiality assessment engaging 85 internal and external stakeholders across 12 ESRS standards; gap analysis of 1,200+ data points identifying 680 gaps with remediation plans; deployment of automated data collection from 45 source systems covering 92% of required data points; implementation of ESRS-aligned internal control framework with automated audit trails; and training program for 320 finance, sustainability, and legal team members. Results: first CSRD report published on time with zero material findings from the statutory auditor, 95% data completeness rate, and 60% reduction in ongoing compliance effort through automation. The total program cost of \u20ac4.2M was offset by \u20ac1.8M in identified operational efficiencies and a 20 bps reduction in sustainability-linked loan pricing.</p>
+          <p>A German automotive supplier with \u20ac12B revenue and operations in 28 countries undertook a comprehensive CSRD compliance program using CarbonSynq\u2019s CSRD Compliance Platform. The 18-month program included: double materiality assessment engaging 85 internal and external stakeholders across 12 ESRS standards; gap analysis of 1,200+ data points identifying 680 gaps with remediation plans; deployment of automated data collection from 45 source systems covering 92% of required data points; implementation of ESRS-aligned internal control framework with automated audit trails; and training program for 320 finance, sustainability, and legal team members. Results: first CSRD report published on time with zero material findings from the statutory auditor, 95% data completeness rate, and 60% reduction in ongoing compliance effort through automation. The total program cost of \u20ac4.2M was offset by \u20ac1.8M in identified operational efficiencies and a 20 bps reduction in sustainability-linked loan pricing.</p>
 
           <ComparisonTable
             headers={['Readiness Level', 'Data Coverage', 'Materiality', 'Systems', 'Timeline Risk']}
@@ -2699,7 +2699,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           />
 
           <h2 id="case-study">Case Study: Global Chemical Company ICP Program</h2>
-          <p>A global chemical company with $35B revenue and 18 MtCO2e annual emissions implemented a comprehensive internal carbon pricing program using CarbonSynqEarth\u2019s ICP platform. The company adopted a hybrid approach: a $75/t shadow price for all capital investments over $5M, and a $25/t internal carbon fee applied to business unit P&Ls with funds directed to a central decarbonization fund. Over 3 years, the program transformed investment decisions \u2014 72% of approved capital projects now include carbon ROI as a primary criterion, compared to 12% before ICP. The carbon fund collected $450M, financing 85 decarbonization projects with combined annual savings of 2.8 MtCO2e and $180M in energy cost reductions. Business units achieved an average 15% emission reduction through a combination of operational changes (8%) and capital investments (7%). The program achieved full cost recovery within 14 months. Investor relations reported that the ICP program was cited as a best practice by 85% of ESG analysts covering the company.</p>
+          <p>A global chemical company with $35B revenue and 18 MtCO2e annual emissions implemented a comprehensive internal carbon pricing program using CarbonSynq\u2019s ICP platform. The company adopted a hybrid approach: a $75/t shadow price for all capital investments over $5M, and a $25/t internal carbon fee applied to business unit P&Ls with funds directed to a central decarbonization fund. Over 3 years, the program transformed investment decisions \u2014 72% of approved capital projects now include carbon ROI as a primary criterion, compared to 12% before ICP. The carbon fund collected $450M, financing 85 decarbonization projects with combined annual savings of 2.8 MtCO2e and $180M in energy cost reductions. Business units achieved an average 15% emission reduction through a combination of operational changes (8%) and capital investments (7%). The program achieved full cost recovery within 14 months. Investor relations reported that the ICP program was cited as a best practice by 85% of ESG analysts covering the company.</p>
 
           <SimplePieChart
             title="ICP Fund Allocation by Project Type"
@@ -2732,9 +2732,9 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           <div className="dh-image" style={{ backgroundImage: `url(${img})` }} />
           <div className="dh-overlay" />
           <div className="dh-content">
-            <div className="dh-eyebrow"><Sparkles size={14} /> CarbonSynqEarth Knowledge Hub</div>
+            <div className="dh-eyebrow"><Sparkles size={14} /> CarbonSynq Knowledge Hub</div>
             <h1>{title}</h1>
-            <p>{subtitle[title] || 'An in-depth resource from CarbonSynqEarth\u2019s sustainability research team.'}</p>
+            <p>{subtitle[title] || 'An in-depth resource from CarbonSynq\u2019s sustainability research team.'}</p>
             <div className="dh-meta">
               <span><BookOpen size={14} /> Resource Guide</span>
               <span><BarChart3 size={14} /> Data-driven insights</span>
@@ -2743,7 +2743,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           </div>
         </div>
         <div className="detail-body">
-          <p className="detail-lede">This resource provides a comprehensive overview of {title.toLowerCase()}. In this analysis, CarbonSynqEarth\u2019s research team breaks down the key concepts, emerging trends, and actionable strategies that organizations need to navigate this critical sustainability topic.</p>
+          <p className="detail-lede">This resource provides a comprehensive overview of {title.toLowerCase()}. In this analysis, CarbonSynq\u2019s research team breaks down the key concepts, emerging trends, and actionable strategies that organizations need to navigate this critical sustainability topic.</p>
 
           <StatCards items={[
             { label: 'Relevant Frameworks', value: '12+', icon: ShieldCheck, color: '#059669' },
@@ -2753,7 +2753,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           ]} />
 
           <h2>Overview</h2>
-          <p>The landscape of {title.toLowerCase()} is evolving rapidly. Organizations must stay informed about the latest regulatory developments, technological innovations, and market dynamics to maintain a competitive edge. CarbonSynqEarth\u2019s research indicates that early movers in this space are achieving significant advantages in terms of risk management, operational efficiency, and stakeholder trust.</p>
+          <p>The landscape of {title.toLowerCase()} is evolving rapidly. Organizations must stay informed about the latest regulatory developments, technological innovations, and market dynamics to maintain a competitive edge. CarbonSynq\u2019s research indicates that early movers in this space are achieving significant advantages in terms of risk management, operational efficiency, and stakeholder trust.</p>
 
           <SimpleBarChart title="Key Impact Areas" data={[
             { label: 'Regulatory', value: 85, color: '#059669' },
@@ -2773,7 +2773,7 @@ export function getArticleContent(title: string, onDownload?: () => void): React
           ]} />
 
           <h2>Analysis</h2>
-          <p>To effectively address {title.toLowerCase()}, organizations should adopt a structured approach: assess current maturity against industry benchmarks, identify priority gaps and opportunities, develop a roadmap aligned with business strategy, implement supporting technology and processes, and establish ongoing monitoring and reporting mechanisms. CarbonSynqEarth\u2019s platform provides end-to-end support for each of these stages, from data collection through to audit-ready reporting.</p>
+          <p>To effectively address {title.toLowerCase()}, organizations should adopt a structured approach: assess current maturity against industry benchmarks, identify priority gaps and opportunities, develop a roadmap aligned with business strategy, implement supporting technology and processes, and establish ongoing monitoring and reporting mechanisms. CarbonSynq\u2019s platform provides end-to-end support for each of these stages, from data collection through to audit-ready reporting.</p>
 
           <ComparisonTable
             headers={['Stage', 'Current State', 'Target State', 'Timeline']}

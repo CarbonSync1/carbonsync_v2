@@ -87,27 +87,27 @@ export default function App() {
  efficiency: {
  label: 'Efficiency',
  challenge: 'Collecting scope 3 activity data is a time-consuming and cumbersome exercise requiring extensive collaboration between multiple stakeholders.',
- benefit: 'CarbonSynqEarth streamlines & centralizes your scope 3 activity data collection, allowing stakeholders to upload relevant data seamlessly through bulk uploads & API integrations.'
+ benefit: 'CarbonSynq streamlines & centralizes your scope 3 activity data collection, allowing stakeholders to upload relevant data seamlessly through bulk uploads & API integrations.'
  },
  customization: {
  label: 'Customization',
  challenge: 'Scope 3 calculation methodologies vary significantly and require modifications to account for improvements in data collection capabilities.',
- benefit: 'CarbonSynqEarth allows for customizable calculation methodologies, which can be tailored to suit your specific data collection capabilities, and updated to align with improvements.'
+ benefit: 'CarbonSynq allows for customizable calculation methodologies, which can be tailored to suit your specific data collection capabilities, and updated to align with improvements.'
  },
  automation: {
  label: 'Automation',
  challenge: 'Conducting manual scope 3 emission calculations every year demands considerable time and effort from your sustainability team.',
- benefit: 'CarbonSynqEarth reduces your sustainability team\'s annual burden by maximising repeatability of data collection & calculation configurations, automatically applied year on year.'
+ benefit: 'CarbonSynq reduces your sustainability team\'s annual burden by maximising repeatability of data collection & calculation configurations, automatically applied year on year.'
  },
  clarity: {
  label: 'Clarity',
- challenge: 'Charting a long-term path to reach your CarbonSynqEarth Zero goals is a daunting task with no clear visibility on progress or deviations.',
- benefit: 'CarbonSynqEarth breaks down your long-term decarbonization goals into manageable annual targets, allowing you to gauge progress regularly and identify deviations.'
+ challenge: 'Charting a long-term path to reach your CarbonSynq Zero goals is a daunting task with no clear visibility on progress or deviations.',
+ benefit: 'CarbonSynq breaks down your long-term decarbonization goals into manageable annual targets, allowing you to gauge progress regularly and identify deviations.'
  },
  support: {
  label: 'Support',
- challenge: 'Even after planning CarbonSynqEarth Zero pathways, companies often struggle to navigate implementation complexities due to a lack of specialised expertise.',
- benefit: 'CarbonSynqEarth provides a curated network of vendors to help implement your CarbonSynqEarth Zero strategy, covering decarbonization implementation, carbon offsetting & green financing.'
+ challenge: 'Even after planning CarbonSynq Zero pathways, companies often struggle to navigate implementation complexities due to a lack of specialised expertise.',
+ benefit: 'CarbonSynq provides a curated network of vendors to help implement your CarbonSynq Zero strategy, covering decarbonization implementation, carbon offsetting & green financing.'
  }
  };
 
@@ -147,7 +147,7 @@ export default function App() {
  },
  achieve: {
  label: 'Achieve',
- desc: 'Access our curated marketplace of vendors that provide implementation services across decarbonization, carbon offsets, & carbon finance to turn your CarbonSynqEarth Zero ambitions into reality.',
+ desc: 'Access our curated marketplace of vendors that provide implementation services across decarbonization, carbon offsets, & carbon finance to turn your CarbonSynq Zero ambitions into reality.',
  icon: 'Leaf',
  image: '/netzero/achieve.webp',
  highlights: [
@@ -243,7 +243,7 @@ export default function App() {
  <div
  className="inline-flex items-center gap-2 text-xs font-semibold text-[#4ade80] mb-6"
  >
- <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-10 h-10 object-contain" />
+ <img src="/unnamed.webp" alt="CarbonSynq Logo" className="w-10 h-10 object-contain" />
  <span>Version 2.4 Enterprise Platform Now Live</span>
  </div>
 
@@ -252,7 +252,7 @@ export default function App() {
  >
  Accelerate Your <br />
  Net Zero Journey <br />
- with <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">CarbonSynqEarth Zero</span>
+ with <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">CarbonSynq Zero</span>
  </h1>
 
  <p
@@ -353,7 +353,7 @@ export default function App() {
  <div className="text-center mb-12 max-w-2xl mx-auto">
  <h2 className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-3">Strategic Overview</h2>
  <h3 className="text-3xl font-extrabold text-slate-900 mb-4">Command Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">Carbon Lifecycle</span></h3>
- <p className="text-slate-500 text-sm">Select a strategic pillar below to explore how CarbonSynqEarth transforms your raw data into actionable enterprise value.</p>
+ <p className="text-slate-500 text-sm">Select a strategic pillar below to explore how CarbonSynq transforms your raw data into actionable enterprise value.</p>
  </div>
 
  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -363,7 +363,7 @@ export default function App() {
  title: 'Emissions Visibility',
  icon: <Activity className="w-6 h-6" />,
  summary: 'Comprehensive tracking across all scopes and supply chain tiers.',
- details: 'Instantly ingest telemetry from ERPs, utility APIs, and supplier invoices. CarbonSynqEarth maps 100% of your footprint in real-time.',
+ details: 'Instantly ingest telemetry from ERPs, utility APIs, and supplier invoices. CarbonSynq maps 100% of your footprint in real-time.',
  bullets: ['Scope 1, 2, 3 auto-classification', 'Supplier API integrations', 'Real-time hotspot detection']
  },
  {
@@ -492,13 +492,13 @@ export default function App() {
  <div
  >
  <div className="inline-flex items-center gap-2 text-xs font-bold text-emerald-700 mb-6 uppercase tracking-widest">
- <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-10 h-10 object-contain" /> About the Platform
+ <img src="/unnamed.webp" alt="CarbonSynq Logo" className="w-10 h-10 object-contain" /> About the Platform
  </div>
  <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">
- What is <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-400">CarbonSynqEarth</span>?
+ What is <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-400">CarbonSynq</span>?
  </h2>
  <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto mb-10">
- Demystify CarbonSynqEarth Zero! Wherever you are in your CarbonSynqEarth Zero journey, CarbonSynqEarth empowers you to <strong className="text-slate-800">measure & report scope 3 emissions</strong> in accordance with the GHG protocol, strategize & implement your path to CarbonSynqEarth Zero — all in one platform.
+ Demystify CarbonSynq Zero! Wherever you are in your CarbonSynq Zero journey, CarbonSynq empowers you to <strong className="text-slate-800">measure & report scope 3 emissions</strong> in accordance with the GHG protocol, strategize & implement your path to CarbonSynq Zero — all in one platform.
  </p>
  <div className="flex flex-wrap items-center justify-center gap-8 mt-8">
  {[
@@ -572,7 +572,7 @@ export default function App() {
  <Sparkles className="w-3.5 h-3.5" /> Pain → Solution
  </div>
  <h2 className="text-3xl md:text-4xl font-extrabold mb-4"><span className="text-slate-900">Every</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">pain point</span><span className="text-slate-900">, solved</span></h2>
- <p className="text-slate-500 max-w-2xl mx-auto">Hover over each card to discover how CarbonSynqEarth transforms your biggest sustainability challenges into competitive advantages.</p>
+ <p className="text-slate-500 max-w-2xl mx-auto">Hover over each card to discover how CarbonSynq transforms your biggest sustainability challenges into competitive advantages.</p>
  </div>
 
  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -595,7 +595,7 @@ export default function App() {
  style={{ backfaceVisibility: 'hidden' }}
  >
  <div>
- <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-14 h-14 object-contain mb-4" />
+ <img src="/unnamed.webp" alt="CarbonSynq Logo" className="w-14 h-14 object-contain mb-4" />
  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-red-400 mb-2 block">The Challenge</span>
  <h3 className="text-lg font-extrabold text-slate-900 mb-3">{val.label}</h3>
  <p className="text-slate-500 text-sm leading-relaxed">{val.challenge}</p>
@@ -615,7 +615,7 @@ export default function App() {
  <div className="w-10 h-10 rounded-xl bg-slate-200 backdrop-blur-sm flex items-center justify-center mb-4">
  <Check className="w-5 h-5 text-slate-900" />
  </div>
- <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-200 mb-2 block">The CarbonSynqEarth Solution</span>
+ <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-200 mb-2 block">The CarbonSynq Solution</span>
  <h3 className="text-lg font-extrabold text-slate-900 mb-3">{val.label}</h3>
  <p className="text-emerald-100 text-sm leading-relaxed">{val.benefit}</p>
  </div>
@@ -633,7 +633,7 @@ export default function App() {
  <ArrowUpRight className="w-6 h-6 text-emerald-600" />
  </div>
  <h3 className="text-lg font-extrabold text-slate-900 mb-2">Ready to solve yours?</h3>
- <p className="text-slate-500 text-sm mb-5">See how CarbonSynqEarth handles your specific use case.</p>
+ <p className="text-slate-500 text-sm mb-5">See how CarbonSynq handles your specific use case.</p>
  <button onClick={() => { window.location.href = '/book-demo'; }} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 text-slate-900 text-sm font-bold hover:bg-emerald-700 transition-colors shadow-md">
  Book a Demo <ArrowRight className="w-3.5 h-3.5" />
  </button>
@@ -652,10 +652,10 @@ export default function App() {
  <div
  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-50 border border-emerald-200 text-sm md:text-base font-bold text-emerald-700 mb-6 uppercase tracking-wider font-sans shadow-sm"
  >
- <Layers className="w-4 h-4 text-emerald-600" /> CarbonSynqEarth Zero Framework
+ <Layers className="w-4 h-4 text-emerald-600" /> CarbonSynq Zero Framework
  </div>
  <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-955 mb-6 leading-tight font-sans">
- Your complete <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">CarbonSynqEarth Zero</span> journey
+ Your complete <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">CarbonSynq Zero</span> journey
  </h2>
  <p className="text-slate-600 text-base md:text-lg max-w-3xl mx-auto mb-6">From data collection to real-world implementation — every step is covered.</p>
  </div>
@@ -720,7 +720,7 @@ export default function App() {
  </div>
  {/* URL / Brand Address Bar */}
  <div className="flex items-center gap-1.5 text-[10px] font-semibold text-slate-600">
- <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-10 h-10 object-contain" />
+ <img src="/unnamed.webp" alt="CarbonSynq Logo" className="w-10 h-10 object-contain" />
  <span className="tracking-tight text-slate-700">app.carbonsynqearth.com</span>
  </div>
  <div className="w-10" /> {/* Spacer to center URL bar */}
@@ -743,7 +743,7 @@ export default function App() {
  </div>
  </section>
 
- {/* 4. CarbonSynqEarth Zero SECTION (LIGHT BG + DARK TEXT) */}
+ {/* 4. CarbonSynq Zero SECTION (LIGHT BG + DARK TEXT) */}
  <section
  id="netzero"
  className="py-24 px-6 bg-slate-50 relative overflow-hidden"
@@ -759,7 +759,7 @@ export default function App() {
  </h3>
 
  <p className="text-black mb-8 leading-relaxed">
- Achieving CarbonSynqEarth Zero requires a structured, audit-ready framework. Our platform guides your teams through continuous mapping and dynamic auditing.
+ Achieving CarbonSynq Zero requires a structured, audit-ready framework. Our platform guides your teams through continuous mapping and dynamic auditing.
  </p>
 
  {/* Interactive Timeline */}
@@ -801,7 +801,7 @@ export default function App() {
  <div className="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-full blur-2xl" />
 
  <h4 className="text-lg font-bold text-black mb-6 flex items-center gap-2">
- <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-12 h-12 object-contain" /> Dynamic Decarbonization Pipeline
+ <img src="/unnamed.webp" alt="CarbonSynq Logo" className="w-12 h-12 object-contain" /> Dynamic Decarbonization Pipeline
  </h4>
 
  {/* Progress Targets */}
@@ -832,8 +832,8 @@ export default function App() {
 
  <div>
  <div className="flex justify-between items-center mb-2">
- <span className="text-sm font-semibold text-black">2040 Target: Complete CarbonSynqEarth Zero Integration</span>
- <span className="text-sm font-bold text-black">100% CarbonSynqEarth Zero</span>
+ <span className="text-sm font-semibold text-black">2040 Target: Complete CarbonSynq Zero Integration</span>
+ <span className="text-sm font-bold text-black">100% CarbonSynq Zero</span>
  </div>
  <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden p-[1px] border border-slate-200">
  <div
@@ -1147,7 +1147,7 @@ export default function App() {
  <div className="flex flex-wrap items-center justify-between border-b border-slate-200 p-4 gap-4 bg-slate-100/20 rounded-t-2xl">
  <div className="flex items-center gap-6">
  <span className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
- <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-12 h-12 object-contain" /> CarbonSynqEarth Pro
+ <img src="/unnamed.webp" alt="CarbonSynq Logo" className="w-12 h-12 object-contain" /> CarbonSynq Pro
  </span>
  <div className="hidden sm:flex items-center gap-2 text-xs text-slate-600">
  <span className="px-2 py-0.5 rounded bg-slate-50 border border-slate-200">v2.4</span>
@@ -1430,11 +1430,11 @@ export default function App() {
 
  <div className="flex-1 text-center lg:text-left relative z-10">
  <div className="inline-flex items-center gap-2 text-[10px] font-bold text-emerald-400 mb-4 uppercase tracking-widest">
- <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-10 h-10 object-contain" />
+ <img src="/unnamed.webp" alt="CarbonSynq Logo" className="w-10 h-10 object-contain" />
  Join 100+ Enterprise Pacesetters
  </div>
  <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white mb-3">
- Drive measurable climate impact with CarbonSynqEarth
+ Drive measurable climate impact with CarbonSynq
  </h3>
  <p className="text-sm text-slate-400 max-w-xl mx-auto lg:mx-0">
  Start mapping Scope 1, 2, and 3 emissions, generating compliant audit reports, and optimizing your logistics telemetry in days.
@@ -1576,7 +1576,7 @@ export default function App() {
  <div className="text-center max-w-3xl mx-auto mb-20">
  <h2 className="text-xs font-bold uppercase tracking-widest text-[#4ade80] mb-3">Enterprise Efficiency Mapping</h2>
  <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-4">
- CarbonSynqEarth vs Traditional <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">ESG</span> Methods
+ CarbonSynq vs Traditional <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">ESG</span> Methods
  </h3>
  <p className="text-slate-600">
  Traditional spreadsheets and ad-hoc consultancy audits introduce latency, data leakage, and compliance risk. Meet the machine alternative.
@@ -1589,7 +1589,7 @@ export default function App() {
  <div className="absolute top-0 right-0 w-24 h-24 bg-slate-100 rounded-full blur-2xl" />
 
  <div className="flex items-center gap-3 mb-6 pb-6 border-b border-slate-200">
- <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-14 h-14 object-contain" />
+ <img src="/unnamed.webp" alt="CarbonSynq Logo" className="w-14 h-14 object-contain" />
  <div>
  <h4 className="text-lg font-bold text-slate-900">Traditional ESG Management</h4>
  <p className="text-xs text-slate-600">Fragmented spreadsheets & custom consultants</p>
@@ -1614,15 +1614,15 @@ export default function App() {
  </div>
  </div>
 
- {/* CarbonSynqEarth */}
+ {/* CarbonSynq */}
  <div className="rounded-2xl bg-white backdrop-blur-md border border-green-500/30 p-8 shadow-2xl relative overflow-hidden shadow-glass-glow transition-all duration-500 hover:border-[#4ade80]/60 hover:shadow-[0_0_40px_rgba(34,197,94,0.15)]">
  <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
 
  <div className="flex items-center justify-between mb-6 pb-6 border-b border-slate-200">
  <div className="flex items-center gap-3">
- <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-14 h-14 object-contain" />
+ <img src="/unnamed.webp" alt="CarbonSynq Logo" className="w-14 h-14 object-contain" />
  <div>
- <h4 className="text-lg font-bold text-slate-900">CarbonSynqEarth AI Platform</h4>
+ <h4 className="text-lg font-bold text-slate-900">CarbonSynq AI Platform</h4>
  <p className="text-xs text-slate-600">Continuous telemetry & AI-led decarbonization</p>
  </div>
  </div>
@@ -1752,7 +1752,7 @@ export default function App() {
  <p className="text-xs font-bold uppercase tracking-widest text-emerald-300 mb-4">Value Creation</p>
  <h3 className="text-3xl md:text-4xl font-extrabold leading-tight mb-5">Business Impact</h3>
  <p className="text-sm text-slate-300 leading-relaxed">
- CarbonSynqEarth turns ESG operations into a tighter business system: faster data cycles, sharper cost decisions, and audit-ready reporting from the same source of truth.
+ CarbonSynq turns ESG operations into a tighter business system: faster data cycles, sharper cost decisions, and audit-ready reporting from the same source of truth.
  </p>
  </div>
 
@@ -1773,7 +1773,7 @@ export default function App() {
  icon: <Zap className="w-5 h-5" />,
  signal: 'Less manual collection. Faster ESG cycles.',
  detail: 'Automated ingestion, validation queues, and anomaly detection reduce spreadsheet-heavy work while keeping sustainability teams focused on decisions instead of chasing files.',
- more: 'Use this when your ESG team is collecting utility bills, supplier files, travel logs, and facility data from many owners. CarbonSynqEarth creates repeatable intake workflows, flags missing or unusual data, and keeps every reporting period easier than the last.',
+ more: 'Use this when your ESG team is collecting utility bills, supplier files, travel logs, and facility data from many owners. CarbonSynq creates repeatable intake workflows, flags missing or unusual data, and keeps every reporting period easier than the last.',
  proof: ['Auto data capture', 'Validation workflows', 'Fewer reporting bottlenecks'],
  outcome: 'Faster close'
  },
@@ -1791,7 +1791,7 @@ export default function App() {
  icon: <ShieldCheck className="w-5 h-5" />,
  signal: 'Audit-ready from day one.',
  detail: 'Framework mapping, evidence links, version history, approvals, and disclosure exports help teams prepare for CSRD/ESRS, SEC climate reporting, TCFD, and assurance reviews.',
- more: 'Every number needs context: source file, calculation method, factor version, reviewer, approval date, and disclosure mapping. CarbonSynqEarth keeps that chain intact so reporting teams are not rebuilding evidence trails during audit season.',
+ more: 'Every number needs context: source file, calculation method, factor version, reviewer, approval date, and disclosure mapping. CarbonSynq keeps that chain intact so reporting teams are not rebuilding evidence trails during audit season.',
  proof: ['Evidence trail', 'Framework mapping', 'Reviewer sign-off'],
  outcome: 'Lower compliance risk'
  }
@@ -1870,7 +1870,7 @@ export default function App() {
  </h3>
  </div>
  <p className="lg:col-span-5 text-slate-600 leading-relaxed">
- CarbonSynqEarth adapts the same measurement, supplier, compliance, and reduction engine to different operational realities: factories, logistics networks, retail estates, and digital infrastructure.
+ CarbonSynq adapts the same measurement, supplier, compliance, and reduction engine to different operational realities: factories, logistics networks, retail estates, and digital infrastructure.
  </p>
  </div>
 
@@ -1977,7 +1977,7 @@ export default function App() {
  <CheckCircle className="w-3.5 h-3.5" /> Getting Started
  </div>
  <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">As easy as <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">1-2-3</span></h2>
- <p className="text-slate-500 max-w-xl mx-auto">Getting started with CarbonSynqEarth takes minutes, not months.</p>
+ <p className="text-slate-500 max-w-xl mx-auto">Getting started with CarbonSynq takes minutes, not months.</p>
  </div>
 
  <div className="relative">
@@ -2047,7 +2047,7 @@ export default function App() {
  {[
  {
  question: 'Can we move from messy ESG files to one reliable carbon baseline?',
- answer: 'Yes. CarbonSynqEarth pulls activity data from files, APIs, invoices, meters, and supplier inputs, then turns it into a governed baseline with validation queues and source evidence.',
+ answer: 'Yes. CarbonSynq pulls activity data from files, APIs, invoices, meters, and supplier inputs, then turns it into a governed baseline with validation queues and source evidence.',
  icon: <Sparkles className="w-5 h-5" />
  },
  {
@@ -2066,12 +2066,12 @@ export default function App() {
  icon: <Users className="w-5 h-5" />
  },
  {
- question: 'Where do people-focused roles fit inside CarbonSynqEarth?',
+ question: 'Where do people-focused roles fit inside CarbonSynq?',
  answer: 'The platform supports sustainability leads, finance teams, procurement owners, consultants, and implementation teams. It is designed around accountable collaboration, not just dashboards.',
  icon: <Laptop className="w-5 h-5" />
  },
  {
- question: 'Can CarbonSynqEarth handle Scope 3 supplier data without slowing procurement?',
+ question: 'Can CarbonSynq handle Scope 3 supplier data without slowing procurement?',
  answer: 'Supplier requests can be structured by category, region, spend, and risk level. Procurement teams can track response quality, missing evidence, and fallback estimates without running everything through email.',
  icon: <Truck className="w-5 h-5" />
  },
@@ -2082,7 +2082,7 @@ export default function App() {
  },
  {
  question: 'Does the platform only report emissions or also help reduce them?',
- answer: 'CarbonSynqEarth connects reporting to action. Hotspot analysis, reduction scenarios, initiative owners, and target tracking help teams decide which operational changes should happen next.',
+ answer: 'CarbonSynq connects reporting to action. Hotspot analysis, reduction scenarios, initiative owners, and target tracking help teams decide which operational changes should happen next.',
  icon: <TrendingDown className="w-5 h-5" />
  },
  {
@@ -2092,7 +2092,7 @@ export default function App() {
  },
  {
  question: 'What happens when regulations or emission factors change?',
- answer: 'CarbonSynqEarth keeps methodologies and factor versions traceable, so teams can update calculations without losing the historical record behind previously reported numbers.',
+ answer: 'CarbonSynq keeps methodologies and factor versions traceable, so teams can update calculations without losing the historical record behind previously reported numbers.',
  icon: <RefreshCcw className="w-5 h-5" />
  },
  {
@@ -2156,9 +2156,9 @@ export default function App() {
  </button>
 
  <div className="mb-8">
- <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-16 h-16 object-contain mb-4" />
+ <img src="/unnamed.webp" alt="CarbonSynq Logo" className="w-16 h-16 object-contain mb-4" />
  <h3 className="text-2xl font-extrabold text-slate-900 mb-2">Start Your Journey</h3>
- <p className="text-slate-500 text-sm">Join enterprise leaders driving measurable climate impact with CarbonSynqEarth.</p>
+ <p className="text-slate-500 text-sm">Join enterprise leaders driving measurable climate impact with CarbonSynq.</p>
  </div>
 
  <form action="https://formspree.io/f/xojyggok" method="POST" onSubmit={handleFormSubmit} className="space-y-4">
@@ -2299,7 +2299,7 @@ const industryCards = [
  id: "tech",
  icon: <Laptop className="w-5 h-5" />,
  name: "Technology",
- details: "Auto-parse cloud computing workloads, corporate office usage, and hardware lifecycle pipelines. Ready for CarbonSynqEarth Zero carbon pledges.",
+ details: "Auto-parse cloud computing workloads, corporate office usage, and hardware lifecycle pipelines. Ready for CarbonSynq Zero carbon pledges.",
  carbonFootprint: "1,240t avg",
  targetSavings: "-90% cloud energy",
  auditTime: "2 business days"

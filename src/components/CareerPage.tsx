@@ -31,7 +31,7 @@ const JOBS = [
   { title: "Senior Frontend Engineer", dept: "Engineering", loc: "Remote", badge: "Remote", type: "Full-time", cat: "engineering", desc: "Craft highly immersive, performant React dashboards and interactive data visualizations for enterprise clients." },
   { title: "Enterprise Account Executive", dept: "Go-to-Market", loc: "North America", badge: "Remote", type: "Full-time", cat: "gtm", desc: "Drive strategic engagement with Fortune 500 sustainability executives to accelerate carbon management." },
   { title: "Life Cycle Assessment Specialist", dept: "Climate Science", loc: "Singapore or Remote", badge: "Hybrid", type: "Full-time", cat: "science", desc: "Perform high-fidelity LCAs and integrate real-world datasets into the platform database model." },
-  { title: "Head of Regulatory Affairs", dept: "Policy", loc: "Brussels", badge: "On-site", type: "Full-time", cat: "policy", desc: "Lead CarbonSynqEarth's engagement with international standards-setting bodies and policy groups." },
+  { title: "Head of Regulatory Affairs", dept: "Policy", loc: "Brussels", badge: "On-site", type: "Full-time", cat: "policy", desc: "Lead CarbonSynq's engagement with international standards-setting bodies and policy groups." },
   { title: "UX Researcher", dept: "Product", loc: "Remote", badge: "Remote", type: "Full-time", cat: "product", desc: "Direct qualitative and quantitative user research mapping corporate sustainability workflows." },
 ];
 
@@ -56,7 +56,7 @@ const BENEFITS = [
 ];
 
 const VOICES = [
-  { quote: "What sets CarbonSynqEarth apart isn't just the scale of our ambition, it's the operational rigor we apply to get there. We are building the foundational infrastructure for global carbon markets, and every decision we make here has a tangible impact.", name: "Ayush Chaudhary", role: "Chief Operation Officer", tenure: "Joined 1 year ago" },
+  { quote: "What sets CarbonSynq apart isn't just the scale of our ambition, it's the operational rigor we apply to get there. We are building the foundational infrastructure for global carbon markets, and every decision we make here has a tangible impact.", name: "Ayush Chaudhary", role: "Chief Operation Officer", tenure: "Joined 1 year ago" },
   { quote: "Our vision was never to build just another compliance tool. We set out to engineer an absolute source of truth for carbon accountability. The depth of scientific integrity our team brings to the table every single day is what makes this mission possible.", name: "Pushkar Singh Raghuvanshi", role: "Chief Executive Officer", tenure: "Joined 1 year ago" },
   { quote: "Translating complex, high-density climate data into intuitive, lightning-fast dashboards is an incredible engineering challenge. The autonomy here is real—you aren't just writing UI code; you are architecting the lens through which enterprises view their impact.", name: "Sarwang Agarwal", role: "Full Stack Developer", tenure: "Joined 8 months ago" },
   { quote: "The sheer volume of real-time emissions data we process requires backend architecture that is both relentlessly resilient and highly scalable. It's a rare opportunity to tackle complex distributed systems problems while directly contributing to global climate action.", name: "Priyanshu Barai", role: "Backend Engineer", tenure: "Joined 8 months ago" },
@@ -73,7 +73,7 @@ function Badge({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function CarbonSynqEarthCareerPage() {
+export default function CarbonSynqCareerPage() {
   const [filter, setFilter] = useState("All");
   const [show404, setShow404] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -168,7 +168,7 @@ export default function CarbonSynqEarthCareerPage() {
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-1.5 text-xs font-medium text-emerald-700 tracking-wide uppercase">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
-              Careers at CarbonSynqEarth
+              Careers at CarbonSynq
             </div>
 
             <h1 className="text-5xl font-bold tracking-tight text-slate-900 md:text-7xl leading-[1.05]">
@@ -199,14 +199,14 @@ export default function CarbonSynqEarthCareerPage() {
             <div className="relative rounded-3xl border border-slate-200 bg-slate-900 p-2 shadow-2xl shadow-black/50 backdrop-blur-xl">
               <div className="relative overflow-hidden rounded-2xl group border border-slate-700/50">
                 {/* Background Image with Dark/Green Overlay */}
-                <img src="/career-assets/hero-office.png" alt="CarbonSynqEarth Realistic Corporate Office" className="w-full h-[280px] md:h-[340px] object-cover opacity-50 mix-blend-luminosity group-hover:scale-105 transition-transform duration-700 ease-out" />
+                <img src="/career-assets/hero-office.png" alt="CarbonSynq Realistic Corporate Office" className="w-full h-[280px] md:h-[340px] object-cover opacity-50 mix-blend-luminosity group-hover:scale-105 transition-transform duration-700 ease-out" />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#061214] via-[#061214]/90 to-emerald-900/20" />
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-500/20 via-transparent to-transparent" />
 
                 {/* Text and Logo Embedded INSIDE the Image */}
                 <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-center">
                   {/* Embedded Logo Moved Above JOIN */}
-                  <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="h-8 md:h-10 w-auto object-contain brightness-0 invert drop-shadow-lg mb-4 self-start" />
+                  <img src="/unnamed.webp" alt="CarbonSynq Logo" className="h-8 md:h-10 w-auto object-contain brightness-0 invert drop-shadow-lg mb-4 self-start" />
 
                   <p className="text-white font-medium tracking-widest text-sm uppercase mb-1 drop-shadow-md">Join Our</p>
                   
@@ -215,7 +215,7 @@ export default function CarbonSynqEarthCareerPage() {
                   </h2>
                   
                   <h2 className="text-white text-3xl md:text-4xl font-bold uppercase tracking-tight drop-shadow-lg leading-none mb-6">
-                    CarbonSynqEarth
+                    CarbonSynq
                   </h2>
 
                   <p className="text-slate-300 text-[11px] md:text-xs max-w-[220px] font-light leading-relaxed border-l-2 border-emerald-500 pl-3">
@@ -296,7 +296,7 @@ export default function CarbonSynqEarthCareerPage() {
                   </span>
                 </h2>
                 <p className="mt-4 text-sm md:text-base text-slate-300 leading-relaxed max-w-2xl font-light">
-                  CarbonSynqEarth was recognized at the prestigious <strong className="text-white font-semibold">R. Education Conclave</strong> hosted by Republic Bharat — validation of our mission to drive enterprise-wide net-zero intelligence.
+                  CarbonSynq was recognized at the prestigious <strong className="text-white font-semibold">R. Education Conclave</strong> hosted by Republic Bharat — validation of our mission to drive enterprise-wide net-zero intelligence.
                 </p>
               </div>
 
@@ -334,7 +334,7 @@ export default function CarbonSynqEarthCareerPage() {
                 We cannot improve what we cannot verifiably measure
               </h2>
               <p className="mt-6 text-slate-500 leading-relaxed font-normal">
-                Corporations and regulatory jurisdictions must align with rigorous, high-fidelity metrics. CarbonSynqEarth bridges this delta—providing science-grade, programmatic ledger platforms that make absolute accountability standard practice across all corporate supply chains.
+                Corporations and regulatory jurisdictions must align with rigorous, high-fidelity metrics. CarbonSynq bridges this delta—providing science-grade, programmatic ledger platforms that make absolute accountability standard practice across all corporate supply chains.
               </p>
               <div className="mt-8 grid grid-cols-3 gap-6 pt-6 border-t border-slate-200">
                 {[["2026", "Founded"], ["100%", "Scientific Bias"], ["4.8 ★", "Glassdoor Rating"]].map(([val, lbl]) => (
@@ -401,7 +401,7 @@ export default function CarbonSynqEarthCareerPage() {
 
             {/* Third — Workspace Collaboration */}
             <div className="relative h-[400px] rounded-2xl overflow-hidden border border-slate-200 shadow-md sm:col-span-2 lg:col-span-1 group">
-              <img src="/career-assets/workspace_collaboration.png" alt="CarbonSynqEarth Team Collaboration" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <img src="/career-assets/workspace_collaboration.png" alt="CarbonSynq Team Collaboration" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 text-white">
                 <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-widest">Team Culture</span>
@@ -641,7 +641,7 @@ export default function CarbonSynqEarthCareerPage() {
               Meet Our Current Interns
             </h2>
             <p className="mt-4 text-slate-400 leading-relaxed text-sm md:text-base font-light">
-              At CarbonSynqEarth, we are proud to empower the next generation of innovators. Our current cohort of exceptional interns is actively working alongside our engineering and climate science teams, tackling real-world challenges and driving our mission of global carbon accountability forward.
+              At CarbonSynq, we are proud to empower the next generation of innovators. Our current cohort of exceptional interns is actively working alongside our engineering and climate science teams, tackling real-world challenges and driving our mission of global carbon accountability forward.
             </p>
           </div>
 

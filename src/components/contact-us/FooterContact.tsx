@@ -15,7 +15,7 @@ export default function FooterContact() {
           </div>
           <div className="text-center md:text-left">
             <h3 className="text-3xl font-black text-white mb-4 leading-tight tracking-tighter">
-              Net Zero Journey<br />with <span className="text-green-500">CarbonSynqEarth</span>
+              Net Zero Journey<br />with <span className="text-green-500">CarbonSynq</span>
             </h3>
             <p className="text-[13px] text-gray-400 font-bold uppercase tracking-widest leading-relaxed max-w-[240px]">
               Together, let's build a cleaner, greener, and net zero future.
@@ -82,7 +82,7 @@ export default function FooterContact() {
       </div>
 
       <div className="mt-16 text-center text-[11px] font-bold text-gray-300 uppercase tracking-[0.2em]">
-        © 2026 CarbonSynqEarth Private Limited. All Rights Reserved.
+        © 2026 CarbonSynq Private Limited. All Rights Reserved.
       </div>
     </footer>
   );

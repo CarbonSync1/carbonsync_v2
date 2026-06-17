@@ -73,7 +73,7 @@ export default function ExpertModal() {
             <div className="mb-8">
               <h3 className="text-2xl font-bold text-slate-900 mb-2">Talk to an Expert</h3>
               <p className="text-slate-500 text-sm">
-                Fill out the form below to connect with our supply chain specialists and discover how CarbonSynqEarth can streamline your scope 3 tracking.
+                Fill out the form below to connect with our supply chain specialists and discover how CarbonSynq can streamline your scope 3 tracking.
               </p>
             </div>
 

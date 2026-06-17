@@ -99,8 +99,8 @@ const faqs = [
     answer: "Our neural engines ingest your utility data, travel logs, and procurement pipelines to automatically map and calculate emissions against GHG Protocol standards with 99.8% accuracy, saving thousands of manual hours."
   },
   {
-    question: "Is CarbonSynqEarth compliant with new SEC and CSRD regulations?",
-    answer: "Yes. CarbonSynqEarth is engineered for global compliance. Our platform generates audit-ready reports instantly formatted for SEC, CSRD, SFDR, and CDP requirements."
+    question: "Is CarbonSynq compliant with new SEC and CSRD regulations?",
+    answer: "Yes. CarbonSynq is engineered for global compliance. Our platform generates audit-ready reports instantly formatted for SEC, CSRD, SFDR, and CDP requirements."
   },
   {
     question: "How long does implementation take?",
@@ -137,7 +137,7 @@ const MagneticButton = ({ children, className, onClick, type = "button", disable
   );
 };
 
-export default function CarbonSynqEarthPricingPage() {
+export default function CarbonSynqPricingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [calcValue, setCalcValue] = useState(1000);
@@ -199,7 +199,7 @@ export default function CarbonSynqEarthPricingPage() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-sm mb-8 group"
           >
             <Sparkles className="w-4 h-4 text-emerald-500 group-hover:animate-spin" />
-            <span className="text-sm font-semibold text-slate-800">CarbonSynqEarth Engine 3.0 Released</span>
+            <span className="text-sm font-semibold text-slate-800">CarbonSynq Engine 3.0 Released</span>
             <ArrowRight className="w-4 h-4 text-slate-400" />
           </motion.div>
 
@@ -253,7 +253,7 @@ export default function CarbonSynqEarthPricingPage() {
               <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-slate-300" />
             </div>
             {/* Dashboard image */}
-            <Image src="/hero-image-final.jpg" alt="CarbonSynqEarth Dashboard" width={1200} height={750} className="w-full h-full object-cover object-center" unoptimized />
+            <Image src="/hero-image-final.jpg" alt="CarbonSynq Dashboard" width={1200} height={750} className="w-full h-full object-cover object-center" unoptimized />
           </div>
         </motion.div>
 
@@ -407,16 +407,16 @@ export default function CarbonSynqEarthPricingPage() {
           <div className="flex flex-col items-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tighter text-center">
               Meet the Visionaries Behind<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">CarbonSynqEarth.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">CarbonSynq.</span>
             </h2>
             <p className="text-lg text-slate-500 font-medium">The engineering leadership powering the future of ESG compliance.</p>
           </div>
           <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
             {[
-              { text: "CarbonSynqEarth reduced our reporting cycle from 6 weeks to 3 days. The AI insights are astonishingly accurate.", author: "Ayush Chaudhary", role: "COO, CARBONSYNEARTH", image: "/about-assets/team-2.jpg" },
+              { text: "CarbonSynq reduced our reporting cycle from 6 weeks to 3 days. The AI insights are astonishingly accurate.", author: "Ayush Chaudhary", role: "COO, CARBONSYNEARTH", image: "/about-assets/team-2.jpg" },
               { text: "The most beautiful piece of enterprise software we use. But more importantly, it actually drives our emissions down.", author: "Pushkar Singh", role: "CEO, CARBONSYNEARTH", image: "/about-assets/team-1-new.jpg" },
-              { text: "Unmatched compliance readiness. When the auditors arrived, we just handed them a CarbonSynqEarth report. Perfect.", author: "Priyanshu Barai", role: "BACKEND DEVELOPER, CARBONSYNEARTH", image: "/about-assets/team-4.jpg" },
-              { text: "Building the UI for CarbonSynqEarth has been an incredible experience. The architecture is as seamless as its data engine.", author: "Sarwang Agarwal", role: "FULL STACK DEVELOPER, CARBONSYNEARTH", image: "/about-assets/team-3.jpg" }
+              { text: "Unmatched compliance readiness. When the auditors arrived, we just handed them a CarbonSynq report. Perfect.", author: "Priyanshu Barai", role: "BACKEND DEVELOPER, CARBONSYNEARTH", image: "/about-assets/team-4.jpg" },
+              { text: "Building the UI for CarbonSynq has been an incredible experience. The architecture is as seamless as its data engine.", author: "Sarwang Agarwal", role: "FULL STACK DEVELOPER, CARBONSYNEARTH", image: "/about-assets/team-3.jpg" }
             ].map((t, i) => (
               <motion.div 
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}

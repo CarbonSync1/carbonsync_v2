@@ -54,7 +54,7 @@ export function LoginForm() {
           </Link>
           <h1 className="text-2xl font-bold text-text-dark">Welcome back</h1>
           <p className="text-text-muted text-sm mt-2">
-            Sign in to your CarbonSynqEarth account
+            Sign in to your CarbonSynq account
           </p>
         </div>
 

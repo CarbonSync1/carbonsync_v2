@@ -166,7 +166,7 @@ export default function PrivacyPolicy() {
             
             <Section id="mission" title="Our Privacy Sovereignty" index={0}>
               <p className="text-xl text-gray-800 leading-relaxed font-black mb-8">
-                Privacy is not a feature; it is our foundation. CarbonSynqEarth operates on a "Zero-Trust" data model where we act as a secure vault for your ESG metrics.
+                Privacy is not a feature; it is our foundation. CarbonSynq operates on a "Zero-Trust" data model where we act as a secure vault for your ESG metrics.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
                 <div className="p-10 rounded-[3rem] bg-gray-50 border border-gray-100 hover:border-green-200 transition-all group">

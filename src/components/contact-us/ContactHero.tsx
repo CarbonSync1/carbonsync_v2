@@ -59,7 +59,7 @@ export default function ContactHero() {
           <h1 className="text-[40px] md:text-[52px] font-black text-[#0f172a] leading-[1.1] mb-6 tracking-tight">
             Start Your <br />
             <span className="text-green-600">Net Zero Journey</span> <br />
-            with CarbonSynqEarth
+            with CarbonSynq
           </h1>
 
           <p className="text-[16px] text-slate-500 leading-relaxed mb-12 max-w-md font-medium">
@@ -183,7 +183,7 @@ export default function ContactHero() {
                   className="mt-1 w-4 h-4 rounded border-slate-200 text-green-600 focus:ring-green-500 cursor-pointer" 
                 />
                 <p className="text-[12px] text-slate-400 leading-relaxed font-medium">
-                  I agree to the <a href="http://localhost:5174/" className="text-green-600 font-bold hover:underline cursor-pointer">privacy policy</a> and allow CarbonSynqEarth to contact me regarding my inquiry.
+                  I agree to the <a href="http://localhost:5174/" className="text-green-600 font-bold hover:underline cursor-pointer">privacy policy</a> and allow CarbonSynq to contact me regarding my inquiry.
                 </p>
               </div>
 
