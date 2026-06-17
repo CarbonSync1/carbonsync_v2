@@ -32,7 +32,7 @@ export default function CalendlyModal({ isOpen, onClose }: CalendlyModalProps) {
           }}
         >
           <div
-            className="w-full max-w-[1060px] min-h-[650px] md:min-h-[700px] bg-white rounded-[10px] shadow-2xl flex flex-col md:flex-row relative"
+            className="w-full max-w-[1060px] bg-white rounded-[10px] shadow-2xl flex flex-col md:flex-row relative"
             style={{
               boxShadow: '0 25px 80px -12px rgba(0, 0, 0, 0.6), 0 0 60px rgba(16, 185, 129, 0.15)',
             }}
@@ -97,7 +97,7 @@ export default function CalendlyModal({ isOpen, onClose }: CalendlyModalProps) {
             </div>
 
             {/* Right Column (Calendly) */}
-            <div className="flex-1 relative min-h-[600px] md:min-h-0 bg-white z-0">
+            <div className="flex-1 bg-white z-0" style={{ minHeight: '700px' }}>
               <button
                 onClick={onClose}
                 className="absolute right-0 top-0 bg-black text-white hover:bg-gray-800 rounded-bl-[10px] w-10 h-10 flex items-center justify-center cursor-pointer text-xl font-bold z-20 transition-colors"
@@ -109,10 +109,10 @@ export default function CalendlyModal({ isOpen, onClose }: CalendlyModalProps) {
               <iframe
                 src="https://calendly.com/pushkarsingh-carbonsync/30min?hide_event_type_details=1&primary_color=059669&text_color=0f172a"
                 width="100%"
-                height="100%"
+                height="700"
                 frameBorder="0"
                 title="Calendly Scheduling"
-                style={{ border: 'none', position: 'absolute', inset: 0 }}
+                style={{ border: 'none', display: 'block' }}
               />
             </div>
           </div>
