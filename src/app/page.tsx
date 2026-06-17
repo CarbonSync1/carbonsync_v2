@@ -107,14 +107,9 @@ function ImpactStrip() {
         {[
           { end: 50, suffix: '%', lbl: 'Faster ESG Reporting' },
           { end: 1000, suffix: '+', lbl: 'Curated ESG KPIs' },
-          { end: 0, suffix: '', lbl: 'Unlimited', isUnlimited: true },
         ].map((item, i) => (
           <div className="flex flex-col gap-2" key={item.lbl}>
-            {item.isUnlimited ? (
-              <span className="font-heading text-4xl font-extrabold text-eco-green">Unlimited</span>
-            ) : (
-              <span className="tabular-nums font-heading text-4xl font-extrabold text-eco-green">{item.end}{item.suffix}</span>
-            )}
+            <span className="tabular-nums font-heading text-4xl font-extrabold text-eco-green">{item.end}{item.suffix}</span>
             <span className="text-sm font-semibold text-white/60 uppercase tracking-wide">{item.lbl}</span>
           </div>
         ))}
