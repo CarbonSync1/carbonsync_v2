@@ -25,7 +25,7 @@ export default function CalendlyWidget({ onClose }: { onClose: () => void }) {
           
           <div className="flex items-center gap-4 mb-6">
             <div className="bg-green-50/80 w-14 h-14 rounded-2xl border border-green-100/50 flex items-center justify-center shrink-0">
-              <img src="/netzero/carbonsynqearth-logo.webp" alt="CarbonSynqEarth Logo" className="w-[32px] object-contain" />
+              <img src="/netzero/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-[32px] object-contain" />
             </div>
             <div className="flex flex-col justify-center">
               <div className="flex items-center gap-1.5 mb-0.5">

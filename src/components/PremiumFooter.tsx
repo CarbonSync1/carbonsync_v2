@@ -10,7 +10,7 @@ export default function PremiumFooter() {
           <div className="lg:col-span-4 flex flex-col items-start">
             <div className="flex flex-col items-start gap-4 mb-6">
               <div className="flex items-start">
-                <img src="/logo.webp" alt="CarbonSynqEarth" className="h-16 w-auto object-contain" />
+                <img src="/unnamed.webp" alt="CarbonSynqEarth" className="h-16 w-auto object-contain" />
               </div>
               <p className="text-[#334155] text-[16px] font-bold leading-relaxed max-w-70">
                 Built on the belief in a greener, more sustainable future.
@@ -19,7 +19,7 @@ export default function PremiumFooter() {
 
             <p className="text-[12px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 mt-4">Connect and Scan</p>
             <div className="flex flex-wrap items-center gap-3">
-              <a href="https://www.linkedin.com/company/carbonsynqearth-india/" target="_blank" rel="noopener noreferrer" className="h-10 px-4 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-slate-600 hover:text-[#0077b5] hover:border-[#0077b5] shadow-sm transition-colors font-black text-[11px] tracking-wider">
+              <a href="https://www.linkedin.com/company/carbonsync-india/" target="_blank" rel="noopener noreferrer" className="h-10 px-4 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-slate-600 hover:text-[#0077b5] hover:border-[#0077b5] shadow-sm transition-colors font-black text-[11px] tracking-wider">
                 LINKEDIN
               </a>
               <a href="https://x.com/CarbonSynqEarth11" target="_blank" rel="noopener noreferrer" className="h-10 px-4 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-slate-600 hover:text-black hover:border-black shadow-sm transition-colors font-black text-[11px] tracking-wider">

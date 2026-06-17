@@ -1808,8 +1808,9 @@
 
 .mentors-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 600px);
   gap: 30px;
+  justify-content: center;
 }
 
 .mentor-card {

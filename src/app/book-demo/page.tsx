@@ -27,7 +27,7 @@ export default function BookDemoPage() {
           <div className="flex flex-col items-center mb-8">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
-              src="/netzero/carbonsynqearth-logo.webp" 
+              src="/netzero/unnamed.webp" 
               alt="CarbonSynqEarth Logo" 
               className="w-[140px] object-contain mb-3" 
             />
@@ -82,7 +82,7 @@ export default function BookDemoPage() {
         <div className="flex-1 relative h-full bg-white z-0 pt-4 md:pt-0">
 
           <iframe
-            src="https://calendly.com/pushkarsingh-carbonsynqearth/30min?hide_event_type_details=1&primary_color=059669&text_color=0f172a"
+            src="https://calendly.com/pushkarsingh-carbonsync/30min?hide_event_type_details=1&primary_color=059669&text_color=0f172a"
             width="100%"
             height="100%"
             frameBorder="0"

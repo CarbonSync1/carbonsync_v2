@@ -1,6 +1,6 @@
 import type { EmissionReport } from "@/types/report";
 
-const SERVER_URL = "https://carbonsynqearth-backend.onrender.com";
+const SERVER_URL = "https://carbonsync-backend.onrender.com";
 
 let latestReport: EmissionReport | null = null;
 let pendingFile: File | null = null;

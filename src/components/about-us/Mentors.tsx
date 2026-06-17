@@ -2,13 +2,6 @@
 
 const mentors = [
   {
-    name: 'Dr. Narendra Teotia',
-    role: 'Mentor',
-    image: '/about-assets/mentor-1.jpg',
-    quote:
-      'True innovation lies at the intersection of technology and purpose. CarbonSynqEarth represents a generation of builders who refuse to accept the status quo — they are engineering a future where sustainability is not optional, but inevitable.',
-  },
-  {
     name: 'Rachit Mathur',
     role: (
       <span className="flex flex-col gap-1">

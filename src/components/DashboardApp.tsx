@@ -91,7 +91,7 @@ export default function DashboardApp() {
           <nav className="fixed top-10 left-12 right-12 2xl:left-52 z-[100] flex items-center justify-between px-16 py-8 glass-god rounded-[4rem] shadow-[0_50px_100px_rgba(0,0,0,0.8)]">
             <div className="flex items-center gap-6">
               <h1 className="text-3xl font-black tracking-tighter uppercase text-iridescent">
-                Carbon<span className="text-white">Sync</span>
+                CarbonSynq<span className="text-white">Earth</span>
               </h1>
               <div className="px-5 py-2 bg-emerald-500/10 rounded-full border border-emerald-500/20 text-[10px] font-black text-emerald-500 uppercase tracking-widest ml-6">
                 ULTRA V5.0

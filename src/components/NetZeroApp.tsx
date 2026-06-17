@@ -243,7 +243,7 @@ export default function App() {
  <div
  className="inline-flex items-center gap-2 text-xs font-semibold text-[#4ade80] mb-6"
  >
- <img src="/logo.webp" alt="CarbonSynqEarth Logo" className="w-10 h-10 object-contain" />
+ <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-10 h-10 object-contain" />
  <span>Version 2.4 Enterprise Platform Now Live</span>
  </div>
 
@@ -492,7 +492,7 @@ export default function App() {
  <div
  >
  <div className="inline-flex items-center gap-2 text-xs font-bold text-emerald-700 mb-6 uppercase tracking-widest">
- <img src="/logo.webp" alt="CarbonSynqEarth Logo" className="w-10 h-10 object-contain" /> About the Platform
+ <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-10 h-10 object-contain" /> About the Platform
  </div>
  <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">
  What is <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-400">CarbonSynqEarth</span>?
@@ -595,7 +595,7 @@ export default function App() {
  style={{ backfaceVisibility: 'hidden' }}
  >
  <div>
- <img src="/logo.webp" alt="CarbonSynqEarth Logo" className="w-14 h-14 object-contain mb-4" />
+ <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-14 h-14 object-contain mb-4" />
  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-red-400 mb-2 block">The Challenge</span>
  <h3 className="text-lg font-extrabold text-slate-900 mb-3">{val.label}</h3>
  <p className="text-slate-500 text-sm leading-relaxed">{val.challenge}</p>
@@ -720,7 +720,7 @@ export default function App() {
  </div>
  {/* URL / Brand Address Bar */}
  <div className="flex items-center gap-1.5 text-[10px] font-semibold text-slate-600">
- <img src="/logo.webp" alt="CarbonSynqEarth Logo" className="w-10 h-10 object-contain" />
+ <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-10 h-10 object-contain" />
  <span className="tracking-tight text-slate-700">app.carbonsynqearth.com</span>
  </div>
  <div className="w-10" /> {/* Spacer to center URL bar */}
@@ -801,7 +801,7 @@ export default function App() {
  <div className="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-full blur-2xl" />
 
  <h4 className="text-lg font-bold text-black mb-6 flex items-center gap-2">
- <img src="/logo.webp" alt="CarbonSynqEarth Logo" className="w-12 h-12 object-contain" /> Dynamic Decarbonization Pipeline
+ <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-12 h-12 object-contain" /> Dynamic Decarbonization Pipeline
  </h4>
 
  {/* Progress Targets */}
@@ -1147,7 +1147,7 @@ export default function App() {
  <div className="flex flex-wrap items-center justify-between border-b border-slate-200 p-4 gap-4 bg-slate-100/20 rounded-t-2xl">
  <div className="flex items-center gap-6">
  <span className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
- <img src="/logo.webp" alt="CarbonSynqEarth Logo" className="w-12 h-12 object-contain" /> CarbonSynqEarth Pro
+ <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-12 h-12 object-contain" /> CarbonSynqEarth Pro
  </span>
  <div className="hidden sm:flex items-center gap-2 text-xs text-slate-600">
  <span className="px-2 py-0.5 rounded bg-slate-50 border border-slate-200">v2.4</span>
@@ -1430,7 +1430,7 @@ export default function App() {
 
  <div className="flex-1 text-center lg:text-left relative z-10">
  <div className="inline-flex items-center gap-2 text-[10px] font-bold text-emerald-400 mb-4 uppercase tracking-widest">
- <img src="/logo.webp" alt="CarbonSynqEarth Logo" className="w-10 h-10 object-contain" />
+ <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-10 h-10 object-contain" />
  Join 100+ Enterprise Pacesetters
  </div>
  <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white mb-3">
@@ -1589,7 +1589,7 @@ export default function App() {
  <div className="absolute top-0 right-0 w-24 h-24 bg-slate-100 rounded-full blur-2xl" />
 
  <div className="flex items-center gap-3 mb-6 pb-6 border-b border-slate-200">
- <img src="/logo.webp" alt="CarbonSynqEarth Logo" className="w-14 h-14 object-contain" />
+ <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-14 h-14 object-contain" />
  <div>
  <h4 className="text-lg font-bold text-slate-900">Traditional ESG Management</h4>
  <p className="text-xs text-slate-600">Fragmented spreadsheets & custom consultants</p>
@@ -1620,7 +1620,7 @@ export default function App() {
 
  <div className="flex items-center justify-between mb-6 pb-6 border-b border-slate-200">
  <div className="flex items-center gap-3">
- <img src="/logo.webp" alt="CarbonSynqEarth Logo" className="w-14 h-14 object-contain" />
+ <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-14 h-14 object-contain" />
  <div>
  <h4 className="text-lg font-bold text-slate-900">CarbonSynqEarth AI Platform</h4>
  <p className="text-xs text-slate-600">Continuous telemetry & AI-led decarbonization</p>
@@ -2156,7 +2156,7 @@ export default function App() {
  </button>
 
  <div className="mb-8">
- <img src="/logo.webp" alt="CarbonSynqEarth Logo" className="w-16 h-16 object-contain mb-4" />
+ <img src="/unnamed.webp" alt="CarbonSynqEarth Logo" className="w-16 h-16 object-contain mb-4" />
  <h3 className="text-2xl font-extrabold text-slate-900 mb-2">Start Your Journey</h3>
  <p className="text-slate-500 text-sm">Join enterprise leaders driving measurable climate impact with CarbonSynqEarth.</p>
  </div>
