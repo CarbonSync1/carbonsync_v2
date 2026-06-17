@@ -1,4 +1,6 @@
 import type { InvoiceEmissionsResponse, EmissionSummaryResponse } from "@/types/report";
+import { generateFileHash } from "@/lib/cache";
+import { InvoiceCache } from "@/lib/cache";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ??
@@ -8,7 +10,20 @@ let latestInvoiceResult: InvoiceEmissionsResponse | null = null;
 let pendingFile: File | null = null;
 
 export class EmissionsService {
+
   static async uploadInvoice(file: File): Promise<InvoiceEmissionsResponse> {
+
+    //try cache
+    const hash = await generateFileHash(file);
+    if (InvoiceCache.has(hash)) {
+      const cachedResult = InvoiceCache.get(hash)!;
+      //update latest result and pending file
+      latestInvoiceResult = cachedResult;
+      pendingFile = null;
+      return cachedResult;
+    }
+
+    //cache miss - hit server
     const formData = new FormData();
     formData.append("invoice", file);
 
@@ -32,6 +47,8 @@ export class EmissionsService {
     }
 
     const result: InvoiceEmissionsResponse = await response.json();
+    //update cache
+    InvoiceCache.set(hash, result);
     latestInvoiceResult = result;
     pendingFile = null;
     return result;
@@ -67,3 +84,5 @@ export class EmissionsService {
     pendingFile = null;
   }
 }
+
+
