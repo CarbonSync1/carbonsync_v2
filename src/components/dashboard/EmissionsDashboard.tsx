@@ -263,47 +263,38 @@ export function EmissionsDashboard() {
 
   const results = filterRailTicketResults(data.results ?? []);
   const rawExtractedItems = data.extracted_items ?? [];
-
   const resultBasedItems = results
     .filter((entry: any) => entry?.success !== false)
     .map((entry: any) => {
       const result = getResult(entry);
-
-      const matched = rawExtractedItems.find((item: any) => {
-        const extractedName = String(item?.item_name ?? "").toLowerCase();
-        const resultName = String(
-          entry?.item_name ?? result?.item_name ?? ""
-        ).toLowerCase();
-
-        return extractedName && resultName && extractedName === resultName;
-      });
-
       const params = result?.parameters ?? {};
+      const converted = entry?.converted ?? {};
 
       return {
         item_name: String(
-          entry?.item_name ?? result?.item_name ?? "Emission Item"
+          entry?.item_name ??
+          result?.item_name ??
+          "Emission Item"
         ),
         quantity:
-          matched?.quantity ??
+          converted?.value ??
           params?.distance_km ??
           params?.energy_kwh ??
           params?.weight ??
-          entry?.converted?.value ??
+          params?.quantity ??
           0,
         unit:
-          matched?.unit ??
+          converted?.unit ??
           params?.distance_unit ??
           params?.energy_unit ??
           params?.weight_unit ??
-          entry?.converted?.unit ??
+          params?.quantity_unit ??
           "",
       };
     });
 
   const extractedItems =
     resultBasedItems.length > 0 ? resultBasedItems : rawExtractedItems;
-
   const reportUrls = {
     brsr: getFullReportUrl(data.report_download_urls?.brsr),
     cbam: getFullReportUrl(data.report_download_urls?.cbam),
