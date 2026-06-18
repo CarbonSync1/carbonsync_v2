@@ -272,8 +272,8 @@ export default function CarbonSynqCareerPage() {
           {/* Glowing luxury border highlight */}
           <div className="absolute inset-0 rounded-[2.5rem] border border-slate-200 pointer-events-none group-hover:border-emerald-500/30 transition-colors duration-500" />
 
-          {/* "Featured on Republic Bharat" premium tag */}
-          <div className="absolute top-8 left-8 flex items-center gap-2.5 rounded-full bg-red-600/90 hover:bg-red-600 px-5 py-2 text-[10px] font-black text-white uppercase tracking-[0.15em] shadow-xl backdrop-blur-md transition-all duration-300 border border-white/10">
+          {/* "Featured on Republic Bharat" — desktop only (absolute), hidden on mobile */}
+          <div className="hidden md:flex absolute top-8 left-8 items-center gap-2.5 rounded-full bg-red-600/90 hover:bg-red-600 px-5 py-2 text-[10px] font-black text-white uppercase tracking-[0.15em] shadow-xl backdrop-blur-md transition-all duration-300 border border-white/10">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
@@ -283,9 +283,22 @@ export default function CarbonSynqCareerPage() {
 
           {/* Content overlaid at the bottom */}
           <div className="relative z-10 p-8 md:p-14 w-full">
+            {/* Mobile badge row — hidden on md+ */}
+            <div className="flex md:hidden flex-row items-center gap-2 mb-4 overflow-hidden">
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-red-600/90 px-3 py-1 text-[9px] font-black text-white uppercase tracking-wider shadow-xl border border-white/10">
+                <span className="h-1.5 w-1.5 rounded-full bg-white animate-ping shrink-0" />
+                <span className="truncate">Featured on Republic Bharat</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 rounded-md bg-emerald-500/20 border border-emerald-400/30 px-2.5 py-1 text-[9px] font-bold text-emerald-300 uppercase tracking-widest">
+                <Award className="h-3 w-3 shrink-0" />
+                <span className="truncate">Education Conclave Keynote</span>
+              </div>
+            </div>
+
             <div className="grid gap-10 lg:grid-cols-[1fr_auto] items-end">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/20 border border-emerald-400/30 text-[10px] font-bold text-emerald-300 uppercase tracking-widest">
+                {/* Conclave badge — hidden on mobile, visible on desktop */}
+                <div className="hidden md:inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/20 border border-emerald-400/30 text-[10px] font-bold text-emerald-300 uppercase tracking-widest">
                   <Award className="h-3.5 w-3.5" />
                   R. Education Conclave Keynote
                 </div>
