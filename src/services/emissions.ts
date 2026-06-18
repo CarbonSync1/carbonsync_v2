@@ -9,9 +9,84 @@ const API_BASE_URL =
 let latestInvoiceResult: InvoiceEmissionsResponse | null = null;
 let pendingFile: File | null = null;
 
-export class EmissionsService {
+function normalizeReportUrl(url?: string | null) {
+  if (!url) return "";
+  return url.startsWith("http") ? url : `${API_BASE_URL}${url}`;
+}
 
+function normalizeInvoiceResponse(raw: any): InvoiceEmissionsResponse {
+  const extractedItems =
+    raw?.extracted_items ??
+    raw?.line_items ??
+    raw?.items ??
+    [];
+
+  const results =
+    raw?.results ??
+    raw?.emission_results ??
+    raw?.calculation_results ??
+    [];
+
+  const reportUrls = raw?.report_download_urls ?? raw?.reports ?? {};
+
+  return {
+    ...raw,
+    success: Boolean(raw?.success),
+    message: raw?.message ?? "Invoice processed successfully.",
+    extracted_items: Array.isArray(extractedItems) ? extractedItems : [],
+    results: Array.isArray(results) ? results : [],
+    report_download_urls: {
+      brsr: normalizeReportUrl(
+        reportUrls?.brsr ?? raw?.brsrReportUrl ?? raw?.brsr_report_url
+      ),
+      cbam: normalizeReportUrl(
+        reportUrls?.cbam ?? raw?.cbamReportUrl ?? raw?.cbam_report_url
+      ),
+    },
+  };
+}
+
+async function retryWithBackoff<T>(
+  operation: () => Promise<T>,
+  retries = 3,
+  delayMs = 1000
+): Promise<T> {
+  let lastError: unknown;
+
+  for (let attempt = 0; attempt < retries; attempt += 1) {
+    try {
+      return await operation();
+    } catch (error) {
+      lastError = error;
+
+
+      if (attempt < retries - 1) {
+        await new Promise((resolve) =>
+          setTimeout(resolve, delayMs * Math.pow(2, attempt))
+        );
+      }
+    }
+
+  }
+
+  throw lastError;
+}
+
+export class EmissionsService {
   static async uploadInvoice(file: File): Promise<InvoiceEmissionsResponse> {
+    const hash = await generateFileHash(file);
+
+    // New upload start hote hi dashboard ka old/stale result clear
+    latestInvoiceResult = null;
+
+    // Same file already processed hai to cache se result return karo
+    const cachedResult = InvoiceCache.get(hash);
+    if (cachedResult) {
+      latestInvoiceResult = cachedResult;
+      pendingFile = null;
+      return cachedResult;
+    }
+
     const formData = new FormData();
     formData.append("invoice", file);
 
@@ -41,18 +116,18 @@ export class EmissionsService {
       throw new Error(message);
     }
 
-    const result: InvoiceEmissionsResponse = await response.json();
+    const result = normalizeInvoiceResponse(await response.json());
+
+    InvoiceCache.set(hash, result);
     latestInvoiceResult = result;
     pendingFile = null;
 
     return result;
 
-
   }
 
   static async getEmissionSummary(): Promise<EmissionSummaryResponse> {
     const response = await fetch(`${API_BASE_URL}/api/emissions/summary`);
-
 
     if (!response.ok) {
       throw new Error("Failed to fetch emission summary.");
@@ -88,8 +163,4 @@ export class EmissionsService {
   }
 }
 
-
-function retryWithBackoff(arg0: () => Promise<Response>, arg1: number, arg2: number) {
-  throw new Error("Function not implemented.");
-}
 
