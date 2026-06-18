@@ -51,6 +51,40 @@ function SkeletonRow() {
   );
 }
 
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL ??
+  "https://carbonsync-backend-mp5h.onrender.com";
+
+function toNumber(value: unknown) {
+  const parsed = Number(value ?? 0);
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function getResult(entry: any) {
+  return entry?.result ?? entry ?? {};
+}
+
+function getCo2e(entry: any) {
+  const result = getResult(entry);
+  return toNumber(result?.co2e ?? result?.co2e_total ?? entry?.co2e);
+}
+
+function getTco2e(entry: any) {
+  const result = getResult(entry);
+  const direct = toNumber(result?.total_tco2e ?? entry?.total_tco2e);
+
+  return direct > 0 ? direct : getCo2e(entry) / 1000;
+}
+
+function getCategory(entry: any) {
+  return String(getResult(entry)?.category ?? entry?.category ?? "").trim();
+}
+
+function getFullReportUrl(url?: string) {
+  if (!url) return "";
+  return url.startsWith("http") ? url : `${API_BASE_URL}${url}`;
+}
+
 export function EmissionsDashboard() {
   const router = useRouter();
   const [data, setData] = useState<InvoiceEmissionsResponse | null>(
@@ -105,16 +139,17 @@ export function EmissionsDashboard() {
     if (!data) return null;
 
     const results = data.results ?? [];
-    const totalCO2e = results.reduce(
-      (sum, item) => sum + item.result.co2e,
-      0
-    );
-    const totalTCO2e = results.reduce(
-      (sum, item) => sum + item.result.total_tco2e,
-      0
-    );
+
+    const totalCO2e = results.reduce((sum, item) => {
+      return sum + getCo2e(item);
+    }, 0);
+
+    const totalTCO2e = results.reduce((sum, item) => {
+      return sum + getTco2e(item);
+    }, 0);
+
     const categories = [
-      ...new Set(results.map((item) => item.result.category)),
+      ...new Set(results.map((item) => getCategory(item)).filter(Boolean)),
     ];
 
     return { totalCO2e, totalTCO2e, categories };
@@ -208,8 +243,52 @@ export function EmissionsDashboard() {
   }
 
   const results = data.results ?? [];
-  const extractedItems = data.extracted_items ?? [];
-  const reportUrls = data.report_download_urls ?? { brsr: "", cbam: "" };
+  const rawExtractedItems = data.extracted_items ?? [];
+
+  const resultBasedItems = results
+    .filter((entry: any) => entry?.success !== false)
+    .map((entry: any) => {
+      const result = getResult(entry);
+
+      const matched = rawExtractedItems.find((item: any) => {
+        const extractedName = String(item?.item_name ?? "").toLowerCase();
+        const resultName = String(
+          entry?.item_name ?? result?.item_name ?? ""
+        ).toLowerCase();
+
+        return extractedName && resultName && extractedName === resultName;
+      });
+
+      const params = result?.parameters ?? {};
+
+      return {
+        item_name: String(
+          entry?.item_name ?? result?.item_name ?? "Emission Item"
+        ),
+        quantity:
+          matched?.quantity ??
+          params?.distance_km ??
+          params?.energy_kwh ??
+          params?.weight ??
+          entry?.converted?.value ??
+          0,
+        unit:
+          matched?.unit ??
+          params?.distance_unit ??
+          params?.energy_unit ??
+          params?.weight_unit ??
+          entry?.converted?.unit ??
+          "",
+      };
+    });
+
+  const extractedItems =
+    resultBasedItems.length > 0 ? resultBasedItems : rawExtractedItems;
+
+  const reportUrls = {
+    brsr: getFullReportUrl(data.report_download_urls?.brsr),
+    cbam: getFullReportUrl(data.report_download_urls?.cbam),
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },

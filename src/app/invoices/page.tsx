@@ -23,8 +23,11 @@ export default function InvoicesPage() {
   const [loading, setLoading] = useState(false);
 
   const handleFileSelect = useCallback((selected: File | null) => {
-    setFile(selected);
-    setUploadError(null);
+  EmissionsService.clearLatestResult();
+  EmissionsService.clearPendingFile();
+
+  setFile(selected);
+  setUploadError(null);
 
     if (!selected) return;
 
@@ -45,8 +48,10 @@ export default function InvoicesPage() {
   const handleUpload = async () => {
     if (!file || uploadError || loading) return;
 
-    setLoading(true);
-    setUploadError(null);
+    EmissionsService.clearLatestResult();
+
+      setLoading(true);
+     setUploadError(null);
 
     try {
       await EmissionsService.uploadInvoice(file);
