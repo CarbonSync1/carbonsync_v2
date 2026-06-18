@@ -1505,6 +1505,183 @@
   text-transform: uppercase;
 }
 
+/* ===== Team Section - Responsive ===== */
+@media (max-width: 1200px) {
+  .team-section {
+    padding: 100px 40px;
+  }
+
+  .team-header {
+    margin-bottom: 60px;
+  }
+
+  .team-title {
+    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+    margin-bottom: 20px;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+
+  .member-image {
+    margin-bottom: 20px;
+    border-radius: 24px;
+  }
+
+  .member-info h3 {
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .team-section {
+    padding: 80px 30px;
+  }
+
+  .team-header {
+    margin-bottom: 50px;
+  }
+
+  .team-tag {
+    font-size: 0.65rem;
+    margin-bottom: 15px;
+  }
+
+  .team-title {
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    margin-bottom: 15px;
+  }
+
+  .team-link {
+    font-size: 0.68rem;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .member-image {
+    margin-bottom: 18px;
+    border-radius: 20px;
+  }
+
+  .member-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+
+  .member-info p {
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .team-section {
+    padding: 60px 16px;
+  }
+
+  .team-container {
+    max-width: 100%;
+  }
+
+  .team-header {
+    margin-bottom: 35px;
+  }
+
+  .team-tag {
+    font-size: 0.6rem;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+
+  .team-title {
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    margin-bottom: 12px;
+    line-height: 1.15;
+  }
+
+  .team-link {
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .member-image {
+    aspect-ratio: 1/1.2;
+    margin-bottom: 12px;
+    border-radius: 16px;
+  }
+
+  .member-info h3 {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+
+  .member-info p {
+    font-size: 0.55rem;
+    letter-spacing: 0.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-section {
+    padding: 45px 14px;
+  }
+
+  .team-header {
+    margin-bottom: 25px;
+  }
+
+  .team-tag {
+    font-size: 0.55rem;
+    margin-bottom: 10px;
+    letter-spacing: 1.5px;
+  }
+
+  .team-title {
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+
+  .team-link {
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .member-image {
+    aspect-ratio: 1/1.2;
+    margin-bottom: 10px;
+    border-radius: 14px;
+  }
+
+  .member-info h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .member-info p {
+    font-size: 0.52rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+}
+
 /* ===== Experience Section ===== */
 .experience-section {
   padding: 100px 50px;
