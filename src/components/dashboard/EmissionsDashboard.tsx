@@ -85,6 +85,25 @@ function getFullReportUrl(url?: string) {
   return url.startsWith("http") ? url : `${API_BASE_URL}${url}`;
 }
 
+function filterRailTicketResults(results: any[]) {
+  const hasPassengerRail = results.some((item: any) =>
+    String(item?.item_name ?? item?.result?.item_name ?? "")
+      .toLowerCase()
+      .includes("passenger rail")
+  );
+
+  if (!hasPassengerRail) {
+    return results;
+  }
+
+  return results.filter((item: any) =>
+    String(item?.item_name ?? item?.result?.item_name ?? "")
+      .toLowerCase()
+      .includes("passenger rail")
+  );
+}
+
+
 export function EmissionsDashboard() {
   const router = useRouter();
   const [data, setData] = useState<InvoiceEmissionsResponse | null>(
@@ -138,7 +157,7 @@ export function EmissionsDashboard() {
   const summaryCards = useMemo(() => {
     if (!data) return null;
 
-    const results = data.results ?? [];
+    const results = filterRailTicketResults(data.results ?? []);
 
     const totalCO2e = results.reduce((sum, item) => {
       return sum + getCo2e(item);
@@ -242,7 +261,7 @@ export function EmissionsDashboard() {
     );
   }
 
-  const results = data.results ?? [];
+  const results = filterRailTicketResults(data.results ?? []);
   const rawExtractedItems = data.extracted_items ?? [];
 
   const resultBasedItems = results
