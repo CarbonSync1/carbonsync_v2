@@ -1,6 +1,9 @@
 import type { InvoiceEmissionsResponse } from "@/types/report";
 
 export class InvoiceCache {
+  static delete(hash: string) {
+    throw new Error("Method not implemented.");
+  }
   static clear() {
     throw new Error("Method not implemented.");
   }

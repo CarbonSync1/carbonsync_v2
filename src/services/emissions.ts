@@ -59,108 +59,140 @@ async function retryWithBackoff<T>(
     } catch (error) {
       lastError = error;
 
-
-      if (attempt < retries - 1) {
-        await new Promise((resolve) =>
-          setTimeout(resolve, delayMs * Math.pow(2, attempt))
-        );
-      }
-    }
-
+  if (attempt < retries - 1) {
+    await new Promise((resolve) =>
+      setTimeout(resolve, delayMs * Math.pow(2, attempt))
+    );
   }
-
-  throw lastError;
 }
 
-export class EmissionsService {
-  static async uploadInvoice(file: File): Promise<InvoiceEmissionsResponse> {
-    const hash = await generateFileHash(file);
-
-    // New upload start hote hi dashboard ka old/stale result clear
-    latestInvoiceResult = null;
-
-    // Same file already processed hai to cache se result return karo
-    const cachedResult = InvoiceCache.get(hash);
-    if (cachedResult) {
-      latestInvoiceResult = cachedResult;
-      pendingFile = null;
-      return cachedResult;
     }
 
+    throw lastError;
+  }
+
+  function isValidCachedResult(result: InvoiceEmissionsResponse | null) {
+    if (!result) return false;
+
+    const hasExtractedItems =
+      Array.isArray(result.extracted_items) && result.extracted_items.length > 0;
+
+    const hasResults =
+      Array.isArray(result.results) && result.results.length > 0;
+
+    return result.success === true && (hasExtractedItems || hasResults);
+  }
+
+  export class EmissionsService {
+    static async uploadInvoice(file: File): Promise<InvoiceEmissionsResponse> {
+      const hash = await generateFileHash(file);
+
+      
+latestInvoiceResult = null;
+
+const cachedResult = InvoiceCache.get(hash) as InvoiceEmissionsResponse | null;
+
+if (isValidCachedResult(cachedResult)) {
+  latestInvoiceResult = cachedResult;
+  pendingFile = null;
+  return (cachedResult as InvoiceEmissionsResponse);
+}
+
+// Invalid/stale cache clear
+if (cachedResult) {
+  InvoiceCache.delete?.(hash);
+}
+
+const response = await retryWithBackoff(
+  () => {
     const formData = new FormData();
     formData.append("invoice", file);
 
-    const response = await retryWithBackoff(
-      () =>
-        fetch(`${API_BASE_URL}/api/upload-invoice`, {
-          method: "POST",
-          body: formData,
-        }),
-      3,
-      1000
-    );
+    return fetch(`${ API_BASE_URL } /api/upload - invoice`, {
+      method: "POST",
+      body: formData,
+      cache: "no-store",
+    });
+  },
+  3,
+  1000
+);
 
-    if (!response.ok) {
-      const errorMessages: Record<number, string> = {
-        400: "No invoice file uploaded.",
-        413: "File too large. Maximum allowed size is 5MB.",
-        415: "Unsupported file type.",
-        422: "Unable to extract invoice items from the document.",
-        500: "Internal server error.",
-      };
+if (!response.ok) {
+  let backendMessage = "";
 
-      const message =
-        errorMessages[response.status] ??
-        "An unexpected error occurred. Please try again.";
-
-      throw new Error(message);
-    }
-
-    const result = normalizeInvoiceResponse(await response.json());
-
-    InvoiceCache.set(hash, result);
-    latestInvoiceResult = result;
-    pendingFile = null;
-
-    return result;
-
+  try {
+    const errorBody = await response.json();
+    backendMessage = errorBody?.message || "";
+  } catch {
+    backendMessage = "";
   }
 
-  static async getEmissionSummary(): Promise<EmissionSummaryResponse> {
-    const response = await fetch(`${API_BASE_URL}/api/emissions/summary`);
+  const errorMessages: Record<number, string> = {
+    400: "No invoice file uploaded.",
+    413: "File too large. Maximum allowed size is 5MB.",
+    415: "Unsupported file type.",
+    422: backendMessage || "Unable to extract invoice items from the document.",
+    500: "Internal server error.",
+  };
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch emission summary.");
-    }
+  const message =
+    errorMessages[response.status] ??
+    backendMessage ??
+    "An unexpected error occurred. Please try again.";
 
-    return response.json();
-
-
-  }
-
-  static getLatestResult(): InvoiceEmissionsResponse | null {
-    return latestInvoiceResult;
-  }
-
-  static clearLatestResult(): void {
-    latestInvoiceResult = null;
-  }
-
-  static setPendingFile(file: File): void {
-    pendingFile = file;
-  }
-
-  static getPendingFile(): File | null {
-    return pendingFile;
-  }
-
-  static clearPendingFile(): void {
-    pendingFile = null;
-  }
-
-  static clearCache(): void {
-    InvoiceCache.clear();
-  }
+  throw new Error(message);
 }
 
+const result = normalizeInvoiceResponse(await response.json());
 
+if (isValidCachedResult(result)) {
+  InvoiceCache.set(hash, result);
+}
+
+latestInvoiceResult = result;
+pendingFile = null;
+
+return result;
+
+
+    }
+
+    static async getEmissionSummary(): Promise<EmissionSummaryResponse> {
+      const response = await fetch(`${API_BASE_URL}/api/emissions/summary`, {
+        cache: "no-store",
+      });
+
+    
+if (!response.ok) {
+  throw new Error("Failed to fetch emission summary.");
+}
+
+return response.json();
+
+    }
+
+    static getLatestResult(): InvoiceEmissionsResponse | null {
+      return latestInvoiceResult;
+    }
+
+    static clearLatestResult(): void {
+      latestInvoiceResult = null;
+    }
+
+    static setPendingFile(file: File): void {
+      pendingFile = file;
+    }
+
+    static getPendingFile(): File | null {
+      return pendingFile;
+    }
+
+    static clearPendingFile(): void {
+      pendingFile = null;
+    }
+
+    static clearCache(): void {
+      InvoiceCache.clear();
+    }
+  }
