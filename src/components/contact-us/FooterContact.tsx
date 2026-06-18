@@ -32,8 +32,7 @@ export default function FooterContact() {
               </div>
               <div>
                 <h4 className="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1">Office</h4>
-                <p className="text-[14px] text-white font-medium leading-snug">
-                  Uttar Pradesh, Noida
+                <p className="text-[14px] text-white font-medium leading-snug">1st Floor, E58, Sec 3, Noida, Uttar Pradesh
                 </p>
               </div>
             </div>

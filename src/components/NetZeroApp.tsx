@@ -261,36 +261,34 @@ export default function App() {
  AI-powered ESG, carbon accounting, compliance, and sustainability intelligence platform for modern enterprises.
  </p>
 
- <div
- className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto"
- >
- <button onClick={() => { window.location.href = '/book-demo'; }} className="btn-primary bg-white/10 text-white border border-white/20 hover:bg-white/20 text-center">
- Book Demo
- </button>
- <a href="#features" className="btn-primary flex items-center justify-center gap-2">
- Explore Platform <ArrowRight className="w-4 h-4" />
- </a>
- </div>
+        <div
+          className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto"
+        >
+          <button onClick={() => { window.location.href = '/book-demo'; }} className="btn-primary bg-white/10 text-white border border-white/20 hover:bg-white/20 text-center text-sm md:text-base min-h-[52px] w-full sm:w-auto flex items-center justify-center gap-2">
+            Book Demo
+          </button>
+          <a href="#features" className="btn-primary flex items-center justify-center gap-2 text-sm md:text-base min-h-[52px] w-full sm:w-auto">
+            Explore Platform <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
 
- {/* Quick Metrics Tag */}
- <div
- className="flex items-center gap-8 mt-12 pt-8 border-t border-white/10 w-full"
- >
- <div>
- <p className="text-2xl font-bold text-white">40%</p>
- <p className="text-xs text-white/80 uppercase tracking-wider">Faster ESG Audit</p>
- </div>
- <div className="h-8 w-px bg-white/10" />
- <div>
- <p className="text-2xl font-bold text-white">90%</p>
- <p className="text-xs text-white/80 uppercase tracking-wider">Automated Scope 1-3</p>
- </div>
- <div className="h-8 w-px bg-white/10" />
- <div>
- <p className="text-2xl font-bold text-white">100+</p>
- <p className="text-xs text-white/80 uppercase tracking-wider">Metric Certifications</p>
- </div>
- </div>
+        {/* Quick Metrics Tag */}
+        <div
+          className="grid grid-cols-2 min-[380px]:grid-cols-3 gap-4 md:gap-6 mt-12 pt-8 border-t border-white/10 w-full"
+        >
+          <div className="text-center min-w-0 overflow-hidden">
+            <p className="text-3xl md:text-5xl font-bold text-white">40%</p>
+            <p className="text-xs md:text-sm text-white/80 uppercase tracking-wider leading-tight break-words max-w-full">Faster ESG Audit</p>
+          </div>
+          <div className="text-center min-w-0 overflow-hidden">
+            <p className="text-3xl md:text-5xl font-bold text-white">90%</p>
+            <p className="text-xs md:text-sm text-white/80 uppercase tracking-wider leading-tight break-words max-w-full">Automated Scope 1-3</p>
+          </div>
+          <div className="col-span-2 min-[380px]:col-span-1 text-center min-w-0 overflow-hidden">
+            <p className="text-3xl md:text-5xl font-bold text-white">100+</p>
+            <p className="text-xs md:text-sm text-white/80 uppercase tracking-wider leading-tight break-words max-w-full">Metric Certifications</p>
+          </div>
+        </div>
  </div>
 
  {/* Floating UI Elements */}
@@ -562,85 +560,68 @@ export default function App() {
  </div>
  </section>
 
- {/* 3b. CHALLENGES & BENEFITS — INTERACTIVE FLIP CARD GRID */}
- <section className="py-24 px-6 bg-gradient-to-b from-slate-50 to-white">
- <div className="max-w-6xl mx-auto">
- <div className="text-center mb-16">
- <div
- className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-400/10 border border-green-400/30 text-xs font-bold text-green-400 mb-4 uppercase tracking-widest"
- >
- <Sparkles className="w-3.5 h-3.5" /> Pain → Solution
- </div>
- <h2 className="text-3xl md:text-4xl font-extrabold mb-4"><span className="text-slate-900">Every</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">pain point</span><span className="text-slate-900">, solved</span></h2>
- <p className="text-slate-500 max-w-2xl mx-auto">Hover over each card to discover how CarbonSynq transforms your biggest sustainability challenges into competitive advantages.</p>
- </div>
+  {/* 3b. CHALLENGES & SOLUTIONS — CLEAN SAAS GRID */}
+  <section className="py-24 px-6 bg-gradient-to-b from-slate-50 to-white">
+  <div className="max-w-6xl mx-auto">
+  <div className="text-center mb-16">
+  <div
+  className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-400/10 border border-green-400/30 text-xs font-bold text-green-400 mb-4 uppercase tracking-widest"
+  >
+  <Sparkles className="w-3.5 h-3.5" /> Pain → Solution
+  </div>
+  <h2 className="text-3xl md:text-4xl font-extrabold mb-4"><span className="text-slate-900">Every</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">pain point</span><span className="text-slate-900">, solved</span></h2>
+  <p className="text-slate-500 max-w-2xl mx-auto">From data collection to CarbonSynq Zero planning — we've addressed every challenge across the emissions lifecycle.</p>
+  </div>
 
- <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
- {Object.entries(challengeData).map(([key, val], i) => (
- <div
- key={key}
- className="group"
- style={{ perspective: '1000px' }}
- >
- <div
- className="relative w-full transition-transform duration-700 ease-in-out"
- style={{
- transformStyle: 'preserve-3d',
- minHeight: '280px',
- }}
- >
- {/* FRONT — Challenge */}
- <div
- className="absolute inset-0 rounded-2xl p-6 border border-slate-200 bg-white shadow-md flex flex-col justify-between group-hover:opacity-0 transition-opacity duration-500"
- style={{ backfaceVisibility: 'hidden' }}
- >
- <div>
- <img src="/unnamed.webp" alt="CarbonSynq Logo" className="w-14 h-14 object-contain mb-4" />
- <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-red-400 mb-2 block">The Challenge</span>
- <h3 className="text-lg font-extrabold text-slate-900 mb-3">{val.label}</h3>
- <p className="text-slate-500 text-sm leading-relaxed">{val.challenge}</p>
- </div>
- <div className="flex items-center gap-1.5 mt-4 text-xs font-semibold text-slate-400">
- <span>Hover to see solution</span>
- <ArrowRight className="w-3 h-3" />
- </div>
- </div>
+  {/* Challenges grid */}
+  <div className="mb-16">
+  <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6 text-center">The Challenges</h3>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+  {Object.entries(challengeData).map(([key, val]) => (
+  <div
+  key={key}
+  className="rounded-2xl p-6 border border-slate-200 bg-white shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-200"
+  >
+  <h3 className="text-lg font-extrabold text-slate-900 mb-3">{val.label}</h3>
+  <p className="text-slate-500 text-sm leading-relaxed">{val.challenge}</p>
+  </div>
+  ))}
+  {/* CTA card */}
+  <div
+  className="rounded-2xl p-6 border-2 border-dashed border-emerald-300 bg-emerald-50/50 flex flex-col items-center justify-center text-center"
+  >
+  <div className="w-14 h-14 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center mb-4">
+  <ArrowUpRight className="w-6 h-6 text-emerald-600" />
+  </div>
+  <h3 className="text-lg font-extrabold text-slate-900 mb-2">Ready to solve yours?</h3>
+  <p className="text-slate-500 text-sm mb-5">See how CarbonSynq handles your specific use case.</p>
+  <button onClick={() => { window.location.href = '/book-demo'; }} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 text-slate-900 text-sm font-bold hover:bg-emerald-700 transition-colors shadow-md">
+  Book a Demo <ArrowRight className="w-3.5 h-3.5" />
+  </button>
+  </div>
+  </div>
+  </div>
 
- {/* BACK — Benefit */}
- <div
- className="absolute inset-0 rounded-2xl p-6 border-2 border-emerald-400 bg-gradient-to-br from-emerald-600 to-green-700 shadow-xl flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-500"
- style={{ backfaceVisibility: 'hidden' }}
- >
- <div>
- <div className="w-10 h-10 rounded-xl bg-slate-200 backdrop-blur-sm flex items-center justify-center mb-4">
- <Check className="w-5 h-5 text-slate-900" />
- </div>
- <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-200 mb-2 block">The CarbonSynq Solution</span>
- <h3 className="text-lg font-extrabold text-slate-900 mb-3">{val.label}</h3>
- <p className="text-emerald-100 text-sm leading-relaxed">{val.benefit}</p>
- </div>
- </div>
- </div>
- </div>
- ))}
-
- {/* Summary card */}
- <div
- className="rounded-2xl p-6 border-2 border-dashed border-emerald-300 bg-emerald-50/50 flex flex-col items-center justify-center text-center"
- style={{ minHeight: '280px' }}
- >
- <div className="w-14 h-14 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center mb-4">
- <ArrowUpRight className="w-6 h-6 text-emerald-600" />
- </div>
- <h3 className="text-lg font-extrabold text-slate-900 mb-2">Ready to solve yours?</h3>
- <p className="text-slate-500 text-sm mb-5">See how CarbonSynq handles your specific use case.</p>
- <button onClick={() => { window.location.href = '/book-demo'; }} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 text-slate-900 text-sm font-bold hover:bg-emerald-700 transition-colors shadow-md">
- Book a Demo <ArrowRight className="w-3.5 h-3.5" />
- </button>
- </div>
- </div>
- </div>
- </section>
+  {/* Solutions grid */}
+  <div>
+  <h3 className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-6 text-center">The CarbonSynq Solutions</h3>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+  {Object.entries(challengeData).map(([key, val]) => (
+  <div
+  key={key}
+  className="rounded-2xl p-6 border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white shadow-sm hover:shadow-md hover:border-emerald-300 transition-all duration-200"
+  >
+  <div className="flex items-center gap-2 mb-3">
+  <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+  <h3 className="text-lg font-extrabold text-slate-900">{val.label}</h3>
+  </div>
+  <p className="text-slate-600 text-sm leading-relaxed">{val.benefit}</p>
+  </div>
+  ))}
+  </div>
+  </div>
+  </div>
+  </section>
 
  {/* 3c. PRODUCT FEATURES TABS (MEASURE → ANALYZE → PLAN → DECARBONIZE) */}
  <section
@@ -1143,77 +1124,77 @@ export default function App() {
 
  {/* Interactive SaaS Mockup (Dark SaaS UI on Dark Background Image) */}
  <div className="rounded-2xl bg-white backdrop-blur-xl border border-slate-200 p-1 md:p-2 shadow-2xl">
- {/* Mock Header tabs */}
- <div className="flex flex-wrap items-center justify-between border-b border-slate-200 p-4 gap-4 bg-slate-100/20 rounded-t-2xl">
- <div className="flex items-center gap-6">
- <span className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
- <img src="/unnamed.webp" alt="CarbonSynq Logo" className="w-12 h-12 object-contain" /> CarbonSynq Pro
- </span>
- <div className="hidden sm:flex items-center gap-2 text-xs text-slate-600">
- <span className="px-2 py-0.5 rounded bg-slate-50 border border-slate-200">v2.4</span>
- <span className="text-[10px] text-[#4ade80] flex items-center gap-0.5">
- <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" /> Connection secure
- </span>
- </div>
- </div>
+  {/* Mock Header tabs */}
+  <div className="flex flex-wrap items-center justify-between border-b border-slate-200 p-3 md:p-4 gap-3 bg-slate-100/20 rounded-t-2xl">
+  <div className="flex items-center gap-3 md:gap-6 min-w-0">
+  <span className="text-sm font-bold text-slate-900 flex items-center gap-1.5 min-w-0">
+  <img src="/unnamed.webp" alt="CarbonSynq Logo" className="w-10 md:w-12 h-10 md:h-12 object-contain shrink-0" /> <span className="truncate">CarbonSynq Pro</span>
+  </span>
+  <div className="hidden sm:flex items-center gap-2 text-xs text-slate-600">
+  <span className="px-2 py-0.5 rounded bg-slate-50 border border-slate-200">v2.4</span>
+  <span className="text-[10px] text-[#4ade80] flex items-center gap-0.5">
+  <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" /> Connection secure
+  </span>
+  </div>
+  </div>
 
- {/* Tab Selector */}
- <div className="flex items-center bg-white/60 p-1 rounded-xl border border-slate-200">
- {['overview', 'scopes', 'ai', 'heatmap'].map((tab) => (
- <button
- key={tab}
- onClick={() => setActiveDashboardTab(tab)}
- className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
- activeDashboardTab === tab
- ? 'bg-gradient-to-r from-primary to-green-500 text-black shadow-md'
- : 'text-slate-600 hover:text-slate-900'
- }`}
- >
- {tab}
- </button>
- ))}
- </div>
- </div>
+  {/* Tab Selector */}
+  <div className="overflow-x-auto whitespace-nowrap scrollbar-hide bg-white/60 p-1 rounded-xl border border-slate-200 w-full sm:w-auto">
+  {['overview', 'scopes', 'ai', 'heatmap'].map((tab) => (
+  <button
+  key={tab}
+  onClick={() => setActiveDashboardTab(tab)}
+  className={`px-2 md:px-4 py-2 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all ${
+  activeDashboardTab === tab
+  ? 'bg-gradient-to-r from-primary to-green-500 text-black shadow-md'
+  : 'text-slate-600 hover:text-slate-900'
+  }`}
+  >
+  {tab}
+  </button>
+  ))}
+  </div>
+  </div>
 
- {/* Mock Body Container */}
- <div className="p-6 bg-slate-100/40 min-h-[380px] rounded-b-2xl">
+  {/* Mock Body Container */}
+  <div className="p-4 md:p-6 bg-slate-100/40 min-h-[300px] md:min-h-[380px] rounded-b-2xl">
 
- {/* 1. OVERVIEW TAB */}
- {activeDashboardTab === 'overview' && (
- <div
- className="grid grid-cols-1 lg:grid-cols-12 gap-6"
- >
- <div className="lg:col-span-8 space-y-6">
- <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
- <div className="bg-white/60 border border-slate-200 p-4 rounded-xl">
- <span className="text-xs text-slate-600">Total Carbon Footprint</span>
- <p className="text-2xl font-bold font-mono mt-1 text-slate-900">41,209 t</p>
- <span className="text-[10px] text-[#4ade80] font-semibold flex items-center gap-0.5 mt-2">
- -12% target matched
- </span>
- </div>
- <div className="bg-white/60 border border-slate-200 p-4 rounded-xl">
- <span className="text-xs text-slate-600">Offset Portfolio value</span>
- <p className="text-2xl font-bold font-mono mt-1 text-slate-900">$142.4K</p>
- <span className="text-[10px] text-[#4ade80] font-semibold flex items-center gap-0.5 mt-2">
- Gold Standard Cert
- </span>
- </div>
- <div className="bg-white/60 border border-slate-200 p-4 rounded-xl">
- <span className="text-xs text-slate-600">Target reduction status</span>
- <p className="text-2xl font-bold font-mono mt-1 text-slate-900">On Track</p>
- <span className="text-[10px] text-[#4ade80] font-semibold flex items-center gap-0.5 mt-2">
- Next milestone Nov 2026
- </span>
- </div>
- </div>
+  {/* 1. OVERVIEW TAB */}
+  {activeDashboardTab === 'overview' && (
+  <div
+  className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6"
+  >
+  <div className="lg:col-span-8 space-y-4 md:space-y-6">
+  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
+  <div className="bg-white/60 border border-slate-200 p-3 md:p-4 rounded-xl">
+  <span className="text-[10px] md:text-xs text-slate-600">Total Carbon Footprint</span>
+  <p className="text-xl md:text-2xl font-bold font-mono mt-1 text-slate-900">41,209 t</p>
+  <span className="text-[10px] text-[#4ade80] font-semibold flex items-center gap-0.5 mt-2">
+  -12% target matched
+  </span>
+  </div>
+  <div className="bg-white/60 border border-slate-200 p-3 md:p-4 rounded-xl">
+  <span className="text-[10px] md:text-xs text-slate-600">Offset Portfolio value</span>
+  <p className="text-xl md:text-2xl font-bold font-mono mt-1 text-slate-900">$142.4K</p>
+  <span className="text-[10px] text-[#4ade80] font-semibold flex items-center gap-0.5 mt-2">
+  Gold Standard Cert
+  </span>
+  </div>
+  <div className="bg-white/60 border border-slate-200 p-3 md:p-4 rounded-xl">
+  <span className="text-[10px] md:text-xs text-slate-600">Target reduction status</span>
+  <p className="text-xl md:text-2xl font-bold font-mono mt-1 text-slate-900">On Track</p>
+  <span className="text-[10px] text-[#4ade80] font-semibold flex items-center gap-0.5 mt-2">
+  Next milestone Nov 2026
+  </span>
+  </div>
+  </div>
 
- <div className="bg-white/40 border border-slate-200 rounded-xl p-5">
+  <div className="bg-white/40 border border-slate-200 rounded-xl p-4 md:p-5">
  <div className="flex justify-between items-center mb-4">
  <span className="text-xs font-bold uppercase tracking-wider text-slate-600">Reduction Trend Analysis</span>
  <span className="text-[10px] text-black font-mono">Actual vs Decarbonization Slope</span>
  </div>
- <div className="h-44 flex items-end justify-between gap-1 pt-4 relative">
+  <div className="h-32 md:h-44 flex items-end justify-between gap-1 pt-4 relative">
  <div className="absolute inset-x-0 top-1/2 border-t border-slate-200" />
  <div className="absolute inset-x-0 top-1/4 border-t border-slate-200" />
  <div className="absolute inset-x-0 bottom-4 border-t border-slate-200" />
@@ -1232,11 +1213,11 @@ export default function App() {
  </div>
  </div>
 
- <div className="lg:col-span-4 bg-white/60 border border-slate-200 p-5 rounded-xl flex flex-col justify-between">
+  <div className="lg:col-span-4 bg-white/60 border border-slate-200 p-4 md:p-5 rounded-xl flex flex-col justify-between">
  <div>
  <h4 className="text-sm font-bold text-slate-900 mb-4">Decarbonization Index</h4>
  <div className="flex flex-col items-center justify-center py-6 relative">
- <div className="text-4xl font-extrabold text-slate-900 font-mono">{reductionScore}%</div>
+  <div className="text-3xl md:text-4xl font-extrabold text-slate-900 font-mono">{reductionScore}%</div>
  <span className="text-[10px] text-slate-600 mt-1 uppercase tracking-widest">Calculated Reduction</span>
 
  <div className="mt-4 w-full bg-slate-100 h-2 rounded-full overflow-hidden p-[1px] border border-slate-200">
@@ -1259,69 +1240,69 @@ export default function App() {
  </div>
  )}
 
- {/* 2. SCOPES TAB */}
- {activeDashboardTab === 'scopes' && (
- <div
- className="grid grid-cols-1 lg:grid-cols-3 gap-6"
- >
- <div className="bg-white/60 border border-slate-200 p-5 rounded-xl flex flex-col justify-between">
- <div>
- <div className="flex justify-between items-center mb-4">
- <span className="text-[10px] font-bold text-[#4ade80] uppercase tracking-widest">Scope 1 (Direct)</span>
- <span className="text-[10px] text-[#4ade80] px-1.5 py-0.5 rounded bg-emerald-400/10 font-bold">Low Risk</span>
- </div>
- <h4 className="text-lg font-bold text-slate-900 mb-2 font-mono">1,824.2 tCO₂e</h4>
- <p className="text-xs text-slate-600">
- Direct emissions from owned or controlled sources like combustion boilers and company vehicles.
- </p>
- </div>
- <div className="mt-6 pt-4 border-t border-slate-200">
- <div className="flex justify-between items-center text-xs">
- <span className="text-slate-600">Target Margin</span>
- <span className="text-[#4ade80] font-semibold font-mono">-18.4% Achieved</span>
- </div>
- </div>
- </div>
+  {/* 2. SCOPES TAB */}
+  {activeDashboardTab === 'scopes' && (
+  <div
+  className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6"
+  >
+  <div className="bg-white/60 border border-slate-200 p-4 md:p-5 rounded-xl flex flex-col justify-between">
+  <div>
+  <div className="flex justify-between items-center mb-3 md:mb-4">
+  <span className="text-[10px] font-bold text-[#4ade80] uppercase tracking-widest">Scope 1 (Direct)</span>
+  <span className="text-[10px] text-[#4ade80] px-1.5 py-0.5 rounded bg-emerald-400/10 font-bold">Low Risk</span>
+  </div>
+  <h4 className="text-base md:text-lg font-bold text-slate-900 mb-2 font-mono">1,824.2 tCO₂e</h4>
+  <p className="text-xs text-slate-600">
+  Direct emissions from owned or controlled sources like combustion boilers and company vehicles.
+  </p>
+  </div>
+  <div className="mt-4 md:mt-6 pt-3 md:pt-4 border-t border-slate-200">
+  <div className="flex justify-between items-center text-xs">
+  <span className="text-slate-600">Target Margin</span>
+  <span className="text-[#4ade80] font-semibold font-mono">-18.4% Achieved</span>
+  </div>
+  </div>
+  </div>
 
- <div className="bg-white/60 border border-slate-200 p-5 rounded-xl flex flex-col justify-between">
- <div>
- <div className="flex justify-between items-center mb-4">
- <span className="text-[10px] font-bold text-[#4ade80] uppercase tracking-widest">Scope 2 (Indirect)</span>
- <span className="text-[10px] text-[#4ade80] px-1.5 py-0.5 rounded bg-emerald-400/10 font-bold">Low Risk</span>
- </div>
- <h4 className="text-lg font-bold text-slate-900 mb-2 font-mono">3,124.9 tCO₂e</h4>
- <p className="text-xs text-slate-600">
- Indirect emissions from the generation of purchased electricity, steam, heating and cooling.
- </p>
- </div>
- <div className="mt-6 pt-4 border-t border-slate-200">
- <div className="flex justify-between items-center text-xs">
- <span className="text-slate-600">Target Margin</span>
- <span className="text-[#4ade80] font-semibold font-mono">-22.1% Achieved</span>
- </div>
- </div>
- </div>
+  <div className="bg-white/60 border border-slate-200 p-4 md:p-5 rounded-xl flex flex-col justify-between">
+  <div>
+  <div className="flex justify-between items-center mb-3 md:mb-4">
+  <span className="text-[10px] font-bold text-[#4ade80] uppercase tracking-widest">Scope 2 (Indirect)</span>
+  <span className="text-[10px] text-[#4ade80] px-1.5 py-0.5 rounded bg-emerald-400/10 font-bold">Low Risk</span>
+  </div>
+  <h4 className="text-base md:text-lg font-bold text-slate-900 mb-2 font-mono">3,124.9 tCO₂e</h4>
+  <p className="text-xs text-slate-600">
+  Indirect emissions from the generation of purchased electricity, steam, heating and cooling.
+  </p>
+  </div>
+  <div className="mt-4 md:mt-6 pt-3 md:pt-4 border-t border-slate-200">
+  <div className="flex justify-between items-center text-xs">
+  <span className="text-slate-600">Target Margin</span>
+  <span className="text-[#4ade80] font-semibold font-mono">-22.1% Achieved</span>
+  </div>
+  </div>
+  </div>
 
- <div className="bg-white/60 border border-slate-200 p-5 rounded-xl flex flex-col justify-between">
- <div>
- <div className="flex justify-between items-center mb-4">
- <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Scope 3 (Supply Chain)</span>
- <span className="text-[10px] text-slate-600 px-1.5 py-0.5 rounded bg-slate-100 font-bold">Needs Review</span>
- </div>
- <h4 className="text-lg font-bold text-slate-900 mb-2 font-mono">7,888.9 tCO₂e</h4>
- <p className="text-xs text-slate-600">
- All other indirect emissions that occur in a company’s value chain, including supplier actions and customer usage.
- </p>
- </div>
- <div className="mt-6 pt-4 border-t border-slate-200">
- <div className="flex justify-between items-center text-xs">
- <span className="text-slate-600">Target Margin</span>
- <span className="text-slate-600 font-semibold font-mono">+4.2% Variance</span>
- </div>
- </div>
- </div>
- </div>
- )}
+  <div className="bg-white/60 border border-slate-200 p-4 md:p-5 rounded-xl flex flex-col justify-between">
+  <div>
+  <div className="flex justify-between items-center mb-3 md:mb-4">
+  <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Scope 3 (Supply Chain)</span>
+  <span className="text-[10px] text-slate-600 px-1.5 py-0.5 rounded bg-slate-100 font-bold">Needs Review</span>
+  </div>
+  <h4 className="text-base md:text-lg font-bold text-slate-900 mb-2 font-mono">7,888.9 tCO₂e</h4>
+  <p className="text-xs text-slate-600">
+  All other indirect emissions that occur in a company's value chain, including supplier actions and customer usage.
+  </p>
+  </div>
+  <div className="mt-4 md:mt-6 pt-3 md:pt-4 border-t border-slate-200">
+  <div className="flex justify-between items-center text-xs">
+  <span className="text-slate-600">Target Margin</span>
+  <span className="text-slate-600 font-semibold font-mono">+4.2% Variance</span>
+  </div>
+  </div>
+  </div>
+  </div>
+  )}
 
  {/* 3. AI RECOMMENDATIONS TAB */}
  {activeDashboardTab === 'ai' && (
@@ -1377,12 +1358,12 @@ export default function App() {
  </div>
  )}
 
- {/* 4. SUPPLIER HEATMAP TAB */}
- {activeDashboardTab === 'heatmap' && (
- <div
- className="grid grid-cols-1 lg:grid-cols-12 gap-6"
- >
- <div className="lg:col-span-7 bg-white/40 border border-slate-200 rounded-xl p-5">
+  {/* 4. SUPPLIER HEATMAP TAB */}
+  {activeDashboardTab === 'heatmap' && (
+  <div
+  className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6"
+  >
+  <div className="lg:col-span-7 bg-white/40 border border-slate-200 rounded-xl p-4 md:p-5">
  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-600 mb-4">Supplier Rating Board</h4>
  <div className="space-y-3">
  {suppliers.map((supplier, idx) => (
@@ -1402,7 +1383,7 @@ export default function App() {
  </div>
  </div>
 
- <div className="lg:col-span-5 bg-white/60 border border-slate-200 p-5 rounded-xl flex flex-col justify-between">
+  <div className="lg:col-span-5 bg-white/60 border border-slate-200 p-4 md:p-5 rounded-xl flex flex-col justify-between">
  <div>
  <h4 className="text-sm font-bold text-slate-900 mb-2">Scope 3 Intelligence</h4>
  <p className="text-xs text-slate-600 leading-relaxed">

@@ -41,10 +41,10 @@ export default function ProblemCard({ problem, index }: ProblemCardProps) {
         <ArrowUpRight className="w-5 h-5 text-emerald-500" />
       </div>
       
-      <div className="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center mb-6 group-hover:bg-emerald-100 transition-colors duration-300 border border-emerald-100">
-        <Icon className="w-6 h-6 text-emerald-600" />
+      <div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-2xl bg-emerald-50 flex items-center justify-center mb-6 group-hover:bg-emerald-100 transition-colors duration-300 border border-emerald-100 overflow-hidden">
+        <Icon className="w-6 h-6 md:w-7 md:h-7 text-emerald-600" />
       </div>
-      <h3 className="text-xl font-semibold text-slate-900 mb-3 tracking-wide">
+      <h3 className="text-2xl md:text-3xl font-semibold text-slate-900 mb-3 tracking-wide">
         {problem.title}
       </h3>
       <p className="text-slate-600 leading-relaxed mb-4 flex-grow">

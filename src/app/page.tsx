@@ -70,14 +70,14 @@ function AboutSection() {
           <p className="text-base text-text-muted leading-relaxed mb-8">
             Founded on principles of transparency and innovation, we empower businesses to turn ESG compliance into strategic value creation.
           </p>
-          <div className="grid grid-cols-2 gap-8">
-            <div className="p-5 rounded-xl bg-gradient-to-br from-eco-green/5 to-transparent border border-eco-green/10">
-              <div className="font-heading text-[2rem] font-extrabold text-text-dark mb-1">100%</div>
-              <div className="text-[11px] font-bold uppercase tracking-widest text-text-muted">Audit Ready</div>
+          <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+            <div className="w-full min-w-0 overflow-hidden p-4 md:p-6 rounded-xl bg-gradient-to-br from-eco-green/5 to-transparent border border-eco-green/10">
+              <div className="font-heading text-3xl sm:text-4xl lg:text-[2rem] font-extrabold text-text-dark mb-1 leading-tight break-words">100%</div>
+              <div className="text-xs sm:text-sm lg:text-[11px] font-bold uppercase tracking-widest text-text-muted break-words">Audit Ready</div>
             </div>
-            <div className="p-5 rounded-xl bg-gradient-to-br from-eco-green/5 to-transparent border border-eco-green/10">
-              <div className="font-heading text-[2rem] font-extrabold text-text-dark mb-1">AI-Powered</div>
-              <div className="text-[11px] font-bold uppercase tracking-widest text-text-muted">Reduction Insights</div>
+            <div className="w-full min-w-0 overflow-hidden p-4 md:p-6 rounded-xl bg-gradient-to-br from-eco-green/5 to-transparent border border-eco-green/10">
+              <div className="font-heading text-3xl sm:text-4xl lg:text-[2rem] font-extrabold text-text-dark mb-1 leading-tight break-words">AI-Powered</div>
+              <div className="text-xs sm:text-sm lg:text-[11px] font-bold uppercase tracking-widest text-text-muted break-words">Reduction Insights</div>
             </div>
           </div>
         </div>
@@ -107,14 +107,9 @@ function ImpactStrip() {
         {[
           { end: 50, suffix: '%', lbl: 'Faster ESG Reporting' },
           { end: 1000, suffix: '+', lbl: 'Curated ESG KPIs' },
-          { end: 0, suffix: '', lbl: 'Unlimited', isUnlimited: true },
         ].map((item, i) => (
           <div className="flex flex-col gap-2" key={item.lbl}>
-            {item.isUnlimited ? (
-              <span className="font-heading text-4xl font-extrabold text-eco-green">Unlimited</span>
-            ) : (
-              <span className="tabular-nums font-heading text-4xl font-extrabold text-eco-green">{item.end}{item.suffix}</span>
-            )}
+            <span className="tabular-nums font-heading text-4xl font-extrabold text-eco-green">{item.end}{item.suffix}</span>
             <span className="text-sm font-semibold text-white/60 uppercase tracking-wide">{item.lbl}</span>
           </div>
         ))}
@@ -145,14 +140,18 @@ function TrustedMarquee() {
         </span>
         <h2 className="font-heading text-[1.5rem] font-extrabold text-text-dark">CarbonSynqEarth is trusted by leading enterprises worldwide</h2>
       </div>
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center w-full max-w-[1200px] mx-auto px-[5%]">
         {badges.map((b, i) => (
           <div
             key={i}
-            className="flex cursor-default items-center gap-2.5 rounded-full border border-eco-green/15 bg-gradient-to-r from-beige-soft/50 to-white px-6 py-3 whitespace-nowrap transition-all hover:-translate-y-0.5 hover:border-eco-green/30 hover:shadow-lg hover:shadow-eco-green/10 hover:bg-eco-green/5"
+            className="flex items-center justify-center gap-3 w-full min-w-[180px] h-14 md:h-16 px-6 py-3 rounded-full border border-eco-green/15 bg-gradient-to-r from-beige-soft/50 to-white cursor-default transition-all hover:-translate-y-1 hover:border-eco-green/30 hover:shadow-lg hover:shadow-eco-green/10 hover:bg-eco-green/5"
           >
-            <span className="flex text-eco-green">{b.icon}</span>
-            <span className="text-sm font-semibold text-text-muted">{b.label}</span>
+            <span className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6 [&>svg]:w-full [&>svg]:h-full text-eco-green shrink-0">
+              {b.icon}
+            </span>
+            <span className="text-sm md:text-base font-medium text-text-muted whitespace-nowrap truncate">
+              {b.label}
+            </span>
           </div>
         ))}
       </div>
@@ -591,13 +590,13 @@ function Ecosystem() {
 
 function MetricCard({ icon, label, value, color }: { icon: React.ReactNode; label: string; value: string; color: string }) {
   return (
-    <div className="bg-white rounded-xl border border-black/5 p-4 shadow-sm flex items-center gap-3 transition-all duration-300 hover:shadow-md hover:border-eco-green/20 hover:-translate-y-0.5">
+    <div className="bg-white rounded-xl border border-black/5 p-4 shadow-sm flex items-center gap-3 min-w-0 overflow-hidden break-words transition-all duration-300 hover:shadow-md hover:border-eco-green/20 hover:-translate-y-0.5">
       <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `${color}15` }}>
         <span style={{ color }}>{icon}</span>
       </div>
       <div className="min-w-0">
         <div className="text-xs font-medium text-text-muted truncate">{label}</div>
-        <div className="text-lg font-extrabold text-text-dark leading-tight">{value}</div>
+        <div className="text-lg font-extrabold text-text-dark leading-tight break-words">{value}</div>
       </div>
     </div>
   );
@@ -631,7 +630,7 @@ function DashboardPreview() {
           </ul>
         </div>
 
-        <div className="relative">
+        <div className="relative hidden md:block">
             <div className="rounded-[20px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-black/5 transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)]">
               <div className="bg-[#1a3a28] px-4 py-3 flex items-center gap-2">
                 <div className="flex gap-1.5">

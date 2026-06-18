@@ -6,7 +6,7 @@ const mentors = [
     role: (
       <span className="flex flex-col gap-1">
         <span>Technical Mentor</span>
-        <span className="text-eco-green font-bold text-xs tracking-wider uppercase bg-eco-green/10 px-2 py-1 rounded-md inline-block mt-1 border border-eco-green/20 shadow-sm self-start">
+        <span className="text-eco-green font-bold text-xs tracking-wider uppercase bg-eco-green/10 px-2 py-1 rounded-xl inline-block mt-1 border border-eco-green/20 shadow-sm self-start">
           Entrepreneur and Advisor to startups
         </span>
       </span>

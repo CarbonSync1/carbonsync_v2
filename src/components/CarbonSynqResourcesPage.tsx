@@ -755,6 +755,7 @@ export default function CarbonSynqResourcesPage() {
   }, []);
   const [activeTag, setActiveTag] = useState('All');
   const [query, setQuery] = useState('');
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [showShareDropdown, setShowShareDropdown] = useState(false);
   const [articleDetailResource, setArticleDetailResource] = useState<typeof resources[0] | null>(null);
@@ -3427,6 +3428,60 @@ export default function CarbonSynqResourcesPage() {
                     </h1>
                   </>
                 )}
+
+                {/* Mobile filter trigger */}
+                <button
+                  className="mobile-filter-trigger"
+                  onClick={() => setShowMobileFilters(true)}
+                >
+                  <Search size={16} />
+                  {query || 'Search and filter resources...'}
+                  <span style={{ marginLeft: 'auto', fontSize: 12, color: '#94a3b8' }}>
+                    {active !== 'All' ? active : activeTag !== 'All' ? activeTag : ''}
+                  </span>
+                </button>
+
+                {/* Mobile filter drawer */}
+                <div className={`mobile-filter-overlay ${showMobileFilters ? 'open' : ''}`} onClick={() => setShowMobileFilters(false)} />
+                <div className={`mobile-filter-drawer ${showMobileFilters ? 'open' : ''}`}>
+                  <div className="drawer-handle" />
+                  <div className="search-box" style={{ width: '100%', marginBottom: 20 }}>
+                    <Search size={20} />
+                    <input
+                      value={query}
+                      onChange={(e) => setQuery(e.target.value)}
+                      placeholder="Search resources..."
+                      style={{ padding: '12px 0' }}
+                    />
+                  </div>
+                  <h3>Categories</h3>
+                  <div className="filter-chips" style={{ marginBottom: 24 }}>
+                    {categories.map((category) => (
+                      <button
+                        key={category}
+                        className={active === category ? 'active' : ''}
+                        onClick={() => { handleCategoryChange(category); setShowMobileFilters(false); }}
+                      >
+                        {category}
+                      </button>
+                    ))}
+                  </div>
+                  <h3>Filter by Tag</h3>
+                  <div className="filter-chips">
+                    {['All', 'Net Zero', 'Carbon Data', 'Analytics', 'Company News', 'Partnerships', 'Awards'].map((tag) => (
+                      <button
+                        key={tag}
+                        className={activeTag === tag ? 'active' : ''}
+                        onClick={() => { setActiveTag(tag); }}
+                      >
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
+                  <button className="apply-btn" onClick={() => setShowMobileFilters(false)} style={{ marginTop: 20 }}>
+                    Apply Filters
+                  </button>
+                </div>
 
                 {Object.entries(groupedResources).map(([type, items]) => (
                   <div key={type} className="resource-group" style={{ marginBottom: active === 'All' ? 80 : 0 }}>

@@ -45,7 +45,7 @@ export default function Compliance() {
           </div>
 
           <div
-            className="relative"
+            className="relative hidden md:block"
           >
             <div className="aspect-[4/3] rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 shadow-2xl overflow-hidden p-6">
               <div className="flex items-center justify-between mb-6">

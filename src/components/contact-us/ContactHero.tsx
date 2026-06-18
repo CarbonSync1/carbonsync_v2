@@ -97,7 +97,7 @@ export default function ContactHero() {
               <div className="flex flex-col pt-0.5">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.1em] mb-1">Address</span>
                 <span className="text-[#0f172a] font-bold text-[15px] group-hover:text-green-600 transition-colors leading-tight">
-                  UTTAR PRADESH, NOIDA
+                  1st Floor, E58, Sec 3 , Noida, Uttar Pradesh
                 </span>
               </div>
             </div>
