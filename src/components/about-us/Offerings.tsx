@@ -116,7 +116,7 @@ const Offerings = () => {
                 </div>
                 
                 <div className="card-overlay">
-                  <h4>{service.title}</h4>
+                  <h4 className="top-3 relative">{service.title}</h4>
                   <div className="overlay-divider"></div>
                   <p>{service.details}</p>
                 </div>
