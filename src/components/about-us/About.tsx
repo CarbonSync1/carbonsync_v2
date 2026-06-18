@@ -4,6 +4,7 @@ const visionBg = "/about-assets/vision-bg.webp";
 const missionBg = "/about-assets/mission-bg.webp";
 const storyBg = "/about-assets/story-bg.webp";
 import CalendlyWidget from './CalendlyWidget'
+import { redirect } from 'next/navigation';
 
 
 const About = () => {
@@ -67,7 +68,7 @@ const About = () => {
                   e.preventDefault();
                   if (row.id === 'vision') setShowVision(true);
                   if (row.id === 'story') setShowStory(true);
-                  if (row.id === 'mission') setShowCalendly(true);
+                  if (row.id === 'mission') redirect('/login'); 
                 }}
 
               >

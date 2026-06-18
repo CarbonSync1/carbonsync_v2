@@ -20,7 +20,7 @@ const team = [
     linkedin: 'https://www.linkedin.com/in/sarwang-agarwal-220aa62a3?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   },
   {
-    name: 'Priyanshu Gcet',
+    name: 'Priyanshu Barai',
     role: 'Backend Engineer',
     image: '/about-assets/team-4.jpg',
     linkedin: 'https://www.linkedin.com/in/priyanshubarai?utm_source=share_via&utm_content=profile&utm_medium=member_android',
