@@ -1,6 +1,9 @@
 import type { InvoiceEmissionsResponse } from "@/types/report";
 
 export class InvoiceCache {
+  static clear() {
+    throw new Error("Method not implemented.");
+  }
   private static readonly MAX_CACHE_SIZE = 10;
   private static cache = new Map<
     string,

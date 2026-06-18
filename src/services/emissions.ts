@@ -84,8 +84,12 @@ export class EmissionsService {
   }
 
   static clearCache(): void {
-    invoiceCache.clear();
+    InvoiceCache.clear();
   }
 }
 
+
+function retryWithBackoff(arg0: () => Promise<Response>, arg1: number, arg2: number) {
+  throw new Error("Function not implemented.");
+}
 
