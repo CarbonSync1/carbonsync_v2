@@ -263,31 +263,40 @@ export function EmissionsDashboard() {
 
   const results = filterRailTicketResults(data.results ?? []);
   const rawExtractedItems = data.extracted_items ?? [];
+
   const resultBasedItems = results
     .filter((entry: any) => entry?.success !== false)
-    .map((entry: any) => {
+    .map((entry: any, index: number) => {
       const result = getResult(entry);
       const params = result?.parameters ?? {};
       const converted = entry?.converted ?? {};
+      const rawItem = rawExtractedItems[index];
 
       return {
         item_name: String(
+          rawItem?.item_name ??
           entry?.item_name ??
           result?.item_name ??
           "Emission Item"
         ),
+
+        // Display original invoice quantity first
         quantity:
+          rawItem?.quantity ??
+          params?.original_quantity ??
+          params?.extracted_quantity ??
+          converted?.original_value ??
           converted?.value ??
-          params?.distance_km ??
-          params?.energy_kwh ??
-          params?.weight ??
           params?.quantity ??
           0,
+
+        // Display original invoice unit first
         unit:
+          rawItem?.unit ??
+          params?.original_unit ??
+          params?.extracted_unit ??
+          converted?.original_unit ??
           converted?.unit ??
-          params?.distance_unit ??
-          params?.energy_unit ??
-          params?.weight_unit ??
           params?.quantity_unit ??
           "",
       };
