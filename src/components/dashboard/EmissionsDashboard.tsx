@@ -341,14 +341,25 @@ export function EmissionsDashboard() {
                 activity records.
               </p>
             </div>
-            <button
-              type="button"
-              onClick={() => router.push("/invoices")}
-              className="inline-flex items-center gap-2 bg-eco-green hover:bg-eco-hover text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-eco-green/20 transition-all hover:shadow-xl hover:shadow-eco-green/30 active:scale-[0.98] text-sm shrink-0"
-            >
-              <Upload className="w-4 h-4" />
-              Upload New Invoice
-            </button>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+              <button
+                type="button"
+                onClick={() => router.push("/analytics")}
+                className="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-slate-900/15 transition-all hover:shadow-xl hover:shadow-slate-900/20 active:scale-[0.98] text-sm"
+              >
+                <BarChart3 className="w-4 h-4" />
+                Analytics
+              </button>
+
+              <button
+                type="button"
+                onClick={() => router.push("/invoices")}
+                className="inline-flex items-center justify-center gap-2 bg-eco-green hover:bg-eco-hover text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-eco-green/20 transition-all hover:shadow-xl hover:shadow-eco-green/30 active:scale-[0.98] text-sm"
+              >
+                <Upload className="w-4 h-4" />
+                Upload New Invoice
+              </button>
+            </div>
           </div>
           <div className="h-px bg-gradient-to-r from-eco-green/20 via-emerald-light/10 to-transparent mt-6" />
         </motion.div>
@@ -411,7 +422,7 @@ export function EmissionsDashboard() {
         {/* ── Top Summary Cards ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <DashboardMetricCard
-            label="Total CO\u2082e"
+            label="Total CO₂e"
             value={summaryCards?.totalCO2e ?? 0}
             unit="kg"
             decimals={2}
@@ -420,9 +431,9 @@ export function EmissionsDashboard() {
             index={0}
           />
           <DashboardMetricCard
-            label="Total tCO\u2082e"
+            label="Total tCO₂e"
             value={summaryCards?.totalTCO2e ?? 0}
-            unit="tCO\u2082e"
+            unit="tCO₂e"
             decimals={2}
             icon={<Globe2 className="w-5 h-5" />}
             color="text-blue-600"
@@ -707,7 +718,7 @@ function EmissionResultCard({
         <div className="grid grid-cols-3 gap-4 mb-5">
           <div className="bg-gray-50 rounded-xl px-3 py-3">
             <p className="text-[10px] font-bold text-text-muted uppercase tracking-wider mb-1">
-              CO\u2082e
+              CO₂e
             </p>
             <p className="text-lg font-extrabold text-text-dark font-heading tabular-nums">
               {result.co2e.toLocaleString()}
@@ -718,14 +729,14 @@ function EmissionResultCard({
           </div>
           <div className="bg-gray-50 rounded-xl px-3 py-3">
             <p className="text-[10px] font-bold text-text-muted uppercase tracking-wider mb-1">
-              Total tCO\u2082e
+              Total tCO₂e
             </p>
             <p className="text-lg font-extrabold text-text-dark font-heading tabular-nums">
               {result.total_tco2e.toLocaleString(undefined, {
                 maximumFractionDigits: 3,
               })}
             </p>
-            <p className="text-[10px] text-text-muted font-medium">tCO\u2082e</p>
+            <p className="text-[10px] text-text-muted font-medium">tCO₂e</p>
           </div>
           <div className="bg-gray-50 rounded-xl px-3 py-3">
             <p className="text-[10px] font-bold text-text-muted uppercase tracking-wider mb-1">
@@ -769,3 +780,4 @@ function EmissionResultCard({
     </motion.div>
   );
 }
+

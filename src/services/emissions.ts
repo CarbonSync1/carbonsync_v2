@@ -9,6 +9,23 @@ const API_BASE_URL =
 let latestInvoiceResult: InvoiceEmissionsResponse | null = null;
 let pendingFile: File | null = null;
 
+const LATEST_INVOICE_STORAGE_KEY = "carbonsync_latest_invoice_result";
+
+function publishLatestInvoiceResult(result: InvoiceEmissionsResponse) {
+  if (typeof window === "undefined") return;
+
+  try {
+    window.localStorage.setItem(
+      LATEST_INVOICE_STORAGE_KEY,
+      JSON.stringify(result)
+    );
+
+    window.dispatchEvent(new CustomEvent("carbonsynqearth-invoice-updated"));
+  } catch {
+    // localStorage is optional; dashboard should still work without it.
+  }
+}
+
 function normalizeReportUrl(url?: string | null) {
   if (!url) return "";
   return url.startsWith("http") ? url : `${API_BASE_URL}${url}`;
@@ -71,7 +88,7 @@ async function retryWithBackoff<T>(
   throw lastError;
 }
 
-function isValidCachedResult(result: InvoiceEmissionsResponse | null) {
+function isValidCachedResult(result: InvoiceEmissionsResponse | null): result is InvoiceEmissionsResponse {
   if (!result) return false;
 
   const hasExtractedItems =
@@ -95,6 +112,7 @@ export class EmissionsService {
     if (isValidCachedResult(cachedResult)) {
       latestInvoiceResult = cachedResult;
       pendingFile = null;
+      publishLatestInvoiceResult(cachedResult);
       return (cachedResult as InvoiceEmissionsResponse);
     }
 
@@ -152,6 +170,7 @@ export class EmissionsService {
 
     latestInvoiceResult = result;
     pendingFile = null;
+    publishLatestInvoiceResult(result);
 
     return result;
 
