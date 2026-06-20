@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, Suspense } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import {
   ArrowRight, Upload, LineChart, FileCheck, Zap, ShieldCheck, Award, Activity,
@@ -11,6 +12,351 @@ import {
 } from 'lucide-react';
 import { faqs } from '@/data/faqs';
 const Analytics = dynamic(() => import('@/components/AnalyticsSection').then(m => ({ default: m.Analytics })), { ssr: false });
+
+// ─── Full-Screen Intro Banner (3 seconds) ───────────────────────────────────
+// ─── Shared Banner Content (matches exact uploaded design) ─────────────────
+function BannerContent({ compact = false }: { compact?: boolean }) {
+  return (
+    <div
+      style={{
+        background: 'linear-gradient(135deg, #dff3fb 0%, #c8eaf7 30%, #e8f8f0 60%, #d6f5e3 100%)',
+        fontFamily: '"Segoe UI", system-ui, sans-serif',
+      }}
+      className={`relative overflow-hidden w-full ${compact ? 'rounded-2xl' : 'rounded-2xl'}`}
+    >
+      {/* Left windmill silhouette */}
+      <div className="absolute left-0 bottom-0 opacity-60 pointer-events-none" style={{ width: compact ? '80px' : '160px' }}>
+        <svg viewBox="0 0 160 220" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+          {/* pole */}
+          <rect x="72" y="80" width="8" height="140" rx="4" fill="#5BA0C8" opacity="0.5" />
+          {/* blades */}
+          <ellipse cx="76" cy="78" rx="6" ry="36" fill="#6BB8D4" opacity="0.6" transform="rotate(-30 76 78)" />
+          <ellipse cx="76" cy="78" rx="6" ry="36" fill="#6BB8D4" opacity="0.6" transform="rotate(90 76 78)" />
+          <ellipse cx="76" cy="78" rx="6" ry="36" fill="#6BB8D4" opacity="0.6" transform="rotate(210 76 78)" />
+          <circle cx="76" cy="78" r="8" fill="#4A90B8" opacity="0.8" />
+          {/* second smaller windmill */}
+          <rect x="32" y="110" width="5" height="110" rx="2.5" fill="#5BA0C8" opacity="0.4" />
+          <ellipse cx="34" cy="108" rx="4" ry="24" fill="#6BB8D4" opacity="0.5" transform="rotate(-30 34 108)" />
+          <ellipse cx="34" cy="108" rx="4" ry="24" fill="#6BB8D4" opacity="0.5" transform="rotate(90 34 108)" />
+          <ellipse cx="34" cy="108" rx="4" ry="24" fill="#6BB8D4" opacity="0.5" transform="rotate(210 34 108)" />
+          <circle cx="34" cy="108" r="5" fill="#4A90B8" opacity="0.7" />
+          {/* ground hills */}
+          <ellipse cx="80" cy="220" rx="110" ry="40" fill="#4A8B5C" opacity="0.25" />
+          <ellipse cx="30" cy="225" rx="60" ry="30" fill="#3D7A4E" opacity="0.3" />
+          {/* birds */}
+          <path d="M20 40 Q24 36 28 40" stroke="#5BA0C8" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          <path d="M30 32 Q34 28 38 32" stroke="#5BA0C8" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          <path d="M14 52 Q17 49 20 52" stroke="#5BA0C8" strokeWidth="1.2" fill="none" strokeLinecap="round" />
+        </svg>
+      </div>
+
+      {/* Right side: Globe + Rocket + Logo Sticker */}
+      <div className="absolute right-0 bottom-0 pointer-events-none" style={{ width: compact ? '120px' : '240px' }}>
+        {/* Logo sticker — floating above globe */}
+        <div
+          className="absolute z-10"
+          style={{
+            top: compact ? '2px' : '4px',
+            right: compact ? '8px' : '16px',
+            width: compact ? '52px' : '100px',
+            height: compact ? '52px' : '100px',
+          }}
+        >
+          {/* Glow ring behind sticker */}
+          <div
+            className="absolute inset-[-6px] rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(34,197,94,0.3) 0%, rgba(6,182,212,0.2) 50%, transparent 70%)',
+            }}
+          />
+          {/* White circular background */}
+          <div className="w-full h-full rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden border-2 border-green-100">
+            <Image
+              src="/CarbonSynqEarthLogo.jpg"
+              alt="CarbonsynQ Earth"
+              width={100}
+              height={100}
+              className="w-full h-full object-cover object-bottom scale-[2.2] origin-bottom"
+              style={{ filter: 'url(#remove-black-banner)' }}
+            />
+          </div>
+          {/* Sparkle dots around logo */}
+          <span className="absolute -top-1 -right-1 w-2 h-2 bg-yellow-400 rounded-full opacity-90" />
+          <span className="absolute top-1 -left-2 w-1.5 h-1.5 bg-yellow-300 rounded-full opacity-80" />
+          <span className="absolute -bottom-1 right-2 w-1.5 h-1.5 bg-green-400 rounded-full opacity-80" />
+          {/* SVG filter for logo */}
+          <svg width="0" height="0" className="absolute">
+            <defs>
+              <filter id="remove-black-banner" colorInterpolationFilters="sRGB">
+                <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  5 5 5 0 -0.8" />
+              </filter>
+            </defs>
+          </svg>
+        </div>
+
+        {/* Brand name below logo sticker — highlighted */}
+        <div
+          className="absolute z-10 text-center"
+          style={{
+            top: compact ? '56px' : '108px',
+            right: compact ? '0px' : '0px',
+            width: compact ? '68px' : '132px',
+          }}
+        >
+          <div
+            className="inline-block rounded-xl px-2 py-1"
+            style={{
+              background: 'rgba(255,255,255,0.85)',
+              backdropFilter: 'blur(6px)',
+              boxShadow: '0 0 12px rgba(34,197,94,0.35), 0 2px 8px rgba(0,0,0,0.08)',
+              border: '1px solid rgba(34,197,94,0.25)',
+            }}
+          >
+            <p
+              className="font-black leading-tight"
+              style={{
+                fontSize: compact ? '7px' : '13px',
+                background: 'linear-gradient(135deg, #14532d 0%, #16a34a 60%, #06b6d4 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              CarbonsynQ
+            </p>
+            <p
+              className="font-bold tracking-[0.2em]"
+              style={{
+                fontSize: compact ? '5px' : '9px',
+                color: '#15803d',
+              }}
+            >
+              EARTH
+            </p>
+          </div>
+        </div>
+
+        {/* Globe + Rocket SVG */}
+        <svg viewBox="0 0 240 220" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+          {/* Globe */}
+          <circle cx="160" cy="170" r="90" fill="url(#globeGrad)" opacity="0.95" />
+          <ellipse cx="160" cy="170" rx="90" ry="30" fill="#1a7a3c" opacity="0.15" />
+          <defs>
+            <radialGradient id="globeGrad" cx="40%" cy="40%">
+              <stop offset="0%" stopColor="#5bc8f5" />
+              <stop offset="40%" stopColor="#1e8fd4" />
+              <stop offset="100%" stopColor="#0d5fa3" />
+            </radialGradient>
+          </defs>
+          {/* Continents */}
+          <path d="M110 145 Q120 130 140 135 Q155 130 165 140 Q175 150 170 165 Q160 175 145 170 Q130 165 115 158 Z" fill="#2d9e4e" opacity="0.85" />
+          <path d="M155 100 Q168 95 175 108 Q178 120 168 125 Q158 128 152 118 Z" fill="#2d9e4e" opacity="0.7" />
+          {/* Green leaves around globe */}
+          <ellipse cx="115" cy="105" rx="8" ry="14" fill="#3cb55a" opacity="0.8" transform="rotate(-40 115 105)" />
+          <ellipse cx="205" cy="115" rx="6" ry="12" fill="#4cc76b" opacity="0.7" transform="rotate(30 205 115)" />
+          <ellipse cx="200" cy="145" rx="7" ry="13" fill="#3cb55a" opacity="0.75" transform="rotate(-20 200 145)" />
+          {/* Rocket */}
+          <g transform="translate(155, 60) rotate(35)">
+            {/* Body */}
+            <ellipse cx="0" cy="0" rx="10" ry="22" fill="#e8f4ff" />
+            <ellipse cx="0" cy="-18" rx="10" ry="8" fill="#3b82f6" />
+            {/* Window */}
+            <circle cx="0" cy="-2" r="5" fill="#60a5fa" />
+            <circle cx="0" cy="-2" r="3" fill="#93c5fd" />
+            {/* Fins */}
+            <path d="M-10 12 L-18 22 L-10 18 Z" fill="#ef4444" />
+            <path d="M10 12 L18 22 L10 18 Z" fill="#ef4444" />
+            {/* Flame */}
+            <ellipse cx="0" cy="26" rx="6" ry="10" fill="#f97316" opacity="0.9" />
+            <ellipse cx="0" cy="28" rx="4" ry="7" fill="#fbbf24" />
+            <ellipse cx="0" cy="30" rx="2" ry="4" fill="#fef08a" />
+          </g>
+          {/* Sparkles */}
+          <path d="M128 70 L130 64 L132 70 L138 72 L132 74 L130 80 L128 74 L122 72 Z" fill="#fbbf24" opacity="0.9" />
+          <path d="M195 88 L196 84 L197 88 L201 89 L197 90 L196 94 L195 90 L191 89 Z" fill="#fbbf24" opacity="0.7" />
+          {/* CarbonsynQ Earth Logo — exact brand mark recreation */}
+          {/* White glow ring behind logo */}
+          <circle cx="160" cy="68" r="34" fill="white" opacity="0.25" />
+          {/* Main white logo circle */}
+          <circle cx="160" cy="68" r="28" fill="white" opacity="0.97" />
+          {/* Outer green glow ring */}
+          <circle cx="160" cy="68" r="28" fill="none" stroke="url(#logoRing)" strokeWidth="2" opacity="0.8" />
+          <defs>
+            <linearGradient id="logoRing" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#22c55e" />
+              <stop offset="50%" stopColor="#06b6d4" />
+              <stop offset="100%" stopColor="#22c55e" />
+            </linearGradient>
+            <linearGradient id="arrowGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#16a34a" />
+              <stop offset="100%" stopColor="#22c55e" />
+            </linearGradient>
+            <linearGradient id="arrowGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#0891b2" />
+              <stop offset="100%" stopColor="#06b6d4" />
+            </linearGradient>
+          </defs>
+          {/* Recycling arrow arcs — top-right arc (green) */}
+          <path
+            d="M160 46 A18 18 0 0 1 178 68"
+            fill="none" stroke="url(#arrowGrad1)" strokeWidth="4" strokeLinecap="round"
+          />
+          {/* Arrow head top-right */}
+          <polygon points="179,61 178,68 172,64" fill="#16a34a" />
+          {/* Recycling arrow arcs — bottom arc (teal) */}
+          <path
+            d="M178 68 A18 18 0 0 1 142 68"
+            fill="none" stroke="url(#arrowGrad2)" strokeWidth="4" strokeLinecap="round"
+          />
+          {/* Arrow head bottom */}
+          <polygon points="142,75 142,68 148,72" fill="#0891b2" />
+          {/* Recycling arrow arcs — left arc (green) */}
+          <path
+            d="M142 68 A18 18 0 0 1 160 46"
+            fill="none" stroke="url(#arrowGrad1)" strokeWidth="4" strokeLinecap="round"
+          />
+          {/* Arrow head left-top */}
+          <polygon points="153,45 160,46 157,52" fill="#16a34a" />
+          {/* Center leaf */}
+          <ellipse cx="160" cy="66" rx="5" ry="8" fill="#16a34a" transform="rotate(-15 160 66)" />
+          <path d="M160 74 Q158 70 160 66 Q162 70 160 74" fill="#22c55e" opacity="0.7" />
+          {/* Logo text: CarbonsynQ */}
+          <text x="160" y="84" textAnchor="middle" fontSize="5.5" fontWeight="900" fill="#14532d" fontFamily="'Segoe UI', sans-serif" letterSpacing="0.2">CarbonsynQ</text>
+          {/* Logo text: EARTH */}
+          <text x="160" y="91" textAnchor="middle" fontSize="4.5" fontWeight="600" fill="#15803d" fontFamily="'Segoe UI', sans-serif" letterSpacing="2">EARTH</text>
+        </svg>
+      </div>
+
+      {/* Main text content */}
+      <div
+        className={`relative z-10 flex flex-col items-center justify-center text-center ${
+          compact
+            ? 'py-4 px-6'
+            : 'py-8 px-8 md:py-10 md:px-12'
+        }`}
+      >
+        {/* Calendar badge */}
+        <div
+          className={`inline-flex items-center gap-2 bg-white border border-green-200 rounded-xl shadow-sm ${
+            compact ? 'px-3 py-1.5 mb-2' : 'px-4 py-2 mb-3'
+          }`}
+        >
+          <svg className={compact ? 'w-4 h-4' : 'w-5 h-5'} viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="4" width="18" height="18" rx="3" stroke="#16a34a" strokeWidth="2" />
+            <path d="M3 9h18" stroke="#16a34a" strokeWidth="2" />
+            <path d="M8 2v4M16 2v4" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" />
+            <rect x="7" y="12" width="2" height="2" rx="0.5" fill="#16a34a" />
+            <rect x="11" y="12" width="2" height="2" rx="0.5" fill="#16a34a" />
+            <rect x="15" y="12" width="2" height="2" rx="0.5" fill="#16a34a" />
+            <rect x="7" y="16" width="2" height="2" rx="0.5" fill="#16a34a" />
+            <rect x="11" y="16" width="2" height="2" rx="0.5" fill="#16a34a" />
+          </svg>
+          <div className="text-left">
+            <span className={`block text-slate-500 leading-none ${ compact ? 'text-[9px]' : 'text-[11px]' }`}>Launching on</span>
+            <span className={`block font-extrabold text-green-600 leading-tight ${ compact ? 'text-sm' : 'text-base' }`}>22 June 2026</span>
+          </div>
+        </div>
+
+        {/* Stay tuned */}
+        <div className={`flex items-center gap-2 ${ compact ? 'mb-2' : 'mb-3' }`}>
+          <div className="h-px w-8 bg-green-400" />
+          <span className={`text-slate-600 font-medium ${ compact ? 'text-[10px]' : 'text-sm' }`}>Stay tuned!</span>
+          <div className="h-px w-8 bg-green-400" />
+        </div>
+
+        {/* Main headline */}
+        <div>
+          <p className={`font-extrabold text-[#1a2e44] leading-tight ${ compact ? 'text-xl' : 'text-3xl md:text-4xl' }`}>
+            Building a
+          </p>
+          <p className={`font-extrabold text-green-600 leading-tight ${ compact ? 'text-xl' : 'text-3xl md:text-4xl' }`}>
+            Greener Tomorrow
+            <span className="ml-1">🌿</span>
+          </p>
+          <div className="mx-auto mt-2 h-0.5 w-8 bg-green-500 rounded-full" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Full-Screen Intro Banner (3 seconds) ───────────────────────────────────
+function LaunchBannerOverlay() {
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(false), 3800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          key="launch-intro"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0, transition: { duration: 0.6, ease: 'easeInOut' } }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        >
+          <motion.div
+            className="w-full max-w-4xl mx-4 shadow-[0_40px_100px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden"
+            initial={{ scale: 0.92, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.96, opacity: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <BannerContent />
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+// ─── Floating Corner Banner (appears when user scrolls to bottom) ─────────────
+function LaunchBannerCorner() {
+  const [show, setShow] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShow(true);
+          const hide = setTimeout(() => setShow(false), 3800);
+          return () => clearTimeout(hide);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <>
+      <div ref={sentinelRef} className="h-px w-full" />
+      <AnimatePresence>
+        {show && (
+          <motion.div
+            key="launch-corner"
+            className="fixed bottom-6 right-6 z-[9998] w-[340px] rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.35)] border border-green-100"
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.95 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <BannerContent compact />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
 
 function HeroSection() {
   return (
@@ -750,10 +1096,120 @@ function Faq() {
   );
 }
 
+function LaunchTimer() {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [mounted, setMounted] = useState(false);
+  const [isLaunched, setIsLaunched] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const currentYear = new Date().getFullYear();
+    // Fixed target date for the launch
+    const targetDate = new Date(`June 22, ${currentYear} 11:00:00`).getTime();
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        clearInterval(interval);
+        setIsLaunched(true);
+        return;
+      }
+
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000)
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!mounted) return null;
+
+  return (
+    <section className="relative w-full overflow-hidden bg-[#020604] py-24 md:py-32">
+      {/* Minimalist Glowing Orb Background */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+        <div className={`w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full blur-[100px] md:blur-[150px] transition-colors duration-1000 ${isLaunched ? 'bg-eco-green/30' : 'bg-emerald-500/15'}`} />
+      </div>
+
+      <div className="relative z-10 max-w-[1000px] mx-auto px-[5%] text-center">
+        
+        {/* Sleek Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8">
+          <span className={`w-2 h-2 rounded-full ${isLaunched ? 'bg-eco-green' : 'bg-emerald-400 animate-pulse'}`} />
+          <span className="text-white/80 text-[10px] md:text-xs font-semibold tracking-widest uppercase">
+            {isLaunched ? 'Live Now' : 'Global Launch'}
+          </span>
+        </div>
+
+        {/* Elegant Headline */}
+        <h2 className="font-heading text-5xl md:text-7xl font-bold text-white tracking-tight mb-6">
+          {isLaunched ? 'The Future is Here' : 'Arriving June 22'}
+        </h2>
+        
+        {/* Subtle Subtitle */}
+        <p className="text-lg md:text-xl text-white/50 font-medium mb-20 max-w-2xl mx-auto">
+          {isLaunched 
+            ? 'CarbonSynqEarth Enterprise Edition is now globally available.' 
+            : 'CarbonSynqEarth Enterprise Edition goes live globally at 11:00 AM IST.'}
+        </p>
+
+        {isLaunched ? (
+          <div className="flex justify-center items-center py-4">
+            <div className="animate-pulse bg-gradient-to-r from-emerald-500/10 to-eco-green/10 border border-emerald-500/20 px-8 py-5 md:px-12 md:py-6 rounded-3xl backdrop-blur-md shadow-[0_0_50px_rgba(16,185,129,0.2)]">
+              <h3 className="font-heading text-3xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-white tracking-[0.2em] md:tracking-[0.4em] uppercase">
+                LAUNCHED
+              </h3>
+            </div>
+          </div>
+        ) : (
+          <div className="flex justify-center items-baseline gap-2 md:gap-8">
+            {/* Apple-Style Text Timer (No Boxes) */}
+            {[
+              { label: 'Days', value: timeLeft.days },
+              { label: 'Hours', value: timeLeft.hours },
+              { label: 'Minutes', value: timeLeft.minutes },
+              { label: 'Seconds', value: timeLeft.seconds }
+            ].map((item, idx, arr) => (
+              <div key={idx} className="flex items-baseline">
+                <div className="flex flex-col items-center w-16 md:w-32">
+                  <span className="text-5xl md:text-[6rem] font-light text-white tabular-nums tracking-tighter leading-none">
+                    {item.value.toString().padStart(2, '0')}
+                  </span>
+                  <span className="text-[10px] md:text-sm font-medium text-white/40 uppercase tracking-[0.2em] md:tracking-[0.3em] mt-6">
+                    {item.label}
+                  </span>
+                </div>
+                
+                {/* Minimal Colons */}
+                {idx !== arr.length - 1 && (
+                  <span className="text-4xl md:text-7xl font-light text-white/20 mx-2 md:mx-4 -translate-y-10 md:-translate-y-12">
+                    :
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+        
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <div className="font-body text-text-dark bg-beige-soft overflow-x-hidden">
+      {/* Launch Banner — Full-screen intro overlay */}
+      <LaunchBannerOverlay />
+
       <HeroSection />
+      <LaunchTimer />
       <AboutSection />
       <ImpactStrip />
       <TrustedMarquee />
@@ -766,6 +1222,9 @@ export default function Home() {
       <Ecosystem />
       <DashboardPreview />
       <Faq />
+
+      {/* Launch Banner — Floating corner overlay when user reaches bottom */}
+      <LaunchBannerCorner />
     </div>
   );
 }
