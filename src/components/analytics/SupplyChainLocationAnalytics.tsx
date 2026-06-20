@@ -189,83 +189,81 @@ export default function SupplyChainLocationAnalytics({
       {/* TWO PANEL GRID: MAP AND LIST */}
       <div className="grid lg:grid-cols-1 gap-6 relative z-10">
 
-        {/* PANEL 1: GEOGRAPHIC INTERACTIVE SCHEMATIC */}
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col justify-between space-y-4 shadow-3xs">
-          <div>
-            <h3 className="text-sm font-bold font-display text-slate-900">Edge Location Registers</h3>
-            <p className="text-[11px] text-slate-500 mt-1">
-              Select or click active geographical telemetry ports to simulate regional carbon audits.
-            </p>
-          </div>
-
-          {/* Dotted schematic interactive map */}
-          <div className="relative h-64 bg-slate-50 rounded-xl border border-slate-200 overflow-hidden flex items-center justify-center">
-
-            {/* Cyber world map lines */}
-            <svg className="w-full h-full text-slate-300" viewBox="0 0 500 250" fill="none">
-              {/* Fake outline/connections */}
-              <path d="M50,110 Q90,70 180,90 T350,60 T450,140" stroke="currentColor" strokeWidth="1" strokeDasharray="3,8" />
-              <path d="M40,180 Q120,200 220,180 T420,170" stroke="currentColor" strokeWidth="0.8" strokeDasharray="3,8" />
-
-              {/* Houston/Austin Node */}
-              <g className="cursor-pointer group" onClick={() => handleRegionClick('AMER')}>
-                <circle cx="120" cy="110" r="10" fill="none" stroke="#ef4444" strokeWidth="1" className={activeRegion === 'AMER' ? 'animate-ping' : 'group-hover:animate-pulse'} />
-                <circle cx="120" cy="110" r="4.5" fill={activeRegion === 'AMER' ? '#ef4444' : '#b91c1c'} />
-                <text x="120" y="125" fill={activeRegion === 'AMER' ? '#0f172a' : '#64748b'} fontSize="8" fontWeight="bold" textAnchor="middle" fontFamily="sans-serif">AMER (Austin)</text>
-              </g>
-
-              {/* Rotterdam Node */}
-              <g className="cursor-pointer group" onClick={() => handleRegionClick('EMEA')}>
-                <circle cx="260" cy="80" r="10" fill="none" stroke="#10b981" strokeWidth="1" className={activeRegion === 'EMEA' ? 'animate-ping' : 'group-hover:animate-pulse'} />
-                <circle cx="260" cy="80" r="4.5" fill={activeRegion === 'EMEA' ? '#10b981' : '#047857'} />
-                <text x="260" y="95" fill={activeRegion === 'EMEA' ? '#0f172a' : '#64748b'} fontSize="8" fontWeight="bold" textAnchor="middle" fontFamily="sans-serif">EMEA (Rotterdam)</text>
-              </g>
-
-              {/* Shenzhen Node */}
-              <g className="cursor-pointer group" onClick={() => handleRegionClick('APAC')}>
-                <circle cx="390" cy="140" r="10" fill="none" stroke="#fa5555" strokeWidth="1" className={activeRegion === 'APAC' ? 'animate-ping' : 'group-hover:animate-pulse'} />
-                <circle cx="390" cy="140" r="4.5" fill={activeRegion === 'APAC' ? '#f97316' : '#ea580c'} />
-                <text x="390" y="155" fill={activeRegion === 'APAC' ? '#0f172a' : '#64748b'} fontSize="8" fontWeight="bold" textAnchor="middle" fontFamily="sans-serif">APAC (Shenzhen)</text>
-              </g>
-            </svg>
-
-            {/* Micro details panel in map */}
-            <div className="absolute top-3 left-3 bg-white border border-slate-200 px-2 py-1.5 rounded-lg text-left font-mono text-[8px] text-slate-500 space-y-0.5 shadow-2xs">
-              <span className="text-emerald-600 font-bold block">EDGE DIAGNOSTICS</span>
-              <span>Reconciled: {(100 - supplyChainAggregates.pendingAudits * 4).toFixed(1)}%</span>
+        {/* PANEL: REALISTIC VENDOR DIRECTORY */}
+        <div className="bg-white border border-slate-200 rounded-2xl p-0 flex flex-col shadow-3xs overflow-hidden">
+          <div className="p-5 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50">
+            <div>
+              <h3 className="text-sm font-bold font-display text-slate-900">Vendor Emissions Ledger</h3>
+              <p className="text-[11px] text-slate-500 mt-1">
+                Real-time tracking of extracted suppliers and their lifecycle carbon index.
+              </p>
             </div>
-
-            {/* Quick regional filter controls */}
-            <div className="absolute bottom-3 left-3 flex gap-1 bg-white border border-slate-200 p-0.5 rounded-lg scale-90 origin-bottom-left shadow-2xs">
-              {(['GLOBAL', 'AMER', 'EMEA', 'APAC'] as const).map(reg => (
-                <button
-                  key={reg}
-                  onClick={() => handleRegionClick(reg)}
-                  className={`px-2 py-1 rounded text-[9px] font-mono font-bold transition cursor-pointer ${activeRegion === reg
-                      ? 'bg-emerald-600 text-white'
-                      : 'text-slate-500 hover:text-slate-900'
-                    }`}
-                >
-                  {reg}
-                </button>
-              ))}
+            <div className="relative">
+              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
+              <input
+                type="text"
+                placeholder="Search vendors or materials..."
+                value={supplierSearchText}
+                onChange={(e) => setSupplierSearchText(e.target.value)}
+                className="pl-8 pr-4 py-1.5 text-xs border border-slate-200 rounded-lg w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
+              />
             </div>
           </div>
 
-          <div className="bg-emerald-50 border border-emerald-100 px-3.5 py-3 rounded-xl flex items-start gap-2.5 text-xs text-slate-700">
-            <Info className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-            <div className="space-y-0.5 leading-normal">
-              <span className="font-bold text-emerald-990 text-emerald-900 block">Active Region Focus</span>
-              {activeRegion === 'GLOBAL' ? (
-                <span>All corporate manufacturing yards and outbound logistics lines are compiling their respective telemetry maps in centralized operational indexes.</span>
-              ) : activeRegion === 'AMER' ? (
-                <span>Filtering AMER coordinates: Directing focused sub-meters on Alcan Foundry Corp in Austin, Texas. Operational load accounts for carbon offset variables.</span>
-              ) : activeRegion === 'EMEA' ? (
-                <span>Filtering EMEA coordinates: Auditing Rotterdam Gate freight terminals and Rotterdam Logix operations. Excellent standard compliance.</span>
-              ) : (
-                <span>Filtering APAC coordinates: Tracking Shenzhen Casting Hub. High carbon indices reported, mitigating pending vendor audit reviews.</span>
-              )}
-            </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200 text-[10px] uppercase tracking-wider text-slate-500 font-bold">
+                  <th className="p-4">Vendor Node</th>
+                  <th className="p-4">Procured Material / Activity</th>
+                  <th className="p-4">Geofence</th>
+                  <th className="p-4">ESG Rating</th>
+                  <th className="p-4">Audit Status</th>
+                  <th className="p-4 text-right">Attributed kgCO₂e</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 text-xs">
+                {filteredSuppliers.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="p-8 text-center text-slate-500">
+                      No vendor telemetry found matching criteria.
+                    </td>
+                  </tr>
+                ) : (
+                  filteredSuppliers.map((supplier) => (
+                    <tr key={supplier.id} className="hover:bg-slate-50/50 transition-colors group">
+                      <td className="p-4 font-bold text-slate-800 flex items-center gap-2">
+                        <Building2 className="w-4 h-4 text-slate-400 group-hover:text-emerald-500 transition-colors" />
+                        {supplier.name}
+                      </td>
+                      <td className="p-4 text-slate-600 font-medium max-w-[200px] truncate" title={supplier.material}>
+                        {supplier.material}
+                      </td>
+                      <td className="p-4">
+                        <span className="inline-flex items-center gap-1 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 whitespace-nowrap">
+                          <MapPin className="w-3 h-3" />
+                          {supplier.location}
+                        </span>
+                      </td>
+                      <td className="p-4">
+                        <span className={`font-black text-[11px] ${supplier.rating.includes('A') ? 'text-emerald-600' : supplier.rating.includes('B') ? 'text-blue-600' : 'text-amber-600'}`}>
+                          {supplier.rating} Grade
+                        </span>
+                      </td>
+                      <td className="p-4">
+                        <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap ${supplier.auditStatus === 'Verified' ? 'bg-emerald-50 text-emerald-700' : supplier.auditStatus === 'Pending' ? 'bg-amber-50 text-amber-700' : 'bg-slate-100 text-slate-600'}`}>
+                          {supplier.auditStatus === 'Verified' ? <Check className="w-3 h-3" /> : supplier.auditStatus === 'Pending' ? <AlertTriangle className="w-3 h-3" /> : <ShieldCheck className="w-3 h-3" />}
+                          {supplier.auditStatus}
+                        </span>
+                      </td>
+                      <td className="p-4 text-right font-mono font-bold text-slate-800">
+                        {supplier.scope3Index.toLocaleString()}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
 

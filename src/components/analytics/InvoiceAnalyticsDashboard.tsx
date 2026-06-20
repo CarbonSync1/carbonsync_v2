@@ -345,11 +345,11 @@ export function InvoiceAnalyticsDashboard() {
           <div className="mb-6 flex flex-wrap items-center gap-3 border-b border-slate-100 pb-4">
             <button className="inline-flex items-center gap-2 border-b-2 border-emerald-600 px-2 pb-3 text-xs font-black text-slate-900">
               <BarChart3 className="h-4 w-4" />
-              3. Emissions Analytics
+              Emissions Analytics
             </button>
             <button className="inline-flex items-center gap-2 px-2 pb-3 text-xs font-bold text-slate-500">
               <CheckCircle2 className="h-4 w-4" />
-              5. Compliance & Reporting
+              Compliance & Reporting
             </button>
           </div>
 

@@ -113,11 +113,11 @@ export const smartEsgFeatures: FeatureGridItem[] = [
     badge: 'Core Ledger'
   },
   {
-    title: 'Multi-Framework Support',
-    description: 'Generate reports aligned with GRI, CSRD, BRSR, and custom framework requirements effortlessly.',
+    title: 'Compliance Report Generation',
+    description: 'Generate audit-ready BRSR and CBAM compliance reports directly from your invoice and emissions data.',
     iconName: 'stack',
-    badge: 'Frameworks Ready',
-    frameworks: ['GRI', 'CSRD', 'BRSR', 'SEC Climate', 'SDG 13']
+    badge: 'Compliance Ready',
+    frameworks: ['BRSR', 'CBAM']
   },
   {
     title: 'Supplier Assessment',
