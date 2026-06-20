@@ -74,7 +74,7 @@ export default function ContactHero() {
               </div>
               <div className="flex flex-col pt-0.5">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.1em] mb-1">Email</span>
-                <span className="text-[#0f172a] font-bold text-[15px] group-hover:text-green-600 transition-colors">pushkarsingh.carbonsynqearth@gmail.com</span>
+                <span className="text-[#0f172a] font-bold text-[15px] group-hover:text-green-600 transition-colors break-all">pushkarsingh.carbonsynqearth@gmail.com</span>
               </div>
             </div>
 

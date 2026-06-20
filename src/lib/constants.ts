@@ -7,6 +7,7 @@ export const ROUTES = {
   REGISTER: "/register",
   INVOICES: "/invoices",
   DASHBOARD: "/dashboard",
+  ANALYTICS: "/analytics",
 } as const;
 
 export const NON_MARKETING_ROUTES = [
@@ -14,6 +15,7 @@ export const NON_MARKETING_ROUTES = [
   ROUTES.REGISTER,
   ROUTES.INVOICES,
   ROUTES.DASHBOARD,
+  ROUTES.ANALYTICS,
 ] as const;
 
 export const SUPPORTED_FILE_TYPES = [
