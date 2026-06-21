@@ -25,7 +25,7 @@ function BannerContent({ compact = false }: { compact?: boolean }) {
       className={`relative overflow-hidden w-full ${compact ? 'rounded-2xl' : 'rounded-2xl'}`}
     >
       {/* Left windmill silhouette */}
-      <div className="absolute left-0 bottom-0 opacity-60 pointer-events-none" style={{ width: compact ? '80px' : '160px' }}>
+      <div className="absolute left-0 bottom-0 opacity-60 pointer-events-none" style={{ width: compact ? '60px' : 'clamp(60px, 14vw, 160px)' }}>
         <svg viewBox="0 0 160 220" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
           {/* pole */}
           <rect x="72" y="80" width="8" height="140" rx="4" fill="#5BA0C8" opacity="0.5" />
@@ -51,7 +51,7 @@ function BannerContent({ compact = false }: { compact?: boolean }) {
       </div>
 
       {/* Right side: Globe + Rocket + Logo Sticker */}
-      <div className="absolute right-0 bottom-0 pointer-events-none" style={{ width: compact ? '120px' : '240px' }}>
+      <div className="absolute right-0 bottom-0 pointer-events-none" style={{ width: compact ? '90px' : 'clamp(100px, 22vw, 240px)' }}>
         {/* Logo sticker — floating above globe */}
         <div
           className="absolute z-10"
@@ -227,21 +227,21 @@ function BannerContent({ compact = false }: { compact?: boolean }) {
         </svg>
       </div>
 
-      {/* Main text content */}
+      {/* Main text content — centered with safe horizontal margins so it doesn't bleed under the SVGs */}
       <div
         className={`relative z-10 flex flex-col items-center justify-center text-center ${
           compact
-            ? 'py-4 px-6'
-            : 'py-8 px-8 md:py-10 md:px-12'
+            ? 'py-4 px-[75px]'
+            : 'py-6 px-[clamp(90px,20vw,200px)] sm:py-8'
         }`}
       >
         {/* Calendar badge */}
         <div
-          className={`inline-flex items-center gap-2 bg-white border border-green-200 rounded-xl shadow-sm ${
-            compact ? 'px-3 py-1.5 mb-2' : 'px-4 py-2 mb-3'
+          className={`inline-flex items-center gap-1.5 bg-white border border-green-200 rounded-xl shadow-sm ${
+            compact ? 'px-2 py-1 mb-2' : 'px-3 py-1.5 mb-3'
           }`}
         >
-          <svg className={compact ? 'w-4 h-4' : 'w-5 h-5'} viewBox="0 0 24 24" fill="none">
+          <svg className={compact ? 'w-3.5 h-3.5 shrink-0' : 'w-4 h-4 shrink-0'} viewBox="0 0 24 24" fill="none">
             <rect x="3" y="4" width="18" height="18" rx="3" stroke="#16a34a" strokeWidth="2" />
             <path d="M3 9h18" stroke="#16a34a" strokeWidth="2" />
             <path d="M8 2v4M16 2v4" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" />
@@ -252,28 +252,28 @@ function BannerContent({ compact = false }: { compact?: boolean }) {
             <rect x="11" y="16" width="2" height="2" rx="0.5" fill="#16a34a" />
           </svg>
           <div className="text-left">
-            <span className={`block text-slate-500 leading-none ${ compact ? 'text-[9px]' : 'text-[11px]' }`}>Launching on</span>
-            <span className={`block font-extrabold text-green-600 leading-tight ${ compact ? 'text-sm' : 'text-base' }`}>22 June 2026</span>
+            <span className={`block text-slate-500 leading-none ${ compact ? 'text-[8px]' : 'text-[10px]' }`}>Launching on</span>
+            <span className={`block font-extrabold text-green-600 leading-tight ${ compact ? 'text-[11px]' : 'text-sm' }`}>22 June 2026</span>
           </div>
         </div>
 
         {/* Stay tuned */}
-        <div className={`flex items-center gap-2 ${ compact ? 'mb-2' : 'mb-3' }`}>
-          <div className="h-px w-8 bg-green-400" />
-          <span className={`text-slate-600 font-medium ${ compact ? 'text-[10px]' : 'text-sm' }`}>Stay tuned!</span>
-          <div className="h-px w-8 bg-green-400" />
+        <div className={`flex items-center gap-1.5 ${ compact ? 'mb-1.5' : 'mb-2' }`}>
+          <div className="h-px w-5 bg-green-400" />
+          <span className={`text-slate-600 font-medium ${ compact ? 'text-[9px]' : 'text-xs' }`}>Stay tuned!</span>
+          <div className="h-px w-5 bg-green-400" />
         </div>
 
         {/* Main headline */}
         <div>
-          <p className={`font-extrabold text-[#1a2e44] leading-tight ${ compact ? 'text-xl' : 'text-3xl md:text-4xl' }`}>
+          <p className={`font-extrabold text-[#1a2e44] leading-tight ${ compact ? 'text-base' : 'text-xl sm:text-3xl md:text-4xl' }`}>
             Building a
           </p>
-          <p className={`font-extrabold text-green-600 leading-tight ${ compact ? 'text-xl' : 'text-3xl md:text-4xl' }`}>
+          <p className={`font-extrabold text-green-600 leading-tight ${ compact ? 'text-base' : 'text-xl sm:text-3xl md:text-4xl' }`}>
             Greener Tomorrow
             <span className="ml-1">🌿</span>
           </p>
-          <div className="mx-auto mt-2 h-0.5 w-8 bg-green-500 rounded-full" />
+          <div className="mx-auto mt-1.5 h-0.5 w-8 bg-green-500 rounded-full" />
         </div>
       </div>
     </div>
