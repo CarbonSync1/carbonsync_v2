@@ -26,7 +26,6 @@ import { EmissionsService } from "@/services/emissions";
 import { DashboardMetricCard } from "./DashboardMetricCard";
 import type {
   InvoiceEmissionsResponse,
-  EmissionSummary,
   EmissionResultDetail,
 } from "@/types/report";
 
@@ -111,9 +110,6 @@ export function EmissionsDashboard() {
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [summary, setSummary] = useState<EmissionSummary | null>(null);
-  const [summaryLoading, setSummaryLoading] = useState(false);
-
   useEffect(() => {
     const pendingFile = EmissionsService.getPendingFile();
     if (!pendingFile || data) return;
@@ -136,24 +132,6 @@ export function EmissionsDashboard() {
     processPending();
   }, [data]);
 
-  useEffect(() => {
-    const fetchSummary = async () => {
-      setSummaryLoading(true);
-      try {
-        const result = await EmissionsService.getEmissionSummary();
-        if (result.success) {
-          setSummary(result.summary);
-        }
-      } catch {
-        // silently fail — summary is auxiliary
-      } finally {
-        setSummaryLoading(false);
-      }
-    };
-
-    fetchSummary();
-  }, []);
-
   const summaryCards = useMemo(() => {
     if (!data) return null;
 
@@ -171,7 +149,30 @@ export function EmissionsDashboard() {
       ...new Set(results.map((item) => getCategory(item)).filter(Boolean)),
     ];
 
-    return { totalCO2e, totalTCO2e, categories };
+    const successfulItems = results.filter((r: any) => r.success !== false).length;
+    const totalItems = data.extracted_items?.length || results.length;
+    const matchRate = totalItems > 0 ? Math.round((successfulItems / totalItems) * 100) : 0;
+
+    const categoryTotals = results.reduce((acc, item: any) => {
+      if (item.success !== false) {
+        const cat = getCategory(item);
+        if (cat) {
+          acc[cat] = (acc[cat] || 0) + getCo2e(item);
+        }
+      }
+      return acc;
+    }, {} as Record<string, number>);
+
+    let topCategory = "N/A";
+    let maxCo2e = -1;
+    for (const [cat, val] of Object.entries(categoryTotals) as [string, number][]) {
+      if (val > maxCo2e) {
+        maxCo2e = val;
+        topCategory = cat;
+      }
+    }
+
+    return { totalCO2e, totalTCO2e, categories, matchRate, topCategory };
   }, [data]);
 
   if (loading) {
@@ -364,7 +365,7 @@ export function EmissionsDashboard() {
           <div className="h-px bg-gradient-to-r from-eco-green/20 via-emerald-light/10 to-transparent mt-6" />
         </motion.div>
 
-        {/* ── Emission Summary Widget ── */}
+        {/* ── Invoice Processing Summary Widget ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -375,47 +376,60 @@ export function EmissionsDashboard() {
             <div className="flex items-center gap-2 mb-4">
               <FileSpreadsheet className="w-5 h-5 text-emerald-accent" />
               <h2 className="text-sm font-bold text-text-dark uppercase tracking-wider">
-                Platform Summary
+                Document Analysis Overview
               </h2>
             </div>
-            {summaryLoading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="h-14 bg-gray-100 rounded-xl animate-pulse" />
-                ))}
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+              <div className="bg-eco-green/5 rounded-xl px-4 py-3 border border-eco-green/10">
+                <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">
+                  Uploaded File
+                </p>
+                <p className="text-lg font-bold text-text-dark mt-1 truncate" title={(data as any)?.file_name || (data as any)?.filename || "Latest Invoice"}>
+                  {(data as any)?.file_name || (data as any)?.filename || "Latest Invoice"}
+                </p>
               </div>
-            ) : summary ? (
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="bg-eco-green/5 rounded-xl px-4 py-3 border border-eco-green/10">
-                  <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">
-                    Total Records
-                  </p>
-                  <p className="text-xl font-extrabold text-text-dark mt-1 font-heading">
-                    {Number(summary.total_records).toLocaleString()}
-                  </p>
-                </div>
-                <div className="bg-blue-50 rounded-xl px-4 py-3 border border-blue-100">
-                  <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">
-                    Total kgCO₂e
-                  </p>
-                  <p className="text-xl font-extrabold text-text-dark mt-1 font-heading">
-                    {Number(summary.total_kgco2e).toLocaleString(undefined, {
-                      maximumFractionDigits: 2,
-                    })}
-                  </p>
-                </div>
-                <div className="bg-purple-50 rounded-xl px-4 py-3 border border-purple-100">
-                  <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">
-                    Total tCO₂e
-                  </p>
-                  <p className="text-xl font-extrabold text-text-dark mt-1 font-heading">
-                    {Number(summary.total_tco2e).toLocaleString(undefined, {
-                      maximumFractionDigits: 2,
-                    })}
-                  </p>
-                </div>
+              <div className="bg-blue-50 rounded-xl px-4 py-3 border border-blue-100">
+                <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">
+                  Document Type
+                </p>
+                <p className="text-lg font-bold text-text-dark mt-1 truncate">
+                  {(data as any)?.document_type || "Invoice"}
+                </p>
               </div>
-            ) : null}
+              <div className="bg-purple-50 rounded-xl px-4 py-3 border border-purple-100">
+                <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">
+                  Processing Status
+                </p>
+                <p className="text-lg font-bold text-text-dark mt-1">
+                  Processed
+                </p>
+              </div>
+              <div className="bg-indigo-50 rounded-xl px-4 py-3 border border-indigo-100">
+                <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">
+                  Data Quality
+                </p>
+                <p className="text-lg font-bold text-text-dark mt-1">
+                  {(data as any)?.data_quality || "High"}
+                </p>
+              </div>
+              <div className="bg-amber-50 rounded-xl px-4 py-3 border border-amber-100">
+                <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">
+                  Report Status
+                </p>
+                <p className="text-lg font-bold text-text-dark mt-1">
+                  {reportUrls?.brsr || reportUrls?.cbam ? "Generated" : "Processing"}
+                </p>
+              </div>
+              <div className="bg-rose-50 rounded-xl px-4 py-3 border border-rose-100">
+                <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">
+                  Source Type
+                </p>
+                <p className="text-lg font-bold text-text-dark mt-1 truncate">
+                  Uploaded Document
+                </p>
+              </div>
+            </div>
           </div>
         </motion.div>
 

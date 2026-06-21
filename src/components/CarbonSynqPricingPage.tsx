@@ -29,8 +29,8 @@ const plans = [
   {
     name: "Growth",
     desc: "Essential carbon tracking for emerging teams.",
-    priceMonthly: "₹50,000",
-    onboarding: "₹25,000",
+    priceMonthly: "₹49,999",
+    onboarding: "₹24,999",
     savingsBadge: "Up to 50 employees",
     features: [
       "AI-powered emission baselining",
@@ -44,8 +44,8 @@ const plans = [
   {
     name: "Professional",
     desc: "Advanced intelligence for scaling organizations.",
-    priceMonthly: "₹1,00,000",
-    onboarding: "₹75,000",
+    priceMonthly: "₹99,999",
+    onboarding: "₹74,999",
     savingsBadge: "Up to 250 employees",
     features: [
       "Everything in Growth",
