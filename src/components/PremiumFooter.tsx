@@ -4,12 +4,12 @@ export default function PremiumFooter() {
   return (
     <footer className="w-full mt-auto bg-[#f8fafc] text-[#0f172a] font-sans">
 
-      {/* Main footer content — flat 4-col grid for consistent top alignment */}
+      {/* Main footer content */}
       <div className="max-w-7xl mx-auto px-6 pt-14 pb-6 mt-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 lg:gap-12 items-start">
 
           {/* Col 1 — Brand block */}
-          <div className="flex flex-col items-start gap-4">
+          <div className="md:col-span-4 lg:col-span-3 flex flex-col items-start gap-4">
 
             {/* Logo + brand name — items-start so brand text aligns with nav h4 headings */}
             <div className="flex items-start gap-3">
@@ -49,32 +49,38 @@ export default function PremiumFooter() {
             </div>
           </div>
 
-          {/* Col 2 — Solutions */}
-          <div>
-            <h4 className="text-[13px] font-black tracking-widest text-[#0f172a] uppercase mb-5">Solutions</h4>
-            <ul className="space-y-3">
-              <li><Link href="/solutions/net-zero"    className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Net Zero</Link></li>
-              <li><Link href="/solutions/supply-chain" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Supply Chain</Link></li>
-            </ul>
-          </div>
+          {/* Cols 2, 3, 4 — Links block (2 columns on tablet/mobile, 3 columns on desktop) */}
+          <div className="md:col-span-8 lg:col-span-9 grid grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+            
+            {/* Wrapper for Solutions & Company — stacks them on tablet/mobile, renders as separate grid cols on desktop */}
+            <div className="flex flex-col gap-10 lg:contents">
+              <div>
+                <h4 className="text-[13px] font-black tracking-widest text-[#0f172a] uppercase mb-5">Solutions</h4>
+                <ul className="space-y-3">
+                  <li><Link href="/solutions/net-zero"    className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Net Zero</Link></li>
+                  <li><Link href="/solutions/supply-chain" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Supply Chain</Link></li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-[13px] font-black tracking-widest text-[#0f172a] uppercase mb-5">Company</h4>
+                <ul className="space-y-3">
+                  <li><Link href="/about"   className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">About Us</Link></li>
+                  <li><Link href="/careers" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Careers</Link></li>
+                  <li><Link href="/contact" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Contact Us</Link></li>
+                </ul>
+              </div>
+            </div>
 
-          {/* Col 3 — Company */}
-          <div>
-            <h4 className="text-[13px] font-black tracking-widest text-[#0f172a] uppercase mb-5">Company</h4>
-            <ul className="space-y-3">
-              <li><Link href="/about"   className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">About Us</Link></li>
-              <li><Link href="/careers" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Careers</Link></li>
-              <li><Link href="/contact" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Contact Us</Link></li>
-            </ul>
-          </div>
+            {/* Column B — Resources */}
+            <div>
+              <h4 className="text-[13px] font-black tracking-widest text-[#0f172a] uppercase mb-5">Resources</h4>
+              <ul className="space-y-3">
+                <li><Link href="/platform/resources" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Guides</Link></li>
+                <li><Link href="/platform/resources" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Articles</Link></li>
+              </ul>
+            </div>
 
-          {/* Col 4 — Resources */}
-          <div>
-            <h4 className="text-[13px] font-black tracking-widest text-[#0f172a] uppercase mb-5">Resources</h4>
-            <ul className="space-y-3">
-              <li><Link href="/platform/resources" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Guides</Link></li>
-              <li><Link href="/platform/resources" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Articles</Link></li>
-            </ul>
           </div>
 
         </div>
@@ -102,35 +108,35 @@ export default function PremiumFooter() {
             </div>
           </div>
 
-          {/* ── DESKTOP (md+): 12-col grid mirroring upper footer ── */}
+          {/* ── DESKTOP & TABLET (md+): 12-col grid mirroring upper footer ── */}
           <div className="hidden md:grid md:grid-cols-12 lg:gap-6 items-center">
 
-            {/* col-span-4 → under brand/logo column */}
-            <div className="md:col-span-4 flex items-center justify-start">
+            {/* col-span-4 / col-span-3 → under brand/logo column */}
+            <div className="md:col-span-4 lg:col-span-3 flex items-center justify-start">
               <p className="text-[13px] font-semibold text-slate-400 leading-none whitespace-nowrap">
                 © 2026 CarbonSynq Pvt. Ltd.
               </p>
             </div>
 
-            {/* col-span-8 → same inner 3-col grid as nav columns */}
-            <div className="md:col-span-8 grid md:grid-cols-3 gap-8">
+            {/* col-span-8 / col-span-9 → same inner grid as nav columns */}
+            <div className="md:col-span-8 lg:col-span-9 grid grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
 
-              {/* Under Solutions */}
-              <div className="flex items-center justify-start">
-                <Link href="/privacy-policy" className="text-[13px] font-semibold text-slate-400 hover:text-[#0f172a] transition-colors whitespace-nowrap">
-                  Privacy Policy
-                </Link>
+              {/* Wrapper for Privacy Policy & Terms of Service — side-by-side on tablet, separate grid cols on desktop */}
+              <div className="flex items-center gap-6 lg:contents">
+                <div className="flex items-center justify-start">
+                  <Link href="/privacy-policy" className="text-[13px] font-semibold text-slate-400 hover:text-[#0f172a] transition-colors whitespace-nowrap">
+                    Privacy Policy
+                  </Link>
+                </div>
+                <div className="flex items-center justify-start border-l border-gray-200 pl-6">
+                  <Link href="/terms-of-service" className="text-[13px] font-semibold text-slate-400 hover:text-[#0f172a] transition-colors whitespace-nowrap">
+                    Terms of Service
+                  </Link>
+                </div>
               </div>
 
-              {/* Under Company */}
-              <div className="flex items-center justify-start border-l border-gray-200 pl-4">
-                <Link href="/terms-of-service" className="text-[13px] font-semibold text-slate-400 hover:text-[#0f172a] transition-colors whitespace-nowrap">
-                  Terms of Service
-                </Link>
-              </div>
-
-              {/* Under Resources */}
-              <div className="flex items-center justify-start border-l border-gray-200 pl-4">
+              {/* Column B (under Resources) */}
+              <div className="flex items-center justify-start border-l border-gray-200 pl-6">
                 <Link href="/data-processing-agreement" className="text-[13px] font-semibold text-slate-400 hover:text-[#0f172a] transition-colors whitespace-nowrap">
                   Data Processing Agreement
                 </Link>
