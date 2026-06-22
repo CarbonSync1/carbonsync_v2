@@ -314,7 +314,7 @@ function AboutSection() {
             <span className="text-gradient-emerald">Competitive Advantage</span>
           </h2>
           <p className="text-base text-text-muted leading-relaxed mb-5">
-            At CarbonSynqEarth, sustainability isn&apos;t a burden — it&apos;s an opportunity. Our platform simplifies the complex landscape of carbon accounting, enabling organizations to measure, report, and reduce their environmental footprint with unparalleled precision.
+            At CarbonSynqEarths, sustainability isn&apos;t a burden — it&apos;s an opportunity. Our platform simplifies the complex landscape of carbon accounting, enabling organizations to measure, report, and reduce their environmental footprint with unparalleled precision.
           </p>
           <p className="text-base text-text-muted leading-relaxed mb-8">
             Founded on principles of transparency and innovation, we empower businesses to turn ESG compliance into strategic value creation.
