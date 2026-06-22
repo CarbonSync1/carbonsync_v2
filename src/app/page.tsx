@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, Suspense } from 'react';
+import { useState, useRef, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
@@ -46,6 +46,255 @@ function HeroSection() {
             Get Started <ArrowRight size={18} />
           </Link>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function LaunchSection() {
+  const [countdown, setCountdown] = useState(10);
+  const [celebrating, setCelebrating] = useState(false);
+  const [confetti, setConfetti] = useState<{ id: number; left: number; color: string; delay: number; duration: number; size: number; rotation: number }[]>([]);
+  const [sparkles, setSparkles] = useState<{ id: number; top: number; left: number; delay: number; duration: number; size: number }[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  const launchColors = ['#22c55e', '#06b6d4', '#fbbf24', '#a855f7', '#14b8a6', '#f97316'];
+  const randomBetween = (min: number, max: number) => Math.random() * (max - min) + min;
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          setCelebrating(true);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !visible) {
+          setVisible(true);
+          el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [visible]);
+
+  useEffect(() => {
+    if (!celebrating) return;
+    const c = Array.from({ length: 40 }, (_, i) => ({
+      id: i,
+      left: randomBetween(0, 100),
+      color: launchColors[Math.floor(Math.random() * launchColors.length)],
+      delay: randomBetween(0, 0.5),
+      duration: randomBetween(2, 4),
+      size: randomBetween(5, 12),
+      rotation: randomBetween(-180, 180),
+    }));
+    setConfetti(c);
+
+    const s = Array.from({ length: 16 }, (_, i) => ({
+      id: i,
+      top: 5 + Math.random() * 90,
+      left: Math.random() * 100,
+      delay: Math.random() * 2,
+      duration: 2 + Math.random() * 2,
+      size: 3 + Math.random() * 4,
+    }));
+    setSparkles(s);
+  }, [celebrating]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden py-20 md:py-28 px-[5%] bg-[#020604]"
+    >
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+        <div className="w-[400px] h-[400px] md:w-[700px] md:h-[700px] rounded-full blur-[120px] md:blur-[180px] bg-emerald-500/10" />
+      </div>
+
+      <div className="absolute inset-0 z-[1] pointer-events-none bg-[radial-gradient(ellipse_at_40%_50%,rgba(22,163,74,0.08),transparent_60%),radial-gradient(ellipse_at_60%_50%,rgba(6,182,212,0.05),transparent_60%)]" />
+
+      {confetti.map(c => (
+        <motion.div
+          key={c.id}
+          className="absolute top-0 z-10 rounded-sm"
+          style={{
+            left: `${c.left}%`,
+            width: c.size,
+            height: c.size * 1.5,
+            backgroundColor: c.color,
+          }}
+          initial={{ y: -30, opacity: 1, rotate: c.rotation }}
+          animate={{ y: '120%', opacity: 0, rotate: c.rotation + 720 }}
+          transition={{ duration: c.duration, delay: c.delay, ease: [0.25, 0.46, 0.45, 0.94], repeat: Infinity }}
+        />
+      ))}
+
+      {sparkles.map(s => (
+        <motion.div
+          key={s.id}
+          className="absolute z-10 pointer-events-none"
+          style={{ top: `${s.top}%`, left: `${s.left}%` }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: [0, 1, 1, 0], scale: [0, 1, 1, 0] }}
+          transition={{ duration: s.duration, delay: s.delay, repeat: Infinity, repeatDelay: 1.5 }}
+        >
+          <svg width={s.size * 3} height={s.size * 3} viewBox="0 0 20 20" fill="none">
+            <path d="M10 0L12.36 7.64L20 10L12.36 12.36L10 20L7.64 12.36L0 10L7.64 7.64Z" fill="#22c55e" opacity="0.6" />
+          </svg>
+        </motion.div>
+      ))}
+
+      <motion.div
+        className="absolute right-[5%] top-1/2 -translate-y-1/2 z-10 pointer-events-none hidden lg:block"
+        initial={{ opacity: 0, scale: 0.5, rotate: -30 }}
+        animate={celebrating ? { opacity: 0.08, scale: 1, rotate: 0 } : {}}
+        transition={{ duration: 1.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Globe2 size={280} className="text-emerald-400" />
+      </motion.div>
+
+      <motion.div
+        className="absolute left-[5%] top-1/3 z-10 pointer-events-none hidden lg:block"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={celebrating ? { opacity: 0.06, scale: 1 } : {}}
+        transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <CheckCircle size={200} className="text-emerald-400" />
+      </motion.div>
+
+      <div className="relative z-20 max-w-[1100px] mx-auto">
+        {!celebrating ? (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={visible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center"
+          >
+            <motion.div
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-emerald-400/25 bg-emerald-500/10 backdrop-blur-md mb-6"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={visible ? { scale: 1, opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.15 }}
+            >
+              <motion.span
+                className="w-2 h-2 rounded-full bg-emerald-400"
+                animate={{ scale: [1, 1.6, 1], opacity: [1, 0.5, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+              <span className="text-emerald-300 text-[10px] md:text-xs font-bold tracking-widest uppercase">
+                GLOBAL LAUNCH 🚀
+              </span>
+            </motion.div>
+
+            <motion.h2
+              className="font-heading text-3xl sm:text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-4"
+              initial={{ y: 30, opacity: 0 }}
+              animate={visible ? { y: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-green-400 to-cyan-300">
+                Launching in
+              </span>
+            </motion.h2>
+
+            <motion.div
+              className="mb-10"
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={visible ? { scale: 1, opacity: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="font-heading text-[8rem] md:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-emerald-300 via-green-400 to-emerald-600 leading-none tabular-nums">
+                {countdown}
+              </span>
+            </motion.div>
+
+            <motion.p
+              className="text-base md:text-lg text-white/40 font-medium max-w-2xl mx-auto"
+              initial={{ y: 20, opacity: 0 }}
+              animate={visible ? { y: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Get ready — the future of carbon intelligence is about to begin
+            </motion.p>
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center"
+          >
+            <motion.div
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-emerald-400/25 bg-emerald-500/10 backdrop-blur-md mb-6"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+            >
+              <motion.span
+                className="w-2 h-2 rounded-full bg-emerald-400"
+                animate={{ scale: [1, 1.6, 1], opacity: [1, 0.5, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+              <span className="text-emerald-300 text-[10px] md:text-xs font-bold tracking-widest uppercase">
+                GLOBAL LAUNCH 🚀
+              </span>
+            </motion.div>
+
+            <motion.h2
+              className="font-heading text-3xl sm:text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-4"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-green-400 to-cyan-300">
+                CarbonSynqEarth is Now Live
+              </span>
+            </motion.h2>
+
+            <motion.p
+              className="text-base md:text-lg text-white/60 font-medium max-w-2xl mx-auto mb-10"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Empowering organizations worldwide to automate carbon accounting, sustainability reporting, and ESG compliance.
+            </motion.p>
+
+            <motion.div
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Link
+                href="/book-demo"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-eco-green to-emerald-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-eco-green/30 hover:shadow-xl hover:shadow-eco-green/40 transition-all hover:-translate-y-0.5 text-sm md:text-base"
+              >
+                Get Started <ArrowRight size={18} />
+              </Link>
+              <Link
+                href="/solutions/net-zero"
+                className="inline-flex items-center gap-2 border border-white/20 text-white/90 font-semibold px-8 py-4 rounded-xl hover:bg-white/5 hover:border-white/30 transition-all text-sm md:text-base"
+              >
+                Explore Platform
+              </Link>
+            </motion.div>
+          </motion.div>
+        )}
       </div>
     </section>
   );
@@ -754,6 +1003,7 @@ export default function Home() {
   return (
     <div className="font-body text-text-dark bg-beige-soft overflow-x-hidden">
       <HeroSection />
+      <LaunchSection />
       <AboutSection />
       <ImpactStrip />
       <TrustedMarquee />
