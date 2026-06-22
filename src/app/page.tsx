@@ -14,35 +14,35 @@ const Analytics = dynamic(() => import('@/components/AnalyticsSection').then(m =
 
 function HeroSection() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-[100svh] w-full flex flex-col justify-center items-center overflow-hidden pt-24 pb-12 lg:pt-32 lg:pb-16">
       <div className="absolute inset-0 z-0">
         <img src="/hero_forest.webp" alt="" className="w-full h-full object-cover scale-105" style={{ filter: 'hue-rotate(45deg) saturate(1.2)' }} />
         <div className="absolute inset-0 bg-gradient-to-b from-forest-deep/85 via-forest-deep/60 to-forest-deep/90" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(22,163,74,0.15),transparent_70%)]" />
       </div>
 
-      <div className="relative z-10 text-center max-w-[960px] px-[5%]">
-        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/8 backdrop-blur-md border border-white/15 text-white/80 text-xs font-bold tracking-widest uppercase mb-8">
+      <div className="relative z-10 text-center max-w-[960px] px-[5%] w-full flex flex-col items-center">
+        <div className="inline-flex items-center gap-2 px-4 lg:px-5 py-1.5 lg:py-2 rounded-full bg-white/8 backdrop-blur-md border border-white/15 text-white/80 text-[10px] lg:text-xs font-bold tracking-widest uppercase mb-6 lg:mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-eco-green animate-pulse-soft" />
           Intelligence for a Greener Future
         </div>
 
-        <h1 className="font-heading text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold text-white leading-[1.08] tracking-tight mb-6">
+        <h1 className="font-heading text-[clamp(2rem,4.5vw,4.5rem)] font-extrabold text-white leading-[1.1] tracking-tight mb-5 lg:mb-6 w-full">
           Powering a{' '}
           <span className="text-gradient-emerald">Greener Future</span>
           {' '}with Intelligent Insights
         </h1>
 
-        <div className="inline-block bg-gradient-to-r from-eco-green/90 to-emerald-light/90 text-white px-6 py-2.5 rounded-xl font-heading font-extrabold tracking-wide mb-6 shadow-lg shadow-eco-green/25 backdrop-blur-sm border border-white/10">
+        <div className="inline-block bg-gradient-to-r from-eco-green/90 to-emerald-light/90 text-white px-4 lg:px-6 py-2 lg:py-2.5 rounded-xl font-heading text-xs sm:text-sm lg:text-base font-extrabold tracking-wide mb-5 lg:mb-6 shadow-lg shadow-eco-green/25 backdrop-blur-sm border border-white/10 max-w-full">
           FROM CARBON ACCOUNTING TO OFFSETTING — ALL AT ONE PLATFORM
         </div>
 
-        <p className="text-[clamp(1rem,2vw,1.25rem)] text-white/70 leading-relaxed max-w-[680px] mx-auto mb-10">
+        <p className="text-[clamp(0.9rem,1.5vw,1.25rem)] text-white/70 leading-relaxed max-w-[680px] mx-auto mb-8 lg:mb-10 px-2 sm:px-0">
           AI-driven sustainability analytics and carbon accounting platform for the modern enterprise.
         </p>
 
-        <div className="flex justify-center">
-          <Link href="/book-demo" className="btn-primary text-base px-10 py-4 text-[15px] shadow-lg shadow-eco-green/30 hover:shadow-xl hover:shadow-eco-green/40 inline-flex items-center gap-2">
+        <div className="flex justify-center w-full">
+          <Link href="/book-demo" className="btn-primary text-sm lg:text-base px-8 lg:px-10 py-3 lg:py-4 shadow-lg shadow-eco-green/30 hover:shadow-xl hover:shadow-eco-green/40 inline-flex items-center gap-2">
             Get Started <ArrowRight size={18} />
           </Link>
         </div>
