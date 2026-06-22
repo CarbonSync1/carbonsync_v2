@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, Suspense, useEffect } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
@@ -751,148 +751,8 @@ function Faq() {
 }
 
 export default function Home() {
-  const [showWebsite, setShowWebsite] = useState(false);
-  const [countdown, setCountdown] = useState(10);
-  const [loadingText, setLoadingText] = useState("Initializing intelligence core...");
-
-  useEffect(() => {
-    const loadingStatuses = [
-      "Initializing intelligence core...",
-      "Calibrating ESG data layers...",
-      "Syncing real-time global nodes...",
-      "Securing audit logs...",
-      "Finalizing Net-Zero environment..."
-    ];
-
-    let tick = 0;
-    const timer = setInterval(() => {
-      tick++;
-      if (tick % 2 === 0 && tick < 10) {
-        setLoadingText(loadingStatuses[Math.floor(tick / 2) % loadingStatuses.length]);
-      }
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          setShowWebsite(true);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  if (!showWebsite) {
-    return (
-      <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden">
-        {/* Dynamic Background */}
-        <div className="absolute inset-0 z-0">
-          <img src="/hero_forest.webp" alt="" className="w-full h-full object-cover scale-110 blur-[30px] opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a]/95 via-[#064e3b]/80 to-[#0f172a]/95" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.15),transparent_60%)]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] animate-pulse-soft" />
-        </div>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative z-10 flex flex-col items-center"
-        >
-          {/* Logo element */}
-          <motion.div 
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-12 flex items-center gap-2"
-          >
-             <div className="w-2 h-2 rounded-full bg-eco-green shadow-[0_0_10px_rgba(16,185,129,0.8)] animate-pulse" />
-             <span className="text-xl font-bold tracking-tight text-white/90 uppercase font-heading">
-              CarbonSynq<span className="text-[#10b981]">Earth</span>
-            </span>
-          </motion.div>
-
-          <div className="relative w-44 h-44 flex items-center justify-center mb-12">
-            {/* Outer rotating dashed ring */}
-            <motion.svg 
-              animate={{ rotate: 360 }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 w-full h-full text-white/20" 
-              viewBox="0 0 100 100"
-            >
-              <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 6" />
-            </motion.svg>
-            
-            {/* Inner dynamic progress ring */}
-            <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100" style={{ filter: 'drop-shadow(0 0 10px rgba(16,185,129,0.5))' }}>
-              <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="3" />
-              <motion.circle 
-                cx="50" cy="50" r="40" fill="none" stroke="#10b981" strokeWidth="3"
-                strokeLinecap="round"
-                initial={{ strokeDasharray: "251.2", strokeDashoffset: "251.2" }}
-                animate={{ strokeDashoffset: 251.2 - (251.2 * (10 - countdown)) / 10 }}
-                transition={{ duration: 1, ease: "linear" }}
-              />
-            </svg>
-
-            {/* Glowing Center Core */}
-            <div className="absolute inset-0 m-auto w-24 h-24 bg-gradient-to-br from-emerald-500/20 to-eco-green/10 rounded-full blur-xl animate-pulse-soft" />
-
-            {/* Spring Animated Number */}
-            <motion.span 
-              key={countdown}
-              initial={{ opacity: 0, scale: 0.6, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="relative text-6xl font-heading font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 tracking-tighter"
-            >
-              {countdown}
-            </motion.span>
-          </div>
-
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="flex flex-col items-center h-20"
-          >
-            <div className="h-6 flex items-center justify-center overflow-hidden mb-3">
-              <motion.div
-                key={loadingText}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{ duration: 0.4 }}
-                className="text-white/80 font-medium tracking-wide text-sm text-center px-4"
-              >
-                {loadingText}
-              </motion.div>
-            </div>
-
-            <div className="flex gap-2 mt-2">
-              {[0, 1, 2].map((i) => (
-                <motion.div
-                  key={i}
-                  animate={{ opacity: [0.2, 1, 0.2], scale: [0.8, 1.2, 0.8] }}
-                  transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
-                  className="w-1.5 h-1.5 rounded-full bg-[#10b981]"
-                />
-              ))}
-            </div>
-          </motion.div>
-        </motion.div>
-      </div>
-    );
-  }
-
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="font-body text-text-dark bg-beige-soft overflow-x-hidden"
-    >
+    <div className="font-body text-text-dark bg-beige-soft overflow-x-hidden">
       <HeroSection />
       <AboutSection />
       <ImpactStrip />
@@ -906,6 +766,6 @@ export default function Home() {
       <Ecosystem />
       <DashboardPreview />
       <Faq />
-    </motion.div>
+    </div>
   );
 }
