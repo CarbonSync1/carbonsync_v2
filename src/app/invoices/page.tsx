@@ -12,6 +12,7 @@ import { ProtectedRoute } from "@/components/shared/ProtectedRoute";
 import { AuthenticatedLayout } from "@/components/layout/AuthenticatedLayout";
 import { UploadCard } from "@/components/invoices/UploadCard";
 import { EmissionsService } from "@/services/emissions";
+import { EngagingLoader } from "@/components/shared/EngagingLoader";
 
 const ACCEPTED_TYPES = ["pdf", "png", "jpg", "jpeg"];
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
@@ -23,11 +24,11 @@ export default function InvoicesPage() {
   const [loading, setLoading] = useState(false);
 
   const handleFileSelect = useCallback((selected: File | null) => {
-  EmissionsService.clearLatestResult();
-  EmissionsService.clearPendingFile();
+    EmissionsService.clearLatestResult();
+    EmissionsService.clearPendingFile();
 
-  setFile(selected);
-  setUploadError(null);
+    setFile(selected);
+    setUploadError(null);
 
     if (!selected) return;
 
@@ -45,24 +46,13 @@ export default function InvoicesPage() {
     }
   }, []);
 
-  const handleUpload = async () => {
+  const handleUpload = () => {
     if (!file || uploadError || loading) return;
 
+    setLoading(true);
     EmissionsService.clearLatestResult();
-
-      setLoading(true);
-     setUploadError(null);
-
-    try {
-      await EmissionsService.uploadInvoice(file);
-      router.push("/dashboard");
-    } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "An unexpected error occurred.";
-      setUploadError(message);
-    } finally {
-      setLoading(false);
-    }
+    EmissionsService.setPendingFile(file);
+    router.push("/dashboard");
   };
 
   const handleRetry = () => {
@@ -105,39 +95,45 @@ export default function InvoicesPage() {
               <div className="h-px bg-gradient-to-r from-transparent via-eco-green/20 to-transparent mt-6 max-w-xs mx-auto" />
             </div>
 
-            <UploadCard
-              onFileSelect={handleFileSelect}
-              file={file}
-              error={uploadError}
-              loading={loading}
-              onRetry={handleRetry}
-            />
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-              className="mt-8 text-center"
-            >
-              <button
-                type="button"
-                onClick={handleUpload}
-                disabled={!file || !!uploadError || loading}
-                className="inline-flex items-center gap-2.5 bg-eco-green hover:bg-eco-hover text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-eco-green/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98] hover:shadow-xl hover:shadow-eco-green/30"
+            {loading ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="mt-8"
               >
-                {loading ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    Uploading...
-                  </>
-                ) : (
-                  <>
+                <EngagingLoader 
+                  title="Processing Invoice" 
+                  subtitle="Extracting data and calculating carbon emissions... This may take a moment."
+                />
+              </motion.div>
+            ) : (
+              <>
+                <UploadCard
+                  onFileSelect={handleFileSelect}
+                  file={file}
+                  error={uploadError}
+                  loading={loading}
+                  onRetry={handleRetry}
+                />
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  className="mt-8 text-center"
+                >
+                  <button
+                    type="button"
+                    onClick={handleUpload}
+                    disabled={!file || !!uploadError}
+                    className="inline-flex items-center gap-2.5 bg-eco-green hover:bg-eco-hover text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-eco-green/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98] hover:shadow-xl hover:shadow-eco-green/30"
+                  >
                     <CloudUpload className="w-5 h-5" />
                     Upload Invoice
-                  </>
-                )}
-              </button>
-            </motion.div>
+                  </button>
+                </motion.div>
+              </>
+            )}
           </motion.div>
         </div>
       </AuthenticatedLayout>

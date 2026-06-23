@@ -28,6 +28,7 @@ import type {
   InvoiceEmissionsResponse,
   EmissionResultDetail,
 } from "@/types/report";
+import { EngagingLoader } from "@/components/shared/EngagingLoader";
 
 function SkeletonCard({ className }: { className?: string }) {
   return (
@@ -110,6 +111,13 @@ export function EmissionsDashboard() {
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [reportGenerating, setReportGenerating] = useState(false);
+  const [reportError, setReportError] = useState<string | null>(null);
+  const [generatedReportUrls, setGeneratedReportUrls] = useState<{
+    brsr?: string;
+    cbam?: string;
+  } | null>(null);
+  const [reportAutoStarted, setReportAutoStarted] = useState(false);
   useEffect(() => {
     const pendingFile = EmissionsService.getPendingFile();
     if (!pendingFile || data) return;
@@ -175,24 +183,101 @@ export function EmissionsDashboard() {
     return { totalCO2e, totalTCO2e, categories, matchRate, topCategory };
   }, [data]);
 
+  useEffect(() => {
+    if (!data || reportAutoStarted || reportGenerating) return;
+
+    const existingBRSR = getFullReportUrl((data as any)?.report_download_urls?.brsr);
+    const existingCBAM = getFullReportUrl((data as any)?.report_download_urls?.cbam);
+
+    if (existingBRSR || existingCBAM) {
+      setGeneratedReportUrls({
+        brsr: existingBRSR,
+        cbam: existingCBAM,
+      });
+      setReportAutoStarted(true);
+      return;
+    }
+
+    const file = (data as any).file;
+    const extractedItems = data.extracted_items ?? [];
+    const calculationResults =
+      (data as any).calculation_results ??
+      (data as any).results ??
+      data.results ??
+      [];
+
+    if (!file || extractedItems.length === 0 || calculationResults.length === 0) {
+      return;
+    }
+
+    const generateReportInBackground = async () => {
+      setReportAutoStarted(true);
+      setReportGenerating(true);
+      setReportError(null);
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/generate-invoice-report`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            file,
+            extracted_items: extractedItems,
+            calculation_results: calculationResults,
+            total_kgco2e:
+              (data as any).total_kgco2e ?? summaryCards?.totalCO2e ?? 0,
+            total_tco2e:
+              (data as any).total_tco2e ?? summaryCards?.totalTCO2e ?? 0,
+          }),
+        });
+
+        const reportData = await response.json();
+
+        if (!response.ok || !reportData?.success) {
+          throw new Error(reportData?.message || "Report generation failed.");
+        }
+
+        const urls = {
+          brsr: getFullReportUrl(reportData.report_download_urls?.brsr),
+          cbam: getFullReportUrl(reportData.report_download_urls?.cbam),
+        };
+
+        setGeneratedReportUrls(urls);
+        setData((current: any) =>
+          current
+            ? {
+              ...current,
+              report_download_urls: urls,
+              reports: reportData.reports,
+            }
+            : current
+        );
+      } catch (err) {
+        const message =
+          err instanceof Error ? err.message : "Report generation failed.";
+        setReportError(message);
+      } finally {
+        setReportGenerating(false);
+      }
+    };
+
+    generateReportInBackground();
+  }, [data, reportAutoStarted, reportGenerating, summaryCards]);
+
   if (loading) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col items-center justify-center gap-6 py-20"
+          className="flex flex-col items-center justify-center py-20"
         >
-          <div className="w-16 h-16 rounded-2xl bg-eco-green/10 flex items-center justify-center">
-            <Loader2 className="w-7 h-7 text-eco-green animate-spin" />
-          </div>
-          <div className="text-center">
-            <h1 className="text-2xl font-heading font-extrabold text-text-dark tracking-tight">
-              Processing Invoice
-            </h1>
-            <p className="text-text-muted text-sm mt-2 max-w-md">
-              Extracting items and calculating carbon emissions...
-            </p>
+          <div className="w-full max-w-lg">
+            <EngagingLoader 
+              title="Processing Invoice" 
+              subtitle="Extracting items and calculating carbon emissions..." 
+            />
           </div>
         </motion.div>
       </div>
@@ -306,8 +391,76 @@ export function EmissionsDashboard() {
   const extractedItems =
     resultBasedItems.length > 0 ? resultBasedItems : rawExtractedItems;
   const reportUrls = {
-    brsr: getFullReportUrl(data.report_download_urls?.brsr),
-    cbam: getFullReportUrl(data.report_download_urls?.cbam),
+    brsr: generatedReportUrls?.brsr || getFullReportUrl(data.report_download_urls?.brsr),
+    cbam: generatedReportUrls?.cbam || getFullReportUrl(data.report_download_urls?.cbam),
+  };
+
+  const hasGeneratedReport = Boolean(reportUrls.brsr || reportUrls.cbam);
+
+  const handleGenerateReport = async () => {
+    if (!data || reportGenerating) return;
+
+    if (reportUrls.brsr) {
+      window.open(reportUrls.brsr, "_blank");
+      return;
+    }
+
+    setReportError(null);
+    setReportGenerating(true);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/generate-invoice-report`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          file: (data as any).file,
+          extracted_items: data.extracted_items ?? [],
+          calculation_results:
+            (data as any).calculation_results ??
+            (data as any).results ??
+            data.results ??
+            [],
+          total_kgco2e:
+            (data as any).total_kgco2e ?? summaryCards?.totalCO2e ?? 0,
+          total_tco2e:
+            (data as any).total_tco2e ?? summaryCards?.totalTCO2e ?? 0,
+        }),
+      });
+
+      const reportData = await response.json();
+
+      if (!response.ok || !reportData?.success) {
+        throw new Error(reportData?.message || "Report generation failed.");
+      }
+
+      const urls = {
+        brsr: getFullReportUrl(reportData.report_download_urls?.brsr),
+        cbam: getFullReportUrl(reportData.report_download_urls?.cbam),
+      };
+
+      setGeneratedReportUrls(urls);
+      setData((current: any) =>
+        current
+          ? {
+            ...current,
+            report_download_urls: urls,
+            reports: reportData.reports,
+          }
+          : current
+      );
+
+      if (urls.brsr) {
+        window.open(urls.brsr, "_blank");
+      }
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Report generation failed.";
+      setReportError(message);
+    } finally {
+      setReportGenerating(false);
+    }
   };
 
   const containerVariants = {
@@ -379,7 +532,7 @@ export function EmissionsDashboard() {
                 Document Analysis Overview
               </h2>
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
               <div className="bg-eco-green/5 rounded-xl px-4 py-3 border border-eco-green/10">
                 <p className="text-xs font-semibold text-text-muted uppercase tracking-wider">
@@ -418,7 +571,7 @@ export function EmissionsDashboard() {
                   Report Status
                 </p>
                 <p className="text-lg font-bold text-text-dark mt-1">
-                  {reportUrls?.brsr || reportUrls?.cbam ? "Generated" : "Processing"}
+                  {reportGenerating ? "Preparing" : hasGeneratedReport ? "Generated" : "Ready"}
                 </p>
               </div>
               <div className="bg-rose-50 rounded-xl px-4 py-3 border border-rose-100">
@@ -605,22 +758,56 @@ export function EmissionsDashboard() {
           )}
         </motion.div>
 
-        {/* ── Download Reports ── */}
-        {(reportUrls?.brsr || reportUrls?.cbam) && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mb-8"
-          >
-            <div className="bg-white rounded-2xl border border-gray-200/50 shadow-sm p-6">
-              <div className="flex items-center gap-2 mb-5">
-                <Download className="w-5 h-5 text-emerald-accent" />
-                <h2 className="text-sm font-bold text-text-dark uppercase tracking-wider">
-                  Generated Reports
-                </h2>
+        {/* ── Generate / Download Reports ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mb-8"
+        >
+          <div className="bg-white rounded-2xl border border-gray-200/50 shadow-sm p-6">
+            {reportGenerating ? (
+              <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}>
+                <EngagingLoader 
+                  title="Generating Reports" 
+                  subtitle="Compiling your data into BRSR and CBAM compliant formats..." 
+                />
+              </motion.div>
+            ) : (
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Download className="w-5 h-5 text-emerald-accent" />
+                    <h2 className="text-sm font-bold text-text-dark uppercase tracking-wider">
+                      Report Generation
+                    </h2>
+                  </div>
+                  <p className="text-sm text-text-muted max-w-2xl">
+                    Generate downloadable BRSR and CBAM PDF reports for this uploaded invoice.
+                  </p>
+                  {reportError && (
+                    <p className="text-sm text-red-600 font-semibold mt-3">
+                      {reportError}
+                    </p>
+                  )}
+                </div>
+
+                {!hasGeneratedReport && (
+                  <button
+                    type="button"
+                    onClick={handleGenerateReport}
+                    disabled={reportGenerating}
+                    className="inline-flex items-center justify-center gap-2.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold px-5 py-3 rounded-xl shadow-lg shadow-slate-900/15 transition-all hover:shadow-xl hover:shadow-slate-900/20 active:scale-[0.98] text-sm disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    <Download className="w-4 h-4" />
+                    Generate PDF Report
+                  </button>
+                )}
               </div>
-              <div className="flex flex-wrap gap-3">
+            )}
+
+            {hasGeneratedReport && (
+              <div className="flex flex-wrap gap-3 mt-6 pt-5 border-t border-gray-100">
                 {reportUrls.brsr && (
                   <a
                     href={reportUrls.brsr}
@@ -646,9 +833,9 @@ export function EmissionsDashboard() {
                   </a>
                 )}
               </div>
-            </div>
-          </motion.div>
-        )}
+            )}
+          </div>
+        </motion.div>
       </motion.div>
     </div>
   );
@@ -794,4 +981,5 @@ function EmissionResultCard({
     </motion.div>
   );
 }
+
 
