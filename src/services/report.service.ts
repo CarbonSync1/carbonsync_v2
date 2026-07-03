@@ -32,10 +32,10 @@ export class ReportService {
   static async estimateEmissions(file: File): Promise<EmissionReport> {
     const formData = new FormData();
 
-    // Current backend expects "invoice", not "document"
-    formData.append("invoice", file);
+    // Current backend expects "file"
+    formData.append("file", file);
 
-    const response = await fetch(`${SERVER_URL}/api/upload-invoice`, {
+    const response = await fetch(`${SERVER_URL}/api/erp/upload`, {
       method: "POST",
       body: formData,
     });

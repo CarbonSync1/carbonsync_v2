@@ -64,6 +64,10 @@ function getResult(entry: any) {
   return entry?.result ?? entry ?? {};
 }
 
+function isCalculated(entry: any) {
+  return entry?.status === "calculated" || entry?.success === true;
+}
+
 function getCo2e(entry: any) {
   const result = getResult(entry);
   return toNumber(result?.co2e ?? result?.co2e_total ?? entry?.co2e);
@@ -77,7 +81,7 @@ function getTco2e(entry: any) {
 }
 
 function getCategory(entry: any) {
-  return String(getResult(entry)?.category ?? entry?.category ?? "").trim();
+  return String(entry?.category ?? getResult(entry)?.category ?? "").trim();
 }
 
 function getFullReportUrl(url?: string) {
@@ -122,6 +126,9 @@ export function EmissionsDashboard() {
     const pendingFile = EmissionsService.getPendingFile();
     if (!pendingFile || data) return;
 
+    // Clear pending file immediately to prevent StrictMode double execution
+    EmissionsService.clearPendingFile();
+
     const processPending = async () => {
       setLoading(true);
       setError(null);
@@ -145,24 +152,27 @@ export function EmissionsDashboard() {
 
     const results = filterRailTicketResults(data.results ?? []);
 
-    const totalCO2e = results.reduce((sum, item) => {
-      return sum + getCo2e(item);
-    }, 0);
+    // Prefer root-level total_co2e from backend (most accurate)
+    const backendTotal = toNumber((data as any)?.total_co2e ?? (data as any)?.emission?.total_co2e);
+    const totalCO2e = backendTotal > 0
+      ? backendTotal
+      : results.reduce((sum, item) => sum + getCo2e(item), 0);
 
-    const totalTCO2e = results.reduce((sum, item) => {
-      return sum + getTco2e(item);
-    }, 0);
+    const backendTotalT = toNumber((data as any)?.total_tco2e ?? (data as any)?.emission?.total_tco2e);
+    const totalTCO2e = backendTotalT > 0
+      ? backendTotalT
+      : results.reduce((sum, item) => sum + getTco2e(item), 0);
 
     const categories = [
       ...new Set(results.map((item) => getCategory(item)).filter(Boolean)),
     ];
 
-    const successfulItems = results.filter((r: any) => r.success !== false).length;
-    const totalItems = data.extracted_items?.length || results.length;
+    const successfulItems = results.filter((r: any) => isCalculated(r)).length;
+    const totalItems = results.length || (data as any)?.extraction?.item_count || 0;
     const matchRate = totalItems > 0 ? Math.round((successfulItems / totalItems) * 100) : 0;
 
     const categoryTotals = results.reduce((acc, item: any) => {
-      if (item.success !== false) {
+      if (isCalculated(item)) {
         const cat = getCategory(item);
         if (cat) {
           acc[cat] = (acc[cat] || 0) + getCo2e(item);
@@ -239,8 +249,8 @@ export function EmissionsDashboard() {
         }
 
         const urls = {
-          brsr: getFullReportUrl(reportData.report_download_urls?.brsr),
-          cbam: getFullReportUrl(reportData.report_download_urls?.cbam),
+          brsr: getFullReportUrl(reportData.reportUrls?.brsr ?? reportData.report_download_urls?.brsr),
+          cbam: getFullReportUrl(reportData.reportUrls?.cbam ?? reportData.report_download_urls?.cbam),
         };
 
         setGeneratedReportUrls(urls);
@@ -366,8 +376,9 @@ export function EmissionsDashboard() {
           "Emission Item"
         ),
 
-        // Display original invoice quantity first
+        // Display backend normalized quantity first
         quantity:
+          entry?.value ??
           rawItem?.quantity ??
           params?.original_quantity ??
           params?.extracted_quantity ??
@@ -376,8 +387,9 @@ export function EmissionsDashboard() {
           params?.quantity ??
           0,
 
-        // Display original invoice unit first
+        // Display backend normalized unit first
         unit:
+          entry?.unit ??
           rawItem?.unit ??
           params?.original_unit ??
           params?.extracted_unit ??
@@ -415,16 +427,17 @@ export function EmissionsDashboard() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          file: (data as any).file,
-          extracted_items: data.extracted_items ?? [],
-          calculation_results:
+          file: (data as any).file ?? { originalname: (data as any).file_name ?? "invoice.pdf" },
+          extractedItems: data.extracted_items ?? [],
+          calculationResults:
             (data as any).calculation_results ??
             (data as any).results ??
             data.results ??
+            (data as any).emission?.results ??
             [],
-          total_kgco2e:
+          totalKgCO2e:
             (data as any).total_kgco2e ?? summaryCards?.totalCO2e ?? 0,
-          total_tco2e:
+          totalTCO2e:
             (data as any).total_tco2e ?? summaryCards?.totalTCO2e ?? 0,
         }),
       });
@@ -436,8 +449,8 @@ export function EmissionsDashboard() {
       }
 
       const urls = {
-        brsr: getFullReportUrl(reportData.report_download_urls?.brsr),
-        cbam: getFullReportUrl(reportData.report_download_urls?.cbam),
+        brsr: getFullReportUrl(reportData.reportUrls?.brsr ?? reportData.report_download_urls?.brsr),
+        cbam: getFullReportUrl(reportData.reportUrls?.cbam ?? reportData.report_download_urls?.cbam),
       };
 
       setGeneratedReportUrls(urls);
@@ -847,12 +860,14 @@ function EmissionResultCard({
   entry,
   index,
 }: {
-  entry: { success: boolean; item_name: string; result: EmissionResultDetail };
+  entry: any;
   index: number;
 }) {
-  const { result } = entry;
+  const result = entry?.result ?? entry ?? {};
+  
+  const isSuccess = entry.success === true || entry.status === "calculated";
 
-  if (!entry.success) {
+  if (!isSuccess) {
     return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -922,10 +937,10 @@ function EmissionResultCard({
               CO₂e
             </p>
             <p className="text-lg font-extrabold text-text-dark font-heading tabular-nums">
-              {result.co2e.toLocaleString()}
+              {Number(result?.co2e ?? result?.co2e_total ?? entry?.co2e ?? 0).toLocaleString()}
             </p>
             <p className="text-[10px] text-text-muted font-medium">
-              {result.co2e_unit}
+              {result?.co2e_unit ?? entry?.co2e_unit ?? "kg"}
             </p>
           </div>
           <div className="bg-gray-50 rounded-xl px-3 py-3">
@@ -933,7 +948,7 @@ function EmissionResultCard({
               Total tCO₂e
             </p>
             <p className="text-lg font-extrabold text-text-dark font-heading tabular-nums">
-              {result.total_tco2e.toLocaleString(undefined, {
+              {Number(result?.total_tco2e ?? entry?.total_tco2e ?? 0).toLocaleString(undefined, {
                 maximumFractionDigits: 3,
               })}
             </p>
@@ -946,7 +961,7 @@ function EmissionResultCard({
             <div className="flex items-center gap-1.5 mt-1">
               <MapPin className="w-3.5 h-3.5 text-text-muted" />
               <p className="text-lg font-extrabold text-text-dark font-heading">
-                {result.factor_region}
+                {result?.factor_region ?? result?.region ?? entry?.region ?? "N/A"}
               </p>
             </div>
           </div>
@@ -962,17 +977,17 @@ function EmissionResultCard({
               <Hash className="w-3.5 h-3.5 text-text-muted mt-0.5 shrink-0" />
               <div>
                 <span className="text-xs font-medium text-text-dark">
-                  {result.factor_name}
+                  {result?.factor_name ?? result?.name ?? entry?.factor_name ?? "Unknown Factor"}
                 </span>
                 <span className="text-[10px] text-text-muted ml-2">
-                  ({result.activity_id})
+                  ({result?.activity_id ?? entry?.activity_id ?? "N/A"})
                 </span>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <Beaker className="w-3.5 h-3.5 text-text-muted shrink-0" />
               <span className="text-xs text-text-muted">
-                {result.source_lca_activity}
+                {result?.source_lca_activity ?? result?.source ?? entry?.source_lca_activity ?? "N/A"}
               </span>
             </div>
           </div>
