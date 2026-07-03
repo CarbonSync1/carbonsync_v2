@@ -32,13 +32,13 @@ function normalizeReportUrl(url?: string | null) {
 }
 
 function normalizeInvoiceResponse(raw: any): InvoiceEmissionsResponse {
-  const extractedItems =
-    raw?.extracted_items ??
-    raw?.line_items ??
-    raw?.items ??
-    [];
+  let extractedItems = raw?.extracted_items;
+  if (!Array.isArray(extractedItems)) {
+    extractedItems = raw?.line_items ?? raw?.items ?? [];
+  }
 
   const results =
+    raw?.emission?.results ??
     raw?.results ??
     raw?.emission_results ??
     raw?.calculation_results ??
@@ -124,9 +124,9 @@ export class EmissionsService {
     const response = await retryWithBackoff(
       () => {
         const formData = new FormData();
-        formData.append("invoice", file);
+        formData.append("file", file);
 
-        return fetch(`${API_BASE_URL}/api/upload-invoice`, {
+        return fetch(`${API_BASE_URL}/api/erp/upload`, {
           method: "POST",
           body: formData,
           cache: "no-store",
