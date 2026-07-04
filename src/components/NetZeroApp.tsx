@@ -247,13 +247,13 @@ export default function App() {
  <span>Version 2.4 Enterprise Platform Now Live</span>
  </div>
 
- <h1
- className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white mb-6"
- >
- Accelerate Your <br />
- Net Zero Journey <br />
- with <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">CarbonSynq Zero</span>
- </h1>
+          <h1
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-white mb-6"
+          >
+          Accelerate Your <br />
+          Net Zero Journey <br />
+          with <span className="text-eco-green">CarbonSynq Zero</span>
+          </h1>
 
  <p
  className="text-lg text-white/80 leading-relaxed mb-8 max-w-xl"
@@ -349,8 +349,8 @@ export default function App() {
  <section className="py-20 bg-white border-y border-slate-100 relative z-10">
  <div className="max-w-7xl mx-auto px-6">
  <div className="text-center mb-12 max-w-2xl mx-auto">
- <h2 className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-3">Strategic Overview</h2>
- <h3 className="text-3xl font-extrabold text-slate-900 mb-4">Command Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">Carbon Lifecycle</span></h3>
+  <h2 className="text-[11px] font-semibold uppercase tracking-widest text-emerald-600 mb-3">Strategic Overview</h2>
+  <h3 className="text-3xl font-bold text-slate-900 mb-4">Command Your <span className="text-emerald-600">Carbon Lifecycle</span></h3>
  <p className="text-slate-500 text-sm">Select a strategic pillar below to explore how CarbonSynq transforms your raw data into actionable enterprise value.</p>
  </div>
 
@@ -492,8 +492,8 @@ export default function App() {
  <div className="inline-flex items-center gap-2 text-xs font-bold text-emerald-700 mb-6 uppercase tracking-widest">
  <img src="/unnamed.webp" alt="CarbonSynq Logo" className="w-10 h-10 object-contain" /> About the Platform
  </div>
- <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">
- What is <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-400">CarbonSynq</span>?
+  <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+  What is <span className="text-emerald-600">CarbonSynq</span>?
  </h2>
  <p className="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto mb-10">
  Demystify CarbonSynq Zero! Wherever you are in your CarbonSynq Zero journey, CarbonSynq empowers you to <strong className="text-slate-800">measure & report scope 3 emissions</strong> in accordance with the GHG protocol, strategize & implement your path to CarbonSynq Zero — all in one platform.
@@ -527,9 +527,9 @@ export default function App() {
  <div className="max-w-6xl mx-auto relative z-10">
  <div className="text-center max-w-3xl mx-auto mb-16">
  <h2 className="text-xs font-bold uppercase tracking-[0.15em] text-emerald-600 mb-4">SMART ESG PLATFORM</h2>
- <h3 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-6">
- Built For <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">Real-World</span> Impact
- </h3>
+  <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6">
+  Built For <span className="text-emerald-600">Real-World</span> Impact
+  </h3>
  <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
  Eliminate data silos and streamline your sustainability workflow with our comprehensive suite of tools.
  </p>
@@ -569,7 +569,7 @@ export default function App() {
   >
   <Sparkles className="w-3.5 h-3.5" /> Pain → Solution
   </div>
-  <h2 className="text-3xl md:text-4xl font-extrabold mb-4"><span className="text-slate-900">Every</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">pain point</span><span className="text-slate-900">, solved</span></h2>
+  <h2 className="text-3xl md:text-4xl font-bold mb-4"><span className="text-slate-900">Every</span> <span className="text-emerald-600">pain point</span><span className="text-slate-900">, solved</span></h2>
   <p className="text-slate-500 max-w-2xl mx-auto">From data collection to CarbonSynq Zero planning — we've addressed every challenge across the emissions lifecycle.</p>
   </div>
 
@@ -635,9 +635,9 @@ export default function App() {
  >
  <Layers className="w-4 h-4 text-emerald-600" /> CarbonSynq Zero Framework
  </div>
- <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-955 mb-6 leading-tight font-sans">
- Your complete <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">CarbonSynq Zero</span> journey
- </h2>
+  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6 leading-tight">
+  Your complete <span className="text-emerald-600">CarbonSynq Zero</span> journey
+  </h2>
  <p className="text-slate-600 text-base md:text-lg max-w-3xl mx-auto mb-6">From data collection to real-world implementation — every step is covered.</p>
  </div>
 
@@ -735,9 +735,9 @@ export default function App() {
  {/* Left Column: Content & Timeline */}
  <div className="lg:col-span-6 flex flex-col justify-center">
  <h2 className="text-xs font-bold uppercase tracking-widest text-[#4ade80] mb-3">From Emissions to Impact</h2>
- <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight text-black mb-6">
- Track Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">Decarbonization Milestones</span> Step-by-Step
- </h3>
+  <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-black mb-6">
+  Track Your <span className="text-emerald-600">Decarbonization Milestones</span> Step-by-Step
+  </h3>
 
  <p className="text-black mb-8 leading-relaxed">
  Achieving CarbonSynq Zero requires a structured, audit-ready framework. Our platform guides your teams through continuous mapping and dynamic auditing.
@@ -861,7 +861,7 @@ export default function App() {
  <div className="max-w-7xl mx-auto relative z-10">
  <div className="text-center mb-14">
  <h2 className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-3">Enterprise Suite</h2>
- <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Platform <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">Capabilities</span></h3>
+  <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Platform <span className="text-emerald-600">Capabilities</span></h3>
  <p className="text-slate-500 max-w-3xl mx-auto">
  A carbon operating system for measurement, supplier engagement, compliance, and real reduction work.
  </p>
@@ -1017,9 +1017,9 @@ export default function App() {
  <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
  <div className="lg:col-span-5">
  <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-3">Data Governance Layer</p>
- <h3 className="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-5">
- Before the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">dashboard</span>, make the carbon data <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">defensible</span>
- </h3>
+  <h3 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight mb-5">
+  Before the <span className="text-emerald-600">dashboard</span>, make the carbon data <span className="text-emerald-600">defensible</span>
+  </h3>
  <p className="text-slate-600 leading-relaxed mb-7">
  Serious GHG programs need more than calculations. EPA inventory guidance and GHG Protocol quality principles point to boundaries, methodologies, data management, base-year controls, roles, reviews, and verification as core parts of a high-quality inventory.
  </p>
@@ -1114,9 +1114,9 @@ export default function App() {
  <Cpu className="w-3.5 h-3.5" />
  Real-time Analytics
  </div>
- <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6">
- Live Platform <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">Environment</span>
- </h2>
+  <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+  Live Platform <span className="text-emerald-600">Environment</span>
+  </h2>
  <p className="text-slate-600">
  Take direct control of audits, offsets, and target pipelines with our custom dashboard engine. Click tabs to preview actual screens.
  </p>
@@ -1439,9 +1439,9 @@ export default function App() {
  <div className="max-w-7xl mx-auto relative z-10">
  <div className="text-center max-w-3xl mx-auto mb-16">
  <h2 className="text-xs font-bold uppercase tracking-widest text-[#4ade80] mb-3">Tailored Industry Workflows</h2>
- <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight text-black mb-4">
- Decarbonizing <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">Core Sectors</span> Globally
- </h3>
+  <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-black mb-4">
+  Decarbonizing <span className="text-emerald-600">Core Sectors</span> Globally
+  </h3>
  <p className="text-black">
  Each sector has distinct reporting requirements and operational pipelines. Select an industry to review target dashboards and metrics.
  </p>
@@ -1556,9 +1556,9 @@ export default function App() {
  <div className="max-w-7xl mx-auto relative z-10">
  <div className="text-center max-w-3xl mx-auto mb-20">
  <h2 className="text-xs font-bold uppercase tracking-widest text-[#4ade80] mb-3">Enterprise Efficiency Mapping</h2>
- <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-4">
- CarbonSynq vs Traditional <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">ESG</span> Methods
- </h3>
+  <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-4">
+  CarbonSynq vs Traditional <span className="text-emerald-600">ESG</span> Methods
+  </h3>
  <p className="text-slate-600">
  Traditional spreadsheets and ad-hoc consultancy audits introduce latency, data leakage, and compliance risk. Meet the machine alternative.
  </p>
@@ -1638,9 +1638,9 @@ export default function App() {
  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
  <div className="lg:col-span-4">
  <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-3">Success Outcomes</p>
- <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight mb-4">
- Results that <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">leadership</span> can actually <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">track</span>
- </h3>
+  <h3 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-4">
+  Results that <span className="text-emerald-600">leadership</span> can actually <span className="text-emerald-600">track</span>
+  </h3>
  <p className="text-sm text-slate-600 leading-relaxed">
  Benchmarked from emissions-reduction ranges and ESG automation claims, then framed as practical platform outcomes.
  </p>
@@ -1846,9 +1846,9 @@ export default function App() {
  <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end mb-14">
  <div className="lg:col-span-7">
  <p className="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-3">Industrial Applications</p>
- <h3 className="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight">
- Carbon <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">intelligence tuned</span> for how each sector actually <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">operates</span>
- </h3>
+  <h3 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight">
+  Carbon <span className="text-emerald-600">intelligence tuned</span> for how each sector actually <span className="text-emerald-600">operates</span>
+  </h3>
  </div>
  <p className="lg:col-span-5 text-slate-600 leading-relaxed">
  CarbonSynq adapts the same measurement, supplier, compliance, and reduction engine to different operational realities: factories, logistics networks, retail estates, and digital infrastructure.
@@ -1957,7 +1957,7 @@ export default function App() {
  >
  <CheckCircle className="w-3.5 h-3.5" /> Getting Started
  </div>
- <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">As easy as <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">1-2-3</span></h2>
+  <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">As easy as <span className="text-emerald-600">1-2-3</span></h2>
  <p className="text-slate-500 max-w-xl mx-auto">Getting started with CarbonSynq takes minutes, not months.</p>
  </div>
 
@@ -2016,9 +2016,9 @@ export default function App() {
  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
  Frequently Asked Questions
  </div>
- <h3 className="text-3xl md:text-5xl font-extrabold text-slate-900 leading-[1.15] tracking-tight mb-6">
- Clear <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-emerald-400">answers</span> for your journey.
- </h3>
+  <h3 className="text-3xl md:text-5xl font-bold text-slate-900 leading-[1.15] tracking-tight mb-6">
+  Clear <span className="text-emerald-600">answers</span> for your journey.
+  </h3>
  <p className="text-lg text-slate-500 leading-relaxed">
  Everything you need to know about preparing for your first carbon audit, managing suppliers, and tracking targets. Hover over a question to reveal the answer.
  </p>

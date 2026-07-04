@@ -14,7 +14,7 @@ const Analytics = dynamic(() => import('@/components/AnalyticsSection').then(m =
 
 function HeroSection() {
   return (
-    <section id="hero" className="relative min-h-[100svh] w-full flex flex-col justify-center items-center overflow-hidden pt-24 pb-12 lg:pt-32 lg:pb-16">
+    <section id="hero" className="relative min-h-[90svh] w-full flex flex-col justify-center items-center overflow-hidden pt-24 pb-12 lg:pt-32 lg:pb-16">
       <div className="absolute inset-0 z-0">
         <img src="/hero_forest.webp" alt="" className="w-full h-full object-cover scale-105" style={{ filter: 'hue-rotate(45deg) saturate(1.2)' }} />
         <div className="absolute inset-0 bg-gradient-to-b from-forest-deep/85 via-forest-deep/60 to-forest-deep/90" />
@@ -22,27 +22,27 @@ function HeroSection() {
       </div>
 
       <div className="relative z-10 text-center max-w-[960px] px-[5%] w-full flex flex-col items-center">
-        <div className="inline-flex items-center gap-2 px-4 lg:px-5 py-1.5 lg:py-2 rounded-full bg-white/8 backdrop-blur-md border border-white/15 text-white/80 text-[10px] lg:text-xs font-bold tracking-widest uppercase mb-6 lg:mb-8">
+        <div className="inline-flex items-center gap-2 px-4 lg:px-5 py-1.5 lg:py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/80 text-[11px] font-semibold tracking-widest uppercase mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-eco-green animate-pulse-soft" />
           Intelligence for a Greener Future
         </div>
 
-        <h1 className="font-heading text-[clamp(2rem,4.5vw,4.5rem)] font-extrabold text-white leading-[1.1] tracking-tight mb-5 lg:mb-6 w-full">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6 w-full">
           Powering a{' '}
-          <span className="text-gradient-emerald">Greener Future</span>
+          <span className="text-eco-green">Greener Future</span>
           {' '}with Intelligent Insights
         </h1>
 
-        <div className="inline-block bg-gradient-to-r from-eco-green/90 to-emerald-light/90 text-white px-4 lg:px-6 py-2 lg:py-2.5 rounded-xl font-heading text-xs sm:text-sm lg:text-base font-extrabold tracking-wide mb-5 lg:mb-6 shadow-lg shadow-eco-green/25 backdrop-blur-sm border border-white/10 max-w-full">
+        <div className="inline-block bg-eco-green/15 text-eco-green border border-eco-green/25 px-5 lg:px-6 py-2 lg:py-2.5 rounded-xl text-xs sm:text-sm font-semibold tracking-wide mb-6 backdrop-blur-sm max-w-full">
           FROM CARBON ACCOUNTING TO OFFSETTING — ALL AT ONE PLATFORM
         </div>
 
-        <p className="text-[clamp(0.9rem,1.5vw,1.25rem)] text-white/70 leading-relaxed max-w-[680px] mx-auto mb-8 lg:mb-10 px-2 sm:px-0">
+        <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-[640px] mx-auto mb-10">
           AI-driven sustainability analytics and carbon accounting platform for the modern enterprise.
         </p>
 
         <div className="flex justify-center w-full">
-          <Link href="/book-demo" className="btn-primary text-sm lg:text-base px-8 lg:px-10 py-3 lg:py-4 shadow-lg shadow-eco-green/30 hover:shadow-xl hover:shadow-eco-green/40 inline-flex items-center gap-2">
+          <Link href="/book-demo" className="btn-primary shadow-lg shadow-eco-green/30">
             Get Started <ArrowRight size={18} />
           </Link>
         </div>
@@ -55,38 +55,38 @@ function HeroSection() {
 
 function AboutSection() {
   return (
-    <section id="about" className="relative bg-white py-24 px-[5%] overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-eco-green/20 to-transparent" />
+    <section id="about" className="relative bg-white py-20 md:py-24 px-[5%] overflow-hidden">
+      <div className="section-divider absolute top-0 left-0" />
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
         <div>
-          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-semibold uppercase tracking-widest mb-5">
             Our Mission
           </span>
-          <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark leading-tight tracking-tight mb-5">
+          <h2 className="text-3xl sm:text-4xl font-bold text-text-dark leading-tight tracking-tight mb-5">
             Transforming Sustainability into a{' '}
-            <span className="text-gradient-emerald">Competitive Advantage</span>
+            <span className="text-eco-green">Competitive Advantage</span>
           </h2>
-          <p className="text-base text-text-muted leading-relaxed mb-5">
+          <p className="text-base text-text-muted leading-relaxed mb-5 max-w-[540px]">
             At CarbonSynqEarths, sustainability isn&apos;t a burden — it&apos;s an opportunity. Our platform simplifies the complex landscape of carbon accounting, enabling organizations to measure, report, and reduce their environmental footprint with unparalleled precision.
           </p>
           <p className="text-base text-text-muted leading-relaxed mb-8">
             Founded on principles of transparency and innovation, we empower businesses to turn ESG compliance into strategic value creation.
           </p>
-          <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-            <div className="w-full min-w-0 overflow-hidden p-4 md:p-6 rounded-xl bg-gradient-to-br from-eco-green/5 to-transparent border border-eco-green/10">
-              <div className="font-heading text-3xl sm:text-4xl lg:text-[2rem] font-extrabold text-text-dark mb-1 leading-tight break-words">100%</div>
-              <div className="text-xs sm:text-sm lg:text-[11px] font-bold uppercase tracking-widest text-text-muted break-words">Audit Ready</div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="p-5 rounded-xl bg-eco-green/5 border border-eco-green/10">
+              <div className="text-3xl font-bold text-text-dark mb-1">100%</div>
+              <div className="text-[11px] font-semibold uppercase tracking-widest text-text-muted">Audit Ready</div>
             </div>
-            <div className="w-full min-w-0 overflow-hidden p-4 md:p-6 rounded-xl bg-gradient-to-br from-eco-green/5 to-transparent border border-eco-green/10">
-              <div className="font-heading text-3xl sm:text-4xl lg:text-[2rem] font-extrabold text-text-dark mb-1 leading-tight break-words">AI-Powered</div>
-              <div className="text-xs sm:text-sm lg:text-[11px] font-bold uppercase tracking-widest text-text-muted break-words">Reduction Insights</div>
+            <div className="p-5 rounded-xl bg-eco-green/5 border border-eco-green/10">
+              <div className="text-3xl font-bold text-text-dark mb-1">AI-Powered</div>
+              <div className="text-[11px] font-semibold uppercase tracking-widest text-text-muted">Reduction Insights</div>
             </div>
           </div>
         </div>
 
         <div className="relative">
-          <div className="absolute -inset-4 bg-gradient-to-br from-eco-green/15 to-emerald-light/10 rounded-[24px] -rotate-2" />
-          <div className="relative w-full rounded-[20px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.12)]">
+          <div className="absolute -inset-4 bg-eco-green/10 rounded-[24px] -rotate-2" />
+          <div className="relative w-full rounded-[20px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
             <img
               src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800"
               alt="Sustainable Technology"
@@ -94,7 +94,6 @@ function AboutSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-forest-deep/20 to-transparent" />
           </div>
-          <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-eco-green/10 rounded-full blur-2xl" />
         </div>
       </div>
     </section>
@@ -103,18 +102,20 @@ function AboutSection() {
 
 function ImpactStrip() {
   return (
-    <section className="relative premium-gradient py-16 px-[5%] overflow-hidden border-y border-white/5">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(22,163,74,0.08),transparent_70%)]" />
-      <div className="max-w-[1200px] mx-auto flex justify-around items-center text-center flex-wrap gap-8 relative z-10">
-        {[
-          { end: 50, suffix: '%', lbl: 'Faster ESG Reporting' },
-          { end: 1000, suffix: '+', lbl: 'Curated ESG KPIs' },
-        ].map((item, i) => (
-          <div className="flex flex-col gap-2" key={item.lbl}>
-            <span className="tabular-nums font-heading text-4xl font-extrabold text-eco-green">{item.end}{item.suffix}</span>
-            <span className="text-sm font-semibold text-white/60 uppercase tracking-wide">{item.lbl}</span>
-          </div>
-        ))}
+    <section className="relative bg-forest-deep border-y border-white/5">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(22,163,74,0.06),transparent_70%)]" />
+      <div className="max-w-[1200px] mx-auto px-[5%] relative z-10">
+        <div className="flex justify-around items-stretch text-center divide-x divide-white/10">
+          {[
+            { end: 50, suffix: '%', lbl: 'Faster ESG Reporting' },
+            { end: 1000, suffix: '+', lbl: 'Curated ESG KPIs' },
+          ].map((item) => (
+            <div className="flex flex-col items-center justify-center py-14 px-6 flex-1 gap-2" key={item.lbl}>
+              <span className="tabular-nums text-4xl sm:text-5xl font-bold text-eco-green tracking-tight">{item.end}{item.suffix}</span>
+              <span className="text-sm text-white/50 font-medium uppercase tracking-wider">{item.lbl}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -135,23 +136,23 @@ const badges = [
 
 function TrustedMarquee() {
   return (
-    <section className="relative overflow-hidden bg-white py-20">
-      <div className="mx-auto mb-6 max-w-[1200px] px-[5%] text-center">
-        <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-4">
+    <section className="relative overflow-hidden bg-white py-20 md:py-24">
+      <div className="mx-auto mb-10 max-w-[1200px] px-[5%] text-center">
+        <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-semibold uppercase tracking-widest mb-4">
           Trusted & Certified
         </span>
-        <h2 className="font-heading text-[1.5rem] font-extrabold text-text-dark">CarbonSynqEarth is trusted by leading enterprises worldwide</h2>
+        <h2 className="text-2xl font-bold text-text-dark">CarbonSynqEarth is trusted by leading enterprises worldwide</h2>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center w-full max-w-[1200px] mx-auto px-[5%]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full max-w-[1200px] mx-auto px-[5%]">
         {badges.map((b, i) => (
           <div
             key={i}
-            className="flex items-center justify-center gap-3 w-full min-w-[180px] h-14 md:h-16 px-6 py-3 rounded-full border border-eco-green/15 bg-gradient-to-r from-beige-soft/50 to-white cursor-default transition-all hover:-translate-y-1 hover:border-eco-green/30 hover:shadow-lg hover:shadow-eco-green/10 hover:bg-eco-green/5"
+            className="flex items-center justify-center gap-3 w-full h-14 md:h-16 px-5 py-3 rounded-full border border-eco-green/15 bg-white cursor-default transition-all hover:-translate-y-0.5 hover:border-eco-green/30 hover:shadow-md hover:shadow-eco-green/10"
           >
-            <span className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6 [&>svg]:w-full [&>svg]:h-full text-eco-green shrink-0">
+            <span className="flex items-center justify-center w-5 h-5 text-eco-green shrink-0">
               {b.icon}
             </span>
-            <span className="text-sm md:text-base font-medium text-text-muted whitespace-nowrap truncate">
+            <span className="text-sm font-medium text-text-muted whitespace-nowrap truncate">
               {b.label}
             </span>
           </div>
@@ -163,38 +164,38 @@ function TrustedMarquee() {
 
 function HowItWorks() {
   const steps = [
-    { step: '01', icon: <Upload size={24} />, title: 'Upload Your Data',
+    { step: '01', icon: <Upload size={20} />, title: 'Upload Your Data',
       desc: 'Upload invoices, fuel records, and energy bills — or connect systems directly via API.' },
-    { step: '02', icon: <LineChart size={24} />, title: 'Calculate Emissions',
+    { step: '02', icon: <LineChart size={20} />, title: 'Calculate Emissions',
       desc: 'Our AI converts your data into certified Scope 1, 2 & 3 emissions using approved factors.' },
-    { step: '03', icon: <FileCheck size={24} />, title: 'Get Reports & Act',
+    { step: '03', icon: <FileCheck size={20} />, title: 'Get Reports & Act',
       desc: 'Receive audit-ready reports and actionable AI recommendations to reduce carbon risk.' },
   ];
 
   return (
-    <section id="how-it-works" className="relative bg-beige-soft py-24 px-[5%] overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-eco-green/20 to-transparent" />
+    <section id="how-it-works" className="relative bg-[#f5f2eb] py-20 md:py-24 px-[5%] overflow-hidden">
+      <div className="section-divider absolute top-0 left-0" />
       <div className="max-w-[1200px] mx-auto">
-        <div className="text-center max-w-[700px] mx-auto mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
+        <div className="text-center max-w-[700px] mx-auto mb-14">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-semibold uppercase tracking-widest mb-5">
             Simple Process
           </span>
-          <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark leading-tight tracking-tight mb-5">
+          <h2 className="text-3xl sm:text-4xl font-bold text-text-dark leading-tight tracking-tight mb-4">
             How CarbonSynqEarth Works
           </h2>
-          <p className="text-base text-text-muted leading-relaxed">From raw business data to measurable impact in three simple steps.</p>
+          <p className="text-base text-text-muted">From raw business data to measurable impact in three simple steps.</p>
         </div>
 
-        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {steps.map((s, i) => (
-            <div key={s.step} className="group relative bg-white rounded-2xl p-8 text-center shadow-sm border border-black/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-eco-green/5 hover:border-eco-green/20 cursor-default">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-eco-green text-white text-xs font-extrabold flex items-center justify-center shadow-lg shadow-eco-green/30">
+            <div key={s.step} className="group relative bg-white rounded-2xl p-8 text-center border border-black/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:border-eco-green/20 cursor-default">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-eco-green text-white text-xs font-bold flex items-center justify-center shadow-lg shadow-eco-green/30">
                 {s.step}
               </div>
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-eco-green/10 to-emerald-light/10 text-eco-green flex items-center justify-center mx-auto mb-5 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-eco-green/20">
+              <div className="w-12 h-12 rounded-xl bg-eco-green/10 text-eco-green flex items-center justify-center mx-auto mb-5 transition-all duration-500 group-hover:scale-110">
                 {s.icon}
               </div>
-              <h3 className="font-heading text-lg font-bold text-text-dark mb-3">{s.title}</h3>
+              <h3 className="text-lg font-bold text-text-dark mb-3">{s.title}</h3>
               <p className="text-sm text-text-muted leading-relaxed">{s.desc}</p>
             </div>
           ))}
@@ -229,7 +230,7 @@ const pillars = [
 
 function CorePillars() {
   return (
-    <section id="benefits" className="relative overflow-hidden py-24 px-[5%] text-white">
+    <section id="benefits" className="relative overflow-hidden py-20 md:py-24 px-[5%] text-white">
       <div className="absolute inset-0 z-0">
         <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=80&w=1920" alt="" className="w-full h-full object-cover scale-105" />
         <div className="absolute inset-0 bg-gradient-to-b from-forest-deep/85 via-forest-deep/70 to-forest-deep/85" />
@@ -237,23 +238,23 @@ function CorePillars() {
       </div>
 
       <div className="max-w-[1200px] mx-auto relative z-10">
-        <div className="text-center max-w-[700px] mx-auto mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white/80 text-[11px] font-extrabold uppercase tracking-widest mb-5">
+        <div className="text-center max-w-[700px] mx-auto mb-14">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/80 text-[11px] font-semibold uppercase tracking-widest mb-5">
             Core Pillars
           </span>
-          <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-white leading-tight tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight tracking-tight">
             A Complete Operating System for{' '}
-            <span className="text-gradient-emerald">Sustainability</span>
+            <span className="text-eco-green">Sustainability</span>
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {pillars.map((p, i) => (
-            <div key={p.title} className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-lg transition-all duration-500 hover:bg-white/10 hover:border-white/20 hover:-translate-y-1">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-eco-green/30 to-emerald-light/20 text-eco-green flex items-center justify-center mb-5 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-eco-green/20">
+            <div key={p.title} className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 transition-all duration-500 hover:bg-white/10 hover:border-white/20 hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-xl bg-eco-green/20 text-eco-green flex items-center justify-center mb-5 transition-all duration-500 group-hover:scale-110">
                 {p.icon}
               </div>
-              <h3 className="font-heading text-xl font-bold text-white mb-3">{p.title}</h3>
+              <h3 className="text-xl font-bold text-white mb-3">{p.title}</h3>
               <p className="text-sm text-white/65 leading-relaxed" dangerouslySetInnerHTML={{ __html: p.desc }} />
             </div>
           ))}
@@ -272,26 +273,26 @@ const benefits = [
 
 function ImpactBenefits() {
   return (
-    <section className="relative bg-white py-24 px-[5%] overflow-hidden">
+    <section className="relative bg-white py-20 md:py-24 px-[5%] overflow-hidden">
       <div className="section-divider absolute top-0 left-0" />
       <div className="max-w-[1200px] mx-auto">
-        <div className="text-center max-w-[700px] mx-auto mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
+        <div className="text-center max-w-[700px] mx-auto mb-14">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-semibold uppercase tracking-widest mb-5">
             Value Delivered
           </span>
-          <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark leading-tight tracking-tight mb-5">
+          <h2 className="text-3xl sm:text-4xl font-bold text-text-dark leading-tight tracking-tight mb-4">
             Impact & Benefits
           </h2>
-          <p className="text-base text-text-muted leading-relaxed">Transforming sustainability into a measurable competitive advantage across your organization.</p>
+          <p className="text-base text-text-muted">Transforming sustainability into a measurable competitive advantage across your organization.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {benefits.map((b, i) => (
-            <div key={b.title} className="group bg-white rounded-2xl border border-black/5 shadow-sm p-7 h-full flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-eco-green/5 hover:border-eco-green/20">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-eco-green/10 to-emerald-light/5 text-eco-green flex items-center justify-center mb-5 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-eco-green/15">
+            <div key={b.title} className="group bg-white rounded-2xl border border-black/5 p-7 h-full flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:border-eco-green/20">
+              <div className="w-12 h-12 rounded-2xl bg-eco-green/10 text-eco-green flex items-center justify-center mb-5 transition-all duration-500 group-hover:scale-110">
                 {b.icon}
               </div>
-              <h3 className="font-heading text-lg font-bold text-text-dark mb-2">{b.title}</h3>
+              <h3 className="text-lg font-bold text-text-dark mb-2">{b.title}</h3>
               <p className="text-sm text-text-muted leading-relaxed">{b.desc}</p>
             </div>
           ))}
@@ -389,13 +390,13 @@ function Ecosystem() {
         viewport={{ once: true, margin: "-100px" }}
         className="max-w-[1200px] mx-auto relative z-10"
       >
-        <motion.div variants={itemVariants} className="text-center max-w-[700px] mx-auto mb-16">
-          <span className="inline-block px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-[11px] font-extrabold uppercase tracking-widest mb-5">
+        <motion.div variants={itemVariants} className="text-center max-w-[700px] mx-auto mb-14">
+          <span className="inline-block px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-[11px] font-semibold uppercase tracking-widest mb-5">
             The Ecosystem
           </span>
-          <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-white leading-tight tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight tracking-tight">
             An Integrated ESG & Sustainability{' '}
-            <span className="text-gradient-emerald">Platform</span>
+            <span className="text-eco-green">Platform</span>
           </h2>
           <p className="text-base text-white/70 leading-relaxed max-w-[640px] mx-auto mt-4">
             A comprehensive suite of modules designed to handle every stage of your sustainability journey.
@@ -420,9 +421,9 @@ function Ecosystem() {
                   key={product.title} 
                   className="border-r border-gray-100 last:border-r-0 h-full flex flex-col transition-all duration-300 relative group"
                 >
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-eco-green to-emerald-light scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-eco-green to-emerald-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                     <div className="px-6 py-5 border-b border-gray-100 flex items-center gap-3">
-                      <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-eco-green/10 to-emerald-light/5 text-eco-green flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-eco-green/10 to-emerald-400/5 text-eco-green flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                         {product.icon}
                       </span>
                       <h3 className="font-heading text-sm font-bold text-text-dark">{product.title}</h3>
@@ -430,8 +431,8 @@ function Ecosystem() {
                     <ul className="p-6 flex-1 flex flex-col gap-3">
                       {product.items.map((item) => (
                         <li key={item} className="text-sm text-text-muted flex items-start gap-3 leading-relaxed group/item hover:text-text-dark transition-colors">
-                          <span className="w-5 h-5 rounded-full bg-eco-green text-white flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform">
-                            <span className="text-[10px] font-bold">✓</span>
+                          <span className="w-5 h-5 rounded-full border-2 border-eco-green/30 text-eco-green flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:scale-110 group-hover/item:border-eco-green transition-all duration-300">
+                            <CheckCircle size={10} strokeWidth={3} />
                           </span>
                           {item}
                         </li>
@@ -458,44 +459,44 @@ function Ecosystem() {
                 <div className="p-6 space-y-5">
                   <motion.div 
                     whileHover={{ scale: 1.02, y: -2 }}
-                    className="bg-white/10 rounded-xl p-5 border border-white/5 transition-all duration-300 hover:border-emerald-light/30 hover:bg-white/20 hover:shadow-lg"
+                    className="bg-white/10 rounded-xl p-5 border border-white/5 transition-all duration-300 hover:border-emerald-400/30 hover:bg-white/20 hover:shadow-lg"
                   >
                     <h4 className="font-heading text-sm font-bold text-white mb-4 flex items-center gap-2.5">
-                      <Globe2 size={16} className="text-emerald-light" />
+                      <Globe2 size={16} className="text-emerald-400" />
                       Strategic Ecosystem
                     </h4>
                     <ul className="space-y-3">
                       {['IoT & Sensor Integration', 'Sustainability Advisory', 'Carbon Finance Networking', 'Third-Party Assurance Support'].map((item) => (
                         <li key={item} className="text-sm text-white/80 flex items-center gap-3">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-light/70 flex-shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/70 flex-shrink-0" />
                           {item}
                         </li>
                       ))}
                     </ul>
                     <div className="mt-5 pt-4 border-t border-white/10">
-                      <button type="button" onClick={() => setModalContent(modalData['Strategic Ecosystem'])} className="text-sm font-bold text-emerald-light no-underline flex items-center gap-1.5 transition-all hover:gap-2.5 group/link bg-transparent border-none cursor-pointer p-0">
+                      <button type="button" onClick={() => setModalContent(modalData['Strategic Ecosystem'])} className="text-sm font-bold text-emerald-400 no-underline flex items-center gap-1.5 transition-all hover:gap-2.5 group/link bg-transparent border-none cursor-pointer p-0">
                         Explore Partnerships <ArrowRight size={14} className="transition-all group-hover/link:translate-x-0.5" />
                       </button>
                     </div>
                   </motion.div>
                   <motion.div 
                     whileHover={{ scale: 1.02, y: -2 }}
-                    className="bg-white/10 rounded-xl p-5 border border-white/5 transition-all duration-300 hover:border-emerald-light/30 hover:bg-white/20 hover:shadow-lg"
+                    className="bg-white/10 rounded-xl p-5 border border-white/5 transition-all duration-300 hover:border-emerald-400/30 hover:bg-white/20 hover:shadow-lg"
                   >
                     <h4 className="font-heading text-sm font-bold text-white mb-4 flex items-center gap-2.5">
-                      <Zap size={16} className="text-emerald-light" />
+                      <Zap size={16} className="text-emerald-400" />
                       Bespoke Solutions
                     </h4>
                     <ul className="space-y-3">
                       {['Custom Metric Development', 'Dedicated On-Premise Support', 'Specialized Industry Modules', 'API & Legacy System Hooks'].map((item) => (
                         <li key={item} className="text-sm text-white/80 flex items-center gap-3">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-light/70 flex-shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/70 flex-shrink-0" />
                           {item}
                         </li>
                       ))}
                     </ul>
                     <div className="mt-5 pt-4 border-t border-white/10">
-                      <button type="button" onClick={() => setModalContent(modalData['Bespoke Solutions'])} className="text-sm font-bold text-emerald-light no-underline flex items-center gap-1.5 transition-all hover:gap-2.5 group/link bg-transparent border-none cursor-pointer p-0">
+                      <button type="button" onClick={() => setModalContent(modalData['Bespoke Solutions'])} className="text-sm font-bold text-emerald-400 no-underline flex items-center gap-1.5 transition-all hover:gap-2.5 group/link bg-transparent border-none cursor-pointer p-0">
                         Request Customization <ArrowRight size={14} className="transition-all group-hover/link:translate-x-0.5" />
                       </button>
                     </div>
@@ -606,16 +607,16 @@ function MetricCard({ icon, label, value, color }: { icon: React.ReactNode; labe
 
 function DashboardPreview() {
   return (
-    <section className="relative bg-white py-24 px-[5%]">
+    <section className="relative bg-white py-20 md:py-24 px-[5%]">
       <div className="section-divider absolute top-0 left-0" />
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
         <div>
-          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-semibold uppercase tracking-widest mb-5">
             Platform Preview
           </span>
-          <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark leading-tight tracking-tight mb-5">
+          <h2 className="text-3xl sm:text-4xl font-bold text-text-dark leading-tight tracking-tight mb-5">
             Smart Monitoring &{' '}
-            <span className="text-gradient-emerald">Automation</span>
+            <span className="text-eco-green">Automation</span>
           </h2>
           <p className="text-base text-text-muted leading-relaxed mb-6">
             Experience the most advanced sustainability dashboard. Integrate operational data seamlessly and watch as AI translates it into actionable carbon metrics.
@@ -623,9 +624,9 @@ function DashboardPreview() {
           <ul className="flex flex-col gap-4">
             {['Automated Data Ingestion', 'Predictive Emission Modeling', 'Scenario Analysis Tools', 'Custom Compliance Reports'].map((item) => (
               <li key={item} className="flex items-center gap-3 font-semibold text-text-dark text-sm">
-                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-eco-green to-emerald-light flex items-center justify-center flex-shrink-0 shadow-sm shadow-eco-green/30">
-                  <CheckCircle size={14} color="#fff" />
-                </div>
+                <span className="w-6 h-6 rounded-full border-2 border-eco-green/40 flex items-center justify-center flex-shrink-0">
+                  <CheckCircle size={11} strokeWidth={3} className="text-eco-green" />
+                </span>
                 <span>{item}</span>
               </li>
             ))}
@@ -683,7 +684,7 @@ function DashboardPreview() {
               </div>
             </div>
             <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-eco-green/8 rounded-full blur-3xl -z-10" />
-            <div className="absolute -top-6 -left-6 w-32 h-32 bg-emerald-light/8 rounded-full blur-3xl -z-10" />
+            <div className="absolute -top-6 -left-6 w-32 h-32 bg-emerald-400/8 rounded-full blur-3xl -z-10" />
           </div>
       </div>
     </section>
@@ -694,14 +695,14 @@ function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="relative bg-beige-soft py-24 px-[5%]">
+    <section id="faq" className="relative bg-[#f5f2eb] py-20 md:py-24 px-[5%]">
       <div className="section-divider absolute top-0 left-0" />
       <div className="max-w-[1200px] mx-auto">
-        <div className="text-center max-w-[700px] mx-auto mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-extrabold uppercase tracking-widest mb-5">
+        <div className="text-center max-w-[700px] mx-auto mb-14">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-semibold uppercase tracking-widest mb-5">
             FAQ
           </span>
-          <h2 className="font-heading text-[clamp(2rem,3.5vw,3rem)] font-extrabold text-text-dark">Common Questions</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-text-dark">Common Questions</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -718,19 +719,19 @@ function Faq() {
                 <div className="p-5 md:p-6">
                   <div className="flex justify-between items-start gap-4">
                     <div className="flex gap-4 items-start">
-                      <div className={`flex-shrink-0 mt-0.5 p-2 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      <div className={`flex-shrink-0 mt-0.5 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
                         isOpen ? 'bg-eco-green text-white' : 'bg-eco-green/10 text-eco-green'
                       }`}>
-                        <HelpCircle size={18} strokeWidth={2.5} />
+                        <HelpCircle size={16} />
                       </div>
-                      <div className="font-heading font-bold text-sm md:text-base text-text-dark leading-relaxed pt-1">
+                      <div className="font-semibold text-sm md:text-base text-text-dark leading-relaxed pt-1.5">
                         {faq.q}
                       </div>
                     </div>
                     <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
                       isOpen ? 'bg-eco-green text-white rotate-180' : 'bg-eco-green/10 text-eco-green'
                     }`}>
-                      <ChevronDown size={18} />
+                      <ChevronDown size={16} />
                     </div>
                   </div>
                   <div className={`grid transition-all duration-300 ease-in-out ${
@@ -754,7 +755,7 @@ function Faq() {
 
 export default function Home() {
   return (
-    <div className="font-body text-text-dark bg-beige-soft overflow-x-hidden">
+    <div className="font-body text-text-dark bg-stone-50 overflow-x-hidden">
       <HeroSection />
       <AboutSection />
       <ImpactStrip />

@@ -540,7 +540,7 @@ export function EmissionsDashboard() {
         >
           <div className="bg-white rounded-2xl border border-gray-200/50 shadow-sm p-5">
             <div className="flex items-center gap-2 mb-4">
-              <FileSpreadsheet className="w-5 h-5 text-emerald-accent" />
+              <FileSpreadsheet className="w-5 h-5 text-emerald-500" />
               <h2 className="text-sm font-bold text-text-dark uppercase tracking-wider">
                 Document Analysis Overview
               </h2>
@@ -683,7 +683,7 @@ export function EmissionsDashboard() {
           <div className="bg-white rounded-2xl border border-gray-200/50 shadow-sm overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-100">
               <div className="flex items-center gap-2">
-                <Receipt className="w-5 h-5 text-emerald-accent" />
+                <Receipt className="w-5 h-5 text-emerald-500" />
                 <h2 className="text-sm font-bold text-text-dark uppercase tracking-wider">
                   Extracted Items
                 </h2>
@@ -748,7 +748,7 @@ export function EmissionsDashboard() {
           className="mb-8"
         >
           <div className="flex items-center gap-2 mb-5">
-            <Beaker className="w-5 h-5 text-emerald-accent" />
+            <Beaker className="w-5 h-5 text-emerald-500" />
             <h2 className="text-sm font-bold text-text-dark uppercase tracking-wider">
               Emission Results
             </h2>
@@ -790,7 +790,7 @@ export function EmissionsDashboard() {
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <Download className="w-5 h-5 text-emerald-accent" />
+                    <Download className="w-5 h-5 text-emerald-500" />
                     <h2 className="text-sm font-bold text-text-dark uppercase tracking-wider">
                       Report Generation
                     </h2>
@@ -838,7 +838,7 @@ export function EmissionsDashboard() {
                     href={reportUrls.cbam}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 bg-white border border-emerald-accent text-emerald-accent hover:bg-emerald-accent hover:text-white font-semibold px-5 py-3 rounded-xl shadow-sm transition-all active:scale-[0.98] text-sm"
+                    className="inline-flex items-center gap-2.5 bg-white border border-emerald-500 text-emerald-500 hover:bg-emerald-500 hover:text-white font-semibold px-5 py-3 rounded-xl shadow-sm transition-all active:scale-[0.98] text-sm"
                   >
                     <Download className="w-4 h-4" />
                     Download CBAM Report
@@ -907,7 +907,7 @@ function EmissionResultCard({
       className="bg-white rounded-2xl border border-gray-200/50 shadow-sm overflow-hidden transition-shadow hover:shadow-md"
     >
       {/* Header accent bar */}
-      <div className="h-1.5 bg-gradient-to-r from-emerald-accent to-eco-green" />
+      <div className="h-1.5 bg-gradient-to-r from-emerald-500 to-eco-green" />
 
       <div className="p-6">
         {/* Item name & badges */}

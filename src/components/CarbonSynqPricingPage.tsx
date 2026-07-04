@@ -205,10 +205,10 @@ export default function CarbonSynqPricingPage() {
 
           <motion.h1 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl md:text-6xl lg:text-[72px] font-black tracking-tighter leading-[1.05] mb-8 text-slate-900"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8 text-slate-900"
           >
             Pricing Built for the Future of <br className="hidden lg:block"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-br from-emerald-500 to-teal-600">
+            <span className="text-emerald-600">
               Carbon Intelligence.
             </span>
           </motion.h1>
@@ -265,9 +265,9 @@ export default function CarbonSynqPricingPage() {
       <section id="pricing" className="py-16 relative z-10">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="flex flex-col items-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-4 tracking-tighter text-center">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight text-center">
               Uncompromising Power.<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Transparent Tiers.</span>
+              <span className="text-emerald-600">Transparent Tiers.</span>
             </h2>
           </div>
 
@@ -368,7 +368,7 @@ export default function CarbonSynqPricingPage() {
       {/* --- COMPARISON TABLE --- */}
       <section className="py-24 relative z-10">
         <div className="max-w-[1200px] mx-auto px-6">
-          <h2 className="text-3xl font-black text-slate-900 mb-12 text-center">Feature <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Comparison</span> Matrix</h2>
+          <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">Feature <span className="text-emerald-600">Comparison</span> Matrix</h2>
           
           <div className="overflow-x-auto pb-8 custom-scrollbar">
             <div className="min-w-[900px] bg-white border border-slate-200 rounded-[24px] shadow-sm overflow-hidden">
@@ -405,9 +405,9 @@ export default function CarbonSynqPricingPage() {
       <section className="py-24 relative z-10">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="flex flex-col items-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tighter text-center">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4 tracking-tight text-center">
               Meet the Visionaries Behind<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">CarbonSynq.</span>
+              <span className="text-emerald-600">CarbonSynq.</span>
             </h2>
             <p className="text-lg text-slate-500 font-medium">The engineering leadership powering the future of ESG compliance.</p>
           </div>
@@ -440,7 +440,7 @@ export default function CarbonSynqPricingPage() {
       {/* --- FAQ --- */}
       <section className="py-24 relative z-10 border-t border-slate-200 bg-slate-50">
         <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-4xl font-black text-slate-900 mb-12 text-center">Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Questions</span></h2>
+          <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">Frequently Asked <span className="text-emerald-600">Questions</span></h2>
           <div className="space-y-4">
             {faqs.map((faq, i) => (
               <div key={i} className="bg-white border border-slate-200 shadow-sm rounded-2xl overflow-hidden hover:border-slate-300 transition-colors">
@@ -475,7 +475,7 @@ export default function CarbonSynqPricingPage() {
             {/* Left: Visualization */}
             <div className="relative flex flex-col justify-center">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none" />
-              <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 relative z-10">Systematize <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Sustainability.</span></h2>
+              <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 relative z-10">Systematize <br/><span className="text-emerald-600">Sustainability.</span></h2>
               <p className="text-xl text-slate-600 mb-12 relative z-10 max-w-md">Connect with our enterprise architecture team to map your path to Net-Zero compliance.</p>
               
               <div className="relative z-10 flex flex-col gap-6">

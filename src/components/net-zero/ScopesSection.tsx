@@ -52,8 +52,8 @@ export default function ScopesSection() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-700 mb-6 uppercase tracking-[0.2em]">
             <Layers className="w-3.5 h-3.5" /> GHG Protocol Framework
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-5 leading-tight">
-            The <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#10B981] to-[#34D399]">Three Layers</span> of Carbon Emissions
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-5 leading-tight">
+            The <span className="text-emerald-600">Three Layers</span> of Carbon Emissions
           </h2>
           <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
             Most companies only see the tip of the iceberg. <strong className="text-slate-700">Scope 3 emissions make up 75% of the average enterprise carbon footprint</strong> — yet they're the hardest to measure. Here's how CarbonSynq Zero maps every layer.

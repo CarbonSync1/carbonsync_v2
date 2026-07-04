@@ -68,25 +68,21 @@ export default function AI() {
             return (
               <motion.div
                 variants={itemVariants}
-                whileHover={{ y: -8, scale: 1.02 }}
+                whileHover={{ y: -4 }}
                 key={capability.title}
-                className="group relative overflow-hidden rounded-2xl p-6 bg-white border border-slate-200 shadow-sm hover:shadow-2xl transition-all duration-300"
+                className="group relative rounded-2xl p-6 bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-emerald-200 transition-all duration-300"
               >
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${capability.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
-                />
-                <div
-                  className={`w-12 h-12 rounded-xl bg-gradient-to-br ${capability.gradient} flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-12 h-12 rounded-xl bg-eco-green flex items-center justify-center mb-4 shadow-sm group-hover:scale-105 transition-transform duration-300`}
                 >
                   <Icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">
+                <h3 className="text-lg font-bold text-slate-900 mb-2">
                   {capability.title}
                 </h3>
-                <p className="text-slate-500 leading-relaxed font-medium">
+                <p className="text-sm text-slate-500 leading-relaxed">
                   {capability.description}
                 </p>
-                <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${capability.gradient}`} />
               </motion.div>
             )
           })}
