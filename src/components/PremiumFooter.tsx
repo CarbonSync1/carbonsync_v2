@@ -49,35 +49,24 @@ export default function PremiumFooter() {
             </div>
           </div>
 
-          {/* Cols 2, 3, 4 — Links block (2 columns on tablet/mobile, 3 columns on desktop) */}
-          <div className="md:col-span-8 lg:col-span-9 grid grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+          {/* Cols 2, 3 — Links block (2 columns on tablet/mobile/desktop) */}
+          <div className="md:col-span-8 lg:col-span-9 grid grid-cols-2 gap-8 lg:gap-12">
             
-            {/* Wrapper for Solutions & Company — stacks them on tablet/mobile, renders as separate grid cols on desktop */}
-            <div className="flex flex-col gap-10 lg:contents">
-              <div>
-                <h4 className="text-[13px] font-black tracking-widest text-[#0f172a] uppercase mb-5">Solutions</h4>
-                <ul className="space-y-3">
-                  <li><Link href="/solutions/net-zero"    className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Net Zero</Link></li>
-                  <li><Link href="/solutions/supply-chain" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Supply Chain</Link></li>
-                </ul>
-              </div>
-              
-              <div>
-                <h4 className="text-[13px] font-black tracking-widest text-[#0f172a] uppercase mb-5">Company</h4>
-                <ul className="space-y-3">
-                  <li><Link href="/about"   className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">About Us</Link></li>
-                  <li><Link href="/careers" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Careers</Link></li>
-                  <li><Link href="/contact" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Contact Us</Link></li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Column B — Resources */}
+            {/* Wrapper for Solutions & Company */}
             <div>
-              <h4 className="text-[13px] font-black tracking-widest text-[#0f172a] uppercase mb-5">Resources</h4>
+              <h4 className="text-[13px] font-black tracking-widest text-[#0f172a] uppercase mb-5">Solutions</h4>
               <ul className="space-y-3">
-                <li><Link href="/platform/resources" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Guides</Link></li>
-                <li><Link href="/platform/resources" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Articles</Link></li>
+                <li><Link href="/solutions/net-zero"    className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Net Zero</Link></li>
+                <li><Link href="/solutions/supply-chain" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Supply Chain</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-[13px] font-black tracking-widest text-[#0f172a] uppercase mb-5">Company</h4>
+              <ul className="space-y-3">
+                <li><Link href="/about"   className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">About Us</Link></li>
+                <li><Link href="/careers" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Careers</Link></li>
+                <li><Link href="/contact" className="text-[15px] font-medium text-slate-500 hover:text-green-600 transition-colors">Contact Us</Link></li>
               </ul>
             </div>
 
@@ -118,30 +107,19 @@ export default function PremiumFooter() {
               </p>
             </div>
 
-            {/* col-span-8 / col-span-9 → same inner grid as nav columns */}
-            <div className="md:col-span-8 lg:col-span-9 grid grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-
-              {/* Wrapper for Privacy Policy & Terms of Service — side-by-side on tablet, separate grid cols on desktop */}
-              <div className="flex items-center gap-6 lg:contents">
-                <div className="flex items-center justify-start">
-                  <Link href="/privacy-policy" className="text-[13px] font-semibold text-slate-400 hover:text-[#0f172a] transition-colors whitespace-nowrap">
-                    Privacy Policy
-                  </Link>
-                </div>
-                <div className="flex items-center justify-start border-l border-gray-200 pl-6">
-                  <Link href="/terms-of-service" className="text-[13px] font-semibold text-slate-400 hover:text-[#0f172a] transition-colors whitespace-nowrap">
-                    Terms of Service
-                  </Link>
-                </div>
-              </div>
-
-              {/* Column B (under Resources) */}
-              <div className="flex items-center justify-start border-l border-gray-200 pl-6">
-                <Link href="/data-processing-agreement" className="text-[13px] font-semibold text-slate-400 hover:text-[#0f172a] transition-colors whitespace-nowrap">
-                  Data Processing Agreement
-                </Link>
-              </div>
-
+            {/* col-span-8 / col-span-9 → horizontal legal links list */}
+            <div className="md:col-span-8 lg:col-span-9 flex flex-wrap items-center gap-x-6 gap-y-2">
+              <Link href="/privacy-policy" className="text-[13px] font-semibold text-slate-400 hover:text-[#0f172a] transition-colors whitespace-nowrap">
+                Privacy Policy
+              </Link>
+              <div className="h-4 w-px bg-gray-200" />
+              <Link href="/terms-of-service" className="text-[13px] font-semibold text-slate-400 hover:text-[#0f172a] transition-colors whitespace-nowrap">
+                Terms of Service
+              </Link>
+              <div className="h-4 w-px bg-gray-200" />
+              <Link href="/data-processing-agreement" className="text-[13px] font-semibold text-slate-400 hover:text-[#0f172a] transition-colors whitespace-nowrap">
+                Data Processing Agreement
+              </Link>
             </div>
           </div>
 

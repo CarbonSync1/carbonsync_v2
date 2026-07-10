@@ -35,14 +35,14 @@ const Innovation = () => {
               <div className="feature-icon">⚡</div>
               <div className="feature-text">
                 <h3>Sensor Fusion Technology</h3>
-                <p>Aggregating 1B+ data points from IoT devices globally.</p>
+                <p>Aggregating data points from IoT devices globally.</p>
               </div>
             </div>
             <div className="feature-item">
               <div className="feature-icon">⚙️</div>
               <div className="feature-text">
                 <h3>Real-time Remittance</h3>
-                <p>Automated carbon remittance based on smart contracts.</p>
+                <p>Automated carbon remittance</p>
               </div>
             </div>
           </div>

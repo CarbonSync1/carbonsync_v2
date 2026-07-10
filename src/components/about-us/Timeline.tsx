@@ -5,38 +5,38 @@ const timelineData = [
   {
     date: 'Nov 2025',
     fullDate: 'NOVEMBER, 2025',
-    title: 'Founded',
-    desc: 'CarbonSynq was incorporated with a vision to transform the sustainability landscape by leveraging cutting-edge technology.'
+    title: 'CarbonSynq Earth Founded',
+    desc: 'CarbonSynq Earth was founded with a vision to simplify carbon accounting and make sustainability reporting accessible to every firm easily.'
   },
   {
     date: 'Dec 2025',
     fullDate: 'DECEMBER, 2025',
-    title: 'AI Core Development',
-    desc: 'Completed the integration of our proprietary LLM-driven carbon analysis engine, enabling autonomous supplier data verification.'
+    title: 'Building the Right Team',
+    desc: 'Assembled a multidisciplinary team of engineers, sustainability researchers, and product designers dedicated to creating a scalable platform.'
   },
   {
     date: 'Feb 2026',
     fullDate: 'FEBRUARY, 2026',
-    title: 'Supply Chain Protocol',
-    desc: 'Deployed our decentralized ledger protocol to over 10,000 tier-2 and tier-3 suppliers, ensuring unprecedented data integrity across the value chain.'
+    title: 'ESG & Emissions Research',
+    desc: 'Conducted extensive research on ESG reporting frameworks, carbon accounting methodologies, and globally recognized emission factors to establish the platform.'
   },
   {
     date: 'Apr 2026',
     fullDate: 'APRIL, 2026',
-    title: 'Autonomous Audit',
-    desc: 'Launched our AI-driven "Self-Healing" audit engine that automatically detects and resolves data discrepancies in real-time without human intervention.'
+    title: 'Phase One Platform Launch',
+    desc: 'Completed the first production-ready version of CarbonSynq Earth, introducing AI-powered invoice processing, automated emissions calculations, and a modern sustainability dashboard.'
   },
   {
     date: 'May 2026',
     fullDate: 'MAY, 2026',
-    title: 'Credit Exchange',
-    desc: 'Launched our integrated carbon credit exchange, allowing partners to offset residual emissions with verified, high-impact climate projects directly through the platform.'
+    title: 'Recognized for Innovation',
+    desc: 'CarbonSynq Earth was featured by Republic Bharat, highlighting our innovation and vision for transforming carbon accounting and sustainability reporting through technology.'
   },
   {
     date: 'Jul 2026',
     fullDate: 'JULY, 2026',
-    title: 'Global Launch',
-    desc: 'CarbonSynq is now fully operational and ready for global adoption. Our platform and website are open for organizations worldwide to begin their journey toward a liveable planet.'
+    title: 'Global Product Launch — Indonesia',
+    desc: 'Officially introduced CarbonSynq Earth during our Indonesia visit, sharing our platform with a global audience and marking an important milestone in our journey toward enabling smarter climate action.'
   }
 ]
 

@@ -168,7 +168,7 @@ export default function CarbonSynqCareerPage() {
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-1.5 text-xs font-medium text-emerald-700 tracking-wide uppercase">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
-              Careers at CarbonSynq
+              Careers at CarbonSynq Earth
             </div>
 
             <h1 className="text-5xl font-bold tracking-tight text-slate-900 md:text-7xl leading-[1.05]">
@@ -229,32 +229,8 @@ export default function CarbonSynqCareerPage() {
         </div>
       </section>
 
-      {/* REFINED STATS SECTION */}
-      <section className="px-6 py-10 md:px-12 lg:px-20 max-w-7xl mx-auto" role="button" tabIndex={0} onKeyPress={(e) => { if (e.key === 'Enter' || e.key === ' ') { window.open('https://youtu.be/ZyGjc9gFT4w', '_blank'); } }}>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {([
-            ["500K+", "Tonnes Under Mgmt.", "In closed-beta enterprise pilot programs", TrendingUp],
-            ["15+", "Core Architects", "Elite engineers, data scientists, and climate experts", Sparkles],
-            ["5+", "Enterprise Pilots", "Integrating with global supply chain partners", Globe2],
-            ["100%", "Science-Backed", "Zero greenwashing. Absolute verifiable transparency", ShieldCheck]
-          ] as [string, string, string, React.ComponentType<{ size?: number }>][]).map(([v, l, d, Icon], i) => (
-            <div
-              key={l}
-              className="group relative rounded-2xl border border-slate-200 bg-white backdrop-blur-sm p-6 shadow-sm hover:shadow-lg hover:border-emerald-500/20 transition-all duration-500 overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-emerald-500/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="flex items-center gap-2 mb-3">
-                <div className="rounded-lg bg-emerald-500/20 p-1.5 text-emerald-600">
-                  <Icon size={14} />
-                </div>
-              </div>
-              <span className="text-3xl font-extrabold text-slate-900 tracking-tight">{v}</span>
-              <p className="text-sm font-bold text-slate-600 mt-1.5">{l}</p>
-              <p className="text-[11px] text-slate-500 mt-1 leading-relaxed font-light">{d}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+     
+      
 
       {/* MEDIA RECOGNITION SECTION */}
       <section className="px-6 py-16 md:px-12 lg:px-20 max-w-7xl mx-auto cursor-pointer" onClick={() => window.open('https://youtu.be/ZyGjc9gFT4w', '_blank')}>
@@ -349,8 +325,8 @@ export default function CarbonSynqCareerPage() {
               <p className="mt-6 text-slate-500 leading-relaxed font-normal">
                 Corporations and regulatory jurisdictions must align with rigorous, high-fidelity metrics. CarbonSynq bridges this delta—providing science-grade, programmatic ledger platforms that make absolute accountability standard practice across all corporate supply chains.
               </p>
-              <div className="mt-8 grid grid-cols-3 gap-6 pt-6 border-t border-slate-200">
-                {[["2026", "Founded"], ["100%", "Scientific Bias"], ["4.8 ★", "Glassdoor Rating"]].map(([val, lbl]) => (
+              <div className="mt-8 flex justify-around gap-6 pt-6 border-t border-slate-200">
+                {[["2026", "Founded"], ["100%", "Scientific Bias"]].map(([val, lbl]) => (
                   <div key={lbl}>
                     <p className="text-xl font-bold text-slate-900">{val}</p>
                     <p className="text-xs text-slate-500 mt-0.5">{lbl}</p>
@@ -437,135 +413,7 @@ export default function CarbonSynqCareerPage() {
         </div>
       </section>
 
-      {/* SPECULATIVE CTA */}
-      <section className="px-6 py-12 md:px-12 lg:px-20 max-w-7xl mx-auto">
-        <div className="relative rounded-[2rem] border border-slate-800 bg-slate-950 p-8 md:p-12 text-center shadow-2xl overflow-hidden">
-          {/* Glowing gradient background patterns */}
-          <div className="absolute inset-0 bg-grid-bg opacity-5" />
-          <div className="absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-emerald-500/10 blur-[80px] glow-effect" />
-          <div className="absolute inset-0 rounded-[2rem] border border-white/5 pointer-events-none" />
 
-          <div className="relative max-w-3xl mx-auto flex flex-col items-center">
-            <div className="rounded-2xl bg-emerald-500/10 border border-emerald-500/20 p-3 text-emerald-600 mb-5">
-              <GraduationCap size={28} />
-            </div>
-
-            <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl leading-tight">
-              No matching position?<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-400">
-                Initiate a speculative request
-              </span>
-            </h2>
-
-            <p className="mt-3 max-w-xl text-slate-300 leading-relaxed text-sm font-light">
-              We are constantly seeking outstanding system builders, developers, policy specialists, and climate practitioners. Build your own mandate.
-            </p>
-
-            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row w-full sm:w-auto">
-              <a href={"/contact"} className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-slate-900 px-8 py-3.5 text-xs font-bold text-white shadow-xl transition-all hover:bg-slate-800 hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto cursor-pointer">
-                Send Speculative Application
-                <Send size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-              <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-[0.2em] border border-emerald-400/20 bg-emerald-400/5 px-4 py-2 rounded-full mt-2 sm:mt-0">
-                Direct Response &lt; 3 Weeks
-              </span>
-            </div>
-          </div>
-        </div>
-        {showForm && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-            <div className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md">
-              <h3 className="text-lg font-bold mb-4 text-center">Speculative Application</h3>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Name</label>
-                <input
-                  type="text"
-                  value={applicantName}
-                  onChange={e => setApplicantName(e.target.value)}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
-                  placeholder="Your name"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Email</label>
-                <input
-                  type="email"
-                  value={applicantEmail}
-                  onChange={e => setApplicantEmail(e.target.value)}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500"
-                  placeholder="you@example.com"
-                />
-              </div>
-              <div className="flex justify-end space-x-2">
-                <button
-                  onClick={() => setShowForm(false)}
-                  className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={async () => {
-                    // Simple validation
-                    if (!applicantName || !applicantEmail) {
-                      console.error('Name and email are required');
-                      return;
-                    }
-                    try {
-                      const formData = new FormData();
-                      formData.append('name', applicantName);
-                      formData.append('email', applicantEmail);
-                      formData.append('_replyto', applicantEmail);
-
-                      const response = await fetch('https://formspree.io/f/mgoqyqeo', {
-                        method: 'POST',
-                        headers: {
-                          Accept: 'application/json',
-                        },
-                        body: formData,
-                      });
-
-                      // Try to parse JSON, fallback to plain text
-                      let result;
-                      try {
-                        result = await response.json();
-                      } catch (e) {
-                        result = await response.text();
-                      }
-
-                      if (response.ok) {
-                        setShowForm(false);
-                        setShowSuccess(true);
-                        setApplicantName('');
-                        setApplicantEmail('');
-                      } else {
-                        console.error('Formspree error (status', response.status, '):', result);
-                      }
-                    } catch (err) {
-                      console.error('Formspree submission error:', err);
-                    }
-                  }}
-                  className="px-4 py-2 bg-emerald-500 text-white rounded hover:bg-emerald-600"
-                >
-                  Submit
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-        {showSuccess && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black/50">
-            <div className="bg-white rounded-lg p-6 shadow-lg text-center">
-              <h3 className="text-lg font-bold mb-2">Message sent successfully</h3>
-              <button
-                onClick={() => setShowSuccess(false)}
-                className="mt-4 px-4 py-2 bg-emerald-500 text-white rounded"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        )}
-      </section>
 
       {/* OPEN ROLES & JOB SEARCH */}
       <section id="open-roles" className="px-6 py-20 md:px-12 lg:px-20 max-w-7xl mx-auto">

@@ -1110,15 +1110,16 @@
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 20px;
-  transition: all 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
   height: 100%;
   position: relative;
   overflow: hidden;
 }
 
 .service-card-premium:hover {
-  border-color: #059669;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+  transform: translateY(-6px);
+  border-color: #10b981;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(16, 185, 129, 0.03);
 }
 
 .card-front {
@@ -1129,13 +1130,15 @@
   flex-direction: column;
 }
 
-.service-card-premium:hover .card-front {
-  opacity: 0;
-}
 
 .card-icon {
   font-size: 1.5rem;
   margin-bottom: 18px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card-premium:hover .card-icon {
+  transform: scale(1.12) rotate(2deg);
 }
 
 .service-card-premium h3 {

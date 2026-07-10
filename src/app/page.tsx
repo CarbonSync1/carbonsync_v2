@@ -10,7 +10,10 @@ import {
   CheckCircle, Users, Layers, Database, X,
 } from 'lucide-react';
 import { faqs } from '@/data/faqs';
+import InteractiveUseCases from '@/components/InteractiveUseCases';
+import MilestoneStory from '@/components/MilestoneStory';
 const Analytics = dynamic(() => import('@/components/AnalyticsSection').then(m => ({ default: m.Analytics })), { ssr: false });
+
 
 function HeroSection() {
   return (
@@ -266,7 +269,7 @@ function CorePillars() {
 
 const benefits = [
   { title: 'Cost Efficiency', icon: <Zap size={28} />, desc: 'Reduce operational costs through optimized resource management and waste reduction across your entire value chain.' },
-  { title: 'Regulatory Readiness', icon: <ShieldCheck size={28} />, desc: 'Stay ahead of global ESG mandates effortlessly with automated compliance updates across 40+ jurisdictions.' },
+  { title: 'Regulatory Readiness', icon: <ShieldCheck size={28} />, desc: 'Stay ahead of global ESG mandates effortlessly with automated compliance updates across multiple jurisdictions.' },
   { title: 'Brand Reputation', icon: <Award size={28} />, desc: 'Build trust with transparent, verifiable climate action and data-driven sustainability reporting.' },
   { title: 'Operational Agility', icon: <Activity size={28} />, desc: 'Make data-driven decisions faster with real-time carbon intelligence and predictive scenario modeling.' },
 ];
@@ -759,15 +762,17 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <ImpactStrip />
-      <TrustedMarquee />
+      {/* <TrustedMarquee /> */}
       <HowItWorks />
       <CorePillars />
       <ImpactBenefits />
+      <InteractiveUseCases />
       <Suspense fallback={<div className="h-[600px] bg-white animate-pulse" />}>
         <Analytics />
       </Suspense>
       <Ecosystem />
       <DashboardPreview />
+      <MilestoneStory />
       <Faq />
     </div>
   );

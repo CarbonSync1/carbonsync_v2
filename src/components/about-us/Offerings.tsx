@@ -8,7 +8,7 @@ const reasons = [
       </svg>
     ), 
     title: 'AI-Powered Precision', 
-    desc: 'Proprietary models delivering 99.9% accuracy.' 
+    desc: 'Proprietary models delivering best accuracy.' 
   },
   { 
     icon: (
@@ -112,13 +112,6 @@ const Offerings = () => {
                   <div className="card-icon">{service.icon}</div>
                   <h3>{service.title}</h3>
                   <p>{service.desc}</p>
-                  <span className="link-arrow">HOVER FOR DETAILS →</span>
-                </div>
-                
-                <div className="card-overlay">
-                  <h4 className="top-3 relative">{service.title}</h4>
-                  <div className="overlay-divider"></div>
-                  <p>{service.details}</p>
                 </div>
               </div>
             ))}

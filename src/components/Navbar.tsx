@@ -23,7 +23,6 @@ const links = [
     items: [
       // { name: 'Dashboard', description: 'Real-time analytics and insights', href: '/dashboard' },
       { name: 'Plans', description: 'Flexible pricing for every business size', href: '/platform/pricing' },
-      { name: 'Resources', description: 'Documentation, guides, and insights', href: '/platform/resources' },
     ],
   },
   {

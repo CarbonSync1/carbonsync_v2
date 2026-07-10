@@ -69,7 +69,6 @@ export default function SupplyChainPage() {
             <VideoModal />
             <ExpertModal />
             <Hero />
-            <WaveDivider />
             <div className="flex items-center justify-center pb-12 pt-6">
               <button
                 onClick={() => problemsRef.current?.scrollIntoView({ behavior: 'smooth' })}

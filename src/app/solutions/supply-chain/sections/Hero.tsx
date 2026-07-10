@@ -1,8 +1,7 @@
 'use client'
 
 import { ArrowRight, Users } from 'lucide-react'
-import TrustBadges from '../components/TrustBadges'
-import ClientLogos from '../components/ClientLogos'
+
 
 export default function Hero() {
   return (
@@ -37,8 +36,6 @@ export default function Hero() {
               <Users className="w-5 h-5" /> Talk to an Expert
             </button>
           </div>
-          <TrustBadges className="mt-6" />
-          <ClientLogos className="mt-8" />
         </div>
         <div
           className="flex-1 w-full max-w-md"
