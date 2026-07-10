@@ -1,5 +1,6 @@
 'use client';
 
+
 import { useState, useRef, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -770,8 +771,8 @@ export default function Home() {
       <Suspense fallback={<div className="h-[600px] bg-white animate-pulse" />}>
         <Analytics />
       </Suspense>
-      <Ecosystem />
-      <DashboardPreview />
+      {/* <Ecosystem /> */}
+      {/* <DashboardPreview /> */}
       <MilestoneStory />
       <Faq />
     </div>
