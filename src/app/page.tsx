@@ -13,8 +13,8 @@ import {
 import { faqs } from '@/data/faqs';
 import InteractiveUseCases from '@/components/InteractiveUseCases';
 import MilestoneStory from '@/components/MilestoneStory';
-const Analytics = dynamic(() => import('@/components/AnalyticsSection').then(m => ({ default: m.Analytics })), { ssr: false });
-
+const Analytic = dynamic(() => import('@/components/AnalyticsSection').then(m => ({ default: m.Analytics })), { ssr: false });
+import { Analytics } from '@vercel/analytics/next';
 
 function HeroSection() {
   return (
@@ -769,12 +769,13 @@ export default function Home() {
       <ImpactBenefits />
       <InteractiveUseCases />
       <Suspense fallback={<div className="h-[600px] bg-white animate-pulse" />}>
-        <Analytics />
+        <Analytic />
       </Suspense>
       {/* <Ecosystem /> */}
       {/* <DashboardPreview /> */}
       <MilestoneStory />
       <Faq />
+      <Analytics />
     </div>
   );
 }
