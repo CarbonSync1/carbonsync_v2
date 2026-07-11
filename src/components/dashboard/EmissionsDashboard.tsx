@@ -407,6 +407,19 @@ export function EmissionsDashboard() {
     cbam: generatedReportUrls?.cbam || getFullReportUrl(data.report_download_urls?.cbam),
   };
 
+  const firstResult = results.length > 0 ? results[0] : null;
+  const currentRegion = String(
+    (data as any)?.country?.region ||
+    (data as any)?.country?.country_name ||
+    (data as any)?.region ||
+    (data as any)?.invoice_region ||
+    firstResult?.region ||
+    firstResult?.result?.factor_region ||
+    firstResult?.result?.region ||
+    "India"
+  ).toUpperCase();
+  const isUK = currentRegion === "UK" || currentRegion === "GB" || currentRegion === "UNITED KINGDOM";
+
   const hasGeneratedReport = Boolean(reportUrls.brsr || reportUrls.cbam);
 
   const handleGenerateReport = async () => {
@@ -605,7 +618,7 @@ export function EmissionsDashboard() {
             label="Total CO₂e"
             value={summaryCards?.totalCO2e ?? 0}
             unit="kg"
-            decimals={2}
+            decimals={String(summaryCards?.totalCO2e ?? 0).split('.')[1]?.length || 0}
             icon={<BarChart3 className="w-5 h-5" />}
             color="text-eco-green"
             index={0}
@@ -614,7 +627,7 @@ export function EmissionsDashboard() {
             label="Total tCO₂e"
             value={summaryCards?.totalTCO2e ?? 0}
             unit="tCO₂e"
-            decimals={2}
+            decimals={String(summaryCards?.totalTCO2e ?? 0).split('.')[1]?.length || 0}
             icon={<Globe2 className="w-5 h-5" />}
             color="text-blue-600"
             index={1}
@@ -783,7 +796,7 @@ export function EmissionsDashboard() {
               <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}>
                 <EngagingLoader 
                   title="Generating Reports" 
-                  subtitle="Compiling your data into BRSR and CBAM compliant formats..." 
+                  subtitle={isUK ? "Compiling your data into UK SECR compliant format..." : "Compiling your data into BRSR and CBAM compliant formats..."} 
                 />
               </motion.div>
             ) : (
@@ -796,7 +809,7 @@ export function EmissionsDashboard() {
                     </h2>
                   </div>
                   <p className="text-sm text-text-muted max-w-2xl">
-                    Generate downloadable BRSR and CBAM PDF reports for this uploaded invoice.
+                    Generate downloadable {isUK ? "UK SECR PDF report" : "BRSR and CBAM PDF reports"} for this uploaded invoice.
                   </p>
                   {reportError && (
                     <p className="text-sm text-red-600 font-semibold mt-3">
@@ -829,11 +842,11 @@ export function EmissionsDashboard() {
                     className="inline-flex items-center gap-2.5 bg-eco-green hover:bg-eco-hover text-white font-semibold px-5 py-3 rounded-xl shadow-lg shadow-eco-green/20 transition-all hover:shadow-xl hover:shadow-eco-green/30 active:scale-[0.98] text-sm"
                   >
                     <Download className="w-4 h-4" />
-                    Download BRSR Report
+                    {isUK ? "Download UK Report" : "Download BRSR Report"}
                     <ExternalLink className="w-3.5 h-3.5 opacity-70" />
                   </a>
                 )}
-                {reportUrls.cbam && (
+                {!isUK && reportUrls.cbam && (
                   <a
                     href={reportUrls.cbam}
                     target="_blank"
@@ -937,7 +950,9 @@ function EmissionResultCard({
               CO₂e
             </p>
             <p className="text-lg font-extrabold text-text-dark font-heading tabular-nums">
-              {Number(result?.co2e ?? result?.co2e_total ?? entry?.co2e ?? 0).toLocaleString()}
+              {Number(result?.co2e ?? result?.co2e_total ?? entry?.co2e ?? 0).toLocaleString(undefined, {
+                maximumFractionDigits: 6,
+              })}
             </p>
             <p className="text-[10px] text-text-muted font-medium">
               {result?.co2e_unit ?? entry?.co2e_unit ?? "kg"}
@@ -949,7 +964,7 @@ function EmissionResultCard({
             </p>
             <p className="text-lg font-extrabold text-text-dark font-heading tabular-nums">
               {Number(result?.total_tco2e ?? entry?.total_tco2e ?? 0).toLocaleString(undefined, {
-                maximumFractionDigits: 3,
+                maximumFractionDigits: 6,
               })}
             </p>
             <p className="text-[10px] text-text-muted font-medium">tCO₂e</p>
