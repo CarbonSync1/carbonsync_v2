@@ -37,13 +37,22 @@ export function EngagingLoader({ title, subtitle }: EngagingLoaderProps) {
       <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
       
       <div className="relative z-10 flex flex-col items-center">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-          className="relative w-16 h-16 flex items-center justify-center mb-6"
-        >
-          <div className="absolute inset-0 rounded-full border-4 border-eco-green/20 border-t-eco-green" />
-        </motion.div>
+        <div className="relative w-20 h-20 flex items-center justify-center mb-6">
+          {/* Spinning ring */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0"
+          >
+            <div className="w-full h-full rounded-full border-4 border-eco-green/20 border-t-eco-green" />
+          </motion.div>
+          {/* Static logo icon in center - fills the circle */}
+          <img
+            src="/icon-192x192.png"
+            alt="CarbonSynq"
+            className="w-16 h-16 object-contain"
+          />
+        </div>
         
         <h3 className="text-xl font-bold text-text-dark mb-2">{title}</h3>
         {subtitle && <p className="text-text-muted text-sm mb-8 text-center">{subtitle}</p>}

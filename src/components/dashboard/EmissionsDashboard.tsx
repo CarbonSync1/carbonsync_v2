@@ -409,9 +409,10 @@ export function EmissionsDashboard() {
 
   const firstResult = results.length > 0 ? results[0] : null;
   const currentRegion = String(
+    (data as any)?.country?.region ||
+    (data as any)?.country?.country_name ||
     (data as any)?.region ||
     (data as any)?.invoice_region ||
-    (data as any)?.country ||
     firstResult?.region ||
     firstResult?.result?.factor_region ||
     firstResult?.result?.region ||
@@ -617,7 +618,7 @@ export function EmissionsDashboard() {
             label="Total CO₂e"
             value={summaryCards?.totalCO2e ?? 0}
             unit="kg"
-            decimals={2}
+            decimals={String(summaryCards?.totalCO2e ?? 0).split('.')[1]?.length || 0}
             icon={<BarChart3 className="w-5 h-5" />}
             color="text-eco-green"
             index={0}
@@ -626,7 +627,7 @@ export function EmissionsDashboard() {
             label="Total tCO₂e"
             value={summaryCards?.totalTCO2e ?? 0}
             unit="tCO₂e"
-            decimals={2}
+            decimals={String(summaryCards?.totalTCO2e ?? 0).split('.')[1]?.length || 0}
             icon={<Globe2 className="w-5 h-5" />}
             color="text-blue-600"
             index={1}
@@ -795,7 +796,7 @@ export function EmissionsDashboard() {
               <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}>
                 <EngagingLoader 
                   title="Generating Reports" 
-                  subtitle="Compiling your data into BRSR and CBAM compliant formats..." 
+                  subtitle={isUK ? "Compiling your data into UK SECR compliant format..." : "Compiling your data into BRSR and CBAM compliant formats..."} 
                 />
               </motion.div>
             ) : (
@@ -949,7 +950,9 @@ function EmissionResultCard({
               CO₂e
             </p>
             <p className="text-lg font-extrabold text-text-dark font-heading tabular-nums">
-              {Number(result?.co2e ?? result?.co2e_total ?? entry?.co2e ?? 0).toLocaleString()}
+              {Number(result?.co2e ?? result?.co2e_total ?? entry?.co2e ?? 0).toLocaleString(undefined, {
+                maximumFractionDigits: 6,
+              })}
             </p>
             <p className="text-[10px] text-text-muted font-medium">
               {result?.co2e_unit ?? entry?.co2e_unit ?? "kg"}
@@ -961,7 +964,7 @@ function EmissionResultCard({
             </p>
             <p className="text-lg font-extrabold text-text-dark font-heading tabular-nums">
               {Number(result?.total_tco2e ?? entry?.total_tco2e ?? 0).toLocaleString(undefined, {
-                maximumFractionDigits: 3,
+                maximumFractionDigits: 6,
               })}
             </p>
             <p className="text-[10px] text-text-muted font-medium">tCO₂e</p>
