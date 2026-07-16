@@ -239,6 +239,7 @@ export function EmissionsDashboard() {
               (data as any).total_kgco2e ?? summaryCards?.totalCO2e ?? 0,
             total_tco2e:
               (data as any).total_tco2e ?? summaryCards?.totalTCO2e ?? 0,
+            region: currentRegion,
           }),
         });
 
@@ -452,6 +453,7 @@ export function EmissionsDashboard() {
             (data as any).total_kgco2e ?? summaryCards?.totalCO2e ?? 0,
           totalTCO2e:
             (data as any).total_tco2e ?? summaryCards?.totalTCO2e ?? 0,
+          region: currentRegion,
         }),
       });
 
