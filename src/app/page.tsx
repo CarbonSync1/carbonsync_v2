@@ -29,13 +29,9 @@ import {
 import { faqs } from "@/data/faqs";
 import InteractiveUseCases from "@/components/InteractiveUseCases";
 import MilestoneStory from "@/components/MilestoneStory";
-const Analytic = dynamic(
-  () =>
-    import("@/components/AnalyticsSection").then((m) => ({
-      default: m.Analytics,
-    })),
-  { ssr: false },
-);
+import ProblemSection from "@/components/ProblemSection";
+import SolutionSection from "@/components/SolutionSection";
+
 import { Analytics } from "@vercel/analytics/next";
 
 function HeroSection() {
@@ -88,94 +84,8 @@ function HeroSection() {
   );
 }
 
-function AboutSection() {
-  return (
-    <section
-      id="about"
-      className="relative bg-white py-20 md:py-24 px-[5%] overflow-hidden"
-    >
-      <div className="section-divider absolute top-0 left-0" />
-      <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-        <div>
-          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-semibold uppercase tracking-widest mb-5">
-            Our Mission
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-text-dark leading-tight tracking-tight mb-5">
-            Transforming Sustainability into a{" "}
-            <span className="text-eco-green">Competitive Advantage</span>
-          </h2>
-          <p className="text-base text-text-muted leading-relaxed mb-5 max-w-[540px]">
-            At CarbonSynqEarths, sustainability isn&apos;t a burden — it&apos;s
-            an opportunity. Our platform simplifies the complex landscape of
-            carbon accounting, enabling organizations to measure, report, and
-            reduce their environmental footprint with unparalleled precision.
-          </p>
-          <p className="text-base text-text-muted leading-relaxed mb-8">
-            Founded on principles of transparency and innovation, we empower
-            businesses to turn ESG compliance into strategic value creation.
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="p-5 rounded-xl bg-eco-green/5 border border-eco-green/10">
-              <div className="text-3xl font-bold text-text-dark mb-1">100%</div>
-              <div className="text-[11px] font-semibold uppercase tracking-widest text-text-muted">
-                Audit Ready
-              </div>
-            </div>
-            <div className="p-5 rounded-xl bg-eco-green/5 border border-eco-green/10">
-              <div className="text-3xl font-bold text-text-dark mb-1">
-                AI-Powered
-              </div>
-              <div className="text-[11px] font-semibold uppercase tracking-widest text-text-muted">
-                Reduction Insights
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div className="relative">
-          <div className="absolute -inset-4 bg-eco-green/10 rounded-[24px] -rotate-2" />
-          <div className="relative w-full rounded-[20px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
-            <img
-              src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800"
-              alt="Sustainable Technology"
-              className="w-full"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-forest-deep/20 to-transparent" />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
-function ImpactStrip() {
-  return (
-    <section className="relative bg-forest-deep border-y border-white/5">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(22,163,74,0.06),transparent_70%)]" />
-      <div className="max-w-[1200px] mx-auto px-[5%] relative z-10">
-        <div className="flex justify-around items-stretch text-center divide-x divide-white/10">
-          {[
-            { end: 50, suffix: "%", lbl: "Faster ESG Reporting" },
-            { end: 1000, suffix: "+", lbl: "Curated ESG KPIs" },
-          ].map((item) => (
-            <div
-              className="flex flex-col items-center justify-center py-14 px-6 flex-1 gap-2"
-              key={item.lbl}
-            >
-              <span className="tabular-nums text-4xl sm:text-5xl font-bold text-eco-green tracking-tight">
-                {item.end}
-                {item.suffix}
-              </span>
-              <span className="text-sm text-white/50 font-medium uppercase tracking-wider">
-                {item.lbl}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 const badges = [
   { icon: <Award size={20} />, label: "SOC 2 Certified" },
@@ -310,118 +220,6 @@ const pillars = [
   },
 ];
 
-function CorePillars() {
-  return (
-    <section
-      id="benefits"
-      className="relative overflow-hidden py-20 md:py-24 px-[5%] text-white"
-    >
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=80&w=1920"
-          alt=""
-          className="w-full h-full object-cover scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-forest-deep/85 via-forest-deep/70 to-forest-deep/85" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(22,163,74,0.12),transparent_70%)]" />
-      </div>
-
-      <div className="max-w-[1200px] mx-auto relative z-10">
-        <div className="text-center max-w-[700px] mx-auto mb-14">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/80 text-[11px] font-semibold uppercase tracking-widest mb-5">
-            Core Pillars
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight tracking-tight">
-            A Complete Operating System for{" "}
-            <span className="text-eco-green">Sustainability</span>
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {pillars.map((p, i) => (
-            <div
-              key={p.title}
-              className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 transition-all duration-500 hover:bg-white/10 hover:border-white/20 hover:-translate-y-1"
-            >
-              <div className="w-12 h-12 rounded-xl bg-eco-green/20 text-eco-green flex items-center justify-center mb-5 transition-all duration-500 group-hover:scale-110">
-                {p.icon}
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">{p.title}</h3>
-              <p
-                className="text-sm text-white/65 leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: p.desc }}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-const benefits = [
-  {
-    title: "Cost Efficiency",
-    icon: <Zap size={28} />,
-    desc: "Reduce operational costs through optimized resource management and waste reduction across your entire value chain.",
-  },
-  {
-    title: "Regulatory Readiness",
-    icon: <ShieldCheck size={28} />,
-    desc: "Stay ahead of global ESG mandates effortlessly with automated compliance updates across multiple jurisdictions.",
-  },
-  {
-    title: "Brand Reputation",
-    icon: <Award size={28} />,
-    desc: "Build trust with transparent, verifiable climate action and data-driven sustainability reporting.",
-  },
-  {
-    title: "Operational Agility",
-    icon: <Activity size={28} />,
-    desc: "Make data-driven decisions faster with real-time carbon intelligence and predictive scenario modeling.",
-  },
-];
-
-function ImpactBenefits() {
-  return (
-    <section className="relative bg-white py-20 md:py-24 px-[5%] overflow-hidden">
-      <div className="section-divider absolute top-0 left-0" />
-      <div className="max-w-[1200px] mx-auto">
-        <div className="text-center max-w-[700px] mx-auto mb-14">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-semibold uppercase tracking-widest mb-5">
-            Value Delivered
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-text-dark leading-tight tracking-tight mb-4">
-            Impact & Benefits
-          </h2>
-          <p className="text-base text-text-muted">
-            Transforming sustainability into a measurable competitive advantage
-            across your organization.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {benefits.map((b, i) => (
-            <div
-              key={b.title}
-              className="group bg-white rounded-2xl border border-black/5 p-7 h-full flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:border-eco-green/20"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-eco-green/10 text-eco-green flex items-center justify-center mb-5 transition-all duration-500 group-hover:scale-110">
-                {b.icon}
-              </div>
-              <h3 className="text-lg font-bold text-text-dark mb-2">
-                {b.title}
-              </h3>
-              <p className="text-sm text-text-muted leading-relaxed">
-                {b.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function Ecosystem() {
   const [modalContent, setModalContent] = useState<{
@@ -1080,103 +878,22 @@ function DashboardPreview() {
   );
 }
 
-function Faq() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  return (
-    <section id="faq" className="relative bg-[#f5f2eb] py-20 md:py-24 px-[5%]">
-      <div className="section-divider absolute top-0 left-0" />
-      <div className="max-w-[1200px] mx-auto">
-        <div className="text-center max-w-[700px] mx-auto mb-14">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-eco-green/10 text-eco-green text-[11px] font-semibold uppercase tracking-widest mb-5">
-            FAQ
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-text-dark">
-            Common Questions
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {faqs.map((faq, i) => {
-            const isOpen = openIndex === i;
-            return (
-              <div
-                key={i}
-                className={`bg-white rounded-2xl border transition-all duration-300 cursor-pointer overflow-hidden ${
-                  isOpen
-                    ? "shadow-lg border-eco-green/20"
-                    : "shadow-sm border-black/5 hover:border-eco-green/10 hover:shadow-md"
-                }`}
-                onClick={() => setOpenIndex(isOpen ? null : i)}
-              >
-                <div className="p-5 md:p-6">
-                  <div className="flex justify-between items-start gap-4">
-                    <div className="flex gap-4 items-start">
-                      <div
-                        className={`flex-shrink-0 mt-0.5 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
-                          isOpen
-                            ? "bg-eco-green text-white"
-                            : "bg-eco-green/10 text-eco-green"
-                        }`}
-                      >
-                        <HelpCircle size={16} />
-                      </div>
-                      <div className="font-semibold text-sm md:text-base text-text-dark leading-relaxed pt-1.5">
-                        {faq.q}
-                      </div>
-                    </div>
-                    <div
-                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                        isOpen
-                          ? "bg-eco-green text-white rotate-180"
-                          : "bg-eco-green/10 text-eco-green"
-                      }`}
-                    >
-                      <ChevronDown size={16} />
-                    </div>
-                  </div>
-                  <div
-                    className={`grid transition-all duration-300 ease-in-out ${
-                      isOpen
-                        ? "grid-rows-[1fr] opacity-100 mt-4"
-                        : "grid-rows-[0fr] opacity-0 mt-0"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <div className="text-sm text-text-muted leading-relaxed pl-14">
-                        {faq.a}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 export default function Home() {
   return (
     <div className="font-body text-text-dark bg-stone-50 overflow-x-hidden">
       <HeroSection />
-      <AboutSection />
-      <ImpactStrip />
+      <ProblemSection />
+      <SolutionSection />
       {/* <TrustedMarquee /> */}
       <HowItWorks />
-      <CorePillars />
-      <ImpactBenefits />
+ 
       <InteractiveUseCases />
-      <Suspense fallback={<div className="h-[600px] bg-white animate-pulse" />}>
-        <Analytic />
-      </Suspense>
       {/* <Ecosystem /> */}
       {/* <DashboardPreview /> */}
       <MilestoneStory />
-      <Faq />
-      <Analytics />
+      
     </div>
   );
 }
