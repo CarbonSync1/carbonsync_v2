@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, Suspense } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import {
@@ -41,34 +42,46 @@ function HeroSection() {
   return (
     <section
       id="hero"
-      className="bg-gradient-to-b from-white via-white to-[#246A73]/40 relative min-h-[90svh] w-full flex flex-col justify-center items-center overflow-hidden pt-24 pb-12 lg:pt-32 lg:pb-16"
+      className="bg-gradient-to-b from-white via-white to-[#246A73]/40 relative min-h-[90svh] w-full flex items-center overflow-hidden pt-24 pb-12 lg:pt-32 lg:pb-16"
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(22,163,74,0.12),transparent_70%)] z-0" />
 
-      <div className="relative z-10 text-center max-w-[960px] px-[5%] w-full flex flex-col items-center">
+      <div className="relative z-10 w-full max-w-[1280px] mx-auto px-[5%] grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
+        {/* Left column — text & CTAs */}
+        <div className="flex flex-col items-start text-left">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-gray-900 leading-[1.1] tracking-tight mb-6">
+            Powering a <span className="text-[#246A73]">Greener Future</span> with
+            Intelligent Insights
+          </h1>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.1] tracking-tight mb-6 w-full">
-          Powering a <span className="text-[#246A73]">Greener Future</span> with
-          Intelligent Insights
-        </h1>
+          <div className="flex flex-wrap w-full gap-3">
+            <Link
+              href="/book-demo"
+              className="inline-flex items-center gap-3 rounded-full bg-[#246A73] px-9 py-3 text-xl font-semibold text-white transition-all duration-300 hover:bg-green-700"
+            >
+              Book a demo
+            </Link>
+            <Link
+              href="/book-demo"
+              className="inline-flex items-center gap-3 rounded-full bg-[#246A73] px-9 py-3 text-xl font-semibold text-white transition-all duration-300 hover:bg-green-700"
+            >
+              Explore Platform
+            </Link>
+          </div>
+        </div>
 
-        {/* <div className="inline-block bg-[#246A73] text-white border-eco-green/25 px-5 lg:px-6 py-2 lg:py-2.5 rounded-xl text-xs sm:text-sm font-semibold tracking-wide mb-6 backdrop-blur-sm max-w-full">
-          FROM CARBON ACCOUNTING TO OFFSETTING — ALL AT ONE PLATFORM
-        </div> */}
-
-        <div className="flex justify-center w-full gap-2">
-          <Link
-            href="/book-demo"
-            className="inline-flex items-center gap-3 rounded-full bg-[#246A73] px-9 py-3 text-xl font-semibold text-white transition-all duration-300 hover:bg-green-700"
-          >
-            Book a demo
-          </Link>
-          <Link
-            href="/book-demo"
-            className="inline-flex items-center gap-3 rounded-full bg-[#246A73] px-9 py-3 text-xl font-semibold text-white transition-all duration-300 hover:bg-green-700"
-          >
-            Explore Platform
-          </Link>
+        {/* Right column — dashboard illustration */}
+        <div className="relative w-full flex justify-center md:justify-end">
+          <div className="relative w-full max-w-[580px] aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+            <Image
+              src="/hero-dashboard.png"
+              alt="CarbonSync dashboard preview showing carbon analytics and insights"
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 55vw"
+            />
+          </div>
         </div>
       </div>
     </section>
