@@ -1,17 +1,11 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import { AppShell } from "@/components/shared/AppShell";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "CarbonSynq - Enterprise ESG & Carbon Management Platform",
-  description:
-    "The intelligent ESG layer for modern enterprise. Track, manage, and reduce your carbon footprint with AI-powered analytics and supply chain insights.",
-  keywords:
-    "ESG, carbon tracking, net zero, sustainability, supply chain, carbon footprint",
-};
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export default function RootLayout({
   children,
@@ -20,10 +14,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased`} suppressHydrationWarning>
+      <body
+        className={`${ibmPlexSans.className} antialiased`}
+        suppressHydrationWarning
+      >
         <AppShell>{children}</AppShell>
       </body>
     </html>
   );
 }
-
