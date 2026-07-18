@@ -435,9 +435,6 @@ export function EmissionsDashboard() {
     (data as any)?.country?.region ||
     (data as any)?.country?.country_name ||
     (data as any)?.country ||
-    (data as any)?.region ||
-    (data as any)?.detected_region ||
-    firstResult?.region ||
     ""
   ).toUpperCase().trim();
 
@@ -1011,7 +1008,7 @@ function EmissionResultCard({
           </div>
           <div className="bg-gray-50 rounded-xl px-3 py-3">
             <p className="text-[10px] font-bold text-text-muted uppercase tracking-wider mb-1">
-              Region
+              Factor Region
             </p>
             <div className="flex items-center gap-1.5 mt-1">
               <MapPin className="w-3.5 h-3.5 text-text-muted" />
