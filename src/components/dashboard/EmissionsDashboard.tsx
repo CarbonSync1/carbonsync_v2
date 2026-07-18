@@ -826,6 +826,13 @@ export function EmissionsDashboard() {
                       Report Generation
                     </h2>
                   </div>
+                  {/* DEBUG INFO */}
+                  <div className="p-3 mb-3 bg-red-50 text-red-800 text-xs rounded border border-red-200">
+                    <strong>DEBUG:</strong> 
+                    currentRegion = {currentRegion}, 
+                    isUK = {String(isUK)}, 
+                    data.country = {JSON.stringify((data as any)?.country || "null")}
+                  </div>
                   <p className="text-sm text-text-muted max-w-2xl">
                     {isUK
                       ? "Generate a downloadable UK SECR PDF report for this uploaded invoice."
