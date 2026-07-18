@@ -89,6 +89,25 @@ function getFullReportUrl(url?: string) {
   return url.startsWith("http") ? url : `${API_BASE_URL}${url}`;
 }
 
+const REGION_LABELS: Record<string, string> = {
+  GB: "United Kingdom",
+  IN: "India",
+  US: "United States",
+  DE: "Germany",
+  FR: "France",
+  CN: "China",
+  JP: "Japan",
+  AU: "Australia",
+  CA: "Canada",
+  BR: "Brazil",
+  GLOBAL: "Global",
+};
+
+function formatRegion(code: string): string {
+  if (!code || code === "N/A") return "N/A";
+  return REGION_LABELS[code.toUpperCase()] ?? code;
+}
+
 function filterRailTicketResults(results: any[]) {
   const hasPassengerRail = results.some((item: any) =>
     String(item?.item_name ?? item?.result?.item_name ?? "")
@@ -284,9 +303,9 @@ export function EmissionsDashboard() {
           className="flex flex-col items-center justify-center py-20"
         >
           <div className="w-full max-w-lg">
-            <EngagingLoader 
-              title="Processing Invoice" 
-              subtitle="Extracting items and calculating carbon emissions..." 
+            <EngagingLoader
+              title="Processing Invoice"
+              subtitle="Extracting items and calculating carbon emissions..."
             />
           </div>
         </motion.div>
@@ -407,20 +426,22 @@ export function EmissionsDashboard() {
     cbam: generatedReportUrls?.cbam || getFullReportUrl(data.report_download_urls?.cbam),
   };
 
+  const hasGeneratedReport = Boolean(reportUrls.brsr || reportUrls.cbam);
+
+  // ── Region detection ──
+  // Backend returns country as an object: { region: "GB", country_name: "United Kingdom", currency: "GBP" }
   const firstResult = results.length > 0 ? results[0] : null;
   const currentRegion = String(
     (data as any)?.country?.region ||
     (data as any)?.country?.country_name ||
+    (data as any)?.country ||
     (data as any)?.region ||
-    (data as any)?.invoice_region ||
+    (data as any)?.detected_region ||
     firstResult?.region ||
-    firstResult?.result?.factor_region ||
-    firstResult?.result?.region ||
-    "India"
-  ).toUpperCase();
-  const isUK = currentRegion === "UK" || currentRegion === "GB" || currentRegion === "UNITED KINGDOM";
+    ""
+  ).toUpperCase().trim();
 
-  const hasGeneratedReport = Boolean(reportUrls.brsr || reportUrls.cbam);
+  const isUK = ["GB", "UK", "UNITED KINGDOM"].includes(currentRegion);
 
   const handleGenerateReport = async () => {
     if (!data || reportGenerating) return;
@@ -618,7 +639,7 @@ export function EmissionsDashboard() {
             label="Total CO₂e"
             value={summaryCards?.totalCO2e ?? 0}
             unit="kg"
-            decimals={String(summaryCards?.totalCO2e ?? 0).split('.')[1]?.length || 0}
+            decimals={2}
             icon={<BarChart3 className="w-5 h-5" />}
             color="text-eco-green"
             index={0}
@@ -627,7 +648,7 @@ export function EmissionsDashboard() {
             label="Total tCO₂e"
             value={summaryCards?.totalTCO2e ?? 0}
             unit="tCO₂e"
-            decimals={String(summaryCards?.totalTCO2e ?? 0).split('.')[1]?.length || 0}
+            decimals={2}
             icon={<Globe2 className="w-5 h-5" />}
             color="text-blue-600"
             index={1}
@@ -794,9 +815,9 @@ export function EmissionsDashboard() {
           <div className="bg-white rounded-2xl border border-gray-200/50 shadow-sm p-6">
             {reportGenerating ? (
               <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}>
-                <EngagingLoader 
-                  title="Generating Reports" 
-                  subtitle={isUK ? "Compiling your data into UK SECR compliant format..." : "Compiling your data into BRSR and CBAM compliant formats..."} 
+                <EngagingLoader
+                  title="Generating Reports"
+                  subtitle={isUK ? "Compiling your data into UK SECR compliant format..." : "Compiling your data into BRSR and CBAM compliant formats..."}
                 />
               </motion.div>
             ) : (
@@ -809,7 +830,9 @@ export function EmissionsDashboard() {
                     </h2>
                   </div>
                   <p className="text-sm text-text-muted max-w-2xl">
-                    Generate downloadable {isUK ? "UK SECR PDF report" : "BRSR and CBAM PDF reports"} for this uploaded invoice.
+                    {isUK
+                      ? "Generate a downloadable UK SECR PDF report for this uploaded invoice."
+                      : "Generate downloadable BRSR and CBAM PDF reports for this uploaded invoice."}
                   </p>
                   {reportError && (
                     <p className="text-sm text-red-600 font-semibold mt-3">
@@ -834,29 +857,48 @@ export function EmissionsDashboard() {
 
             {hasGeneratedReport && (
               <div className="flex flex-wrap gap-3 mt-6 pt-5 border-t border-gray-100">
-                {reportUrls.brsr && (
-                  <a
-                    href={reportUrls.brsr}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 bg-eco-green hover:bg-eco-hover text-white font-semibold px-5 py-3 rounded-xl shadow-lg shadow-eco-green/20 transition-all hover:shadow-xl hover:shadow-eco-green/30 active:scale-[0.98] text-sm"
-                  >
-                    <Download className="w-4 h-4" />
-                    {isUK ? "Download UK Report" : "Download BRSR Report"}
-                    <ExternalLink className="w-3.5 h-3.5 opacity-70" />
-                  </a>
-                )}
-                {!isUK && reportUrls.cbam && (
-                  <a
-                    href={reportUrls.cbam}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 bg-white border border-emerald-500 text-emerald-500 hover:bg-emerald-500 hover:text-white font-semibold px-5 py-3 rounded-xl shadow-sm transition-all active:scale-[0.98] text-sm"
-                  >
-                    <Download className="w-4 h-4" />
-                    Download CBAM Report
-                    <ExternalLink className="w-3.5 h-3.5 opacity-70" />
-                  </a>
+                {isUK ? (
+                  /* UK Region: Single "Download UK Report" button */
+                  reportUrls.brsr && (
+                    <a
+                      href={reportUrls.brsr}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2.5 bg-eco-green hover:bg-eco-hover text-white font-semibold px-5 py-3 rounded-xl shadow-lg shadow-eco-green/20 transition-all hover:shadow-xl hover:shadow-eco-green/30 active:scale-[0.98] text-sm"
+                    >
+                      <Download className="w-4 h-4" />
+                      Download UK Report
+                      <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+                    </a>
+                  )
+                ) : (
+                  /* India / Other Regions: BRSR + CBAM buttons */
+                  <>
+                    {reportUrls.brsr && (
+                      <a
+                        href={reportUrls.brsr}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2.5 bg-eco-green hover:bg-eco-hover text-white font-semibold px-5 py-3 rounded-xl shadow-lg shadow-eco-green/20 transition-all hover:shadow-xl hover:shadow-eco-green/30 active:scale-[0.98] text-sm"
+                      >
+                        <Download className="w-4 h-4" />
+                        Download BRSR Report
+                        <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+                      </a>
+                    )}
+                    {reportUrls.cbam && (
+                      <a
+                        href={reportUrls.cbam}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2.5 bg-white border border-emerald-500 text-emerald-500 hover:bg-emerald-500 hover:text-white font-semibold px-5 py-3 rounded-xl shadow-sm transition-all active:scale-[0.98] text-sm"
+                      >
+                        <Download className="w-4 h-4" />
+                        Download CBAM Report
+                        <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+                      </a>
+                    )}
+                  </>
                 )}
               </div>
             )}
@@ -877,7 +919,7 @@ function EmissionResultCard({
   index: number;
 }) {
   const result = entry?.result ?? entry ?? {};
-  
+
   const isSuccess = entry.success === true || entry.status === "calculated";
 
   if (!isSuccess) {
@@ -950,9 +992,7 @@ function EmissionResultCard({
               CO₂e
             </p>
             <p className="text-lg font-extrabold text-text-dark font-heading tabular-nums">
-              {Number(result?.co2e ?? result?.co2e_total ?? entry?.co2e ?? 0).toLocaleString(undefined, {
-                maximumFractionDigits: 6,
-              })}
+              {Number(result?.co2e ?? result?.co2e_total ?? entry?.co2e ?? 0).toLocaleString()}
             </p>
             <p className="text-[10px] text-text-muted font-medium">
               {result?.co2e_unit ?? entry?.co2e_unit ?? "kg"}
@@ -964,7 +1004,7 @@ function EmissionResultCard({
             </p>
             <p className="text-lg font-extrabold text-text-dark font-heading tabular-nums">
               {Number(result?.total_tco2e ?? entry?.total_tco2e ?? 0).toLocaleString(undefined, {
-                maximumFractionDigits: 6,
+                maximumFractionDigits: 3,
               })}
             </p>
             <p className="text-[10px] text-text-muted font-medium">tCO₂e</p>
@@ -976,7 +1016,7 @@ function EmissionResultCard({
             <div className="flex items-center gap-1.5 mt-1">
               <MapPin className="w-3.5 h-3.5 text-text-muted" />
               <p className="text-lg font-extrabold text-text-dark font-heading">
-                {result?.factor_region ?? result?.region ?? entry?.region ?? "N/A"}
+                {formatRegion(entry?.region ?? result?.region ?? entry?.factor_region ?? result?.factor_region ?? "N/A")}
               </p>
             </div>
           </div>
@@ -1011,5 +1051,4 @@ function EmissionResultCard({
     </motion.div>
   );
 }
-
 
